@@ -32,11 +32,13 @@ addDecorator(story => (
   </ThemeProvider>
 ));
 
-// automatically import all files ending in *.stories.tsx
-const req = require.context("../src/", true, /\.stories\.tsx$/);
+const loaderFn = () => {
+  // put welcome screen at the top of the list so it's the first one displayed
+  const allExports = [require("./welcome.stories.tsx")];
+  // automatically import all story ts files that end with *.stories.tsx
+  const req = require.context("../src/components", true, /\.stories\.tsx$/);
+  req.keys().forEach(fname => allExports.push(req(fname)));
+  return allExports;
+};
 
-function loadStories() {
-  req.keys().forEach(req);
-}
-
-configure(loadStories, module);
+configure(loaderFn, module);

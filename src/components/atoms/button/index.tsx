@@ -1,11 +1,11 @@
-import * as React from "react";
-import injectSheet, { ClassNameMap } from "react-jss";
+import * as React from 'react';
+import injectSheet, { ClassNameMap } from 'react-jss';
 
-import styles from "./button.style";
+import styles from './button.style';
 
 type Props = {
   classes: ClassNameMap<string>;
-  children?: React.ReactNode;
+  children: React.ReactNode;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const Button: React.SFC<Props> = ({ classes, children, onClick }) => (
