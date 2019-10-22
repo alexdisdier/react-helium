@@ -23,11 +23,10 @@
     "typescript": "^3.6.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "start-storybook -p 6007",
     "test:unit": "react-scripts test",
     "lint": "eslint './src/**/*.{js,jsx,ts,tsx}'",
     "lint:fix": "eslint --fix './src/**/*.{js,jsx,ts,tsx}'",
-    "storybook": "start-storybook -p 6007",
     "build-storybook": "build-storybook",
     "clean": "rm -rf ./lib",
     "prebuild": "yarn clean",
