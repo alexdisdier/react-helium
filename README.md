@@ -1,6 +1,6 @@
 # React Helium library
 
-This is a components library.
+🚧 This is a components library under construction.
 
 <hr>
 
