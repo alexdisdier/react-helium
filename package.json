@@ -32,9 +32,6 @@
     "prebuild": "yarn clean",
     "build": "tsc --build \"./tsconfig.build.json\""
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
   "browserslist": {
     "production": [
       ">0.2%",
