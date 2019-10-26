@@ -9,6 +9,7 @@ interface Props {
   forId: string;
   children: React.ReactNode;
   required?: boolean;
+  hideLabel?: boolean;
 }
 
 export const Label: React.SFC<Props> = ({
@@ -16,7 +17,8 @@ export const Label: React.SFC<Props> = ({
   text,
   forId,
   children,
-  required = false
+  required = false,
+  hideLabel
 }) => {
   const attr = {
     'data-input-is-required': required
@@ -24,9 +26,11 @@ export const Label: React.SFC<Props> = ({
 
   return (
     <label {...attr} htmlFor={forId}>
-      <div className={classes.label}>
-        <span>{text}</span>
-      </div>
+      {!hideLabel && (
+        <div className={classes.label}>
+          <span>{text}</span>
+        </div>
+      )}
       {children}
     </label>
   );

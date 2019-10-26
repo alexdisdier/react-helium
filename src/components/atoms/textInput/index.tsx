@@ -24,7 +24,7 @@ interface Props {
   required?: boolean;
 }
 
-const TextInput: React.SFC<Props> = ({
+const TextInput: React.FC<Props> = ({
   classes,
   id = null,
   placeholder = null,
