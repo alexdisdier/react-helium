@@ -1,27 +1,54 @@
 import React from "react";
+import { addReadme } from 'storybook-readme';
+import { create } from '@storybook/theming';
 import { addDecorator, addParameters, configure } from "@storybook/react";
-import { withInfo } from "@storybook/addon-info";
 import { ThemeProvider, JssProvider } from "react-jss";
 
 import theme from "../src/style/globalStyle";
+import './base.css';
 
-addDecorator(
-  withInfo({
-    inline: true,
-    styles: {
-      infoBody: {
-        padding: 0,
-        lineHeight: "2"
-      }
-    }
-  })
-);
+const basicTheme = create({
+  base: 'light',
+  brandTitle: 'react-helium',
+  brandUrl: 'https://github.com/alexdisdier/react-helium.git',
+  brandImage: null
+});
 
 addParameters({
   options: {
-    panelPosition: "right"
+    showPanel: true,
+    panelPosition: 'right',
+    theme: basicTheme
+  },
+  readme: {
+    theme: {},
+    codeTheme: 'github',
+
+    StoryPreview: ({ children }) => (
+      <div style={{ padding: 16 }}>{children}</div>
+    ),
+
+    /**
+     * Wrapper for header docs. Usually used to set some styles
+     * NOTE: will be applied only for content docs (docs around the story)
+     */
+    HeaderPreview: ({ children }) => <div>{children}</div>,
+
+    /**
+     * Wrapper for footer docs. Usually used to set some styles
+     * NOTE: will be applied only for content docs (docs around the story)
+     */
+    FooterPreview: ({ children }) => <div>{children}</div>,
+
+    /**
+     * Wrapper for content and sidebar docs. Usually used to set some styles
+     * NOTE: will be applied only for content docs (docs around the story)
+     */
+    DocPreview: ({ children }) => <div style={{ padding: 16 }}>{children}</div>
   }
 });
+
+addDecorator(addReadme);
 
 const generateClassName = (rule, styleSheet) =>
   `${styleSheet.options.classNamePrefix}-${rule.key}`;
