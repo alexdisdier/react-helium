@@ -71,7 +71,6 @@ export const TextField: React.FC<Props> = ({
   };
 
   const inputProps = {
-    type: 'text',
     placeholder,
     id: id,
     handleFocus: handleFocus,

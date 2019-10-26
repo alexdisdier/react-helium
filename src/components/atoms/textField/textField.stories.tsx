@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 import {
   withKnobs,
   text,
@@ -18,30 +17,34 @@ import {
 
 import TextFieldReadme from './text.field.README.md';
 
-const onValueChange = action('handleChange');
-
-class ControlledFieldText extends React.Component {
-  state = {
-    value: ''
-  };
-
-  onValueChange = e => {
-    this.setState({ value: e.target.value });
-  };
-
-  render() {
-    const { label, ...otherProps } = this.props;
-    const { value } = this.state;
-    return (
-      <TextField
-        onValueChange={this.onValueChange}
-        value={value}
-        label={label}
-        {...otherProps}
-      />
-    );
-  }
+interface Props {
+  label: string;
+  onValueChange?: (e) => void;
+  value?: string;
+  placeholder?: string;
+  invalid?: boolean;
+  caution?: boolean;
+  valid?: boolean;
+  hideLabel?: boolean;
+  disabled?: boolean;
+  required?: boolean;
+  inputRef?: Function;
 }
+
+export const ControlledFieldText: React.FC<Props> = ({
+  label,
+  ...otherProps
+}) => {
+  const [value, setValue] = useState('');
+  return (
+    <TextField
+      onValueChange={e => setValue(e.target.value)}
+      value={value}
+      label={label}
+      {...otherProps}
+    />
+  );
+};
 
 const stories = storiesOf('Text Field', module);
 stories.addParameters({
@@ -66,9 +69,7 @@ stories.add('default', () => {
   return (
     <ControlledFieldText
       label={text('Label', 'Text Field')}
-      onValueChange={onValueChange}
-      value={text('Value', '')}
-      placeholder={text('Label', 'I am The placeholder')}
+      placeholder={text('Placeholder', 'I am The placeholder')}
       invalid={status === STATUS_INVALID}
       caution={status === STATUS_CAUTION}
       valid={status === STATUS_VALID}
