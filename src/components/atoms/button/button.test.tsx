@@ -9,8 +9,12 @@ describe('Button', () => {
   beforeEach(() => {
     props = {
       classes: {},
-      children: <div>A child</div>,
-      onClick: jest.fn()
+      children: <div>I am THE button</div>,
+      onClick: jest.fn(),
+      primary: false,
+      secondary: false,
+      warning: false,
+      disabled: false
     };
   });
 
@@ -18,18 +22,55 @@ describe('Button', () => {
     const wrapper = shallow(<Button {...props} />);
     expect(wrapper).toMatchInlineSnapshot(`
       <button
-        onClick={[MockFunction]}
+        data-is-primary={false}
+        data-is-secondary={false}
+        data-is-warning={false}
+        disabled={false}
+        onClick={[Function]}
+        type="button"
       >
-        <div>
-          A child
-        </div>
+        <span>
+          <div>
+            I am THE button
+          </div>
+        </span>
       </button>
     `);
   });
 
-  it('triggers an onClick', () => {
+  it('renders primary, secondary, and warning button', () => {
+    props.primary = true;
+    props.secondary = true;
+    props.warning = true;
+    const wrapper = shallow(<Button {...props} />);
+    expect(wrapper).toMatchInlineSnapshot(`
+      <button
+        data-is-primary={true}
+        data-is-secondary={true}
+        data-is-warning={true}
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        <span>
+          <div>
+            I am THE button
+          </div>
+        </span>
+      </button>
+    `);
+  });
+
+  it('should call onClick', () => {
     const wrapper = shallow(<Button {...props} />);
     wrapper.simulate('click');
     expect(props.onClick).toHaveBeenCalledTimes(1);
+  });
+
+  it('should not call onClick when disabled', () => {
+    props.disabled = true;
+    const wrapper = shallow(<Button {...props} />);
+    wrapper.simulate('click');
+    expect(props.onClick).toHaveBeenCalledTimes(0);
   });
 });

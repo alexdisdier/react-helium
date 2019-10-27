@@ -1,6 +1,14 @@
 export default {
   // Colors
   colorBrand: '#3e9f92', // teal
+  colorSecondaryBrand: '#8892b0', // light purple
+
+  teal1: '#2b6f66',
+  teal2: '#3e9f92',
+  teal3: '#64b2a7',
+
+  teal1light: '#80cbc4',
+  teal2light: '#b2dfdb',
 
   white: '#FFFFFF',
   black: '#222222',
@@ -8,13 +16,13 @@ export default {
    * shades of grey ranging from
    * dark to light
    */
-  grey1: '#bbb9bf',
-  grey2: '#828185',
-  grey4: '#c0bfc2',
-  grey5: '#d6d5d8',
-  grey9: '#f8f8f8',
+  grey1: '#34323A',
+  grey2: '#736F7F',
+  grey3: '#8F8B9B',
+  grey5: '#D0CED5',
+  grey9: '#FBFBFB',
 
-  cautionOrange: '#fd5000',
-  validGreen: '#009e32',
-  warningRed: '#B00020'
+  cautionOrange: '#FF9800',
+  validGreen: '#4CAF50',
+  warningRed: '#F44336'
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import { shallow } from 'enzyme';
 import { classesFromStyles } from '../../../utils/tests';
 
 import { Label } from '.';
@@ -16,46 +17,60 @@ describe('Label', () => {
       text: 'Label text',
       forId: 'input_id_001',
       children: <div>A child</div>,
-      required: false
+      required: false,
+      hideLabel: false
     };
   });
 
   it('renders component', () => {
-    const wrapper = <Label {...props}>Hello world</Label>;
+    const wrapper = shallow(<Label {...props}>Hello world</Label>);
     expect(wrapper).toMatchInlineSnapshot(`
-      <Label
-        classes={
-          Object {
-            "label": "class-from-style-label",
-            "root": "class-from-style-root",
-          }
-        }
-        forId="input_id_001"
-        required={false}
-        text="Label text"
+      <label
+        data-input-is-required={false}
+        htmlFor="input_id_001"
       >
+        <div
+          className="class-from-style-label"
+        >
+          <span>
+            Label text
+          </span>
+        </div>
         Hello world
-      </Label>
+      </label>
     `);
   });
 
   it('renders component with required data attribute', () => {
     props.required = true;
-    const wrapper = <Label {...props}>Hello world</Label>;
+    const wrapper = shallow(<Label {...props}>Hello world</Label>);
     expect(wrapper).toMatchInlineSnapshot(`
-      <Label
-        classes={
-          Object {
-            "label": "class-from-style-label",
-            "root": "class-from-style-root",
-          }
-        }
-        forId="input_id_001"
-        required={true}
-        text="Label text"
+      <label
+        data-input-is-required={true}
+        htmlFor="input_id_001"
+      >
+        <div
+          className="class-from-style-label"
+        >
+          <span>
+            Label text
+          </span>
+        </div>
+        Hello world
+      </label>
+    `);
+  });
+
+  it('hides the label', () => {
+    props.hideLabel = true;
+    const wrapper = shallow(<Label {...props}>Hello world</Label>);
+    expect(wrapper).toMatchInlineSnapshot(`
+      <label
+        data-input-is-required={false}
+        htmlFor="input_id_001"
       >
         Hello world
-      </Label>
+      </label>
     `);
   });
 });

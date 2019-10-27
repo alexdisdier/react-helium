@@ -77,6 +77,7 @@ export const TextField: React.FC<Props> = ({
     handleBlur: handleBlur,
     handleChange: handleChange,
     value,
+    type: 'text',
     inputRef,
     status,
     disabled,
