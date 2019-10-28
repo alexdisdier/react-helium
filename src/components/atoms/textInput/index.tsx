@@ -24,7 +24,7 @@ interface Props {
   required?: boolean;
 }
 
-const TextInput: React.FC<Props> = ({
+export const TextInput: React.FC<Props> = ({
   classes,
   id = null,
   placeholder = null,

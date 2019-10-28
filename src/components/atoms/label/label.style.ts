@@ -13,7 +13,7 @@ export default theme => ({
     paddingBottom: 8,
     '[data-input-is-required="true"] > &::before': {
       content: '"* "',
-      color: theme.red
+      color: theme.warningRed
     }
   }
 });
