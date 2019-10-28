@@ -31,7 +31,7 @@ export const TextField: React.FC<Props> = ({
   label,
   onValueChange,
   value = '',
-  placeholder = null,
+  placeholder,
   invalid = false,
   caution = false,
   valid = false,
@@ -71,13 +71,12 @@ export const TextField: React.FC<Props> = ({
   };
 
   const inputProps = {
-    placeholder,
+    placeholder: placeholder,
     id: id,
     handleFocus: handleFocus,
     handleBlur: handleBlur,
     handleChange: handleChange,
     value,
-    type: 'text',
     inputRef,
     status,
     disabled,
@@ -86,7 +85,7 @@ export const TextField: React.FC<Props> = ({
 
   return (
     <Label {...labelProps}>
-      <TextInput {...inputProps} />
+      <TextInput type="text" {...inputProps} />
     </Label>
   );
 };

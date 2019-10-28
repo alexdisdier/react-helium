@@ -1,21 +1,21 @@
-import React from 'react';
-import { shallow } from 'enzyme';
-import { TextField } from '.';
+import React from "react";
+import { shallow } from "enzyme";
+import { TextField } from ".";
 
-jest.mock('../label', () => 'Label');
-jest.mock('../textInput', () => 'TextInput');
+jest.mock("../label", () => "Label");
+jest.mock("../textInput", () => "TextInput");
 
-describe('TextField', () => {
+describe("TextField", () => {
   let props;
 
   beforeEach(() => {
     props = {
-      label: 'I am a label',
+      label: "I am a label",
       onValueChange: jest.fn()
     };
   });
 
-  it('renders full component', () => {
+  it("renders full component", () => {
     const wrapper = shallow(<TextField {...props} />);
     expect(wrapper).toMatchInlineSnapshot(`
       <Label
@@ -34,7 +34,6 @@ describe('TextField', () => {
           handleFocus={[Function]}
           id="ftc_1"
           inputRef={[Function]}
-          placeholder={null}
           required={false}
           status={null}
           type="text"
@@ -44,8 +43,8 @@ describe('TextField', () => {
     `);
   });
 
-  it('renders component with value', () => {
-    props.value = 'Hello world';
+  it("renders component with value", () => {
+    props.value = "Hello world";
     const wrapper = shallow(<TextField {...props} />);
     expect(wrapper).toMatchInlineSnapshot(`
       <Label
@@ -64,7 +63,6 @@ describe('TextField', () => {
           handleFocus={[Function]}
           id="ftc_1"
           inputRef={[Function]}
-          placeholder={null}
           required={false}
           status={null}
           type="text"
@@ -74,7 +72,7 @@ describe('TextField', () => {
     `);
   });
 
-  it('renders component with hidden label', () => {
+  it("renders component with hidden label", () => {
     props.hideLabel = true;
     const wrapper = shallow(<TextField {...props} />);
     expect(wrapper).toMatchInlineSnapshot(`
@@ -94,7 +92,6 @@ describe('TextField', () => {
           handleFocus={[Function]}
           id="ftc_1"
           inputRef={[Function]}
-          placeholder={null}
           required={false}
           status={null}
           type="text"
@@ -104,7 +101,7 @@ describe('TextField', () => {
     `);
   });
 
-  it('renders component with a required field text', () => {
+  it("renders component with a required field text", () => {
     props.required = true;
     const wrapper = shallow(<TextField {...props} />);
     expect(wrapper).toMatchInlineSnapshot(`
@@ -124,7 +121,6 @@ describe('TextField', () => {
           handleFocus={[Function]}
           id="ftc_1"
           inputRef={[Function]}
-          placeholder={null}
           required={true}
           status={null}
           type="text"
@@ -134,7 +130,7 @@ describe('TextField', () => {
     `);
   });
 
-  it('renders component disabled', () => {
+  it("renders component disabled", () => {
     props.disabled = true;
     const wrapper = shallow(<TextField {...props} />);
     expect(wrapper).toMatchInlineSnapshot(`
@@ -154,7 +150,6 @@ describe('TextField', () => {
           handleFocus={[Function]}
           id="ftc_1"
           inputRef={[Function]}
-          placeholder={null}
           required={false}
           status={null}
           type="text"
@@ -164,7 +159,7 @@ describe('TextField', () => {
     `);
   });
 
-  it('renders component with invalid status despite also having valid and caution status', () => {
+  it("renders component with invalid status despite also having valid and caution status", () => {
     props.invalid = true;
     props.caution = true;
     props.valid = true;
@@ -186,7 +181,6 @@ describe('TextField', () => {
           handleFocus={[Function]}
           id="ftc_1"
           inputRef={[Function]}
-          placeholder={null}
           required={false}
           status="invalid"
           type="text"
@@ -196,7 +190,7 @@ describe('TextField', () => {
     `);
   });
 
-  it('renders component with caution status despite also having valid status', () => {
+  it("renders component with caution status despite also having valid status", () => {
     props.caution = true;
     props.valid = true;
     const wrapper = shallow(<TextField {...props} />);
@@ -217,7 +211,6 @@ describe('TextField', () => {
           handleFocus={[Function]}
           id="ftc_1"
           inputRef={[Function]}
-          placeholder={null}
           required={false}
           status="caution"
           type="text"
@@ -227,7 +220,7 @@ describe('TextField', () => {
     `);
   });
 
-  it('renders component with valid status', () => {
+  it("renders component with valid status", () => {
     props.valid = true;
     const wrapper = shallow(<TextField {...props} />);
     expect(wrapper).toMatchInlineSnapshot(`
@@ -247,7 +240,6 @@ describe('TextField', () => {
           handleFocus={[Function]}
           id="ftc_1"
           inputRef={[Function]}
-          placeholder={null}
           required={false}
           status="valid"
           type="text"

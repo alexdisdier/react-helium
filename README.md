@@ -34,3 +34,8 @@ npx http-server .out
 ```bash
 yarn test:unit
 ```
+
+## Resources
+
+- [Building Design Systems with Atomic Design](https://medium.muz.li/building-design-systems-with-atomic-design-93a13286f676)
+- [typescript-cheatsheets](https://github.com/typescript-cheatsheets/react-typescript-cheatsheet)
