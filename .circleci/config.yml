@@ -1,16 +1,27 @@
 version: 2.1
 jobs:
-  Test & Build:
+  Test_and_Build:
     working_directory: ~/repo
     docker:
       - image: circleci/node:8.11
     steps:
+      - restore_cache:
+          keys:
+            - source-{{ .Branch }}-{{ .Revision }}
+            - source-{{ .Branch }}-
+            - source-
+
       - checkout
+
+      - save_cache:
+          key: source-{{ .Branch }}-{{ .Revision }}
+          paths:
+            - "~/repo"
 
       - run: yarn install
       - run: yarn lint
-      - run: yarn build
       - run: yarn test:unit
+      - run: yarn build
       - run: yarn test:ci
       - codecov/upload:
           file: coverage/*.json
