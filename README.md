@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/alexdisdier/react-helium.svg?style=svg)](https://circleci.com/gh/alexdisdier/react-helium)
+
 # React Helium library
 
 🚧 This is a components library under construction.
