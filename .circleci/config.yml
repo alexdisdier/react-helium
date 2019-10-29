@@ -31,7 +31,7 @@ jobs:
           keys:
             - depens-{{ checksum "package.json" }}
             - depens-
-      - run: npm install
+      - run: yarn
       - save_cache:
           paths:
             - node_modules
@@ -43,7 +43,7 @@ jobs:
           key: source-{{ .Branch }}-{{ .Revision }}
       - restore_cache:
           key: depens-{{ checksum "package.json" }}
-      - run: npm run lint
+      - run: yarn lint
   test:
     <<: *defaults
     steps:
@@ -51,7 +51,7 @@ jobs:
           key: source-{{ .Branch }}-{{ .Revision }}
       - restore_cache:
           key: depens-{{ checksum "package.json" }}
-      - run: npm test
+      - run: yarn test:unit
 
   build:
     <<: *defaults
@@ -61,7 +61,7 @@ jobs:
       - restore_cache:
           key: depens-{{ checksum "package.json" }}
 
-      - run: npm run build
+      - run: yarn build
 
       - persist_to_workspace:
           root: ~/repo
@@ -76,7 +76,7 @@ jobs:
           key: source-{{ .Branch }}-{{ .Revision }}
       - restore_cache:
           key: depens-{{ checksum "package.json" }}
-      - run: npm test -- --coverage
+      - run: yarn test:ci
       - codecov/upload:
           file: coverage/*.json
           flags: frontend
