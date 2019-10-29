@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  Test_and_Build:
+  test:
     working_directory: ~/repo
     docker:
       - image: circleci/node:8.11
