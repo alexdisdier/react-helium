@@ -76,7 +76,7 @@ jobs:
           key: source-{{ .Branch }}-{{ .Revision }}
       - restore_cache:
           key: depens-{{ checksum "package.json" }}
-      - run: yarn test:ci
+      - run: yarn test:unit -- --coverage
       - codecov/upload:
           file: coverage/*.json
           flags: frontend
