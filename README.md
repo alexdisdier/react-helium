@@ -1,4 +1,5 @@
 [![CircleCI](https://circleci.com/gh/alexdisdier/react-helium.svg?style=svg)](https://circleci.com/gh/alexdisdier/react-helium)
+[![codecov](https://codecov.io/gh/alexdisdier/react-helium/branch/master/graph/badge.svg)](https://codecov.io/gh/alexdisdier/react-helium)
 
 # React Helium library
 
