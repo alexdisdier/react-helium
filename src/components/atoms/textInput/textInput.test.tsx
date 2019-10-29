@@ -14,8 +14,9 @@ import styles from './textInput.style';
 
 jest.useFakeTimers();
 
+const classes = classesFromStyles(styles);
+
 describe('TextInput', () => {
-  const classes = classesFromStyles(styles);
   let props;
 
   beforeEach(() => {

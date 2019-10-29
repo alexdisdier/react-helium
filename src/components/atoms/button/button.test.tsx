@@ -1,14 +1,19 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { classesFromStyles } from '../../../utils/tests';
 
 import { Button } from '.';
+
+import styles from './button.style';
+
+const classes = classesFromStyles(styles);
 
 describe('Button', () => {
   let props;
 
   beforeEach(() => {
     props = {
-      classes: {},
+      classes,
       children: <div>I am THE button</div>,
       onClick: jest.fn(),
       primary: false,
@@ -22,6 +27,7 @@ describe('Button', () => {
     const wrapper = shallow(<Button {...props} />);
     expect(wrapper).toMatchInlineSnapshot(`
       <button
+        className="class-from-style-root"
         data-is-primary={false}
         data-is-secondary={false}
         data-is-warning={false}
@@ -29,7 +35,9 @@ describe('Button', () => {
         onClick={[Function]}
         type="button"
       >
-        <span>
+        <span
+          className="class-from-style-text"
+        >
           <div>
             I am THE button
           </div>
@@ -45,6 +53,7 @@ describe('Button', () => {
     const wrapper = shallow(<Button {...props} />);
     expect(wrapper).toMatchInlineSnapshot(`
       <button
+        className="class-from-style-root"
         data-is-primary={true}
         data-is-secondary={true}
         data-is-warning={true}
@@ -52,7 +61,9 @@ describe('Button', () => {
         onClick={[Function]}
         type="button"
       >
-        <span>
+        <span
+          className="class-from-style-text"
+        >
           <div>
             I am THE button
           </div>
