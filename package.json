@@ -16,6 +16,8 @@
     "url": "https://github.com/alexdisdier/react-helium.git"
   },
   "dependencies": {
+    "draft-js": "^0.11.1",
+    "draftjs-to-html": "^0.8.4",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-jss": "8.6.1",

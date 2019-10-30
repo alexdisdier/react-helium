@@ -1,5 +1,6 @@
 [![CircleCI](https://circleci.com/gh/alexdisdier/react-helium.svg?style=svg)](https://circleci.com/gh/alexdisdier/react-helium)
 [![codecov](https://codecov.io/gh/alexdisdier/react-helium/branch/master/graph/badge.svg)](https://codecov.io/gh/alexdisdier/react-helium)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # React Helium library
 
