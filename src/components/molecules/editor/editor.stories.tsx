@@ -1,19 +1,24 @@
 import React, { useState } from 'react';
 import { EditorState } from 'draft-js';
+import { ClassNameMap } from 'react-jss';
 
 import { storiesOf } from '@storybook/react';
-import { withKnobs, text } from '@storybook/addon-knobs';
+import { withKnobs, boolean, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
 import Editor from '.';
 
-// import EditorReadme from './editor.README.md';
+import EditorReadme from './editor.README.md';
 
-type Props = {
-  id: string;
-} & EditorState;
+interface Props {
+  classes: ClassNameMap<string>;
+  editorState: EditorState;
+  placeholder?: string;
+  disabled?: boolean;
+  onChange: (e) => void;
+}
 
-export const ControlledEditor: React.FC<Props> = ({ id, ...otherProps }) => {
+export const ControlledEditor: React.FC<Props> = ({ ...otherProps }) => {
   const [editorState, setEditorState] = useState('');
   return (
     <Editor
@@ -24,19 +29,20 @@ export const ControlledEditor: React.FC<Props> = ({ id, ...otherProps }) => {
   );
 };
 
-const stories = storiesOf('Editor', module);
-// stories.addParameters({
-//   readme: {
-//     content: EditorReadme
-//   }
-// });
+const stories = storiesOf('Rich Text Editor', module);
+stories.addParameters({
+  readme: {
+    content: EditorReadme
+  }
+});
 
 stories.addDecorator(withKnobs);
 stories.add('default', () => {
   return (
     <ControlledEditor
-      id={text('Id', '1')}
-      onChange={action('handleChange', 'change')}
+      placeholder={text('Placeholder', '')}
+      disabled={boolean('Disabled', false)}
+      onChange={action('onChange')}
     />
   );
 });

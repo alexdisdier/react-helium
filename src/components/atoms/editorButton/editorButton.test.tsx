@@ -14,10 +14,12 @@ describe('EditorButton', () => {
   beforeEach(() => {
     props = {
       classes,
-      children: <div>I am THE EditorButton</div>,
+      label: 'B',
       onClick: jest.fn(),
-      selected: false,
-      disabled: false
+      active: false,
+      style: 'BOLD',
+      disabled: false,
+      type: 'button'
     };
   });
 
@@ -26,7 +28,7 @@ describe('EditorButton', () => {
     expect(wrapper).toMatchInlineSnapshot(`
       <button
         className="class-from-style-root"
-        data-is-selected={false}
+        data-is-active={false}
         disabled={false}
         onClick={[Function]}
         type="button"
@@ -34,21 +36,19 @@ describe('EditorButton', () => {
         <span
           className="class-from-style-text"
         >
-          <div>
-            I am THE EditorButton
-          </div>
+          B
         </span>
       </button>
     `);
   });
 
-  it('renders selected EditorButton', () => {
-    props.selected = true;
+  it('renders active EditorButton', () => {
+    props.active = true;
     const wrapper = shallow(<EditorButton {...props} />);
     expect(wrapper).toMatchInlineSnapshot(`
       <button
         className="class-from-style-root"
-        data-is-selected={true}
+        data-is-active={true}
         disabled={false}
         onClick={[Function]}
         type="button"
@@ -56,9 +56,7 @@ describe('EditorButton', () => {
         <span
           className="class-from-style-text"
         >
-          <div>
-            I am THE EditorButton
-          </div>
+          B
         </span>
       </button>
     `);
