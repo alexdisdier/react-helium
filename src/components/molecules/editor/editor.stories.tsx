@@ -40,7 +40,7 @@ stories.addDecorator(withKnobs);
 stories.add('default', () => {
   return (
     <ControlledEditor
-      placeholder={text('Placeholder', 'I am a placeholder')}
+      placeholder={text('Placeholder', '')}
       disabled={boolean('Disabled', false)}
       onChange={action('onChange')}
     />

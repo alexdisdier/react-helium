@@ -24,7 +24,8 @@ export const EditorButton: React.SFC<Props> = ({
 }) => {
   const [isActive, setActive] = useState(active || false);
 
-  const handleClick = () => {
+  const handleClick = e => {
+    e.preventDefault(); // This allows to lock the key command
     if (!disabled && onClick) {
       setActive(!isActive);
       onClick(style);
@@ -32,7 +33,7 @@ export const EditorButton: React.SFC<Props> = ({
   };
 
   const rootProps = {
-    onClick: handleClick,
+    onMouseDown: handleClick, // onMouseDown has to be used instead of onClick to be able to lock the key command
     type,
     className: classes.root,
     disabled,

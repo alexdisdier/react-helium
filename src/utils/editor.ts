@@ -1,8 +1,8 @@
 import {
   EditorState,
-  convertToRaw
-  // getDefaultKeyBinding,
-  // KeyBindingUtil
+  convertToRaw,
+  getDefaultKeyBinding,
+  KeyBindingUtil
 } from 'draft-js';
 
 import draftToHtml from 'draftjs-to-html';
@@ -41,15 +41,14 @@ export const getBlockStyle = block => {
   }
 };
 
-// const { hasCommandModifier } = KeyBindingUtil;
+const { hasCommandModifier } = KeyBindingUtil;
 
-// export const myKeyBindingFn = (e): string => {
-//   if (e.key === 'Tab' /* `S` key */ && hasCommandModifier(e)) {
-//     console.log('tab');
-//     return 'myeditor-save';
-//   }
-//   return getDefaultKeyBinding(e);
-// };
+export const myKeyBindingFn = e => {
+  if (e.keyCode === 9 /* `Tab` key */ && hasCommandModifier(e)) {
+    return 'myeditor-tab';
+  }
+  return getDefaultKeyBinding(e);
+};
 
 // Custom overrides for "code" style.
 export const styleCode = {

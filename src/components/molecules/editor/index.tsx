@@ -1,14 +1,21 @@
 import React, { useState, useRef } from 'react';
 import injectSheet, { ClassNameMap } from 'react-jss';
 
-import { Editor as Draft, EditorState, RichUtils } from 'draft-js';
+import {
+  Editor as Draft,
+  EditorState,
+  RichUtils,
+  DraftHandleValue
+} from 'draft-js';
 
 import {
   getBlockStyle,
   getHTMLString,
-  styleCode
-  // myKeyBindingFn
+  styleCode,
+  myKeyBindingFn
 } from '../../../utils/editor';
+
+import Button from '../../atoms/button';
 
 import Toolbar from './toolbar';
 
@@ -31,6 +38,7 @@ export const Editor: React.SFC<Props> = ({
     EditorState.createEmpty()
   );
   const [isFocused, setFocused] = useState(false);
+  const [output, setOutput] = useState('');
 
   const editorRef: any | null = useRef(null);
 
@@ -60,9 +68,12 @@ export const Editor: React.SFC<Props> = ({
   /**
    * Handles any key commands such as italics, bold, ...
    */
-  const handleKeyCommand = (cmd: string) => {
+  const handleKeyCommand = (cmd: string): DraftHandleValue => {
     const newState = RichUtils.handleKeyCommand(editorState, cmd);
-
+    if (cmd === 'myeditor-tab') {
+      console.log('adding tab style');
+      return 'handled';
+    }
     if (newState) {
       onEditorStateChange(newState);
       return 'handled';
@@ -72,12 +83,34 @@ export const Editor: React.SFC<Props> = ({
 
   /**
    * Handles bullet points tabulation
+   * Not working in the newer version
    */
   const onTab = e => _onTab(e);
 
   const _onTab = e => {
     const maxDepth = 4;
     onEditorStateChange(RichUtils.onTab(e, editorState, maxDepth));
+  };
+
+  /**
+   * Handles saving (potential localstorage)
+   */
+  const save = () => {
+    const content = editorState.getCurrentContent().getPlainText();
+    setOutput(content);
+  };
+
+  /**
+   * Handles saving (potential localstorage)
+   */
+  const clear = () => setEditorState(EditorState.createEmpty());
+
+  /**
+   * testing buttons
+   */
+  const onBoldClick = e => {
+    e.preventDefault();
+    onEditorStateChange(RichUtils.toggleInlineStyle(editorState, 'BOLD'));
   };
 
   const rootProps = {
@@ -102,36 +135,51 @@ export const Editor: React.SFC<Props> = ({
   }
 
   return (
-    <div
-      className={className}
-      onClick={handleFocus}
-      onBlur={() => {
-        setFocused(false);
-      }}
-    >
-      <Toolbar
-        editorState={editorState}
-        onToggleBlockType={toggleBlockType}
-        onToggleInlineType={toggleInlineStyle}
-        disabled={disabled}
-      />
-
-      <div {...rootProps}>
-        <Draft
-          blockStyleFn={getBlockStyle}
-          customStyleMap={styleCode}
+    <>
+      <div
+        className={className}
+        onClick={handleFocus}
+        onBlur={() => {
+          setFocused(false);
+        }}
+      >
+        {/* <button onMouseDown={onBoldClick}>Bold</button> */}
+        <Toolbar
           editorState={editorState}
-          onChange={onEditorStateChange}
-          onTab={onTab}
-          placeholder={placeholder}
-          spellCheck
-          readOnly={disabled}
-          handleKeyCommand={handleKeyCommand}
-          ref={editorRef}
-          // keyBindingFn={myKeyBindingFn}
+          onToggleBlockType={toggleBlockType}
+          onToggleInlineType={toggleInlineStyle}
+          disabled={disabled}
         />
+
+        <div {...rootProps}>
+          <Draft
+            blockStyleFn={getBlockStyle}
+            customStyleMap={styleCode}
+            editorState={editorState}
+            keyBindingFn={myKeyBindingFn}
+            onChange={onEditorStateChange}
+            onTab={onTab}
+            placeholder={placeholder}
+            spellCheck
+            readOnly={disabled}
+            handleKeyCommand={handleKeyCommand}
+            ref={editorRef}
+          />
+        </div>
       </div>
-    </div>
+      <div className={classes.buttonWrapper}>
+        <div className={classes.button}>
+          <Button secondary onClick={clear}>
+            Clear Content
+          </Button>
+        </div>
+        <Button primary onClick={save}>
+          Save
+        </Button>
+      </div>
+
+      <div>Output: {output}</div>
+    </>
   );
 };
 

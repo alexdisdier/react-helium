@@ -20,6 +20,15 @@ export default theme => ({
       borderColor: theme.teal3
     }
   },
+  buttonWrapper: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    marginTop: 10,
+    marginBottom: 10
+  },
+  button: {
+    marginRight: 7
+  },
   h1: {
     fontSize: 32,
     fontWeight: 'bold'
@@ -34,7 +43,7 @@ export default theme => ({
     '&::before': {
       position: 'absolute',
       content: '"•"',
-      color: '#5246f7',
+      color: theme.teal3,
       fontWeight: 'bold',
       width: '1em',
       marginLeft: '-1em'
