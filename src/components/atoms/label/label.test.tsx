@@ -26,6 +26,7 @@ describe('Label', () => {
     const wrapper = shallow(<Label {...props}>Hello world</Label>);
     expect(wrapper).toMatchInlineSnapshot(`
       <label
+        className="class-from-style-root"
         data-input-is-required={false}
         htmlFor="input_id_001"
       >
@@ -46,6 +47,7 @@ describe('Label', () => {
     const wrapper = shallow(<Label {...props}>Hello world</Label>);
     expect(wrapper).toMatchInlineSnapshot(`
       <label
+        className="class-from-style-root"
         data-input-is-required={true}
         htmlFor="input_id_001"
       >
@@ -66,6 +68,7 @@ describe('Label', () => {
     const wrapper = shallow(<Label {...props}>Hello world</Label>);
     expect(wrapper).toMatchInlineSnapshot(`
       <label
+        className="class-from-style-root"
         data-input-is-required={false}
         htmlFor="input_id_001"
       >

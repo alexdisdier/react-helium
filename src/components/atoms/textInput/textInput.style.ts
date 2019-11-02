@@ -1,5 +1,3 @@
-import { MIN_TARGET_SIZE } from '../../../constant/dimensions';
-
 export default theme => ({
   root: {
     display: 'flex',
@@ -27,6 +25,9 @@ export default theme => ({
     },
     '&[data-is-valid="true"]': {
       borderColor: theme.validGreen
+    },
+    '&[data-is-required="true"]': {
+      marginBottom: 22
     }
   },
   input: {
@@ -38,9 +39,7 @@ export default theme => ({
     backgroundColor: 'transparent',
     borderWidth: 0,
     borderRadius: 'inherit',
-    height: MIN_TARGET_SIZE,
-    paddingLeft: 7,
-    paddingRight: 7,
+    padding: '8px 11px 9px 11px',
     fontSize: 14,
     fontWeight: 400,
     color: theme.grey1,

@@ -21,7 +21,7 @@ interface Props {
   disabled?: boolean;
   required?: boolean;
   inputRef?: Function;
-  // errorMessage?: string;
+  errorMessage?: string;
 }
 
 const id: string = uniqueId('ftc_');
@@ -37,7 +37,8 @@ export const TextField: React.FC<Props> = ({
   hideLabel = false,
   disabled = false,
   required = false,
-  inputRef = () => {}
+  inputRef = () => {},
+  errorMessage = ''
 }) => {
   const [hasFocus, setHasFocus] = useState(false);
 
@@ -79,7 +80,8 @@ export const TextField: React.FC<Props> = ({
     inputRef,
     status,
     disabled,
-    required
+    required,
+    errorMessage
   };
 
   return (

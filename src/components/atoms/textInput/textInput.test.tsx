@@ -12,6 +12,8 @@ import {
 
 import styles from './textInput.style';
 
+jest.mock('../errorMessage', () => 'ErrorMessage');
+
 jest.useFakeTimers();
 
 const classes = classesFromStyles(styles);
@@ -30,6 +32,7 @@ describe('TextInput', () => {
       handleBlur: jest.fn(),
       handleChange: jest.fn(),
       inputRef: jest.fn(),
+      errorMessage: 'This is a required field',
       status: null,
       disabled: false,
       required: false
@@ -47,6 +50,7 @@ describe('TextInput', () => {
           data-is-caution={false}
           data-is-disabled={false}
           data-is-invalid={false}
+          data-is-required={false}
           data-is-valid={false}
         >
           <input
@@ -79,6 +83,7 @@ describe('TextInput', () => {
           data-is-caution={false}
           data-is-disabled={false}
           data-is-invalid={false}
+          data-is-required={false}
           data-is-valid={false}
         >
           <input
@@ -109,6 +114,7 @@ describe('TextInput', () => {
           data-is-caution={false}
           data-is-disabled={true}
           data-is-invalid={false}
+          data-is-required={false}
           data-is-valid={false}
         >
           <input
@@ -139,6 +145,7 @@ describe('TextInput', () => {
           data-is-caution={false}
           data-is-disabled={false}
           data-is-invalid={true}
+          data-is-required={false}
           data-is-valid={false}
         >
           <input
@@ -169,6 +176,7 @@ describe('TextInput', () => {
           data-is-caution={true}
           data-is-disabled={false}
           data-is-invalid={false}
+          data-is-required={false}
           data-is-valid={false}
         >
           <input
@@ -199,6 +207,7 @@ describe('TextInput', () => {
           data-is-caution={false}
           data-is-disabled={false}
           data-is-invalid={false}
+          data-is-required={false}
           data-is-valid={true}
         >
           <input
@@ -217,34 +226,18 @@ describe('TextInput', () => {
     `);
   });
 
-  it('renders full component with suffix', () => {
-    props.suffix = 'Hello world';
+  it('renders an error message when field is required and user leaves the input', () => {
+    props.value = '';
+    props.required = true;
+
     const wrapper = shallow(<TextInput {...props} />);
-    expect(wrapper).toMatchInlineSnapshot(`
-      <Fragment>
-        <div
-          className="class-from-style-root"
-          data-has-focus={false}
-          data-has-value={true}
-          data-is-caution={false}
-          data-is-disabled={false}
-          data-is-invalid={false}
-          data-is-valid={false}
-        >
-          <input
-            className="class-from-style-input"
-            disabled={false}
-            id="id"
-            onBlur={[Function]}
-            onChange={[MockFunction]}
-            onFocus={[Function]}
-            placeholder="placeholder"
-            type="text"
-            value="Hello world"
-          />
-        </div>
-      </Fragment>
-    `);
+    const input = wrapper.find('input');
+
+    input.simulate('blur');
+    jest.advanceTimersByTime(50);
+    input.simulate('focus');
+
+    expect(wrapper.find('ErrorMessage')).toHaveLength(1);
   });
 
   it('should call handleChange', () => {

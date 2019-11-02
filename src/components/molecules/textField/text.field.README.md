@@ -27,13 +27,14 @@ import { TextField } from "react-helium";
 
 ##### Optional props
 
-| Name        | Type       | Default    | Description                 |
-| ----------- | ---------- | ---------- | --------------------------- |
-| `inputRef`  | `function` | `() => {}` | Pass a ref to the component |
-| `value`     | `string`   | `''`       | Input value                 |
-| `disabled`  | `boolean`  | `false`    | Disable the input           |
-| `invalid`   | `boolean`  | `false`    | When the input is invalid   |
-| `caution`   | `boolean`  | `false`    |                             |
-| `valid`     | `boolean`  | `false`    | When the input is valid     |
-| `hidelabel` | `boolean`  | `false`    | Hiding the label            |
-| `required`  | `boolean`  | `false`    | When the input is required  |
+| Name           | Type       | Default    | Description                 |
+| -------------- | ---------- | ---------- | --------------------------- |
+| `inputRef`     | `function` | `() => {}` | Pass a ref to the component |
+| `value`        | `string`   | `''`       | Input value                 |
+| `disabled`     | `boolean`  | `false`    | Disable the input           |
+| `invalid`      | `boolean`  | `false`    | When the input is invalid   |
+| `caution`      | `boolean`  | `false`    |                             |
+| `valid`        | `boolean`  | `false`    | When the input is valid     |
+| `hidelabel`    | `boolean`  | `false`    | Hiding the label            |
+| `required`     | `boolean`  | `false`    | When the input is required  |
+| `errorMessage` | `string`   | `''`       | When the input is required  |

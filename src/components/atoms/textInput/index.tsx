@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import injectSheet, { ClassNameMap } from 'react-jss';
 
+import ErrorMessage from '../errorMessage';
+
 import {
   STATUS_INVALID,
   STATUS_CAUTION,
@@ -22,6 +24,7 @@ interface Props {
   status?: 'invalid' | 'caution' | 'valid';
   disabled?: boolean;
   required?: boolean;
+  errorMessage?: string;
 }
 
 export const TextInput: React.FC<Props> = ({
@@ -36,7 +39,8 @@ export const TextInput: React.FC<Props> = ({
   inputRef = () => {},
   status = null,
   disabled = false,
-  required = false
+  required = false,
+  errorMessage = ''
 }) => {
   const [hasFocus, setHasFocus] = useState(false);
   const [focusCounter, setFocusCounter] = useState(0);
@@ -73,7 +77,8 @@ export const TextInput: React.FC<Props> = ({
       status === STATUS_INVALID || (invalid === null ? false : invalid),
     'data-is-caution': status === STATUS_CAUTION,
     'data-is-valid': status === STATUS_VALID,
-    'data-is-disabled': disabled
+    'data-is-disabled': disabled,
+    'data-is-required': required
   };
 
   const inputProps = {
@@ -95,7 +100,7 @@ export const TextInput: React.FC<Props> = ({
           value={value}
           {...inputProps}
         />
-        {/* {invalid && <ErrorMessage text={errorMessage} />} */}
+        {invalid && <ErrorMessage text={errorMessage} />}
       </div>
     </>
   );

@@ -3,6 +3,7 @@ export default theme => ({
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
+    position: 'relative',
     backgroundColor: theme.white
   },
   label: {

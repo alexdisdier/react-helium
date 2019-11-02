@@ -29,6 +29,7 @@ describe('TextField', () => {
       >
         <TextInput
           disabled={false}
+          errorMessage=""
           handleBlur={[Function]}
           handleChange={[Function]}
           handleFocus={[Function]}
@@ -58,6 +59,7 @@ describe('TextField', () => {
       >
         <TextInput
           disabled={false}
+          errorMessage=""
           handleBlur={[Function]}
           handleChange={[Function]}
           handleFocus={[Function]}
@@ -87,6 +89,7 @@ describe('TextField', () => {
       >
         <TextInput
           disabled={false}
+          errorMessage=""
           handleBlur={[Function]}
           handleChange={[Function]}
           handleFocus={[Function]}
@@ -116,6 +119,7 @@ describe('TextField', () => {
       >
         <TextInput
           disabled={false}
+          errorMessage=""
           handleBlur={[Function]}
           handleChange={[Function]}
           handleFocus={[Function]}
@@ -145,6 +149,7 @@ describe('TextField', () => {
       >
         <TextInput
           disabled={true}
+          errorMessage=""
           handleBlur={[Function]}
           handleChange={[Function]}
           handleFocus={[Function]}
@@ -176,6 +181,7 @@ describe('TextField', () => {
       >
         <TextInput
           disabled={false}
+          errorMessage=""
           handleBlur={[Function]}
           handleChange={[Function]}
           handleFocus={[Function]}
@@ -206,6 +212,7 @@ describe('TextField', () => {
       >
         <TextInput
           disabled={false}
+          errorMessage=""
           handleBlur={[Function]}
           handleChange={[Function]}
           handleFocus={[Function]}
@@ -235,6 +242,7 @@ describe('TextField', () => {
       >
         <TextInput
           disabled={false}
+          errorMessage=""
           handleBlur={[Function]}
           handleChange={[Function]}
           handleFocus={[Function]}

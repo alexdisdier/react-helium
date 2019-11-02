@@ -29,6 +29,7 @@ interface Props {
   disabled?: boolean;
   required?: boolean;
   inputRef?: Function;
+  errorMessage?: string;
 }
 
 export const ControlledFieldText: React.FC<Props> = ({
@@ -70,6 +71,7 @@ stories.add('default', () => {
     <ControlledFieldText
       label={text('Label', 'Text Field')}
       placeholder={text('Placeholder', 'I am The placeholder')}
+      errorMessage={text('Error Message', 'This field is required')}
       invalid={status === STATUS_INVALID}
       caution={status === STATUS_CAUTION}
       valid={status === STATUS_VALID}
