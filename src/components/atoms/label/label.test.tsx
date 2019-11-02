@@ -1,28 +1,28 @@
-import React from "react";
-import { shallow } from "enzyme";
-import { classesFromStyles } from "../../../utils/tests";
+import React from 'react';
+import { shallow } from 'enzyme';
+import { classesFromStyles } from '../../../utils/tests';
 
-import { Label } from ".";
+import { Label } from '.';
 
-import styles from "./label.style";
+import styles from './label.style';
 
 const classes = classesFromStyles(styles);
 
-describe("Label", () => {
+describe('Label', () => {
   let props;
 
   beforeEach(() => {
     props = {
       classes,
-      text: "Label text",
-      forId: "input_id_001",
+      text: 'Label text',
+      forId: 'input_id_001',
       children: <div>A child</div>,
       required: false,
       hideLabel: false
     };
   });
 
-  it("renders component", () => {
+  it('renders component', () => {
     const wrapper = shallow(<Label {...props}>Hello world</Label>);
     expect(wrapper).toMatchInlineSnapshot(`
       <label
@@ -42,7 +42,7 @@ describe("Label", () => {
     `);
   });
 
-  it("renders component with required data attribute", () => {
+  it('renders component with required data attribute', () => {
     props.required = true;
     const wrapper = shallow(<Label {...props}>Hello world</Label>);
     expect(wrapper).toMatchInlineSnapshot(`
@@ -63,7 +63,7 @@ describe("Label", () => {
     `);
   });
 
-  it("hides the label", () => {
+  it('hides the label', () => {
     props.hideLabel = true;
     const wrapper = shallow(<Label {...props}>Hello world</Label>);
     expect(wrapper).toMatchInlineSnapshot(`
