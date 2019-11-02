@@ -14,7 +14,7 @@ type Props = {
   type?: string;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-export const Button: React.SFC<Props> = ({
+export const Button: React.FC<Props> = ({
   classes,
   children,
   onClick = () => {},

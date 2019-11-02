@@ -20,12 +20,13 @@ export const Label: React.SFC<Props> = ({
   required = false,
   hideLabel
 }) => {
-  const attr = {
+  const rootProps = {
+    className: classes.root,
     'data-input-is-required': required
   };
 
   return (
-    <label {...attr} htmlFor={forId}>
+    <label {...rootProps} htmlFor={forId}>
       {!hideLabel && (
         <div className={classes.label}>
           <span>{text}</span>
