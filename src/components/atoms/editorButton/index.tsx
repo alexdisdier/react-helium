@@ -1,5 +1,8 @@
+/* eslint-disable array-callback-return */
 import React, { useState } from 'react';
 import injectSheet, { ClassNameMap } from 'react-jss';
+
+import { STYLE } from '../../../utils/editor';
 
 import styles from './editorButton.style';
 
@@ -17,7 +20,7 @@ type Props = {
 export const EditorButton: React.SFC<Props> = ({
   classes,
   label = '',
-  // icon = null,
+  icon = null,
   onClick = () => {},
   active = false,
   style = '',
@@ -28,12 +31,16 @@ export const EditorButton: React.SFC<Props> = ({
 
   const handleClick = e => {
     e.preventDefault(); // This allows to lock the key command
-    console.log('active', active);
-    if (!disabled && onClick && !active) {
-      setActive(!isActive);
-      console.log('if style', style);
+
+    if (!disabled && onClick) {
+      setActive(true);
+
       onClick(style);
     }
+
+    STYLE.map(type => {
+      if (type === style) setActive(false);
+    });
   };
 
   const rootProps = {
@@ -46,7 +53,7 @@ export const EditorButton: React.SFC<Props> = ({
 
   return (
     <button onMouseDown={handleClick} {...rootProps}>
-      <span className={classes.text}>{label}</span>
+      <span className={classes.text}>{icon || label}</span>
     </button>
   );
 };

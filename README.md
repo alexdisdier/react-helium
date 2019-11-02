@@ -30,7 +30,7 @@ By exporting it as a static app, we can then serve our story on the network
 
 ```bash
 yarn build-storybook
-npx http-server .out
+npx http-server .storybook-static
 ```
 
 ## Testing

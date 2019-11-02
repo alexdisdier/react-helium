@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import injectSheet, { ClassNameMap } from 'react-jss';
 
 import {
@@ -7,6 +7,7 @@ import {
   RichUtils,
   DraftHandleValue
 } from 'draft-js';
+import './editor.css';
 
 import {
   getBlockStyle,
@@ -15,9 +16,9 @@ import {
   myKeyBindingFn
 } from '../../../utils/editor';
 
-import Button from '../../atoms/button';
+import { Button } from '../../atoms';
 
-import Toolbar from './toolbar';
+import { Toolbar } from '../../molecules';
 
 import styles from './editor.style';
 
@@ -39,13 +40,22 @@ export const Editor: React.SFC<Props> = ({
   );
   const [isFocused, setFocused] = useState(false);
   const [output, setOutput] = useState('');
-  // const [commandsActive, setCommandsActive] = useState(['bold', 'italic']);
 
   const editorRef: any | null = useRef(null);
 
   const handleFocus = () => {
+    editorRef.current.focus();
     setFocused(true);
   };
+
+  useEffect(() => {
+    // const editorId = document.getElementById('draft-js');
+    // const childDiv = editorId!.getElementsByTagName('div')[0];
+    // const requiredDiv = childDiv.getElementsByTagName('div')[1];
+    // requiredDiv.className = 'Editor--placeholder';
+
+    handleFocus();
+  }, []);
 
   const onEditorStateChange = (editorState: EditorState) => {
     setEditorState(editorState);
@@ -53,18 +63,17 @@ export const Editor: React.SFC<Props> = ({
   };
 
   /**
-   * e.g: Handles header, bullet points
+   * e.g: Handles block style such as header, bullet points
    */
   const toggleBlockType = (blockType: string) => {
     onEditorStateChange(RichUtils.toggleBlockType(editorState, blockType));
   };
 
   /**
-   * e.g: Handles bold
+   * e.g: Handles inline styles such as bold
    */
   const toggleInlineStyle = (inlineStyle: string) => {
     onEditorStateChange(RichUtils.toggleInlineStyle(editorState, inlineStyle));
-    // Modifier.removeInlineStyle(contentState, selection, color)
   };
 
   /**
@@ -73,19 +82,7 @@ export const Editor: React.SFC<Props> = ({
    */
   const handleKeyCommand = (cmd: string): DraftHandleValue => {
     /**
-     * Add class active to control button when command key clicked.
-     */
-    // if (commandsActive.includes(cmd)) {
-    //   const newCommandsActive = commandsActive.filter(value => {
-    //     return value !== cmd;
-    //   });
-    //   setCommandsActive(newCommandsActive);
-    // } else {
-    //   commandsActive.push(cmd);
-    // }
-
-    /**
-     * Add Tabulation to bullet point (max depth)
+     * NOT WORKING: Add Tabulation to bullet point (max depth)
      */
     const newState = RichUtils.handleKeyCommand(editorState, cmd);
     if (cmd === 'myeditor-tab') {
@@ -121,25 +118,9 @@ export const Editor: React.SFC<Props> = ({
     'data-is-disabled': disabled
   };
 
-  // If the user changes block type before entering any text, we can
-  // either style the placeholder or hide it. Let's just hide it now.
-  let className;
-  const contentState = editorState.getCurrentContent();
-  if (!contentState.hasText()) {
-    if (
-      contentState
-        .getBlockMap()
-        .first()
-        .getType() !== 'unstyled'
-    ) {
-      className += classes.hidePlaceholder;
-    }
-  }
-
   return (
     <>
       <div
-        className={className}
         onClick={handleFocus}
         onBlur={() => {
           setFocused(false);
@@ -152,7 +133,7 @@ export const Editor: React.SFC<Props> = ({
           disabled={disabled}
         />
 
-        <div {...rootProps}>
+        <div id="draft-js" {...rootProps}>
           <Draft
             blockStyleFn={getBlockStyle}
             customStyleMap={styleCode}

@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import uniqueId from 'lodash.uniqueid';
 
-import Label from '../label';
-import TextInput from '../textInput';
+import { Label, TextInput } from '../../atoms';
 
 import {
   STATUS_INVALID,

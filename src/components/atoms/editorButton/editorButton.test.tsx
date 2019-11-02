@@ -30,7 +30,7 @@ describe('EditorButton', () => {
         className="class-from-style-root"
         data-is-active={false}
         disabled={false}
-        onClick={[Function]}
+        onMouseDown={[Function]}
         type="button"
       >
         <span
@@ -50,7 +50,7 @@ describe('EditorButton', () => {
         className="class-from-style-root"
         data-is-active={true}
         disabled={false}
-        onClick={[Function]}
+        onMouseDown={[Function]}
         type="button"
       >
         <span
@@ -64,14 +64,19 @@ describe('EditorButton', () => {
 
   it('should call onClick', () => {
     const wrapper = shallow(<EditorButton {...props} />);
-    wrapper.simulate('click');
+    wrapper.simulate('mouseDown', {
+      preventDefault: () => {}
+    });
+
     expect(props.onClick).toHaveBeenCalledTimes(1);
   });
 
   it('should not call onClick when disabled', () => {
     props.disabled = true;
     const wrapper = shallow(<EditorButton {...props} />);
-    wrapper.simulate('click');
+    wrapper.simulate('mouseDown', {
+      preventDefault: () => {}
+    });
     expect(props.onClick).toHaveBeenCalledTimes(0);
   });
 });

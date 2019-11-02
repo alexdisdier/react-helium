@@ -70,6 +70,16 @@ export const styleCode = {
   }
 };
 
+export const STYLE = [
+  'header-one',
+  'header-two',
+  'unordered-list-item',
+  'ordered-list-item',
+  'BOLD',
+  'ITALIC',
+  'UNDERLINE'
+];
+
 export const BLOCK_TYPES: STYLE[] = [
   { label: 'H1', style: 'header-one', icon: <span>H1</span> },
   { label: 'H2', style: 'header-two', icon: <span>H2</span> },

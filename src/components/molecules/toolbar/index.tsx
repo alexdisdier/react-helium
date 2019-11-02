@@ -2,9 +2,9 @@ import React from 'react';
 import injectSheet, { ClassNameMap } from 'react-jss';
 import { EditorState } from 'draft-js';
 
-import { BLOCK_TYPES, INLINE_STYLES, isActive } from '../../../../utils/editor';
+import { BLOCK_TYPES, INLINE_STYLES, isActive } from '../../../utils/editor';
 
-import EditorButton from '../../../atoms/editorButton';
+import { EditorButton } from '../../atoms';
 
 import styles from './toolbar.style';
 
@@ -24,6 +24,7 @@ export const Toolbar: React.FC<Props> = ({
   disabled = false
 }) => {
   const selection = editorState.getSelection();
+
   const blockType = editorState
     .getCurrentContent()
     .getBlockForKey(selection.getStartKey())
