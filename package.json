@@ -16,6 +16,8 @@
     "url": "https://github.com/alexdisdier/react-helium.git"
   },
   "dependencies": {
+    "draft-js": "^0.11.1",
+    "draftjs-to-html": "^0.8.4",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-jss": "8.6.1",
@@ -53,6 +55,7 @@
     "@storybook/addon-links": "^5.2.4",
     "@storybook/addons": "^5.2.4",
     "@storybook/react": "^5.2.4",
+    "@types/draft-js": "^0.10.37",
     "@types/enzyme": "^3.10.3",
     "@types/enzyme-adapter-react-16": "^1.0.5",
     "@types/enzyme-to-json": "^1.5.3",

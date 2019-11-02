@@ -32,6 +32,7 @@ ignore:
   - "src/constant" 
   - "src/index.ts"
   - "src/setupTests.ts"
+  - "src/**/*.stories.tsx"
 
 codecov:
   token: 60776250-c459-4e1c-9a9a-8717fe1bc5e7

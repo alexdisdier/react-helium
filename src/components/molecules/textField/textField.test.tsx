@@ -2,8 +2,8 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { TextField } from '.';
 
-jest.mock('../label', () => 'Label');
-jest.mock('../textInput', () => 'TextInput');
+jest.mock('../../atoms/label', () => 'Label');
+jest.mock('../../atoms/textInput', () => 'TextInput');
 
 describe('TextField', () => {
   let props;

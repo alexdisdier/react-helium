@@ -1,2 +1,4 @@
 export { default as Button } from './button';
-export { default as TextField } from './textField';
+export { default as EditorButton } from './editorButton';
+export { default as Label } from './label';
+export { default as TextInput } from './textInput';

@@ -2,86 +2,81 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { classesFromStyles } from '../../../utils/tests';
 
-import { Button } from '.';
+import { EditorButton } from '.';
 
-import styles from './button.style';
+import styles from './editorButton.style';
 
 const classes = classesFromStyles(styles);
 
-describe('Button', () => {
+describe('EditorButton', () => {
   let props;
 
   beforeEach(() => {
     props = {
       classes,
-      children: <div>I am THE button</div>,
+      label: 'B',
       onClick: jest.fn(),
-      primary: false,
-      secondary: false,
-      warning: false,
-      disabled: false
+      active: false,
+      style: 'BOLD',
+      disabled: false,
+      type: 'button'
     };
   });
 
-  it('renders a button', () => {
-    const wrapper = shallow(<Button {...props} />);
+  it('renders an EditorButton', () => {
+    const wrapper = shallow(<EditorButton {...props} />);
     expect(wrapper).toMatchInlineSnapshot(`
       <button
         className="class-from-style-root"
-        data-is-primary={false}
-        data-is-secondary={false}
-        data-is-warning={false}
+        data-is-active={false}
         disabled={false}
-        onClick={[Function]}
+        onMouseDown={[Function]}
         type="button"
       >
         <span
           className="class-from-style-text"
         >
-          <div>
-            I am THE button
-          </div>
+          B
         </span>
       </button>
     `);
   });
 
-  it('renders primary, secondary, and warning button', () => {
-    props.primary = true;
-    props.secondary = true;
-    props.warning = true;
-    const wrapper = shallow(<Button {...props} />);
+  it('renders active EditorButton', () => {
+    props.active = true;
+    const wrapper = shallow(<EditorButton {...props} />);
     expect(wrapper).toMatchInlineSnapshot(`
       <button
         className="class-from-style-root"
-        data-is-primary={true}
-        data-is-secondary={true}
-        data-is-warning={true}
+        data-is-active={true}
         disabled={false}
-        onClick={[Function]}
+        onMouseDown={[Function]}
         type="button"
       >
         <span
           className="class-from-style-text"
         >
-          <div>
-            I am THE button
-          </div>
+          B
         </span>
       </button>
     `);
   });
 
   it('should call onClick', () => {
-    const wrapper = shallow(<Button {...props} />);
-    wrapper.simulate('click');
+    const wrapper = shallow(<EditorButton {...props} />);
+    wrapper.simulate('mouseDown', {
+      preventDefault: () => {}
+    });
+
     expect(props.onClick).toHaveBeenCalledTimes(1);
   });
 
   it('should not call onClick when disabled', () => {
     props.disabled = true;
-    const wrapper = shallow(<Button {...props} />);
-    wrapper.simulate('click');
+    const wrapper = shallow(<EditorButton {...props} />);
+    wrapper.simulate('mouseDown', {
+      preventDefault: () => {}
+    });
     expect(props.onClick).toHaveBeenCalledTimes(0);
   });
 });
