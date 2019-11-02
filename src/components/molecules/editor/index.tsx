@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import injectSheet, { ClassNameMap } from 'react-jss';
 
 import { Editor as Draft, EditorState, RichUtils } from 'draft-js';
 
-import { getBlockStyle, getHTMLString } from '../../../utils/editor';
+import {
+  getBlockStyle,
+  getHTMLString,
+  styleCode
+  // myKeyBindingFn
+} from '../../../utils/editor';
 
 import Toolbar from './toolbar';
 
 import styles from './editor.style';
-
-import './editor.css';
 
 interface Props {
   classes: ClassNameMap<string>;
@@ -18,7 +21,7 @@ interface Props {
   onChange: (e) => void;
 }
 
-export const Editor: React.FC<Props> = ({
+export const Editor: React.SFC<Props> = ({
   classes,
   placeholder = '',
   disabled = false,
@@ -28,6 +31,12 @@ export const Editor: React.FC<Props> = ({
     EditorState.createEmpty()
   );
   const [isFocused, setFocused] = useState(false);
+
+  const editorRef: any | null = useRef(null);
+
+  const handleFocus = () => {
+    setFocused(true);
+  };
 
   const onEditorStateChange = (editorState: EditorState) => {
     setEditorState(editorState);
@@ -79,7 +88,7 @@ export const Editor: React.FC<Props> = ({
 
   // If the user changes block type before entering any text, we can
   // either style the placeholder or hide it. Let's just hide it now.
-  let className = 'draft-editor';
+  let className;
   const contentState = editorState.getCurrentContent();
   if (!contentState.hasText()) {
     if (
@@ -88,16 +97,14 @@ export const Editor: React.FC<Props> = ({
         .first()
         .getType() !== 'unstyled'
     ) {
-      className += ' draftEditor-hidePlaceholder';
+      className += classes.hidePlaceholder;
     }
   }
 
   return (
     <div
       className={className}
-      onFocus={() => {
-        setFocused(true);
-      }}
+      onClick={handleFocus}
       onBlur={() => {
         setFocused(false);
       }}
@@ -112,6 +119,7 @@ export const Editor: React.FC<Props> = ({
       <div {...rootProps}>
         <Draft
           blockStyleFn={getBlockStyle}
+          customStyleMap={styleCode}
           editorState={editorState}
           onChange={onEditorStateChange}
           onTab={onTab}
@@ -119,6 +127,8 @@ export const Editor: React.FC<Props> = ({
           spellCheck
           readOnly={disabled}
           handleKeyCommand={handleKeyCommand}
+          ref={editorRef}
+          // keyBindingFn={myKeyBindingFn}
         />
       </div>
     </div>

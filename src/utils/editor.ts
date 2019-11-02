@@ -1,4 +1,9 @@
-import { EditorState, convertToRaw } from 'draft-js';
+import {
+  EditorState,
+  convertToRaw
+  // getDefaultKeyBinding,
+  // KeyBindingUtil
+} from 'draft-js';
 
 import draftToHtml from 'draftjs-to-html';
 
@@ -18,12 +23,41 @@ export const uploadImageCallBack = (file: any) =>
 export const getHTMLString = (editorState: EditorState): string =>
   draftToHtml(convertToRaw(editorState.getCurrentContent()));
 
+/**
+ * source: https://draftjs.org/docs/advanced-topics-block-styling
+ */
 export const getBlockStyle = block => {
   switch (block.getType()) {
-    case 'blockquote':
-      return 'RichEditor-blockquote';
+    case 'header-one':
+      return `Editor--h1`;
+    case 'header-two':
+      return `Editor--h2`;
+    case 'unordered-list-item':
+      return `Editor--unorderedList`; // classes
+    case 'ordered-list-item':
+      return `Editor--orderedList`;
     default:
       return '';
+  }
+};
+
+// const { hasCommandModifier } = KeyBindingUtil;
+
+// export const myKeyBindingFn = (e): string => {
+//   if (e.key === 'Tab' /* `S` key */ && hasCommandModifier(e)) {
+//     console.log('tab');
+//     return 'myeditor-save';
+//   }
+//   return getDefaultKeyBinding(e);
+// };
+
+// Custom overrides for "code" style.
+export const styleCode = {
+  CODE: {
+    backgroundColor: 'rgba(0, 0, 0, 0.05)',
+    fontFamily: '"Inconsolata", "Menlo", "Consolas", monospace',
+    fontSize: 16,
+    padding: 2
   }
 };
 

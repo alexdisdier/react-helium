@@ -41,5 +41,5 @@ yarn test:unit
 
 ## Resources
 
-- [Building Design Systems with Atomic Design](https://medium.muz.li/building-design-systems-with-atomic-design-93a13286f676)
+- [Building Design Systems with Atomic Design](https://ubiedigital.com/atomic-design/)
 - [typescript-cheatsheets](https://github.com/typescript-cheatsheets/react-typescript-cheatsheet)

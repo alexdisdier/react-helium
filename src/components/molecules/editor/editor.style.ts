@@ -19,5 +19,25 @@ export default theme => ({
     '&[data-has-focus="true"]': {
       borderColor: theme.teal3
     }
+  },
+  h1: {
+    fontSize: 32,
+    fontWeight: 'bold'
+  },
+  h2: {
+    fontSize: 24,
+    fontWeight: 'bold'
+  },
+  unorderedList: {
+    position: 'relative',
+    paddingLeft: 22,
+    '&::before': {
+      position: 'absolute',
+      content: '"•"',
+      color: '#5246f7',
+      fontWeight: 'bold',
+      width: '1em',
+      marginLeft: '-1em'
+    }
   }
 });
