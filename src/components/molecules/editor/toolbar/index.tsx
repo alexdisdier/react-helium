@@ -2,7 +2,7 @@ import React from 'react';
 import injectSheet, { ClassNameMap } from 'react-jss';
 import { EditorState } from 'draft-js';
 
-import { BLOCK_TYPES, INLINE_STYLES } from '../../../../utils/editor';
+import { BLOCK_TYPES, INLINE_STYLES, isActive } from '../../../../utils/editor';
 
 import EditorButton from '../../../atoms/editorButton';
 
@@ -40,6 +40,7 @@ export const Toolbar: React.FC<Props> = ({
         <EditorButton
           key={type.label}
           label={type.label}
+          icon={type.icon}
           onClick={onToggleBlockType}
           active={type.style === blockType}
           style={type.style}
@@ -50,8 +51,9 @@ export const Toolbar: React.FC<Props> = ({
         <EditorButton
           key={type.label}
           label={type.label}
+          icon={type.icon}
           onClick={onToggleInlineType}
-          active={type.style === blockType}
+          active={isActive(editorState, type.style)}
           style={type.style}
           disabled={disabled}
         />

@@ -39,6 +39,7 @@ export const Editor: React.SFC<Props> = ({
   );
   const [isFocused, setFocused] = useState(false);
   const [output, setOutput] = useState('');
+  // const [commandsActive, setCommandsActive] = useState(['bold', 'italic']);
 
   const editorRef: any | null = useRef(null);
 
@@ -63,33 +64,42 @@ export const Editor: React.SFC<Props> = ({
    */
   const toggleInlineStyle = (inlineStyle: string) => {
     onEditorStateChange(RichUtils.toggleInlineStyle(editorState, inlineStyle));
+    // Modifier.removeInlineStyle(contentState, selection, color)
   };
 
   /**
    * Handles any key commands such as italics, bold, ...
+   * NEED TO ADD RESTRICTION TYPING COMMANDS
    */
   const handleKeyCommand = (cmd: string): DraftHandleValue => {
+    /**
+     * Add class active to control button when command key clicked.
+     */
+    // if (commandsActive.includes(cmd)) {
+    //   const newCommandsActive = commandsActive.filter(value => {
+    //     return value !== cmd;
+    //   });
+    //   setCommandsActive(newCommandsActive);
+    // } else {
+    //   commandsActive.push(cmd);
+    // }
+
+    /**
+     * Add Tabulation to bullet point (max depth)
+     */
     const newState = RichUtils.handleKeyCommand(editorState, cmd);
     if (cmd === 'myeditor-tab') {
-      console.log('adding tab style');
       return 'handled';
     }
+
+    /**
+     * Standard key command handling
+     */
     if (newState) {
       onEditorStateChange(newState);
       return 'handled';
     }
     return 'not-handled';
-  };
-
-  /**
-   * Handles bullet points tabulation
-   * Not working in the newer version
-   */
-  const onTab = e => _onTab(e);
-
-  const _onTab = e => {
-    const maxDepth = 4;
-    onEditorStateChange(RichUtils.onTab(e, editorState, maxDepth));
   };
 
   /**
@@ -101,17 +111,9 @@ export const Editor: React.SFC<Props> = ({
   };
 
   /**
-   * Handles saving (potential localstorage)
+   * Handles clearing the rich editor content (potential localstorage)
    */
   const clear = () => setEditorState(EditorState.createEmpty());
-
-  /**
-   * testing buttons
-   */
-  const onBoldClick = e => {
-    e.preventDefault();
-    onEditorStateChange(RichUtils.toggleInlineStyle(editorState, 'BOLD'));
-  };
 
   const rootProps = {
     className: classes.root,
@@ -143,7 +145,6 @@ export const Editor: React.SFC<Props> = ({
           setFocused(false);
         }}
       >
-        {/* <button onMouseDown={onBoldClick}>Bold</button> */}
         <Toolbar
           editorState={editorState}
           onToggleBlockType={toggleBlockType}
@@ -158,7 +159,6 @@ export const Editor: React.SFC<Props> = ({
             editorState={editorState}
             keyBindingFn={myKeyBindingFn}
             onChange={onEditorStateChange}
-            onTab={onTab}
             placeholder={placeholder}
             spellCheck
             readOnly={disabled}

@@ -1,3 +1,5 @@
+import React from 'react';
+
 import {
   EditorState,
   convertToRaw,
@@ -10,6 +12,7 @@ import draftToHtml from 'draftjs-to-html';
 type STYLE = {
   label: string;
   style: string;
+  icon?: React.ReactNode;
 };
 
 export const uploadImageCallBack = (file: any) =>
@@ -50,6 +53,13 @@ export const myKeyBindingFn = e => {
   return getDefaultKeyBinding(e);
 };
 
+export const isActive = (editorState, style) => {
+  // currentStyle is a map of currently applied style to selected text
+  const currentStyle = editorState.getCurrentInlineStyle();
+  // check if current style is among the style map.
+  return currentStyle.has(style);
+};
+
 // Custom overrides for "code" style.
 export const styleCode = {
   CODE: {
@@ -61,14 +71,14 @@ export const styleCode = {
 };
 
 export const BLOCK_TYPES: STYLE[] = [
-  { label: 'H1', style: 'header-one' },
-  { label: 'H2', style: 'header-two' },
-  { label: 'UL', style: 'unordered-list-item' },
-  { label: 'OL', style: 'ordered-list-item' }
+  { label: 'H1', style: 'header-one', icon: <span>H1</span> },
+  { label: 'H2', style: 'header-two', icon: <span>H2</span> },
+  { label: 'UL', style: 'unordered-list-item', icon: <span>UL</span> },
+  { label: 'OL', style: 'ordered-list-item', icon: <span>OL</span> }
 ];
 
 export const INLINE_STYLES: STYLE[] = [
-  { label: 'B', style: 'BOLD' },
-  { label: 'I', style: 'ITALIC' },
-  { label: 'U', style: 'UNDERLINE' }
+  { label: 'B', style: 'BOLD', icon: <span>B</span> },
+  { label: 'I', style: 'ITALIC', icon: <span>I</span> },
+  { label: 'U', style: 'UNDERLINE', icon: <span>U</span> }
 ];

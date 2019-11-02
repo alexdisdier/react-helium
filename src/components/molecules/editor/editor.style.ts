@@ -20,6 +20,9 @@ export default theme => ({
       borderColor: theme.teal3
     }
   },
+  placeholder: {
+    opacity: 0.5
+  },
   buttonWrapper: {
     display: 'flex',
     justifyContent: 'flex-end',

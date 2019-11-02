@@ -6,6 +6,7 @@ import styles from './editorButton.style';
 type Props = {
   classes: ClassNameMap<string>;
   label?: string;
+  icon?: React.ReactNode;
   onClick?: (x) => void;
   active?: boolean;
   style?: string;
@@ -16,32 +17,35 @@ type Props = {
 export const EditorButton: React.SFC<Props> = ({
   classes,
   label = '',
+  // icon = null,
   onClick = () => {},
   active = false,
   style = '',
   disabled = false,
   type = 'button'
 }) => {
-  const [isActive, setActive] = useState(active || false);
+  const [isActive, setActive] = useState(active);
 
   const handleClick = e => {
     e.preventDefault(); // This allows to lock the key command
-    if (!disabled && onClick) {
+    console.log('active', active);
+    if (!disabled && onClick && !active) {
       setActive(!isActive);
+      console.log('if style', style);
       onClick(style);
     }
   };
 
   const rootProps = {
-    onMouseDown: handleClick, // onMouseDown has to be used instead of onClick to be able to lock the key command
+    // onMouseDown has to be used instead of onClick to be able to lock the key command
     type,
     className: classes.root,
     disabled,
-    'data-is-active': isActive
+    'data-is-active': isActive || active
   };
 
   return (
-    <button {...rootProps}>
+    <button onMouseDown={handleClick} {...rootProps}>
       <span className={classes.text}>{label}</span>
     </button>
   );
