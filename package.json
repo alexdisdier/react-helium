@@ -32,7 +32,6 @@
   "scripts": {
     "start": "start-storybook -p 6007",
     "test:unit": "react-scripts test",
-    "test:staged": "react-scripts test --bail --findRelatedTests",
     "test:ci": "yarn test:unit t -- --coverage --watchAll=false",
     "lint": "eslint './src/**/*.{js,jsx,ts,tsx}'",
     "lint:fix": "eslint --fix './src/**/*.{js,jsx,ts,tsx}'",
@@ -101,6 +100,7 @@
   "lint-staged": {
     "src/**/*.{ts,tsx}": [
       "yarn lint --fix --quiet",
+      "yarn test:ci",
       "git add",
       "yarn clean",
       "yarn build"
