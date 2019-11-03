@@ -67,6 +67,14 @@ npx http-server .storybook-static
 yarn test:unit
 ```
 
+## Contribution
+
+I welcome any pull requests. I will soon draft a contributing document.
+
+## License
+
+react-helium is MIT licensed.
+
 ## Acknowledgments
 
 - [Building Design Systems with Atomic Design](https://ubiedigital.com/atomic-design/)
