@@ -4,15 +4,13 @@
 
 # React Helium library
 
-🚧 This is a components library under construction.
+### 🚧This component library is under construction 🚧
 
 <hr>
 
 ## Getting Started
 
 If you wish to use this library in your project.
-
-> ..in the process of adding more components.
 
 ```bash
 npm install react-helium
@@ -24,7 +22,7 @@ yarn add react-helium
 
 ### Using react-helium
 
-For now, I recommand to clone the library and start storybook to see a full documentation.
+For now, I recommend cloning the library and start storybook to see full documentation.
 
 ## Install
 
@@ -68,6 +66,14 @@ npx http-server .storybook-static
 ```bash
 yarn test:unit
 ```
+
+## Contribution
+
+I welcome any pull requests. I will soon draft a contributing document.
+
+## License
+
+react-helium is MIT licensed.
 
 ## Acknowledgments
 
