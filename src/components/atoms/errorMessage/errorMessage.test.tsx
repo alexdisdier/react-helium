@@ -14,7 +14,7 @@ describe('ErrorMessage', () => {
   beforeEach(() => {
     props = {
       classes,
-      text: 'This is an error'
+      text: 'This is the error'
     };
   });
 
@@ -24,7 +24,7 @@ describe('ErrorMessage', () => {
       <div
         className="class-from-style-content"
       >
-        This is an error
+        This is the error
       </div>
     `);
   });
