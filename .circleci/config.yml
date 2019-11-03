@@ -1,6 +1,6 @@
 defaults: &defaults
   docker:
-    - image: circleci/node:8.11
+    - image: circleci/node:8.12
   working_directory: ~/repo
 version: 2.1
 orbs:

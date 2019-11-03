@@ -69,7 +69,7 @@ yarn test:unit
 
 ## Contribution
 
-I welcome any pull requests. I will soon draft a contributing document.
+I welcome any pull requests. I will soon draft a contributing document
 
 ## License
 
