@@ -100,10 +100,7 @@
   "lint-staged": {
     "src/**/*.{ts,tsx}": [
       "yarn lint --fix --quiet",
-      "yarn test:ci",
-      "git add",
-      "yarn clean",
-      "yarn build"
+      "yarn test:ci"
     ]
   }
 }
