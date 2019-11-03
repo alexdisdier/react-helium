@@ -14,7 +14,7 @@ describe('Button', () => {
   beforeEach(() => {
     props = {
       classes,
-      children: <div>I am THE button</div>,
+      children: <div>I am a button</div>,
       onClick: jest.fn(),
       primary: false,
       secondary: false,
@@ -39,7 +39,7 @@ describe('Button', () => {
           className="class-from-style-text"
         >
           <div>
-            I am THE button
+            I am a button
           </div>
         </span>
       </button>
@@ -65,7 +65,7 @@ describe('Button', () => {
           className="class-from-style-text"
         >
           <div>
-            I am THE button
+            I am a button
           </div>
         </span>
       </button>
