@@ -8,7 +8,35 @@
 
 <hr>
 
+## Getting Started
+
+If you wish to use this library in your project.
+
+> ..in the process of adding more components.
+
+```bash
+npm install react-helium
+
+or
+
+yarn add react-helium
+```
+
+### Using react-helium
+
+For now, I recommand to clone the library and start storybook to see a full documentation.
+
 ## Install
+
+For the commands, you can use either npm or yarn.
+
+Clone this repository :
+
+```bash
+git clone https://github.com/alexdisdier/react-helium.git
+
+cd react-helium
+```
 
 ```bash
 yarn
@@ -18,6 +46,8 @@ yarn
 
 You can use [storybook.js](https://storybook.js.org/) for running and visualizing the components:
 
+You will get directions about each components usage, how to import them and the required and optional props.
+
 ```bash
 yarn start
 ```
@@ -26,7 +56,7 @@ and visit [localhost:6007](http://localhost:6007)
 
 ## Exporting Storybook
 
-By exporting it as a static app, we can then serve our story on the network
+By exporting it as a static app, you can then serve your story on the network
 
 ```bash
 yarn build-storybook
@@ -39,7 +69,7 @@ npx http-server .storybook-static
 yarn test:unit
 ```
 
-## Resources
+## Acknowledgments
 
 - [Building Design Systems with Atomic Design](https://ubiedigital.com/atomic-design/)
 - [typescript-cheatsheets](https://github.com/typescript-cheatsheets/react-typescript-cheatsheet)
