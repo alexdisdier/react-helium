@@ -4,6 +4,11 @@
   "description": "A React component library",
   "author": "Alex Disdier",
   "license": "MIT",
+  "keywords": [
+    "react",
+    "javascript",
+    "typescript"
+  ],
   "main": "lib/src/index.js",
   "directories": {
     "lib": "lib"
