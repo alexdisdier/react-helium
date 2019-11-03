@@ -32,6 +32,7 @@
   "scripts": {
     "start": "start-storybook -p 6007",
     "test:unit": "react-scripts test",
+    "test:staged": "react-scripts test --bail --findRelatedTests",
     "test:ci": "yarn test:unit t -- --coverage --watchAll=false",
     "lint": "eslint './src/**/*.{js,jsx,ts,tsx}'",
     "lint:fix": "eslint --fix './src/**/*.{js,jsx,ts,tsx}'",
@@ -78,7 +79,9 @@
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-prettier": "^6.4.0",
     "eslint-plugin-prettier": "^3.1.1",
+    "husky": "^3.0.9",
     "jest": "^24.9.0",
+    "lint-staged": "^9.4.2",
     "lodash.uniqueid": "^4.0.1",
     "prettier": "^1.18.2",
     "react-docgen-typescript-loader": "^3.3.0",
@@ -88,6 +91,19 @@
   "jest": {
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx}": [
+      "yarn lint --fix --quiet",
+      "git add",
+      "yarn clean",
+      "yarn build"
     ]
   }
 }
