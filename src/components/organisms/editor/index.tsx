@@ -6,10 +6,8 @@ import {
   Editor as Draft,
   EditorState,
   RichUtils,
-  DraftHandleValue // to delete
+  DraftHandleValue
 } from 'draft-js';
-
-import './editor.css'; // to delete
 
 import {
   findLinkEntities,
