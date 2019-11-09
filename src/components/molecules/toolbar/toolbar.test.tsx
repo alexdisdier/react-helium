@@ -34,70 +34,70 @@ describe('Toolbar', () => {
     props.disabled = true;
     const wrapper = shallow(<Toolbar {...props} />);
     expect(wrapper).toMatchInlineSnapshot(`
-<div
-  className="class-from-style-root"
-  data-is-disabled={true}
->
-  <Button
-    buttonType="header-one"
-    disabled={true}
-    onClick={[MockFunction]}
-  />
-  <Button
-    buttonType="BOLD"
-    disabled={true}
-    onClick={[MockFunction]}
-  />
-  <Button
-    active={false}
-    buttonType="LINK"
-    disabled={true}
-    icon={<UiconLink />}
-    promptForLink={[Function]}
-    removeLink={[Function]}
-  />
-  <Button
-    buttonType="unordered-list-item"
-    disabled={true}
-    icon={<UiconBullets />}
-    onClick={[MockFunction]}
-  />
-</div>
-`);
+      <div
+        className="class-from-style-root"
+        data-is-disabled={true}
+      >
+        <EditorButton
+          buttonType="header-one"
+          disabled={true}
+          onClick={[MockFunction]}
+        />
+        <EditorButton
+          buttonType="BOLD"
+          disabled={true}
+          onClick={[MockFunction]}
+        />
+        <EditorButton
+          active={false}
+          buttonType="LINK"
+          disabled={true}
+          icon={null}
+          promptForLink={[Function]}
+          removeLink={[Function]}
+        />
+        <EditorButton
+          buttonType="unordered-list-item"
+          disabled={true}
+          icon={null}
+          onClick={[MockFunction]}
+        />
+      </div>
+    `);
   });
 
   it('renders full component', () => {
     const wrapper = shallow(<Toolbar {...props} />);
     expect(wrapper).toMatchInlineSnapshot(`
-<div
-  className="class-from-style-root"
-  data-is-disabled={false}
->
-  <Button
-    buttonType="header-one"
-    disabled={false}
-    onClick={[MockFunction]}
-  />
-  <Button
-    buttonType="BOLD"
-    disabled={false}
-    onClick={[MockFunction]}
-  />
-  <Button
-    active={false}
-    buttonType="LINK"
-    disabled={false}
-    icon={<UiconLink />}
-    promptForLink={[Function]}
-    removeLink={[Function]}
-  />
-  <Button
-    buttonType="unordered-list-item"
-    disabled={false}
-    icon={<UiconBullets />}
-    onClick={[MockFunction]}
-  />
-</div>
-`);
+      <div
+        className="class-from-style-root"
+        data-is-disabled={false}
+      >
+        <EditorButton
+          buttonType="header-one"
+          disabled={false}
+          onClick={[MockFunction]}
+        />
+        <EditorButton
+          buttonType="BOLD"
+          disabled={false}
+          onClick={[MockFunction]}
+        />
+        <EditorButton
+          active={false}
+          buttonType="LINK"
+          disabled={false}
+          icon={null}
+          promptForLink={[Function]}
+          removeLink={[Function]}
+        />
+        <EditorButton
+          buttonType="unordered-list-item"
+          disabled={false}
+          icon={null}
+          onClick={[MockFunction]}
+        />
+      </div>
+    `);
   });
 });

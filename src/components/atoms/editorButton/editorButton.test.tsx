@@ -8,7 +8,7 @@ import styles from './editorButton.style';
 
 const classes = classesFromStyles(styles);
 
-describe('Button', () => {
+describe('Editor Button', () => {
   let props;
 
   beforeEach(() => {
@@ -25,7 +25,7 @@ describe('Button', () => {
   });
 
   describe('Actions', () => {
-    it('triggers onClick for a block or inline style button', () => {
+    it('triggers onClick for a block or inline style Editor button', () => {
       const wrapper = shallow(<EditorButton {...props} />);
       wrapper.simulate('mouseDown', {
         preventDefault: () => {}
