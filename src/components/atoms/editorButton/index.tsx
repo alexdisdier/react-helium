@@ -8,25 +8,29 @@ import styles from './editorButton.style';
 
 type Props = {
   classes: ClassNameMap<string>;
-  label?: string;
   icon?: React.ReactNode;
   onClick?: (x) => void;
+  promptForLink?: (x) => void;
+  removeLink?: () => void;
   active?: boolean;
-  style?: string;
+  buttonType: boolean;
   disabled?: boolean;
-  type?: string;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-export const EditorButton: React.SFC<Props> = ({
+export const EditorButton: React.FC<Props> = ({
   classes,
-  label = '',
   icon = null,
   onClick = () => {},
+  promptForLink = () => {},
+  removeLink = () => {},
   active = false,
-  style = '',
-  disabled = false,
-  type = 'button'
+  buttonType,
+  disabled = false
 }) => {
+  /**
+   * isActive monitors block and inline styles
+   * For link button, it is monitored within the richEditor component.
+   */
   const [isActive, setActive] = useState(active);
 
   const handleClick = e => {
@@ -34,25 +38,53 @@ export const EditorButton: React.SFC<Props> = ({
 
     if (!disabled && onClick) {
       setActive(true);
-
-      onClick(style);
+      onClick(buttonType);
     }
 
     STYLE.map(type => {
-      if (type === style) setActive(false);
+      if (type === buttonType) setActive(false);
     });
+  };
+
+  const toggleLink = e => {
+    e.preventDefault(); // This allows to lock the key command
+    if (!disabled && !active) {
+      promptForLink(e);
+    } else {
+      removeLink();
+    }
   };
 
   const rootProps = {
     // onMouseDown has to be used instead of onClick to be able to lock the key command
-    type,
     className: classes.root,
     disabled,
     'data-is-active': isActive || active
   };
 
+  let label;
+  switch (buttonType) {
+    case 'header-one':
+      label = 'H1';
+      break;
+    case 'BOLD':
+      label = 'B';
+      break;
+    case 'LINK':
+      label = 'L';
+      break;
+    case 'unordered-list-item':
+      label = 'UL';
+      break;
+    default:
+      label = buttonType[0].toUpperCase();
+  }
+
   return (
-    <button onMouseDown={handleClick} {...rootProps}>
+    <button
+      onMouseDown={buttonType === 'LINK' ? toggleLink : handleClick}
+      {...rootProps}
+    >
       <span className={classes.text}>{icon || label}</span>
     </button>
   );

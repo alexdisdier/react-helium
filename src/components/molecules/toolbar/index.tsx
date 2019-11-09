@@ -2,7 +2,7 @@ import React from 'react';
 import injectSheet, { ClassNameMap } from 'react-jss';
 import { EditorState } from 'draft-js';
 
-import { BLOCK_TYPES, INLINE_STYLES, isActive } from '../../../utils/editor';
+import { hasBlockType, hasInlineStyle, hasLink } from '../../../utils/editor';
 
 import { EditorButton } from '../../atoms';
 
@@ -13,7 +13,10 @@ interface Props {
   editorState: EditorState;
   onToggleBlockType?: any;
   onToggleInlineType?: any;
+  promptForLink?: (x) => void;
+  removeLink?: () => void;
   disabled?: boolean;
+  isLinkButtonActive?: boolean;
 }
 
 export const Toolbar: React.FC<Props> = ({
@@ -21,15 +24,11 @@ export const Toolbar: React.FC<Props> = ({
   editorState,
   onToggleBlockType = () => {},
   onToggleInlineType = () => {},
-  disabled = false
+  promptForLink = () => {},
+  removeLink = () => {},
+  disabled = false,
+  isLinkButtonActive = false
 }) => {
-  const selection = editorState.getSelection();
-
-  const blockType = editorState
-    .getCurrentContent()
-    .getBlockForKey(selection.getStartKey())
-    .getType();
-
   const rootProps = {
     className: classes.root,
     'data-is-disabled': disabled
@@ -37,28 +36,36 @@ export const Toolbar: React.FC<Props> = ({
 
   return (
     <div {...rootProps}>
-      {BLOCK_TYPES.map(type => (
-        <EditorButton
-          key={type.label}
-          label={type.label}
-          icon={type.icon}
-          onClick={onToggleBlockType}
-          active={type.style === blockType}
-          style={type.style}
-          disabled={disabled}
-        />
-      ))}
-      {INLINE_STYLES.map(type => (
-        <EditorButton
-          key={type.label}
-          label={type.label}
-          icon={type.icon}
-          onClick={onToggleInlineType}
-          active={isActive(editorState, type.style)}
-          style={type.style}
-          disabled={disabled}
-        />
-      ))}
+      <EditorButton
+        onClick={onToggleBlockType}
+        active={hasBlockType(editorState, 'header-one')}
+        buttonType="header-one"
+        disabled={disabled}
+      />
+
+      <EditorButton
+        onClick={onToggleInlineType}
+        active={hasInlineStyle(editorState, 'BOLD')}
+        buttonType="BOLD"
+        disabled={disabled}
+      />
+
+      <EditorButton
+        icon={null}
+        promptForLink={promptForLink}
+        removeLink={removeLink}
+        active={hasLink(editorState) || isLinkButtonActive}
+        buttonType="LINK"
+        disabled={disabled}
+      />
+
+      <EditorButton
+        icon={null}
+        onClick={onToggleBlockType}
+        active={hasBlockType(editorState, 'unordered-list-item')}
+        buttonType="unordered-list-item"
+        disabled={disabled}
+      />
     </div>
   );
 };

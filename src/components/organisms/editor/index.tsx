@@ -2,21 +2,22 @@ import React, { useState, useRef, useEffect } from 'react';
 import injectSheet, { ClassNameMap } from 'react-jss';
 
 import {
+  CompositeDecorator,
   Editor as Draft,
   EditorState,
   RichUtils,
-  DraftHandleValue
+  DraftHandleValue // to delete
 } from 'draft-js';
-import './editor.css';
+
+import './editor.css'; // to delete
 
 import {
+  findLinkEntities,
   getBlockStyle,
-  getHTMLString,
-  styleCode,
-  myKeyBindingFn
+  getHTMLString
 } from '../../../utils/editor';
 
-import { Button } from '../../atoms';
+import { Button, EditorLink, EditorUrlInput } from '../../atoms';
 
 import { Toolbar } from '../../molecules';
 
@@ -29,17 +30,30 @@ interface Props {
   onChange: (e) => void;
 }
 
+/**
+ * We need to add a decorator to add our own style to links
+ */
+const decorator = new CompositeDecorator([
+  {
+    strategy: findLinkEntities,
+    component: EditorLink
+  }
+]);
+
 export const Editor: React.SFC<Props> = ({
   classes,
   placeholder = '',
-  disabled = false,
-  onChange
+  onChange,
+  disabled = false
 }) => {
   const [editorState, setEditorState] = useState<EditorState>(
-    EditorState.createEmpty()
+    EditorState.createEmpty(decorator)
   );
   const [isFocused, setFocused] = useState(false);
+  const [isLinkButtonActive, setLinkButtonActive] = useState(false);
   const [output, setOutput] = useState('');
+  const [showURLInput, setShowURLInput] = useState(false);
+  const [urlValue, setUrlValue] = useState('');
 
   const editorRef: any | null = useRef(null);
 
@@ -49,17 +63,63 @@ export const Editor: React.SFC<Props> = ({
   };
 
   useEffect(() => {
-    // const editorId = document.getElementById('draft-js');
-    // const childDiv = editorId!.getElementsByTagName('div')[0];
-    // const requiredDiv = childDiv.getElementsByTagName('div')[1];
-    // requiredDiv.className = 'Editor--placeholder';
-
     handleFocus();
   }, []);
 
   const onEditorStateChange = (editorState: EditorState) => {
     setEditorState(editorState);
     onChange(getHTMLString(editorState));
+  };
+
+  /**
+   * Handling urlInput and link button components
+   */
+  const onUrlInputChange = e => setUrlValue(e.target.value);
+
+  const promptForLink = e => {
+    e.preventDefault();
+    const selection = editorState.getSelection();
+    if (!selection.isCollapsed()) {
+      setShowURLInput(true);
+      setUrlValue('');
+    }
+    setLinkButtonActive(true);
+  };
+
+  const confirmLink = e => {
+    e.preventDefault();
+    const contentState = editorState.getCurrentContent();
+    const contentStateWithEntity = contentState.createEntity(
+      'LINK',
+      'MUTABLE',
+      { url: urlValue }
+    );
+    const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
+
+    setEditorState(
+      RichUtils.toggleLink(editorState, editorState.getSelection(), entityKey)
+    );
+    setShowURLInput(false);
+    setLinkButtonActive(false);
+  };
+
+  const onLinkInputKeyDown = e => {
+    if (e.which === 13) {
+      confirmLink(e);
+    }
+  };
+
+  const removeLink = () => {
+    const selection = editorState.getSelection();
+    if (!selection.isCollapsed()) {
+      setEditorState(RichUtils.toggleLink(editorState, selection, null));
+    }
+    setLinkButtonActive(false);
+  };
+
+  const handleCollapse = () => {
+    setShowURLInput(false);
+    setLinkButtonActive(false);
   };
 
   /**
@@ -100,6 +160,22 @@ export const Editor: React.SFC<Props> = ({
   };
 
   /**
+   * If the user changes block type before entering any text (e.g unordered-list),
+   * we hide the placeholder.
+   */
+  let hidePlaceholder = false;
+  const contentState = editorState.getCurrentContent();
+  if (!contentState.hasText()) {
+    if (
+      contentState
+        .getBlockMap()
+        .first()
+        .getType() !== 'unstyled'
+    )
+      hidePlaceholder = true;
+  }
+
+  /**
    * Handles saving (potential localstorage)
    */
   const save = () => {
@@ -114,8 +190,9 @@ export const Editor: React.SFC<Props> = ({
 
   const rootProps = {
     className: classes.root,
-    'data-has-focus': isFocused,
-    'data-is-disabled': disabled
+    'data-has-focus': isFocused || showURLInput,
+    'data-is-disabled': disabled,
+    'data-is-placeholder-hidden': hidePlaceholder
   };
 
   return (
@@ -130,15 +207,16 @@ export const Editor: React.SFC<Props> = ({
           editorState={editorState}
           onToggleBlockType={toggleBlockType}
           onToggleInlineType={toggleInlineStyle}
+          promptForLink={promptForLink}
+          removeLink={removeLink}
           disabled={disabled}
+          isLinkButtonActive={isLinkButtonActive}
         />
 
         <div id="draft-js" {...rootProps}>
           <Draft
             blockStyleFn={getBlockStyle}
-            customStyleMap={styleCode}
             editorState={editorState}
-            keyBindingFn={myKeyBindingFn}
             onChange={onEditorStateChange}
             placeholder={placeholder}
             spellCheck
@@ -148,6 +226,15 @@ export const Editor: React.SFC<Props> = ({
           />
         </div>
       </div>
+      {showURLInput && (
+        <EditorUrlInput
+          confirmLink={confirmLink}
+          onLinkInputKeyDown={onLinkInputKeyDown}
+          urlInputChange={onUrlInputChange}
+          value={urlValue}
+          handleCollapse={handleCollapse}
+        />
+      )}
       <div className={classes.buttonWrapper}>
         <div className={classes.button}>
           <Button secondary onClick={clear}>
