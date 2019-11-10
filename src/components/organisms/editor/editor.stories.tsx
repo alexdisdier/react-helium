@@ -18,7 +18,7 @@ interface Props {
   onChange: (e) => void;
 }
 
-export const ControlledEditor: React.FC<Props> = ({ ...otherProps }) => {
+const ControlledEditor: React.FC<Props> = ({ ...otherProps }) => {
   const [editorState, setEditorState] = useState('');
   return (
     <Editor
@@ -40,7 +40,7 @@ stories.addDecorator(withKnobs);
 stories.add('default', () => {
   return (
     <ControlledEditor
-      placeholder={text('Placeholder', 'test')}
+      placeholder={text('Placeholder', 'Let your imagination run wild')}
       disabled={boolean('Disabled', false)}
       onChange={action('onChange')}
     />

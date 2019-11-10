@@ -19,6 +19,8 @@ import { Button, EditorLink, EditorUrlInput } from '../../atoms';
 
 import { Toolbar } from '../../molecules';
 
+import HtmlDisplay from '../htmlDisplay';
+
 import styles from './editor.style';
 
 interface Props {
@@ -38,7 +40,7 @@ const decorator = new CompositeDecorator([
   }
 ]);
 
-export const Editor: React.SFC<Props> = ({
+export const Editor: React.FC<Props> = ({
   classes,
   placeholder = '',
   onChange,
@@ -177,14 +179,17 @@ export const Editor: React.SFC<Props> = ({
    * Handles saving (potential localstorage)
    */
   const save = () => {
-    const content = editorState.getCurrentContent().getPlainText();
+    const content = getHTMLString(editorState);
     setOutput(content);
   };
 
   /**
    * Handles clearing the rich editor content (potential localstorage)
    */
-  const clear = () => setEditorState(EditorState.createEmpty());
+  const clear = () => {
+    setEditorState(EditorState.createEmpty());
+    setOutput('');
+  };
 
   const rootProps = {
     className: classes.root,
@@ -226,7 +231,6 @@ export const Editor: React.SFC<Props> = ({
       </div>
       {showURLInput && (
         <EditorUrlInput
-          confirmLink={confirmLink}
           onLinkInputKeyDown={onLinkInputKeyDown}
           urlInputChange={onUrlInputChange}
           value={urlValue}
@@ -244,7 +248,8 @@ export const Editor: React.SFC<Props> = ({
         </Button>
       </div>
 
-      <div>Output: {output}</div>
+      <div>Output in html markup:</div>
+      <HtmlDisplay htmlData={output} />
     </>
   );
 };
