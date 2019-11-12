@@ -2,21 +2,20 @@ import React, { useState, useRef, useEffect } from 'react';
 import injectSheet, { ClassNameMap } from 'react-jss';
 
 import {
+  CompositeDecorator,
   Editor as Draft,
   EditorState,
-  RichUtils,
-  DraftHandleValue
+  RichUtils
 } from 'draft-js';
-import './editor.css';
 
 import {
+  findLinkEntities,
   getBlockStyle,
   getHTMLString,
-  styleCode,
-  myKeyBindingFn
+  isValidURL
 } from '../../../utils/editor';
 
-import { Button } from '../../atoms';
+import { EditorLink, EditorUrlInput } from '../../atoms';
 
 import { Toolbar } from '../../molecules';
 
@@ -29,17 +28,36 @@ interface Props {
   onChange: (e) => void;
 }
 
-export const Editor: React.SFC<Props> = ({
+/**
+ * We need to add a decorator to add our own style to links
+ */
+const decorator = new CompositeDecorator([
+  {
+    strategy: findLinkEntities,
+    component: EditorLink
+  }
+]);
+
+export const Editor: React.FC<Props> = ({
   classes,
   placeholder = '',
-  disabled = false,
-  onChange
+  onChange,
+  disabled = false
 }) => {
+  // Initiating the EditorState with link decorator
   const [editorState, setEditorState] = useState<EditorState>(
-    EditorState.createEmpty()
+    EditorState.createEmpty(decorator)
   );
+
+  // Focus applied to the editor and control panel buttons.
   const [isFocused, setFocused] = useState(false);
-  const [output, setOutput] = useState('');
+
+  // Url State
+  const [showURLInput, setShowURLInput] = useState(false);
+  const [urlValue, setUrlValue] = useState('');
+  const [validUrl, setValidUrl] = useState(true);
+
+  const [isLinkButtonActive, setLinkButtonActive] = useState(false);
 
   const editorRef: any | null = useRef(null);
 
@@ -49,17 +67,75 @@ export const Editor: React.SFC<Props> = ({
   };
 
   useEffect(() => {
-    // const editorId = document.getElementById('draft-js');
-    // const childDiv = editorId!.getElementsByTagName('div')[0];
-    // const requiredDiv = childDiv.getElementsByTagName('div')[1];
-    // requiredDiv.className = 'Editor--placeholder';
-
     handleFocus();
   }, []);
 
   const onEditorStateChange = (editorState: EditorState) => {
     setEditorState(editorState);
     onChange(getHTMLString(editorState));
+  };
+
+  /**
+   * Handling urlInput and link button components
+   */
+  const onUrlInputChange = e => {
+    setUrlValue(e.target.value);
+    if (isValidURL(e.target.value)) {
+      setValidUrl(true);
+    } else {
+      setValidUrl(false);
+    }
+  };
+
+  const promptForLink = e => {
+    e.preventDefault();
+    const selection = editorState.getSelection();
+    if (!selection.isCollapsed()) {
+      setShowURLInput(true);
+      setUrlValue('');
+    }
+    setLinkButtonActive(true);
+  };
+
+  const confirmLink = e => {
+    if (validUrl) {
+      e.preventDefault();
+      const contentState = editorState.getCurrentContent();
+      const contentStateWithEntity = contentState.createEntity(
+        'LINK',
+        'MUTABLE',
+        { url: urlValue }
+      );
+      const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
+
+      setEditorState(
+        RichUtils.toggleLink(editorState, editorState.getSelection(), entityKey)
+      );
+      setShowURLInput(false);
+      setLinkButtonActive(false);
+    } else {
+      console.error('not a valid url');
+    }
+  };
+
+  // On return key action
+  const onLinkInputKeyDown = e => {
+    if (e.which === 13) {
+      confirmLink(e);
+    }
+  };
+
+  const removeLink = () => {
+    const selection = editorState.getSelection();
+    if (!selection.isCollapsed()) {
+      setEditorState(RichUtils.toggleLink(editorState, selection, null));
+    }
+    setLinkButtonActive(false);
+  };
+
+  const handleCollapse = () => {
+    setShowURLInput(false);
+    setLinkButtonActive(false);
   };
 
   /**
@@ -77,21 +153,11 @@ export const Editor: React.SFC<Props> = ({
   };
 
   /**
-   * Handles any key commands such as italics, bold, ...
-   * NEED TO ADD RESTRICTION TYPING COMMANDS
+   * Handles any inline styles **key commands** such as italics, bold, ...
    */
-  const handleKeyCommand = (cmd: string): DraftHandleValue => {
-    /**
-     * NOT WORKING: Add Tabulation to bullet point (max depth)
-     */
+  const handleKeyCommand = cmd => {
     const newState = RichUtils.handleKeyCommand(editorState, cmd);
-    if (cmd === 'myeditor-tab') {
-      return 'handled';
-    }
 
-    /**
-     * Standard key command handling
-     */
     if (newState) {
       onEditorStateChange(newState);
       return 'handled';
@@ -100,22 +166,26 @@ export const Editor: React.SFC<Props> = ({
   };
 
   /**
-   * Handles saving (potential localstorage)
+   * If the user changes block type before entering any text (e.g unordered-list),
+   * we hide the placeholder.
    */
-  const save = () => {
-    const content = editorState.getCurrentContent().getPlainText();
-    setOutput(content);
-  };
-
-  /**
-   * Handles clearing the rich editor content (potential localstorage)
-   */
-  const clear = () => setEditorState(EditorState.createEmpty());
+  let hidePlaceholder = false;
+  const contentState = editorState.getCurrentContent();
+  if (!contentState.hasText()) {
+    if (
+      contentState
+        .getBlockMap()
+        .first()
+        .getType() !== 'unstyled'
+    )
+      hidePlaceholder = true;
+  }
 
   const rootProps = {
     className: classes.root,
-    'data-has-focus': isFocused,
-    'data-is-disabled': disabled
+    'data-has-focus': isFocused || showURLInput,
+    'data-is-disabled': disabled,
+    'data-is-placeholder-hidden': hidePlaceholder
   };
 
   return (
@@ -130,15 +200,16 @@ export const Editor: React.SFC<Props> = ({
           editorState={editorState}
           onToggleBlockType={toggleBlockType}
           onToggleInlineType={toggleInlineStyle}
+          promptForLink={promptForLink}
+          removeLink={removeLink}
           disabled={disabled}
+          isLinkButtonActive={isLinkButtonActive}
         />
 
-        <div id="draft-js" {...rootProps}>
+        <div {...rootProps}>
           <Draft
             blockStyleFn={getBlockStyle}
-            customStyleMap={styleCode}
             editorState={editorState}
-            keyBindingFn={myKeyBindingFn}
             onChange={onEditorStateChange}
             placeholder={placeholder}
             spellCheck
@@ -148,18 +219,15 @@ export const Editor: React.SFC<Props> = ({
           />
         </div>
       </div>
-      <div className={classes.buttonWrapper}>
-        <div className={classes.button}>
-          <Button secondary onClick={clear}>
-            Clear Content
-          </Button>
-        </div>
-        <Button primary onClick={save}>
-          Save
-        </Button>
-      </div>
-
-      <div>Output: {output}</div>
+      {showURLInput && (
+        <EditorUrlInput
+          onLinkInputKeyDown={onLinkInputKeyDown}
+          urlInputChange={onUrlInputChange}
+          value={urlValue}
+          handleCollapse={handleCollapse}
+          validUrl={validUrl}
+        />
+      )}
     </>
   );
 };

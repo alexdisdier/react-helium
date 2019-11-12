@@ -1,42 +1,103 @@
 import React from 'react';
-// import { shallow } from 'enzyme';
-// import { classesFromStyles } from '../../../utils/tests';
+import { shallow } from 'enzyme';
+import { classesFromStyles } from '../../../utils/tests';
 
-// import { Toolbar } from '.';
+import { Toolbar } from '.';
 
-// import styles from './toolbar.style';
+import styles from './toolbar.style';
+
+const classes = classesFromStyles(styles);
 
 jest.mock('../../../utils/editor', () => ({
-  BLOCK_TYPES: [{ label: 'H1', style: 'header-one', icon: <span>H1</span> }],
-  INLINE_STYLES: [{ label: 'B', style: 'BOLD', icon: <span>B</span> }],
-  isActive: jest.fn()
+  hasBlockType: jest.fn(),
+  hasInlineStyle: jest.fn(),
+  hasLink: jest.fn()
 }));
 
-// const classes = classesFromStyles(styles);
+jest.mock('../../atoms/editorButton', () => 'EditorButton');
 
 describe('Toolbar', () => {
-  // let props;
-
-  // const getStartKeySpy = jest.fn();
+  let props;
 
   beforeEach(() => {
-    // props = {
-    //   classes,
-    //   editorState: {
-    //     getSelection: jest.fn(() => getStartKeySpy()),
-    //     getCurrentContent: () => 'test',
-    //     editorState: 'editorState',
-    //     getBlockForKey: jest.fn(() => getStartKeySpy()),
-    //     getType: jest.fn()
-    //   },
-    //   onToggleBlockType: jest.fn(),
-    //   onToggleInlineType: jest.fn(),
-    //   disabled: false
-    // };
+    props = {
+      classes,
+      editorState: {},
+      onToggleBlockType: jest.fn(),
+      onToggleInlineType: jest.fn(),
+      disabled: false,
+      isLinkEditorButtonActive: false
+    };
+  });
+
+  it('renders all EditorButtons disabled', () => {
+    props.disabled = true;
+    const wrapper = shallow(<Toolbar {...props} />);
+    expect(wrapper).toMatchInlineSnapshot(`
+      <div
+        className="class-from-style-root"
+        data-is-disabled={true}
+      >
+        <EditorButton
+          buttonType="header-one"
+          disabled={true}
+          onClick={[MockFunction]}
+        />
+        <EditorButton
+          buttonType="BOLD"
+          disabled={true}
+          onClick={[MockFunction]}
+        />
+        <EditorButton
+          active={false}
+          buttonType="LINK"
+          disabled={true}
+          icon={null}
+          promptForLink={[Function]}
+          removeLink={[Function]}
+        />
+        <EditorButton
+          buttonType="unordered-list-item"
+          disabled={true}
+          icon={null}
+          onClick={[MockFunction]}
+        />
+      </div>
+    `);
   });
 
   it('renders full component', () => {
-    // const wrapper = shallow(<Toolbar {...props} />);
-    // expect(wrapper).toMatchInlineSnapshot(``);
+    const wrapper = shallow(<Toolbar {...props} />);
+    expect(wrapper).toMatchInlineSnapshot(`
+      <div
+        className="class-from-style-root"
+        data-is-disabled={false}
+      >
+        <EditorButton
+          buttonType="header-one"
+          disabled={false}
+          onClick={[MockFunction]}
+        />
+        <EditorButton
+          buttonType="BOLD"
+          disabled={false}
+          onClick={[MockFunction]}
+        />
+        <EditorButton
+          active={false}
+          buttonType="LINK"
+          disabled={false}
+          icon={null}
+          promptForLink={[Function]}
+          removeLink={[Function]}
+        />
+        <EditorButton
+          buttonType="unordered-list-item"
+          disabled={false}
+          icon={null}
+          onClick={[MockFunction]}
+        />
+      </div>
+    `);
   });
 });

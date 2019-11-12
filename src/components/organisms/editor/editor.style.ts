@@ -10,47 +10,41 @@ export default theme => ({
     color: theme.grey1,
     padding: '8px 11px 9px 11px',
     transition: 'border-color 150ms linear 0ms',
-    '&::placeholder': {
-      color: theme.grey4
+    '& .public-DraftEditorPlaceholder-root': {
+      position: 'absolute',
+      opacity: 0.5,
+      zIndex: 1
+    },
+    '& .h1': {
+      fontSize: 32,
+      fontWeight: 'bold'
+    },
+    '& .h2': {
+      fontSize: 24,
+      fontWeight: 'bold'
+    },
+    '& .ul': {
+      position: 'relative',
+      paddingLeft: 22,
+      '&::before': {
+        position: 'absolute',
+        content: '"•"',
+        color: theme.teal3,
+        fontWeight: 'bold',
+        width: '1em',
+        marginLeft: '-1em'
+      }
     },
     '&[data-is-disabled="true"]': {
       opacity: 0.3
     },
     '&[data-has-focus="true"]': {
       borderColor: theme.teal3
-    }
-  },
-  placeholder: {
-    position: 'absolute',
-    opacity: 0.5
-  },
-  buttonWrapper: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    marginTop: 10,
-    marginBottom: 10
-  },
-  button: {
-    marginRight: 7
-  },
-  h1: {
-    fontSize: 32,
-    fontWeight: 'bold'
-  },
-  h2: {
-    fontSize: 24,
-    fontWeight: 'bold'
-  },
-  unorderedList: {
-    position: 'relative',
-    paddingLeft: 22,
-    '&::before': {
-      position: 'absolute',
-      content: '"•"',
-      color: theme.teal3,
-      fontWeight: 'bold',
-      width: '1em',
-      marginLeft: '-1em'
+    },
+    '&[data-is-placeholder-hidden="true"]': {
+      '& .public-DraftEditorPlaceholder-root': {
+        display: 'none'
+      }
     }
   }
 });
