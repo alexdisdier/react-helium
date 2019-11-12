@@ -4,9 +4,12 @@ import { ClassNameMap } from 'react-jss';
 
 import { storiesOf } from '@storybook/react';
 import { withKnobs, boolean, text } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
 
 import Editor from '.';
+
+import { Button } from '../../atoms';
+
+import HtmlDisplay from '../htmlDisplay';
 
 import EditorReadme from './editor.README.md';
 
@@ -18,14 +21,43 @@ interface Props {
   onChange: (e) => void;
 }
 
+const buttonWrapper = {
+  display: 'flex',
+  justifyContent: 'flex-end',
+  marginTop: 10,
+  marginBottom: 10
+};
+
 const ControlledEditor: React.FC<Props> = ({ ...otherProps }) => {
-  const [editorState, setEditorState] = useState('');
+  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+  const [show, setShow] = useState(false);
+
+  const onChange = state => {
+    setEditorState(state);
+  };
+
+  const toggle = () => {
+    setShow(!show);
+  };
+
+  const hidden = {
+    display: show ? 'block' : 'none'
+  };
+
   return (
-    <Editor
-      editorState={editorState}
-      onChange={e => setEditorState(e.target.value)}
-      {...otherProps}
-    />
+    <>
+      <Editor editorState={editorState} onChange={onChange} {...otherProps} />
+      <div style={buttonWrapper}>
+        <Button primary onClick={toggle}>
+          {show ? 'hide' : 'Show'} output
+        </Button>
+      </div>
+
+      <div style={hidden}>
+        <div>Output in html markup:</div>
+        <HtmlDisplay htmlData={editorState} />
+      </div>
+    </>
   );
 };
 
@@ -42,7 +74,6 @@ stories.add('default', () => {
     <ControlledEditor
       placeholder={text('Placeholder', 'Let your imagination run wild')}
       disabled={boolean('Disabled', false)}
-      onChange={action('onChange')}
     />
   );
 });

@@ -20,7 +20,7 @@ type STYLE = {
 /**
  * Allows us to get html to display the editor output
  */
-export const getHTMLString = (editorState: EditorState): string =>
+export const getHTMLString = (editorState: EditorState) =>
   draftToHtml(convertToRaw(editorState.getCurrentContent()));
 
 /**

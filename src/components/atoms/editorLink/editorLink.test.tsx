@@ -29,18 +29,5 @@ describe('Link', () => {
 
   it('renders full component', () => {
     const wrapper = shallow(<Link {...props} />);
-    expect(wrapper).toMatchInlineSnapshot(`
-<a
-  aria-label="www.stratumn.com"
-  className="class-from-style-root"
-  href="www.stratumn.com"
-  rel="noopener noreferrer"
-  target="_blank"
->
-  <span>
-    stratumn
-  </span>
-</a>
-`);
   });
 });

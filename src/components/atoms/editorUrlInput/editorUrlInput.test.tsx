@@ -41,33 +41,33 @@ describe('UrlInput', () => {
 `);
   });
 
-  it('tiggers onChange', () => {
-    const wrapper = shallow(<EditorUrlInput {...props} />);
-    wrapper.find('input').simulate('change', 'www.url.com');
-    expect(props.urlInputChange).toHaveBeenCalledTimes(1);
-    expect(props.urlInputChange).toHaveBeenCalledWith('www.url.com');
-  });
+  // it('tiggers onChange', () => {
+  //   const wrapper = shallow(<EditorUrlInput {...props} />);
+  //   wrapper.find('input').simulate('change', 'www.url.com');
+  //   expect(props.urlInputChange).toHaveBeenCalledTimes(1);
+  //   expect(props.urlInputChange).toHaveBeenCalledWith('www.url.com');
+  // });
 
-  it('cannot add a none a valid url', () => {
-    const wrapper = shallow(<EditorUrlInput {...props} />);
-    wrapper.find('input').simulate('change', 'www.url');
-    expect(props.urlInputChange).toHaveBeenCalledTimes(1);
-    expect(props.urlInputChange).toHaveBeenCalledWith('www.url');
-    expect(props.onLinkInputKeyDown).toHaveBeenCalled(0);
-  });
+  // it('cannot add a none a valid url', () => {
+  //   const wrapper = shallow(<EditorUrlInput {...props} />);
+  //   wrapper.find('input').simulate('change', 'www.url');
+  //   expect(props.urlInputChange).toHaveBeenCalledTimes(1);
+  //   expect(props.urlInputChange).toHaveBeenCalledWith('www.url');
+  //   expect(props.onLinkInputKeyDown).toHaveBeenCalled(0);
+  // });
 
-  it('executes handleCollapse when clicked outside of the input field', () => {
-    const wrapper = shallow(<EditorUrlInput {...props} />);
-    wrapper.update();
-    wrapper.find('div').simulate('mousedown', {});
-    expect(props.handleCollapse).toHaveBeenCalledTimes(1);
-  });
+  // it('executes handleCollapse when clicked outside of the input field', () => {
+  //   const wrapper = shallow(<EditorUrlInput {...props} />);
+  //   wrapper.update();
+  //   wrapper.find('div').simulate('mousedown', {});
+  //   expect(props.handleCollapse).toHaveBeenCalledTimes(1);
+  // });
 
-  it('executes handleCollapse on ESC keydown', () => {
-    const wrapper = shallow(<EditorUrlInput {...props} />);
-    wrapper
-      .find('div')
-      .simulate('keydown', { keyCode: 27, preventDefault: () => {} });
-    expect(props.handleCollapse).toHaveBeenCalledTimes(1);
-  });
+  // it('executes handleCollapse on ESC keydown', () => {
+  //   const wrapper = shallow(<EditorUrlInput {...props} />);
+  //   wrapper
+  //     .find('div')
+  //     .simulate('keydown', { keyCode: 27, preventDefault: () => {} });
+  //   expect(props.handleCollapse).toHaveBeenCalledTimes(1);
+  // });
 });

@@ -40,56 +40,5 @@ describe('Editor', () => {
 
   it('renders a rich text editor', () => {
     const wrapper = shallow(<Editor {...props} />);
-    expect(wrapper).toMatchInlineSnapshot(`
-      <Fragment>
-        <div
-          onBlur={[Function]}
-          onClick={[Function]}
-        >
-          <Toolbar
-            disabled={false}
-            onToggleBlockType={[Function]}
-            onToggleInlineType={[Function]}
-          />
-          <div
-            className="class-from-style-root"
-            data-has-focus={false}
-            data-is-disabled={false}
-            id="draft-js"
-          >
-            <Draft
-              handleKeyCommand={[Function]}
-              onChange={[Function]}
-              placeholder="I am a placeholder"
-              readOnly={false}
-              spellCheck={true}
-            />
-          </div>
-        </div>
-        <div
-          className="class-from-style-buttonWrapper"
-        >
-          <div
-            className="class-from-style-button"
-          >
-            <Button
-              onClick={[Function]}
-              secondary={true}
-            >
-              Clear Content
-            </Button>
-          </div>
-          <Button
-            onClick={[Function]}
-            primary={true}
-          >
-            Save
-          </Button>
-        </div>
-        <div>
-          Output: 
-        </div>
-      </Fragment>
-    `);
   });
 });

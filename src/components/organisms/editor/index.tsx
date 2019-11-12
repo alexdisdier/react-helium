@@ -15,11 +15,9 @@ import {
   getHTMLString
 } from '../../../utils/editor';
 
-import { Button, EditorLink, EditorUrlInput } from '../../atoms';
+import { EditorLink, EditorUrlInput } from '../../atoms';
 
 import { Toolbar } from '../../molecules';
-
-import HtmlDisplay from '../htmlDisplay';
 
 import styles from './editor.style';
 
@@ -51,7 +49,6 @@ export const Editor: React.FC<Props> = ({
   );
   const [isFocused, setFocused] = useState(false);
   const [isLinkButtonActive, setLinkButtonActive] = useState(false);
-  const [output, setOutput] = useState('');
   const [showURLInput, setShowURLInput] = useState(false);
   const [urlValue, setUrlValue] = useState('');
 
@@ -175,22 +172,6 @@ export const Editor: React.FC<Props> = ({
       hidePlaceholder = true;
   }
 
-  /**
-   * Handles saving (potential localstorage)
-   */
-  const save = () => {
-    const content = getHTMLString(editorState);
-    setOutput(content);
-  };
-
-  /**
-   * Handles clearing the rich editor content (potential localstorage)
-   */
-  const clear = () => {
-    setEditorState(EditorState.createEmpty());
-    setOutput('');
-  };
-
   const rootProps = {
     className: classes.root,
     'data-has-focus': isFocused || showURLInput,
@@ -237,19 +218,6 @@ export const Editor: React.FC<Props> = ({
           handleCollapse={handleCollapse}
         />
       )}
-      <div className={classes.buttonWrapper}>
-        <div className={classes.button}>
-          <Button secondary onClick={clear}>
-            Clear Content
-          </Button>
-        </div>
-        <Button primary onClick={save}>
-          Save
-        </Button>
-      </div>
-
-      <div>Output in html markup:</div>
-      <HtmlDisplay htmlData={output} />
     </>
   );
 };
