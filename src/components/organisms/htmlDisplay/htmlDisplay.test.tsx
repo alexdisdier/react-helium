@@ -8,10 +8,6 @@ import styles from './htmlDisplay.style';
 
 const classes = classesFromStyles(styles);
 
-jest.mock('../../../utils/displayHtml', () => ({
-  displayHtml: jest.fn()
-}));
-
 describe('Link', () => {
   let props;
 
