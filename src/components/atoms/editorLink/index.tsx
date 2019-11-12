@@ -11,7 +11,11 @@ interface Props {
   children: React.ReactNode;
 }
 
-export const Link: React.FC<Props> = ({ classes, entityKey, children }) => {
+export const EditorLink: React.FC<Props> = ({
+  classes,
+  entityKey,
+  children
+}) => {
   const { url } = Entity.get(entityKey).getData();
   return (
     <a
@@ -26,4 +30,4 @@ export const Link: React.FC<Props> = ({ classes, entityKey, children }) => {
   );
 };
 
-export default injectSheet(styles)(Link);
+export default injectSheet(styles)(EditorLink);

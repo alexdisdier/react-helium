@@ -4,6 +4,13 @@ import injectSheet, { ClassNameMap } from 'react-jss';
 
 import { STYLE } from '../../../utils/editor';
 
+import {
+  HEADER_ONE,
+  BOLD,
+  LINK,
+  UNORDERED_LIST_ITEM
+} from '../../../constant/editor';
+
 import styles from './editorButton.style';
 
 type Props = {
@@ -13,7 +20,7 @@ type Props = {
   promptForLink?: (x) => void;
   removeLink?: () => void;
   active?: boolean;
-  buttonType: boolean;
+  buttonType: string;
   disabled?: boolean;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
@@ -28,31 +35,27 @@ export const EditorButton: React.FC<Props> = ({
   disabled = false
 }) => {
   /**
-   * isActive monitors block and inline styles
-   * For link button, it is monitored within the richEditor component.
+   * the local isActive variable monitors block and inline styles active state
+   * For link button, the active state is monitored within the richEditor component.
    */
   const [isActive, setActive] = useState(active);
 
   const handleClick = e => {
-    e.preventDefault(); // This allows to lock the key command
+    e.preventDefault(); // Allows to lock the key command
 
     if (!disabled && onClick) {
       setActive(true);
       onClick(buttonType);
     }
 
-    STYLE.map(type => {
-      if (type === buttonType) setActive(false);
-    });
+    STYLE.map(type => type === buttonType && setActive(false));
   };
 
   const toggleLink = e => {
-    e.preventDefault(); // This allows to lock the key command
-    if (!disabled && !active) {
-      promptForLink(e);
-    } else {
-      removeLink();
-    }
+    e.preventDefault(); // Allows to lock the key command
+
+    if (!disabled && !active) return promptForLink(e);
+    return removeLink();
   };
 
   const rootProps = {
@@ -64,16 +67,16 @@ export const EditorButton: React.FC<Props> = ({
 
   let label;
   switch (buttonType) {
-    case 'header-one':
+    case HEADER_ONE:
       label = 'H1';
       break;
-    case 'BOLD':
+    case BOLD:
       label = 'B';
       break;
-    case 'LINK':
+    case LINK:
       label = 'L';
       break;
-    case 'unordered-list-item':
+    case UNORDERED_LIST_ITEM:
       label = 'UL';
       break;
     default:
@@ -82,7 +85,7 @@ export const EditorButton: React.FC<Props> = ({
 
   return (
     <button
-      onMouseDown={buttonType === 'LINK' ? toggleLink : handleClick}
+      onMouseDown={buttonType === LINK ? toggleLink : handleClick}
       {...rootProps}
     >
       <span className={classes.text}>{icon || label}</span>

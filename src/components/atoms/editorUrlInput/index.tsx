@@ -1,19 +1,28 @@
-import React, { useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
-import injectSheet from 'react-jss';
+import React from 'react';
+import injectSheet, { ClassNameMap } from 'react-jss';
 
 import styles from './editorUrlInput.style';
 
-export const UrlInput = ({
+interface Props {
+  classes: ClassNameMap<string>;
+  onLinkInputKeyDown: (e) => void;
+  urlInputChange: (e) => void;
+  handleCollapse: () => void;
+  value: string;
+  validUrl: boolean;
+}
+
+export const EditorUrlInput: React.FC<Props> = ({
   classes,
   onLinkInputKeyDown,
   urlInputChange,
   handleCollapse,
-  value
+  value,
+  validUrl
 }) => {
-  const inputWrapperRef = useRef(null);
+  const inputWrapperRef: any | null = React.useRef(null);
 
-  useEffect(() => {
+  React.useEffect(() => {
     document.addEventListener('mousedown', handleClick);
     return () => {
       document.removeEventListener('mousedown', handleClick);
@@ -51,7 +60,7 @@ export const UrlInput = ({
     type: 'text',
     value: value,
     onKeyDown: onLinkInputKeyDown,
-    'data-is-notvalid': false // validates url
+    'data-is-notvalid': !validUrl
   };
 
   return (
@@ -61,12 +70,4 @@ export const UrlInput = ({
   );
 };
 
-UrlInput.propTypes = {
-  classes: PropTypes.object.isRequired,
-  onLinkInputKeyDown: PropTypes.func.isRequired,
-  urlInputChange: PropTypes.func.isRequired,
-  handleCollapse: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired
-};
-
-export default injectSheet(styles)(UrlInput);
+export default injectSheet(styles)(EditorUrlInput);

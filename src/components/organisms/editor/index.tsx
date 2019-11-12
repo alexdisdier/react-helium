@@ -5,14 +5,14 @@ import {
   CompositeDecorator,
   Editor as Draft,
   EditorState,
-  RichUtils,
-  DraftHandleValue
+  RichUtils
 } from 'draft-js';
 
 import {
   findLinkEntities,
   getBlockStyle,
-  getHTMLString
+  getHTMLString,
+  isValidURL
 } from '../../../utils/editor';
 
 import { EditorLink, EditorUrlInput } from '../../atoms';
@@ -44,13 +44,20 @@ export const Editor: React.FC<Props> = ({
   onChange,
   disabled = false
 }) => {
+  // Initiating the EditorState with link decorator
   const [editorState, setEditorState] = useState<EditorState>(
     EditorState.createEmpty(decorator)
   );
+
+  // Focus applied to the editor and control panel buttons.
   const [isFocused, setFocused] = useState(false);
-  const [isLinkButtonActive, setLinkButtonActive] = useState(false);
+
+  // Url State
   const [showURLInput, setShowURLInput] = useState(false);
   const [urlValue, setUrlValue] = useState('');
+  const [validUrl, setValidUrl] = useState(true);
+
+  const [isLinkButtonActive, setLinkButtonActive] = useState(false);
 
   const editorRef: any | null = useRef(null);
 
@@ -71,7 +78,14 @@ export const Editor: React.FC<Props> = ({
   /**
    * Handling urlInput and link button components
    */
-  const onUrlInputChange = e => setUrlValue(e.target.value);
+  const onUrlInputChange = e => {
+    setUrlValue(e.target.value);
+    if (isValidURL(e.target.value)) {
+      setValidUrl(true);
+    } else {
+      setValidUrl(false);
+    }
+  };
 
   const promptForLink = e => {
     e.preventDefault();
@@ -84,22 +98,27 @@ export const Editor: React.FC<Props> = ({
   };
 
   const confirmLink = e => {
-    e.preventDefault();
-    const contentState = editorState.getCurrentContent();
-    const contentStateWithEntity = contentState.createEntity(
-      'LINK',
-      'MUTABLE',
-      { url: urlValue }
-    );
-    const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
+    if (validUrl) {
+      e.preventDefault();
+      const contentState = editorState.getCurrentContent();
+      const contentStateWithEntity = contentState.createEntity(
+        'LINK',
+        'MUTABLE',
+        { url: urlValue }
+      );
+      const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
 
-    setEditorState(
-      RichUtils.toggleLink(editorState, editorState.getSelection(), entityKey)
-    );
-    setShowURLInput(false);
-    setLinkButtonActive(false);
+      setEditorState(
+        RichUtils.toggleLink(editorState, editorState.getSelection(), entityKey)
+      );
+      setShowURLInput(false);
+      setLinkButtonActive(false);
+    } else {
+      console.error('not a valid url');
+    }
   };
 
+  // On return key action
   const onLinkInputKeyDown = e => {
     if (e.which === 13) {
       confirmLink(e);
@@ -134,21 +153,11 @@ export const Editor: React.FC<Props> = ({
   };
 
   /**
-   * Handles any key commands such as italics, bold, ...
-   * NEED TO ADD RESTRICTION TYPING COMMANDS
+   * Handles any inline styles **key commands** such as italics, bold, ...
    */
-  const handleKeyCommand = (cmd: string): DraftHandleValue => {
-    /**
-     * NOT WORKING: Add Tabulation to bullet point (max depth)
-     */
+  const handleKeyCommand = cmd => {
     const newState = RichUtils.handleKeyCommand(editorState, cmd);
-    if (cmd === 'myeditor-tab') {
-      return 'handled';
-    }
 
-    /**
-     * Standard key command handling
-     */
     if (newState) {
       onEditorStateChange(newState);
       return 'handled';
@@ -197,7 +206,7 @@ export const Editor: React.FC<Props> = ({
           isLinkButtonActive={isLinkButtonActive}
         />
 
-        <div id="draft-js" {...rootProps}>
+        <div {...rootProps}>
           <Draft
             blockStyleFn={getBlockStyle}
             editorState={editorState}
@@ -216,6 +225,7 @@ export const Editor: React.FC<Props> = ({
           urlInputChange={onUrlInputChange}
           value={urlValue}
           handleCollapse={handleCollapse}
+          validUrl={validUrl}
         />
       )}
     </>

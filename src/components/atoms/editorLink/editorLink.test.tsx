@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { classesFromStyles } from '../../../utils/editor';
+import { classesFromStyles } from '../../../utils/tests';
 
-import { Link } from '.';
+import { EditorLink } from '.';
 
 import styles from './editorLink.style';
 
@@ -28,6 +28,19 @@ describe('Link', () => {
   });
 
   it('renders full component', () => {
-    const wrapper = shallow(<Link {...props} />);
+    const wrapper = shallow(<EditorLink {...props} />);
+    expect(wrapper).toMatchInlineSnapshot(`
+      <a
+        aria-label="www.alexdisdier.com"
+        className="class-from-style-root"
+        href="www.alexdisdier.com"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <span>
+          Alex Disdier
+        </span>
+      </a>
+    `);
   });
 });

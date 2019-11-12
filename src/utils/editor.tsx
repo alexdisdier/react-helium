@@ -1,13 +1,6 @@
 import React from 'react';
 
-import {
-  EditorState,
-  Entity,
-  convertToRaw,
-  getDefaultKeyBinding,
-  KeyBindingUtil,
-  RichUtils
-} from 'draft-js';
+import { EditorState, Entity, convertToRaw, RichUtils } from 'draft-js';
 
 import draftToHtml from 'draftjs-to-html';
 
@@ -41,18 +34,6 @@ export const getBlockStyle = block => {
     default:
       return '';
   }
-};
-
-/**
- * This enables tabulation on unordered or ordered lists
- */
-const { hasCommandModifier } = KeyBindingUtil;
-
-export const myKeyBindingFn = e => {
-  if (e.keyCode === 9 /* `Tab` key */ && hasCommandModifier(e)) {
-    return 'myeditor-tab';
-  }
-  return getDefaultKeyBinding(e);
 };
 
 /**
@@ -119,15 +100,20 @@ export const styleCode = {
  * An array to map the style when applying onClick on a controlPanel button
  * The LINK button is handled separately
  */
-export const STYLE = [
-  'header-one',
-  'header-two',
-  'unordered-list-item',
-  'ordered-list-item',
-  'BOLD',
-  'ITALIC',
-  'UNDERLINE'
-];
+export const STYLE = ['header-one', 'unordered-list-item', 'BOLD'];
+
+export const isValidURL = str => {
+  const pattern = new RegExp(
+    '^(https?:\\/\\/)?' +
+      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' +
+      '((\\d{1,3}\\.){3}\\d{1,3}))' +
+      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' +
+      '(\\?[;&a-z\\d%_.~+=-]*)?' +
+      '(\\#[-a-z\\d_]*)?$',
+    'i'
+  );
+  return !!pattern.test(str);
+};
 
 export const BLOCK_TYPES: STYLE[] = [
   { label: 'H1', style: 'header-one', icon: <span>H1</span> },

@@ -15,12 +15,6 @@ export default theme => ({
       opacity: 0.5,
       zIndex: 1
     },
-    '&[data-is-disabled="true"]': {
-      opacity: 0.3
-    },
-    '&[data-has-focus="true"]': {
-      borderColor: theme.teal3
-    },
     '& .h1': {
       fontSize: 32,
       fontWeight: 'bold'
@@ -41,19 +35,16 @@ export default theme => ({
         marginLeft: '-1em'
       }
     },
+    '&[data-is-disabled="true"]': {
+      opacity: 0.3
+    },
+    '&[data-has-focus="true"]': {
+      borderColor: theme.teal3
+    },
     '&[data-is-placeholder-hidden="true"]': {
       '& .public-DraftEditorPlaceholder-root': {
         display: 'none'
       }
     }
-  },
-  buttonWrapper: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    marginTop: 10,
-    marginBottom: 10
-  },
-  button: {
-    marginRight: 7
   }
 });

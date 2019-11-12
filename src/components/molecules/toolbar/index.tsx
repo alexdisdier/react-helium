@@ -4,6 +4,8 @@ import { EditorState } from 'draft-js';
 
 import { hasBlockType, hasInlineStyle, hasLink } from '../../../utils/editor';
 
+import { HEADER_ONE, BOLD, LINK, UNORDERED_LIST_ITEM } from '../../../constant';
+
 import { EditorButton } from '../../atoms';
 
 import styles from './toolbar.style';
@@ -38,15 +40,15 @@ export const Toolbar: React.FC<Props> = ({
     <div {...rootProps}>
       <EditorButton
         onClick={onToggleBlockType}
-        active={hasBlockType(editorState, 'header-one')}
-        buttonType="header-one"
+        active={hasBlockType(editorState, HEADER_ONE)}
+        buttonType={HEADER_ONE}
         disabled={disabled}
       />
 
       <EditorButton
         onClick={onToggleInlineType}
-        active={hasInlineStyle(editorState, 'BOLD')}
-        buttonType="BOLD"
+        active={hasInlineStyle(editorState, BOLD)}
+        buttonType={BOLD}
         disabled={disabled}
       />
 
@@ -55,15 +57,15 @@ export const Toolbar: React.FC<Props> = ({
         promptForLink={promptForLink}
         removeLink={removeLink}
         active={hasLink(editorState) || isLinkButtonActive}
-        buttonType="LINK"
+        buttonType={LINK}
         disabled={disabled}
       />
 
       <EditorButton
         icon={null}
         onClick={onToggleBlockType}
-        active={hasBlockType(editorState, 'unordered-list-item')}
-        buttonType="unordered-list-item"
+        active={hasBlockType(editorState, UNORDERED_LIST_ITEM)}
+        buttonType={UNORDERED_LIST_ITEM}
         disabled={disabled}
       />
     </div>
