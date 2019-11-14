@@ -69,6 +69,24 @@ jobs:
             - build
             - package.json
 
+  deploy:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
+
+      - run:
+          name: Semantic Release
+          command: yarn semantic-release
+
+      - run:
+          name: Aunthenticate with registry
+          command: echo "//registry.npmjs.org/:_authToken=NPM_TOKEN" > ~/repo/.npmrc
+
+      - run:
+          name: Publish package
+          command: npm publish
+
   codecov:
     <<: *defaults
     steps:
@@ -109,3 +127,21 @@ workflows:
       - codecov:
           requires:
             - test
+
+  deploy_npm:
+    jobs:
+      - hold:
+          type: approval #for manual approval
+          requires:
+            - lint_and_build
+            - test_and_coverage
+
+      - deploy:
+          requires:
+            - hold
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              only:
+                - master
