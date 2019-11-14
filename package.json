@@ -1,6 +1,6 @@
 {
   "name": "react-helium",
-  "version": "0.1.1",
+  "version": "0.0.0-development",
   "description": "A React component library",
   "author": "Alex Disdier",
   "license": "MIT",
@@ -39,7 +39,8 @@
     "build-storybook": "build-storybook",
     "clean": "rm -rf ./lib",
     "prebuild": "yarn clean",
-    "build": "tsc --build \"./tsconfig.build.json\""
+    "build": "tsc --build \"./tsconfig.build.json\"",
+    "semantic-release": "semantic-release"
   },
   "browserslist": {
     "production": [
@@ -55,6 +56,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",
+    "@semantic-release/git": "^7.0.18",
     "@storybook/addon-actions": "^5.2.4",
     "@storybook/addon-info": "^5.2.4",
     "@storybook/addon-knobs": "^5.2.4",
@@ -86,6 +88,7 @@
     "lodash.uniqueid": "^4.0.1",
     "prettier": "^1.18.2",
     "react-docgen-typescript-loader": "^3.3.0",
+    "semantic-release": "^15.13.30",
     "storybook-readme": "^5.0.8",
     "ts-jest": "^24.1.0"
   },

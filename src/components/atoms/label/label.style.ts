@@ -4,7 +4,7 @@ export default theme => ({
     flexDirection: 'column',
     width: '100%',
     position: 'relative',
-    backgroundColor: theme.white
+    backgroundColor: 'inherent'
   },
   label: {
     color: theme.grey1,
