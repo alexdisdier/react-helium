@@ -128,20 +128,29 @@ workflows:
           requires:
             - test
 
-  deploy_npm:
+  build_and_deploy:
     jobs:
-      - hold:
-          type: approval #for manual approval
-          requires:
-            - lint_and_build
-            - test_and_coverage
-
-      - deploy:
-          requires:
-            - hold
+      - checkout_code:
           filters:
-            tags:
-              only: /^v.*/
+            branches:
+              only:
+                - master
+                - develop
+      - install_dependencies:
+          requires:
+            - checkout_code
+      - test:
+          requires:
+            - install_dependencies
+      - build:
+          requires:
+            - install_dependencies
+      - deploy:
+          type: approval
+          requires:
+            - build
+            - test
+          filters:
             branches:
               only:
                 - master
