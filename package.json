@@ -90,8 +90,7 @@
     "react-docgen-typescript-loader": "^3.3.0",
     "semantic-release": "^15.13.30",
     "storybook-readme": "^5.0.8",
-    "ts-jest": "^24.1.0",
-    "validate-commit": "^3.4.0"
+    "ts-jest": "^24.1.0"
   },
   "jest": {
     "snapshotSerializers": [
