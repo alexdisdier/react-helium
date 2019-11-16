@@ -40,7 +40,7 @@
     "clean": "rm -rf ./lib",
     "prebuild": "yarn clean",
     "build": "tsc --build \"./tsconfig.build.json\"",
-    "semantic-release": "semantic-release"
+    "release": "semantic-release"
   },
   "browserslist": {
     "production": [

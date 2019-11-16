@@ -77,11 +77,11 @@ jobs:
 
       - run:
           name: Semantic Release
-          command: yarn semantic-release
+          command: yarn release
 
       - run:
           name: Aunthenticate with registry
-          command: echo "//registry.npmjs.org/:_authToken=NPM_TOKEN" > ~/repo/.npmrc
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
 
       - run:
           name: Publish package
