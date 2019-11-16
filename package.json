@@ -97,9 +97,29 @@
       "enzyme-to-json/serializer"
     ]
   },
+  "release": {
+    "branch": "master",
+    "preset": "eslint",
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/npm",
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "package.json"
+          ],
+          "message": "${nextRelease.version}"
+        }
+      ],
+      "@semantic-release/github"
+    ]
+  },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "commit-msg": "validate-commit-msg -p eslint"
     }
   },
   "lint-staged": {

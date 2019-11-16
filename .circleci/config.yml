@@ -69,7 +69,7 @@ jobs:
             - build
             - package.json
 
-  deploy:
+  release:
     <<: *defaults
     steps:
       - attach_workspace:
@@ -128,7 +128,7 @@ workflows:
           requires:
             - test
 
-  build_and_deploy:
+  build_and_release:
     jobs:
       - checkout_code:
           filters:
@@ -145,7 +145,7 @@ workflows:
       - build:
           requires:
             - install_dependencies
-      - deploy:
+      - release:
           type: approval
           requires:
             - build
