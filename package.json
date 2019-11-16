@@ -112,8 +112,7 @@
           ],
           "message": "${nextRelease.version}"
         }
-      ],
-      "@semantic-release/github"
+      ]
     ]
   },
   "husky": {
