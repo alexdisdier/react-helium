@@ -85,7 +85,7 @@ jobs:
 
       - run:
           name: Publish package
-          command: npm publish
+          command: yarn publish
 
   codecov:
     <<: *defaults
@@ -151,6 +151,8 @@ workflows:
             - build
             - test
           filters:
+            tags:
+              only: /^v.*/
             branches:
               only:
                 - master
