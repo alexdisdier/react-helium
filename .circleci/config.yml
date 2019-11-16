@@ -72,13 +72,20 @@ jobs:
   release:
     <<: *defaults
     steps:
-      - restore_cache:
-          key: source-{{ .Branch }}-{{ .Revision }}
-      - restore_cache:
-          key: depens-{{ checksum "package.json" }}
-      - run: yarn install
-      - run: yarn build
-      - run: yarn semantic-release
+      - attach_workspace:
+          at: ~/repo
+
+      - run:
+          name: Semantic Release
+          command: yarn semantic-release
+
+      - run:
+          name: Aunthenticate with registry
+          command: echo "//registry.npmjs.org/:_authToken=NPM_TOKEN" > ~/repo/.npmrc
+
+      - run:
+          name: Publish package
+          command: npm publish
 
   codecov:
     <<: *defaults
@@ -123,15 +130,27 @@ workflows:
 
   build_and_release:
     jobs:
-      - checkout_code
+      - checkout_code:
+          filters:
+            branches:
+              only:
+                - master
+                - develop
       - install_dependencies:
           requires:
             - checkout_code
       - test:
           requires:
             - install_dependencies
-      - build
-      - release:
+      - build:
           requires:
-            - test
+            - install_dependencies
+      - release:
+          type: approval
+          requires:
             - build
+            - test
+          filters:
+            branches:
+              only:
+                - master
