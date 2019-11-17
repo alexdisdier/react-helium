@@ -122,12 +122,19 @@ workflows:
   build_and_release:
     jobs:
       - checkout_code
-      - build:
+      - install_dependencies:
           requires:
             - checkout_code
+      - test:
+          requires:
+            - install_dependencies
+      - build:
+          requires:
+            - install_dependencies
       - release:
           requires:
             - build
+            - test
           filters:
             branches:
               only: master
