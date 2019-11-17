@@ -121,21 +121,13 @@ workflows:
 
   build_and_release:
     jobs:
-      - checkout_code:
-      - install_dependencies:
-          requires:
-            - checkout_code
-      - test:
-          requires:
-            - install_dependencies
+      - checkout_code
       - build:
           requires:
-            - install_dependencies
+            - checkout_code
       - release:
-          type: approval
           requires:
             - build
-            - test
           filters:
             branches:
               only: master
