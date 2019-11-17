@@ -56,6 +56,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-conventional": "^8.2.0",
     "@semantic-release/git": "^7.0.18",
     "@storybook/addon-actions": "^5.2.4",
     "@storybook/addon-info": "^5.2.4",
@@ -75,7 +77,6 @@
     "@types/react-jss": "^8.6.4",
     "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.0.6",
-    "conventional-changelog-eslint": "^3.0.4",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
     "enzyme-to-json": "^3.4.3",
@@ -119,7 +120,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "commit-msg": "validate-commit-msg -p eslint"
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
   "lint-staged": {
