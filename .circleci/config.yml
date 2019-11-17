@@ -77,7 +77,7 @@ jobs:
 
       - run:
           name: Semantic Release
-          command: yarn semantic-release
+          command: yarn run semantic-release
 
       # - run:
       #     name: Aunthenticate with registry
