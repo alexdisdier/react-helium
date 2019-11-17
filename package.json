@@ -40,7 +40,7 @@
     "clean": "rm -rf ./lib",
     "prebuild": "yarn clean",
     "build": "tsc --build \"./tsconfig.build.json\"",
-    "release": "semantic-release"
+    "semantic-release": "semantic-release"
   },
   "browserslist": {
     "production": [
@@ -100,21 +100,16 @@
     ]
   },
   "release": {
-    "branch": "master",
-    "preset": "eslint",
     "plugins": [
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
-      "@semantic-release/npm",
       [
-        "@semantic-release/git",
+        "@semantic-release/npm",
         {
-          "assets": [
-            "package.json"
-          ],
-          "message": "${nextRelease.version}"
+          "npmPublish": false
         }
-      ]
+      ],
+      "@semantic-release/github"
     ]
   },
   "husky": {
