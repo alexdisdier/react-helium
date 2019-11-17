@@ -71,7 +71,6 @@ jobs:
             - package.json
 
   release:
-     release:
     <<: *defaults
     steps:
       - attach_workspace:
