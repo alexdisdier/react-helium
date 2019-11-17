@@ -2,6 +2,7 @@ defaults: &defaults
   docker:
     - image: circleci/node:8.16
   working_directory: ~/repo
+
 version: 2.1
 orbs:
   codecov: codecov/codecov@1.0.4
@@ -74,18 +75,8 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/repo
-
-      - run:
-          name: Semantic Release
-          command: yarn release
-
-      - run:
-          name: Aunthenticate with registry
-          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
-
-      - run:
-          name: Publish package
-          command: yarn publish
+      - checkout
+      - run: yarn semantic-release
 
   codecov:
     <<: *defaults
@@ -130,12 +121,7 @@ workflows:
 
   build_and_release:
     jobs:
-      - checkout_code:
-          filters:
-            branches:
-              only:
-                - master
-                - develop
+      - checkout_code
       - install_dependencies:
           requires:
             - checkout_code
@@ -146,13 +132,9 @@ workflows:
           requires:
             - install_dependencies
       - release:
-          type: approval
           requires:
             - build
             - test
           filters:
-            tags:
-              only: /^v.*/
             branches:
-              only:
-                - master
+              only: master
