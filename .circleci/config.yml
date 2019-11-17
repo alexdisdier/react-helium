@@ -70,21 +70,14 @@ jobs:
             - package.json
 
   release:
-    <<: *defaults
+    docker:
+      - image: circleci/node:8
     steps:
-      - attach_workspace:
-          at: ~/repo
-
-      - run:
-          name: Semantic Release
-          command: yarn run semantic-release
-
-      # - run:
-      #     name: Aunthenticate with registry
-      #     command: echo "//registry.npmjs.org/:_authToken=NPM_TOKEN" > ~/repo/.npmrc
-      # - run:
-      #     name: Publish package
-      #     command: yarn publish
+      - checkout
+      - run: yarn
+      # Run optional required steps before releasing
+      # - run: npm run build-script
+      - run: yarn run semantic-release
 
   codecov:
     <<: *defaults
