@@ -1,6 +1,6 @@
 {
   "name": "react-helium",
-  "version": "0.0.0-development",
+  "version": "0.1.1",
   "description": "A React component library",
   "author": "Alex Disdier",
   "license": "MIT",
@@ -75,6 +75,7 @@
     "@types/react-jss": "^8.6.4",
     "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.0.6",
+    "conventional-changelog-eslint": "^3.0.4",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
     "enzyme-to-json": "^3.4.3",
@@ -127,6 +128,7 @@
         }
       ],
       "@semantic-release/release-notes-generator"
+      ]
     ]
   },
   "husky": {
