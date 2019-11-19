@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/alexdisdier/react-helium/compare/v1.0.0...v1.1.0) (2019-11-19)
+
+
+### Features
+
+* **button:** add color, invert, round borders and vector ([661f66b](https://github.com/alexdisdier/react-helium/commit/661f66b883b2cab821019dfccfde53f3f8021225))
+
 # 1.0.0 (2019-11-17)
 
 
