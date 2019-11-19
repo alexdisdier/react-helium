@@ -104,7 +104,7 @@ export const Editor: React.FC<Props> = ({
       const contentStateWithEntity = contentState.createEntity(
         'LINK',
         'MUTABLE',
-        { url: urlValue }
+        { target: '_blank', url: urlValue }
       );
       const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
 

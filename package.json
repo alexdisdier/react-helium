@@ -20,39 +20,30 @@
     "type": "git",
     "url": "https://github.com/alexdisdier/react-helium.git"
   },
-  "dependencies": {
-    "dompurify": "^2.0.7",
-    "draft-js": "^0.11.1",
-    "draftjs-to-html": "^0.8.4",
-    "react": "^16.10.2",
-    "react-dom": "^16.10.2",
-    "react-jss": "8.6.1",
-    "react-scripts": "3.2.0",
-    "typescript": "^3.6.4"
-  },
   "scripts": {
     "start": "start-storybook -p 6007",
     "test:unit": "react-scripts test",
     "test:ci": "yarn test:unit t -- --coverage --watchAll=false",
     "lint": "eslint './src/**/*.{js,jsx,ts,tsx}'",
     "lint:fix": "eslint --fix './src/**/*.{js,jsx,ts,tsx}'",
-    "build-storybook": "build-storybook",
     "clean": "rm -rf ./lib",
     "prebuild": "yarn clean",
     "build": "tsc --build \"./tsconfig.build.json\"",
+    "build:watch": "yarn build -w",
+    "build-storybook": "build-storybook",
     "semantic-release": "semantic-release"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "dependencies": {
+    "dompurify": "^2.0.7",
+    "draft-js": "^0.11.1",
+    "draft-js-export-html": "^1.4.1",
+    "react-scripts": "3.2.0",
+    "typescript": "^3.6.4"
+  },
+  "peerDependencies": {
+    "react": "16.x",
+    "react-dom": "16.x",
+    "react-jss": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",
@@ -90,10 +81,25 @@
     "lint-staged": "^9.4.1",
     "lodash.uniqueid": "^4.0.1",
     "prettier": "^1.18.2",
+    "react": "^16.10.2",
     "react-docgen-typescript-loader": "^3.3.0",
+    "react-dom": "^16.10.2",
+    "react-jss": "8.6.1",
     "semantic-release": "^15.13.30",
     "storybook-readme": "^5.0.8",
     "ts-jest": "^24.1.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "jest": {
     "snapshotSerializers": [

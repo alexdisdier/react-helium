@@ -58,113 +58,119 @@ describe('Editor Button', () => {
       props.buttonType = 'header-one';
       const wrapper = shallow(<EditorButton {...props} />);
       expect(wrapper).toMatchInlineSnapshot(`
-<button
-  className="class-from-style-root"
-  data-is-active={false}
-  disabled={false}
-  onMouseDown={[Function]}
->
-  <span
-    className="class-from-style-text"
-  >
-    H1
-  </span>
-</button>
-`);
+        <button
+          className="class-from-style-root"
+          data-is-active={false}
+          disabled={false}
+          onMouseDown={[Function]}
+          type="button"
+        >
+          <span
+            className="class-from-style-text"
+          >
+            H1
+          </span>
+        </button>
+      `);
     });
 
     it('renders a bold inline style button', () => {
       const wrapper = shallow(<EditorButton {...props} />);
       expect(wrapper).toMatchInlineSnapshot(`
-<button
-  className="class-from-style-root"
-  data-is-active={false}
-  disabled={false}
-  onMouseDown={[Function]}
->
-  <span
-    className="class-from-style-text"
-  >
-    B
-  </span>
-</button>
-`);
+        <button
+          className="class-from-style-root"
+          data-is-active={false}
+          disabled={false}
+          onMouseDown={[Function]}
+          type="button"
+        >
+          <span
+            className="class-from-style-text"
+          >
+            B
+          </span>
+        </button>
+      `);
     });
 
     it('renders a link button', () => {
       props.buttonType = 'LINK';
       const wrapper = shallow(<EditorButton {...props} />);
       expect(wrapper).toMatchInlineSnapshot(`
-<button
-  className="class-from-style-root"
-  data-is-active={false}
-  disabled={false}
-  onMouseDown={[Function]}
->
-  <span
-    className="class-from-style-text"
-  >
-    L
-  </span>
-</button>
-`);
+        <button
+          className="class-from-style-root"
+          data-is-active={false}
+          disabled={false}
+          onMouseDown={[Function]}
+          type="button"
+        >
+          <span
+            className="class-from-style-text"
+          >
+            L
+          </span>
+        </button>
+      `);
     });
 
     it('renders a H1 block style button', () => {
       props.buttonType = 'unordered-list';
       const wrapper = shallow(<EditorButton {...props} />);
       expect(wrapper).toMatchInlineSnapshot(`
-<button
-  className="class-from-style-root"
-  data-is-active={false}
-  disabled={false}
-  onMouseDown={[Function]}
->
-  <span
-    className="class-from-style-text"
-  >
-    U
-  </span>
-</button>
-`);
+        <button
+          className="class-from-style-root"
+          data-is-active={false}
+          disabled={false}
+          onMouseDown={[Function]}
+          type="button"
+        >
+          <span
+            className="class-from-style-text"
+          >
+            U
+          </span>
+        </button>
+      `);
     });
 
     it('renders a disabled button', () => {
       props.disabled = true;
       const wrapper = shallow(<EditorButton {...props} />);
       expect(wrapper).toMatchInlineSnapshot(`
-<button
-  className="class-from-style-root"
-  data-is-active={false}
-  disabled={true}
-  onMouseDown={[Function]}
->
-  <span
-    className="class-from-style-text"
-  >
-    B
-  </span>
-</button>
-`);
+        <button
+          className="class-from-style-root"
+          data-is-active={false}
+          disabled={true}
+          onMouseDown={[Function]}
+          type="button"
+        >
+          <span
+            className="class-from-style-text"
+          >
+            B
+          </span>
+        </button>
+      `);
     });
 
     it('renders an active button', () => {
       props.active = true;
       const wrapper = shallow(<EditorButton {...props} />);
       expect(wrapper).toMatchInlineSnapshot(`
-<button
-  className="class-from-style-root"
-  data-is-active={true}
-  disabled={false}
-  onMouseDown={[Function]}
->
-  <span
-    className="class-from-style-text"
-  >
-    B
-  </span>
-</button>
-`);
+        <button
+          className="class-from-style-root"
+          data-is-active={true}
+          disabled={false}
+          onMouseDown={[Function]}
+          type="button"
+        >
+          <span
+            className="class-from-style-text"
+          >
+            B
+          </span>
+        </button>
+      `);
     });
   });
 });

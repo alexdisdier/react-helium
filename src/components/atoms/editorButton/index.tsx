@@ -85,6 +85,7 @@ export const EditorButton: React.FC<Props> = ({
 
   return (
     <button
+      type="button"
       onMouseDown={buttonType === LINK ? toggleLink : handleClick}
       {...rootProps}
     >

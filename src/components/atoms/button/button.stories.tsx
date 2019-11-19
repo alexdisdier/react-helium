@@ -10,7 +10,7 @@ import { action } from '@storybook/addon-actions';
 
 import Button from '.';
 
-import ButtonReadme from './button.README.md';
+import README from './README.md';
 
 const appearanceOptions = {
   Default: 'default',
@@ -25,11 +25,12 @@ stories.addDecorator(withKnobs);
 
 stories.addParameters({
   readme: {
-    content: ButtonReadme
+    content: README
   }
 });
 
 stories.add('default', () => {
+  const hasVector = boolean('Vector icon', false);
   const hasOnClick = boolean('Has onClick', true);
   const appearanceValue = options('Appearance', appearanceOptions, 'default', {
     display: 'inline-radio'
@@ -41,7 +42,17 @@ stories.add('default', () => {
       primary={appearanceValue === appearanceOptions.Primary}
       secondary={appearanceValue === appearanceOptions.Secondary}
       warning={appearanceValue === appearanceOptions.Warning}
+      color={text('Custom color', '')}
+      round={boolean('Round Borders', false)}
+      inverted={boolean('Inverted', false)}
       disabled={boolean('Disabled', false)}
+      vector={
+        hasVector && (
+          <span role="img" aria-label="rocket">
+            🚀
+          </span>
+        )
+      }
     >
       {text('Label', 'I am THE button')}
     </Button>

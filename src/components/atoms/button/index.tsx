@@ -12,6 +12,10 @@ type Props = {
   warning?: boolean;
   disabled?: boolean;
   type?: string;
+  color?: string;
+  round?: boolean;
+  inverted?: boolean;
+  vector?: React.ReactNode;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const Button: React.FC<Props> = ({
@@ -22,24 +26,32 @@ export const Button: React.FC<Props> = ({
   secondary = false,
   warning = false,
   disabled = false,
-  type = 'button'
+  type = 'button',
+  // eslint-disable-next-line no-unused-vars
+  color = '',
+  round = false,
+  inverted = false,
+  vector = null
 }) => {
   const handleClick = () => {
     if (!disabled && onClick) onClick();
   };
 
   const rootProps = {
+    className: classes.root,
     onClick: handleClick,
     type,
-    className: classes.root,
     disabled,
     'data-is-primary': primary,
     'data-is-secondary': secondary,
-    'data-is-warning': warning
+    'data-is-warning': warning,
+    'data-is-round': round,
+    'data-is-inverted': !primary && !secondary && !warning && inverted
   };
 
   return (
     <button {...rootProps}>
+      {vector && <span className={classes.prefix}>{vector}</span>}
       <span className={classes.text}>{children}</span>
     </button>
   );
