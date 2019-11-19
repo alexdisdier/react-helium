@@ -1,8 +1,6 @@
 import React from 'react';
-
-import { EditorState, Entity, convertToRaw, RichUtils } from 'draft-js';
-
-import draftToHtml from 'draftjs-to-html';
+import { EditorState, Entity, RichUtils } from 'draft-js';
+import { stateToHTML } from 'draft-js-export-html';
 
 type STYLE = {
   label: string;
@@ -12,9 +10,31 @@ type STYLE = {
 
 /**
  * Allows us to get html to display the editor output
+ * We use stateToHTML, instead of draftToHtml so we keep
+ * the attribute target and open links in a new tab.
+ * We'll also keep our <br> tags.
  */
-export const getHTMLString = (editorState: EditorState) =>
-  draftToHtml(convertToRaw(editorState.getCurrentContent()));
+export const getHTMLString = (editorState: EditorState) => {
+  const contentState = editorState.getCurrentContent();
+  const options = {
+    entityStyleFn: entity => {
+      const data = entity.getData();
+      let config;
+
+      if (entity.get('type') === 'LINK')
+        config = {
+          element: 'a',
+          attributes: {
+            href: data.url,
+            target: data.target
+          }
+        };
+
+      return config;
+    }
+  };
+  return stateToHTML(contentState, options);
+};
 
 /**
  * Renaming classes so we can apply our own styling

@@ -19,6 +19,8 @@ describe('Button', () => {
       primary: false,
       secondary: false,
       warning: false,
+      round: false,
+      inverted: false,
       disabled: false
     };
   });
@@ -28,7 +30,9 @@ describe('Button', () => {
     expect(wrapper).toMatchInlineSnapshot(`
       <button
         className="class-from-style-root"
+        data-is-inverted={false}
         data-is-primary={false}
+        data-is-round={false}
         data-is-secondary={false}
         data-is-warning={false}
         disabled={false}
@@ -54,9 +58,38 @@ describe('Button', () => {
     expect(wrapper).toMatchInlineSnapshot(`
       <button
         className="class-from-style-root"
+        data-is-inverted={false}
         data-is-primary={true}
+        data-is-round={false}
         data-is-secondary={true}
         data-is-warning={true}
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        <span
+          className="class-from-style-text"
+        >
+          <div>
+            I am The button
+          </div>
+        </span>
+      </button>
+    `);
+  });
+
+  it('renders an inverted round button', () => {
+    props.inverted = true;
+    props.round = true;
+    const wrapper = shallow(<Button {...props} />);
+    expect(wrapper).toMatchInlineSnapshot(`
+      <button
+        className="class-from-style-root"
+        data-is-inverted={true}
+        data-is-primary={false}
+        data-is-round={true}
+        data-is-secondary={false}
+        data-is-warning={false}
         disabled={false}
         onClick={[Function]}
         type="button"

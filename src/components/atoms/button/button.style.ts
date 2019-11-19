@@ -1,4 +1,5 @@
 import { MIN_TARGET_SIZE, FOCUS_OUTLINE_WIDTH } from '../../../constant';
+import colorLuminance from '../../../utils/colorLuminance';
 
 export default theme => ({
   root: {
@@ -19,18 +20,23 @@ export default theme => ({
     paddingRight: 14,
     boxShadow: `0 0 0 0 ${theme.teal2light}`,
     transition: `box-shadow 150ms linear, background-color 150ms linear, border-color 150ms linear`,
-    color: theme.grey2,
+    color: props =>
+      props.color ? colorLuminance(props.color, 0.2) : theme.grey2,
     borderColor: 'currentColor',
     backgroundColor: 'transparent',
     '&:not([disabled]):hover': {
-      color: theme.grey1,
+      color: props =>
+        props.color ? colorLuminance(props.color, -0.2) : theme.grey1,
       cursor: 'pointer'
     },
     '&[disabled]': {
       opacity: 0.3
     },
     '&:focus': {
-      boxShadow: `0 0 0 ${FOCUS_OUTLINE_WIDTH}px ${theme.teal2light}`
+      boxShadow: props =>
+        props.color
+          ? `0 0 ${FOCUS_OUTLINE_WIDTH}px ${colorLuminance(props.color, null)}`
+          : `0 0 0 ${FOCUS_OUTLINE_WIDTH}px ${theme.teal2light}`
     },
     '&[data-is-primary="true"]': {
       color: theme.white,
@@ -40,12 +46,18 @@ export default theme => ({
         color: theme.white,
         backgroundColor: theme.teal2,
         borderColor: theme.teal2
+      },
+      '&:focus': {
+        boxShadow: `0 0 0 ${FOCUS_OUTLINE_WIDTH}px ${theme.teal2light}`
       }
     },
     '&[data-is-secondary="true"]': {
       color: theme.teal3,
       '&:not([disabled]):hover': {
         color: theme.teal2
+      },
+      '&:focus': {
+        boxShadow: `0 0 0 ${FOCUS_OUTLINE_WIDTH}px ${theme.teal2light}`
       }
     },
     '&[data-is-warning="true"]': {
@@ -54,6 +66,19 @@ export default theme => ({
       '&:not([disabled]):hover': {
         backgroundColor: theme.warningRed,
         color: theme.white
+      },
+      '&:focus': {
+        boxShadow: `0 0 ${FOCUS_OUTLINE_WIDTH}px ${theme.warningRed}`
+      }
+    },
+    '&[data-is-round="true"]': {
+      borderRadius: 5
+    },
+    '&[data-is-inverted="true"]': {
+      '&:not([disabled]):hover': {
+        color: theme.white,
+        backgroundColor: props =>
+          props.color ? colorLuminance(props.color, 0.2) : theme.grey2
       }
     }
   },
