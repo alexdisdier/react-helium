@@ -19,7 +19,6 @@ interface Props {
   removeLink?: () => void;
   disabled?: boolean;
   isLinkButtonActive?: boolean;
-  ref: any;
 }
 
 export const Toolbar: React.FC<Props> = ({
@@ -30,8 +29,7 @@ export const Toolbar: React.FC<Props> = ({
   promptForLink = () => {},
   removeLink = () => {},
   disabled = false,
-  isLinkButtonActive = false,
-  ref
+  isLinkButtonActive = false
 }) => {
   const rootProps = {
     className: classes.root,
@@ -45,7 +43,6 @@ export const Toolbar: React.FC<Props> = ({
         active={hasBlockType(editorState, HEADER_ONE)}
         buttonType={HEADER_ONE}
         disabled={disabled}
-        ref={ref}
       />
 
       <EditorButton
@@ -53,7 +50,6 @@ export const Toolbar: React.FC<Props> = ({
         active={hasInlineStyle(editorState, BOLD)}
         buttonType={BOLD}
         disabled={disabled}
-        ref={ref}
       />
 
       <EditorButton
@@ -63,7 +59,6 @@ export const Toolbar: React.FC<Props> = ({
         active={hasLink(editorState) || isLinkButtonActive}
         buttonType={LINK}
         disabled={disabled}
-        ref={ref}
       />
 
       <EditorButton
@@ -72,7 +67,6 @@ export const Toolbar: React.FC<Props> = ({
         active={hasBlockType(editorState, UNORDERED_LIST_ITEM)}
         buttonType={UNORDERED_LIST_ITEM}
         disabled={disabled}
-        ref={ref}
       />
     </div>
   );

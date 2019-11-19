@@ -27,7 +27,6 @@ export const Button: React.FC<Props> = ({
   warning = false,
   disabled = false,
   type = 'button',
-  // eslint-disable-next-line no-unused-vars
   color = '',
   round = false,
   inverted = false,
@@ -36,6 +35,8 @@ export const Button: React.FC<Props> = ({
   const handleClick = () => {
     if (!disabled && onClick) onClick();
   };
+
+  console.warn(color);
 
   const rootProps = {
     className: classes.root,
