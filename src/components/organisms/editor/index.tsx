@@ -50,14 +50,14 @@ export const Editor: React.FC<Props> = ({
   );
 
   // Focus applied to the editor and control panel buttons.
-  const [isFocused, setFocused] = useState(false);
+  const [isFocused, setFocused] = useState<boolean>(false);
 
   // Url State
-  const [showURLInput, setShowURLInput] = useState(false);
-  const [urlValue, setUrlValue] = useState('');
-  const [validUrl, setValidUrl] = useState(true);
+  const [showURLInput, setShowURLInput] = useState<boolean>(false);
+  const [urlValue, setUrlValue] = useState<string>('');
+  const [validUrl, setValidUrl] = useState<boolean>(true);
 
-  const [isLinkButtonActive, setLinkButtonActive] = useState(false);
+  const [isLinkButtonActive, setLinkButtonActive] = useState<boolean>(false);
 
   const editorRef: any | null = useRef(null);
 
@@ -67,8 +67,8 @@ export const Editor: React.FC<Props> = ({
   };
 
   useEffect(() => {
-    handleFocus();
-  }, []);
+    if (editorRef.current) editorRef.current.focus();
+  }, [editorRef]);
 
   const onEditorStateChange = (editorState: EditorState) => {
     setEditorState(editorState);

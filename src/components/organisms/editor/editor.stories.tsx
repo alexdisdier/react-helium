@@ -11,14 +11,14 @@ import { Button } from '../../atoms';
 
 import HtmlDisplay from '../htmlDisplay';
 
-import EditorReadme from './editor.README.md';
+import README from './README.md';
 
 interface Props {
-  classes: ClassNameMap<string>;
-  editorState: EditorState;
+  classes?: ClassNameMap<string>;
+  editorState?: EditorState;
   placeholder?: string;
   disabled?: boolean;
-  onChange: (e) => void;
+  onChange?: (e) => void;
 }
 
 const buttonWrapper = {
@@ -64,7 +64,7 @@ const ControlledEditor: React.FC<Props> = ({ ...otherProps }) => {
 const stories = storiesOf('Rich Text Editor', module);
 stories.addParameters({
   readme: {
-    content: EditorReadme
+    content: README
   }
 });
 
