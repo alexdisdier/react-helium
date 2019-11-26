@@ -1,3 +1,11 @@
+# [1.2.0](https://github.com/alexdisdier/react-helium/compare/v1.1.0...v1.2.0) (2019-11-26)
+
+
+### Features
+
+* **atom:** add 'snackbars' component ([c938862](https://github.com/alexdisdier/react-helium/commit/c938862b7fe8393561ce257897736306f9332aa6))
+* **snackbars:** adds snackbars atoms with context ([344b051](https://github.com/alexdisdier/react-helium/commit/344b051b8c45429259acf8e921d37586ed6c979b))
+
 # [1.1.0](https://github.com/alexdisdier/react-helium/compare/v1.0.0...v1.1.0) (2019-11-19)
 
 
