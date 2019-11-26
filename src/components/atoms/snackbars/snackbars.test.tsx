@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+
 import { classesFromStyles } from '../../../utils/tests';
-import { TIMEOUT_DURATION } from '../../../constant/types';
 
 import { Snackbars, withSnackbarsContext } from '.';
 
@@ -9,13 +9,28 @@ import styles from './snackbars.style';
 
 jest.useFakeTimers();
 
+const classes = classesFromStyles(styles);
+
 describe('Snackbars', () => {
-  const classes = classesFromStyles(styles);
+  let props;
+
+  beforeEach(() => {
+    props = {
+      classes,
+      config: {
+        backgroundColor: 'red',
+        color: 'white',
+        top: false,
+        bottomLeft: false
+      }
+    };
+  });
+
   const Child = withSnackbarsContext(() => <div id="child">child</div>);
 
-  it('should display and hide a success message', () => {
+  it('should display a success message', () => {
     const tree = renderer.create(
-      <Snackbars classes={classes}>
+      <Snackbars {...props}>
         <div>
           <Child />
         </div>
@@ -24,7 +39,7 @@ describe('Snackbars', () => {
 
     const { successSnackbar } = tree.root.findByType(Child).children[0].props;
     expect(successSnackbar).toBeInstanceOf(Function);
-    successSnackbar('some message to display');
+    successSnackbar('A successful message', null, null, props.config);
 
     expect(tree).toMatchInlineSnapshot(`
       Array [
@@ -38,47 +53,32 @@ describe('Snackbars', () => {
         <div
           className="class-from-style-root"
           data-has-error={false}
+          data-is-bottomleft={false}
           data-is-ready={false}
           data-is-top={false}
+          style={
+            Object {
+              "backgroundColor": "red",
+            }
+          }
         >
           <div
-            data-cy="helium-snackbar-success"
+            style={
+              Object {
+                "color": "white",
+              }
+            }
           >
-            some message to display
-          </div>
-        </div>,
-      ]
-    `);
-    jest.runAllTimers();
-
-    expect(tree).toMatchInlineSnapshot(`
-      Array [
-        <div>
-          <div
-            id="child"
-          >
-            child
-          </div>
-        </div>,
-        <div
-          className="class-from-style-root"
-          data-has-error={false}
-          data-is-ready={true}
-          data-is-top={false}
-        >
-          <div
-            data-cy="helium-snackbar-success"
-          >
-            some message to display
+            A successful message
           </div>
         </div>,
       ]
     `);
   });
 
-  it('should display and hide a success message with an action', () => {
+  it('should display a success message with an action', () => {
     const tree = renderer.create(
-      <Snackbars classes={classes}>
+      <Snackbars {...props}>
         <div>
           <Child />
         </div>
@@ -87,7 +87,7 @@ describe('Snackbars', () => {
 
     const { successSnackbar } = tree.root.findByType(Child).children[0].props;
     expect(successSnackbar).toBeInstanceOf(Function);
-    successSnackbar('some message to display', 'action', () => {});
+    successSnackbar('A successful message', 'undo', () => {}, props.config);
 
     expect(tree).toMatchInlineSnapshot(`
       Array [
@@ -101,59 +101,38 @@ describe('Snackbars', () => {
         <div
           className="class-from-style-root"
           data-has-error={false}
+          data-is-bottomleft={false}
           data-is-ready={false}
           data-is-top={false}
+          style={
+            Object {
+              "backgroundColor": "red",
+            }
+          }
         >
           <div
-            data-cy="helium-snackbar-success"
+            style={
+              Object {
+                "color": "white",
+              }
+            }
           >
-            some message to display
+            A successful message
           </div>
           <button
             className="class-from-style-undoClickBtn"
             onClick={[Function]}
           >
-            action
-          </button>
-        </div>,
-      ]
-    `);
-    jest.runAllTimers();
-
-    expect(tree).toMatchInlineSnapshot(`
-      Array [
-        <div>
-          <div
-            id="child"
-          >
-            child
-          </div>
-        </div>,
-        <div
-          className="class-from-style-root"
-          data-has-error={false}
-          data-is-ready={true}
-          data-is-top={false}
-        >
-          <div
-            data-cy="helium-snackbar-success"
-          >
-            some message to display
-          </div>
-          <button
-            className="class-from-style-undoClickBtn"
-            onClick={[Function]}
-          >
-            action
+            undo
           </button>
         </div>,
       ]
     `);
   });
 
-  it('should display and hide an error message', () => {
+  it('should display an error message', () => {
     const tree = renderer.create(
-      <Snackbars classes={classes}>
+      <Snackbars {...props}>
         <div>
           <Child />
         </div>
@@ -162,7 +141,7 @@ describe('Snackbars', () => {
 
     const { errorSnackbar } = tree.root.findByType(Child).children[0].props;
     expect(errorSnackbar).toBeInstanceOf(Function);
-    errorSnackbar('some message to display');
+    errorSnackbar('some error message', props.config);
 
     expect(tree).toMatchInlineSnapshot(`
       Array [
@@ -176,156 +155,27 @@ describe('Snackbars', () => {
         <div
           className="class-from-style-root"
           data-has-error={true}
+          data-is-bottomleft={false}
           data-is-ready={false}
           data-is-top={false}
+          style={
+            Object {
+              "backgroundColor": "red",
+            }
+          }
         >
           <div
-            data-cy="helium-snackbar-error"
+            style={
+              Object {
+                "color": "white",
+              }
+            }
           >
-            some message to display
+            some error message
           </div>
         </div>,
       ]
     `);
     jest.runAllTimers();
-
-    expect(tree).toMatchInlineSnapshot(`
-      Array [
-        <div>
-          <div
-            id="child"
-          >
-            child
-          </div>
-        </div>,
-        <div
-          className="class-from-style-root"
-          data-has-error={true}
-          data-is-ready={true}
-          data-is-top={false}
-        >
-          <div
-            data-cy="helium-snackbar-error"
-          >
-            some message to display
-          </div>
-        </div>,
-      ]
-    `);
-  });
-
-  it('should successively display messages', () => {
-    const tree = renderer.create(
-      <Snackbars classes={classes}>
-        <div>
-          <Child />
-        </div>
-      </Snackbars>
-    );
-
-    const { successSnackbar } = tree.root.findByType(Child).children[0].props;
-    expect(successSnackbar).toBeInstanceOf(Function);
-    successSnackbar('first message to display');
-    successSnackbar('second message to display');
-    successSnackbar('third message to display');
-
-    expect(tree).toMatchInlineSnapshot(`
-      Array [
-        <div>
-          <div
-            id="child"
-          >
-            child
-          </div>
-        </div>,
-        <div
-          className="class-from-style-root"
-          data-has-error={false}
-          data-is-ready={false}
-          data-is-top={false}
-        >
-          <div
-            data-cy="helium-snackbar-success"
-          >
-            third message to display
-          </div>
-        </div>,
-      ]
-    `);
-    jest.runTimersToTime(TIMEOUT_DURATION);
-
-    expect(tree).toMatchInlineSnapshot(`
-      Array [
-        <div>
-          <div
-            id="child"
-          >
-            child
-          </div>
-        </div>,
-        <div
-          className="class-from-style-root"
-          data-has-error={false}
-          data-is-ready={true}
-          data-is-top={false}
-        >
-          <div
-            data-cy="helium-snackbar-success"
-          >
-            third message to display
-          </div>
-        </div>,
-      ]
-    `);
-    jest.runTimersToTime(TIMEOUT_DURATION);
-
-    expect(tree).toMatchInlineSnapshot(`
-      Array [
-        <div>
-          <div
-            id="child"
-          >
-            child
-          </div>
-        </div>,
-        <div
-          className="class-from-style-root"
-          data-has-error={false}
-          data-is-ready={true}
-          data-is-top={false}
-        >
-          <div
-            data-cy="helium-snackbar-success"
-          >
-            third message to display
-          </div>
-        </div>,
-      ]
-    `);
-    jest.runTimersToTime(TIMEOUT_DURATION);
-
-    expect(tree).toMatchInlineSnapshot(`
-      Array [
-        <div>
-          <div
-            id="child"
-          >
-            child
-          </div>
-        </div>,
-        <div
-          className="class-from-style-root"
-          data-has-error={false}
-          data-is-ready={true}
-          data-is-top={false}
-        >
-          <div
-            data-cy="helium-snackbar-success"
-          >
-            third message to display
-          </div>
-        </div>,
-      ]
-    `);
   });
 });

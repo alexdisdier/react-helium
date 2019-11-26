@@ -16,9 +16,14 @@ interface SnackbarsContextProps {
 interface Props {
   classes: ClassNameMap<string>;
   children: React.ReactNode;
-  top?: boolean;
   successSnackbar?: (x: string, y?: string, z?: Function) => void;
   errorSnackbar?: (x: string, y: string) => void;
+  config?: {
+    backgroundColor: string;
+    color: string;
+    top: boolean;
+    bottomLeft: boolean;
+  };
 }
 
 const SnackbarsContext: SnackbarsContextProps = React.createContext(() => {});
@@ -40,15 +45,23 @@ export const withSnackbarsContext = Component => props => {
   );
 };
 
-export const Snackbars: React.FC<
-  Pick<Props, 'classes' | 'children' | 'top'>
-> = ({ classes, children, top = false }) => {
+export const Snackbars: React.FC<Props> = ({
+  classes,
+  children,
+  config = {}
+}) => {
   const [messages, setMessages] = useState<Array<string>>([]);
   const [lastMessage, setLastMessage] = useState({
     message: '',
     type: '',
     onClick: () => {},
-    label: ''
+    label: '',
+    config: {
+      backgroundColor: config.backgroundColor,
+      color: config.color,
+      top: config.top,
+      bottomLeft: config.bottomLeft
+    }
   });
   const [isReady, setIsReady] = useState<boolean>(true);
 
@@ -58,7 +71,7 @@ export const Snackbars: React.FC<
     return () => {
       clearTimeout(timer);
     };
-  }, []);
+  }, [timer]);
 
   const onAddAlert = msg => {
     if (isReady && !messages.length) {
@@ -70,14 +83,19 @@ export const Snackbars: React.FC<
         msg.onClick && msg.label ? ACTION_TIMEOUT : DEFAULT_TIMEOUT
       );
     } else {
-      messages.push(msg);
+      setMessages([...messages, msg]);
     }
   };
 
-  const onAddSuccessAlert = (message, label, onClick) =>
-    onAddAlert({ message, label, onClick });
+  const onAddSuccessAlert = (message, label, onClick, config) => {
+    if (config) return onAddAlert({ message, label, onClick, config });
+    return onAddAlert({ message, label, onClick });
+  };
 
-  const onAddErrorAlert = message => onAddAlert({ message, type: TYPE_ERROR });
+  const onAddErrorAlert = (message, config: {}) => {
+    if (config) return onAddAlert({ message, type: TYPE_ERROR, config });
+    return onAddAlert({ message, type: TYPE_ERROR });
+  };
 
   const onReady = () => setIsReady(true);
 
@@ -90,21 +108,30 @@ export const Snackbars: React.FC<
     clearTimeout(timer);
   };
 
+  const rootDynamicStyle = {
+    backgroundColor: lastMessage.config.backgroundColor
+  };
+
+  const contentDynamicStyle = {
+    color: lastMessage.config.color
+  };
+
   const renderMessage = () => {
     const rootProps = {
+      style: lastMessage.config && rootDynamicStyle,
       className: classes.root,
       'data-is-ready': isReady,
       'data-has-error': lastMessage.type === TYPE_ERROR,
-      'data-is-top': top
+      'data-is-top': !lastMessage.config.bottomLeft && lastMessage.config.top,
+      'data-is-bottomleft':
+        !lastMessage.config.top && lastMessage.config.bottomLeft
     };
-
-    const dataCy = `helium-snackbar-${
-      lastMessage.type === TYPE_ERROR ? 'error' : 'success'
-    }`;
 
     return (
       <div {...rootProps}>
-        <div data-cy={dataCy}>{lastMessage.message}</div>
+        <div style={lastMessage.config && contentDynamicStyle}>
+          {lastMessage.message}
+        </div>
         {lastMessage.onClick && lastMessage.label && (
           <button className={classes.undoClickBtn} onClick={handleClick}>
             {lastMessage.label}

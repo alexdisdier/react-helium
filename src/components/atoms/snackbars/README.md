@@ -4,34 +4,38 @@
 
 <hr>
 
-A component to include rich text format Snackbars.
-e.g: a comment text box on a blog.
+Add snackbars to your app.
 
 ##### Import
 
 ```js
-import { Snackbars } from "react-helium";
+import { withSnackbarsContext } from "react-helium";
 ```
 
 ##### Usage
 
 ```jsx
-<Snackbars
-  placeholder="Let your imagination run wild"
-  onChange={() => "Do something"}
-/>
+
+const YourComponent = ({errorSnackbar, successSnackbar}) => {
+
+  const submit = () => {
+    if (valid) return successSnackbar('successful', null, null, null)
+    return errorSnackbar('error', null)
+  };
+
+  return <Button onClick={submit}>click here</Button>
+}
+
+export default withSnackbarsContext(YourComponent),
 ```
 
-##### Required props
+##### Required function params
 
-| Name       | Type       | Description               |
-| ---------- | ---------- | ------------------------- |
-| `onChange` | `function` | Function called on change |
+If you're not using the params, pass null;
 
-##### Optional props
-
-| Name          | Type      | Default | Description                |
-| ------------- | --------- | ------- | -------------------------- |
-| `placeholder` | `string`  | `""`    |                            |
-| `disabled`    | `boolean` | false   |                            |
-| `commands`    | `array`   | []      | a list of toolbar commands |
+| Name         | Type       | Description                          |
+| ------------ | ---------- | ------------------------------------ |
+| `content`    | `string`   | snackbar content                     |
+| `func label` | `string`   | snackbar action func label           |
+| `onCLick`    | `function` | e.g: Actions on undo                 |
+| `config`     | `object`   | backgroundColor,color,top,bottomLeft |
