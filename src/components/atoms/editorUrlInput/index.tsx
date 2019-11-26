@@ -22,15 +22,17 @@ export const EditorUrlInput: React.FC<Props> = ({
 }) => {
   const inputWrapperRef: any | null = React.useRef(null);
 
+  const handleClick = React.useCallback(
+    e => !inputWrapperRef.current.contains(e.target) && handleCollapse(),
+    [handleCollapse]
+  );
+
   React.useEffect(() => {
     document.addEventListener('mousedown', handleClick);
     return () => {
       document.removeEventListener('mousedown', handleClick);
     };
-  }, []);
-
-  const handleClick = e =>
-    !inputWrapperRef.current.contains(e.target) && handleCollapse();
+  }, [handleClick]);
 
   const handleKeyPress = event => {
     const hotKeys = {
