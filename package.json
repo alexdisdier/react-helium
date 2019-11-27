@@ -1,6 +1,6 @@
 {
   "name": "react-helium",
-  "version": "1.2.3",
+  "version": "1.2.8",
   "description": "A React component library",
   "author": "Alex Disdier",
   "license": "MIT",
@@ -37,13 +37,12 @@
     "dompurify": "^2.0.7",
     "draft-js": "^0.11.1",
     "draft-js-export-html": "^1.4.1",
+    "lodash.uniqueid": "^4.0.1",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "react-jss": "8.6.1",
     "react-scripts": "3.2.0",
     "typescript": "^3.7.2"
-  },
-  "peerDependencies": {
-    "react": "16.x",
-    "react-dom": "16.x",
-    "react-jss": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",
@@ -79,12 +78,8 @@
     "jest": "^24.9.0",
     "jest-localstorage-mock": "^2.4.0",
     "lint-staged": "^9.4.1",
-    "lodash.uniqueid": "^4.0.1",
     "prettier": "^1.18.2",
-    "react": "^16.10.2",
     "react-docgen-typescript-loader": "^3.3.0",
-    "react-dom": "^16.10.2",
-    "react-jss": "8.6.1",
     "semantic-release": "^15.13.30",
     "storybook-readme": "^5.0.8",
     "ts-jest": "^24.1.0"
