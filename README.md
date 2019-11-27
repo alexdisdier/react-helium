@@ -23,7 +23,7 @@ yarn add react-helium
 
 ### Using react-helium
 
-For now, I recommend cloning the library and start storybook to see full documentation.
+For now, I recommend cloning the github rep and start storybook to see full documentation.
 
 ## Install
 
