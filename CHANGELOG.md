@@ -1,3 +1,10 @@
+## [1.2.10](https://github.com/alexdisdier/react-helium/compare/v1.2.9...v1.2.10) (2019-11-27)
+
+
+### Bug Fixes
+
+* adds build step to release in circleci config ([e4b3e1b](https://github.com/alexdisdier/react-helium/commit/e4b3e1b5c2ec3f47ef0faffec9dcbc33e5ef50df))
+
 ## [1.2.9](https://github.com/alexdisdier/react-helium/compare/v1.2.8...v1.2.9) (2019-11-27)
 
 
