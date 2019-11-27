@@ -1,3 +1,10 @@
+## [1.2.5](https://github.com/alexdisdier/react-helium/compare/v1.2.4...v1.2.5) (2019-11-27)
+
+
+### Bug Fixes
+
+* edits version ([30e6609](https://github.com/alexdisdier/react-helium/commit/30e66094a83ea9af4e7d10562e11770d7b21aa7a))
+
 ## [1.2.4](https://github.com/alexdisdier/react-helium/compare/v1.2.3...v1.2.4) (2019-11-27)
 
 
