@@ -1,3 +1,10 @@
+## [1.2.3](https://github.com/alexdisdier/react-helium/compare/v1.2.2...v1.2.3) (2019-11-27)
+
+
+### Bug Fixes
+
+* changes circleci config ([8fc85f1](https://github.com/alexdisdier/react-helium/commit/8fc85f1ce8601f3997713b742d7c105da87a581e))
+
 ## [1.2.2](https://github.com/alexdisdier/react-helium/compare/v1.2.1...v1.2.2) (2019-11-27)
 
 
