@@ -1,3 +1,10 @@
+## [1.2.4](https://github.com/alexdisdier/react-helium/compare/v1.2.3...v1.2.4) (2019-11-27)
+
+
+### Bug Fixes
+
+* publishes npm ([596b979](https://github.com/alexdisdier/react-helium/commit/596b9791e3af826591dd1adaa0e02b26c35b9748))
+
 ## [1.2.3](https://github.com/alexdisdier/react-helium/compare/v1.2.2...v1.2.3) (2019-11-27)
 
 
