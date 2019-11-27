@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import injectSheet, { ClassNameMap } from 'react-jss';
 
 import {
@@ -65,10 +65,6 @@ export const Editor: React.FC<Props> = ({
     editorRef.current.focus();
     setFocused(true);
   };
-
-  useEffect(() => {
-    if (editorRef.current) editorRef.current.focus();
-  }, [editorRef]);
 
   const onEditorStateChange = (editorState: EditorState) => {
     setEditorState(editorState);
