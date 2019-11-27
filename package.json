@@ -4,12 +4,7 @@
   "description": "A React component library",
   "author": "Alex Disdier",
   "license": "MIT",
-  "keywords": [
-    "react",
-    "javascript",
-    "typescript"
-  ],
-  "main": "lib/src/index.js",
+  "main": "lib/index.js",
   "directories": {
     "lib": "lib"
   },
@@ -20,6 +15,11 @@
     "type": "git",
     "url": "https://github.com/alexdisdier/react-helium.git"
   },
+  "keywords": [
+    "react",
+    "javascript",
+    "typescript"
+  ],
   "scripts": {
     "start": "start-storybook -p 6007",
     "test:unit": "react-scripts test",
