@@ -5,7 +5,7 @@
 
 # React Helium library
 
-### 🚧This component library is under construction 🚧
+### 🚧under construction 🚧
 
 <hr>
 
