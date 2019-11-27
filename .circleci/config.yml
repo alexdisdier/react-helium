@@ -139,7 +139,6 @@ workflows:
             - install_dependencies
       - release:
           requires:
-            - install_dependencies
             - build
             - test
           filters:
