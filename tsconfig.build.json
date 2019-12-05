@@ -28,7 +28,6 @@
   },
   "exclude": [
     "node_modules",
-    "mocks",
     "**/*.test.ts",
     "**/*.test.tsx",
     "**/*.stories.tsx"

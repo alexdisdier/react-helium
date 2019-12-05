@@ -66,7 +66,7 @@ const ErrorBtn = withSnackbarsContext(({ errorSnackbar }) => (
   </Button>
 ));
 
-const stories = storiesOf('Snackbars', module);
+const stories = storiesOf('Atoms/Snackbars', module);
 stories.addParameters({
   readme: {
     content: README

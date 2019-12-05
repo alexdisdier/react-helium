@@ -19,7 +19,7 @@ const appearanceOptions = {
   Warning: 'warning'
 };
 
-const stories = storiesOf('Button', module);
+const stories = storiesOf('Atoms/Button', module);
 
 stories.addDecorator(withKnobs);
 
