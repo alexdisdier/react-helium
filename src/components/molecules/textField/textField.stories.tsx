@@ -47,7 +47,7 @@ export const ControlledFieldText: React.FC<Props> = ({
   );
 };
 
-const stories = storiesOf('Text Field', module);
+const stories = storiesOf('Molecules/Text Field', module);
 stories.addParameters({
   readme: {
     content: TextFieldReadme

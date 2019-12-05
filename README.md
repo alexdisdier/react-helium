@@ -1,17 +1,18 @@
 [![CircleCI](https://circleci.com/gh/alexdisdier/react-helium.svg?style=svg)](https://circleci.com/gh/alexdisdier/react-helium)
 [![codecov](https://codecov.io/gh/alexdisdier/react-helium/branch/master/graph/badge.svg)](https://codecov.io/gh/alexdisdier/react-helium)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+[![](https://img.shields.io/bundlephobia/minzip/react-helium)](https://www.npmjs.com/package/react-helium)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # React Helium library
 
-### 🚧under construction 🚧
+### 🚧 under construction 🚧
 
 <hr>
 
 ## Getting Started
 
-If you wish to use this library in your project.
+If you wish to use this component library in your project.
 
 ```bash
 npm install react-helium
@@ -21,9 +22,29 @@ or
 yarn add react-helium
 ```
 
+You then need to pass a theme or use **react-helium** default.
+This is usually done in the root level of your application.
+
+e.g: (using react-jss for styling)
+
+```js
+import React from "react";
+import { ThemeProvider } from "react-jss";
+import { theme, Button } from "react-helium";
+import "react-helium/lib/style/base.css"; // Can be replaced with your custom reset.
+
+<ThemeProvider theme={theme}>
+  <div classname="root">
+    <Button onClick={() => alert("hello world")} round color="green" warning>
+      I am THE button
+    </Button>
+  </div>
+</ThemeProvider>;
+```
+
 ### Using react-helium
 
-For now, I recommend cloning the github rep and start storybook to see full documentation.
+For now, I recommend cloning the github repository and start storybook to see full documentation.
 
 ## Install
 

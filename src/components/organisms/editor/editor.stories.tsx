@@ -61,7 +61,7 @@ const ControlledEditor: React.FC<Props> = ({ ...otherProps }) => {
   );
 };
 
-const stories = storiesOf('Rich Text Editor', module);
+const stories = storiesOf('Organisms/Rich Text Editor', module);
 stories.addParameters({
   readme: {
     content: README

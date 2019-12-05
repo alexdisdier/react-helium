@@ -5,7 +5,7 @@ import { addDecorator, addParameters, configure } from "@storybook/react";
 import { ThemeProvider, JssProvider } from "react-jss";
 
 import theme from "../src/style/globalStyle";
-import './base.css';
+import '../src/style/base.css';
 
 const basicTheme = create({
   base: 'light',
