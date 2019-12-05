@@ -82,7 +82,7 @@ export default theme => ({
       }
     }
   },
-  prefix: {
+  vector: {
     marginRight: 14,
     flexShrink: 0
   },
