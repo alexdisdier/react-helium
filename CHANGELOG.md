@@ -1,3 +1,10 @@
+## [1.2.11](https://github.com/alexdisdier/react-helium/compare/v1.2.10...v1.2.11) (2019-12-05)
+
+
+### Performance Improvements
+
+* export default theme & base.css for client ([5d140e7](https://github.com/alexdisdier/react-helium/commit/5d140e72e835156d2f846fa30daf78db0f9724e4))
+
 ## [1.2.10](https://github.com/alexdisdier/react-helium/compare/v1.2.9...v1.2.10) (2019-11-27)
 
 
