@@ -52,7 +52,7 @@ export const Button: React.FC<Props> = ({
 
   return (
     <button {...rootProps}>
-      {vector && <span className={classes.prefix}>{vector}</span>}
+      {vector && <span className={classes.vector}>{vector}</span>}
       <span className={classes.text}>{children}</span>
     </button>
   );

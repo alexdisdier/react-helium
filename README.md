@@ -12,7 +12,7 @@
 
 ## Getting Started
 
-If you wish to use this component library in your project.
+If you wish to use this components' library in your project.
 
 ```bash
 npm install react-helium
@@ -35,7 +35,7 @@ import "react-helium/lib/style/base.css"; // Can be replaced with your custom re
 
 <ThemeProvider theme={theme}>
   <div classname="root">
-    <Button onClick={() => alert("hello world")} round color="green" warning>
+    <Button onClick={() => alert("hello world")} round color="green">
       I am THE button
     </Button>
   </div>
@@ -152,3 +152,4 @@ react-helium is MIT licensed.
 - [Building Design Systems with Atomic Design](https://ubiedigital.com/atomic-design/)
 - [Typescript-cheatsheets](https://github.com/typescript-cheatsheets/react-typescript-cheatsheet)
 - [Semantic-release](https://github.com/semantic-release/semantic-release/blob/master/docs/usage/getting-started.md#getting-started)
+- [yalc](https://www.npmjs.com/package/yalc)
