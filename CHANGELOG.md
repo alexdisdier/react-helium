@@ -1,3 +1,10 @@
+## [1.2.12](https://github.com/alexdisdier/react-helium/compare/v1.2.11...v1.2.12) (2019-12-05)
+
+
+### Bug Fixes
+
+* **readme:** edit and fix package.json version ([6cad7f6](https://github.com/alexdisdier/react-helium/commit/6cad7f6feade46b6bdef9f610004ad3da5dee0e4))
+
 ## [1.2.11](https://github.com/alexdisdier/react-helium/compare/v1.2.10...v1.2.11) (2019-12-05)
 
 
