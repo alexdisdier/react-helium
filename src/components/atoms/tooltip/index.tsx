@@ -35,12 +35,6 @@ export const Tooltip: React.FC<Props> = ({
   const tooltipRef: any | null = useRef(null);
   const size = useWindowSize();
 
-  if (size.width - elementHovered.width > elementHovered.width) {
-    console.log('to the right');
-  } else {
-    console.log('to the left');
-  }
-
   console.log('window size', size);
   console.log('tooltip called over element', elementHovered);
 
@@ -72,6 +66,52 @@ export const Tooltip: React.FC<Props> = ({
       });
       setHover(true);
     }
+
+    if (
+      size.width -
+        tooltipRef.current.offsetLeft +
+        tooltipRef.current.offsetWidth >
+      elementHovered.width
+    ) {
+      console.log('hidden on the right');
+    } else if (
+      tooltipRef.current.offsetLeft - tooltipRef.current.offsetWidth <
+      0
+    ) {
+      console.log('hidden on the left');
+    } else if (
+      tooltipRef.current.offsetTop - tooltipRef.current.offsetHeight <
+      0
+    ) {
+      console.log('hidden on the top');
+    }
+  };
+
+  const topStyle = {
+    top: `-${elementHovered.y}px`,
+    left: `0px`
+  };
+
+  const rightStyle = {
+    top: `-${elementHovered.y + elementHovered.height / 2}px`,
+    left: `${elementHovered.width}px`
+  };
+
+  const bottomStyle = {
+    top: `${elementHovered.y}px`,
+    left: `0px`
+  };
+
+  const leftStyle = {
+    top: `-${elementHovered.y + elementHovered.height / 2}px`,
+    left: `-${elementHovered.width}px`
+  };
+
+  const getPositionStyle = () => {
+    if (top) return topStyle;
+    if (right) return rightStyle;
+    if (bottom) return bottomStyle;
+    if (left) return leftStyle;
   };
 
   const rootProps = {
@@ -82,6 +122,7 @@ export const Tooltip: React.FC<Props> = ({
   };
 
   const tooltipProps = {
+    style: getPositionStyle(),
     className: classes.tooltip,
     'data-is-top': top,
     'data-is-right': right,
@@ -97,22 +138,9 @@ export const Tooltip: React.FC<Props> = ({
     'data-is-left': left
   };
 
-  const style = {
-    top: `${elementHovered.y + window.scrollY}px`,
-    right: `${elementHovered.y + window.scrollY}px`,
-    bottom: `${elementHovered.y + window.scrollY}px`,
-    left: `${elementHovered.x + window.scrollX}px`
-  };
-
   return (
     <div {...rootProps}>
-      <div
-        {...tooltipProps}
-        style={{
-          top: `-${elementHovered.y + elementHovered.height / 2}px`,
-          left: `${elementHovered.width}px`
-        }}
-      >
+      <div {...tooltipProps}>
         {hover && (
           <>
             <div {...arrowProps} />

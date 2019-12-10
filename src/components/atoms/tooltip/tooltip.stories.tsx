@@ -13,8 +13,8 @@ import Tooltip from '.';
 import README from './README.md';
 
 const appearanceOptions = {
-  Top: 'top',
-  Right: 'default',
+  Top: 'default',
+  Right: 'right',
   Bottom: 'bottom',
   Left: 'left'
 };
