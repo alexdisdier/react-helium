@@ -15,7 +15,7 @@ import {
   STATUS_VALID
 } from '../../../constant/status';
 
-import TextFieldReadme from './text.field.README.md';
+import README from './README.md';
 
 interface Props {
   label: string;
@@ -50,7 +50,7 @@ export const ControlledFieldText: React.FC<Props> = ({
 const stories = storiesOf('Molecules/Text Field', module);
 stories.addParameters({
   readme: {
-    content: TextFieldReadme
+    content: README
   }
 });
 

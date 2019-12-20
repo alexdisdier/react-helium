@@ -3,19 +3,17 @@ import { storiesOf } from '@storybook/react';
 import {
   withKnobs,
   text,
-  boolean,
   optionsKnob as options
 } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
 
 import Tooltip from '.';
 
 import README from './README.md';
 
 const appearanceOptions = {
-  Top: 'default',
+  Top: 'top',
   Right: 'right',
-  Bottom: 'bottom',
+  Bottom: 'default',
   Left: 'left'
 };
 
@@ -34,6 +32,7 @@ interface Props {
   right?: boolean;
   bottom?: boolean;
   left?: boolean;
+  placeholder?: string;
 }
 
 export const ControlledTooltip: React.FC<Props> = ({ ...otherProps }) => {
@@ -48,7 +47,7 @@ export const ControlledTooltip: React.FC<Props> = ({ ...otherProps }) => {
         Hover 1st tooltip
       </Tooltip>
 
-      <Tooltip {...otherProps} placeholder="Second tooltipSecond">
+      <Tooltip {...otherProps} placeholder="Second tooltip">
         Hover 2nd tooltip
       </Tooltip>
     </div>

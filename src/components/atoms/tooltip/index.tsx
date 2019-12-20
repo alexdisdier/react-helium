@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import injectSheet, { ClassNameMap } from 'react-jss';
 
 import { useWindowSize } from '../../../hooks/useWindowSize';
@@ -28,17 +28,12 @@ export const Tooltip: React.FC<Props> = ({
   const [elementHovered, setElementHovered] = useState({
     x: 0,
     y: 0,
-    width: 0 || undefined,
+    width: 0,
     height: 0,
     visible: true
   });
   const tooltipRef: any | null = useRef(null);
-  const size = useWindowSize();
-
-  console.log('window size', size);
-  console.log('tooltip called over element', elementHovered);
-
-  console.log('tooltipRef', tooltipRef);
+  const size: any | null = useWindowSize();
 
   const onMouseOutHandler = () => {
     setHover(false);
@@ -65,25 +60,6 @@ export const Tooltip: React.FC<Props> = ({
         visible: true
       });
       setHover(true);
-    }
-
-    if (
-      size.width -
-        tooltipRef.current.offsetLeft +
-        tooltipRef.current.offsetWidth >
-      elementHovered.width
-    ) {
-      console.log('hidden on the right');
-    } else if (
-      tooltipRef.current.offsetLeft - tooltipRef.current.offsetWidth <
-      0
-    ) {
-      console.log('hidden on the left');
-    } else if (
-      tooltipRef.current.offsetTop - tooltipRef.current.offsetHeight <
-      0
-    ) {
-      console.log('hidden on the top');
     }
   };
 
@@ -112,6 +88,7 @@ export const Tooltip: React.FC<Props> = ({
     if (right) return rightStyle;
     if (bottom) return bottomStyle;
     if (left) return leftStyle;
+    return null;
   };
 
   const rootProps = {
