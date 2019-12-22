@@ -16,6 +16,12 @@ jest.mock('../../../utils/editor', () => ({
 
 jest.mock('../../atoms/editorButton', () => 'EditorButton');
 
+jest.mock('../../atoms/icons', () => ({
+  IconBullets: 'IconBullets',
+  IconInsertLink: 'IconInsertLink',
+  IconInsertPhoto: 'IconInsertPhoto'
+}));
+
 describe('Toolbar', () => {
   let props;
 
@@ -52,14 +58,20 @@ describe('Toolbar', () => {
           active={false}
           buttonType="LINK"
           disabled={true}
-          icon={null}
+          icon={<IconInsertLink />}
           promptForLink={[Function]}
           removeLink={[Function]}
         />
         <EditorButton
           buttonType="unordered-list-item"
           disabled={true}
-          icon={null}
+          icon={<IconBullets />}
+          onClick={[MockFunction]}
+        />
+        <EditorButton
+          buttonType="unordered-list-item"
+          disabled={true}
+          icon={<IconInsertPhoto />}
           onClick={[MockFunction]}
         />
       </div>
@@ -87,14 +99,20 @@ describe('Toolbar', () => {
           active={false}
           buttonType="LINK"
           disabled={false}
-          icon={null}
+          icon={<IconInsertLink />}
           promptForLink={[Function]}
           removeLink={[Function]}
         />
         <EditorButton
           buttonType="unordered-list-item"
           disabled={false}
-          icon={null}
+          icon={<IconBullets />}
+          onClick={[MockFunction]}
+        />
+        <EditorButton
+          buttonType="unordered-list-item"
+          disabled={true}
+          icon={<IconInsertPhoto />}
           onClick={[MockFunction]}
         />
       </div>
