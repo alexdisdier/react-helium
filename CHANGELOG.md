@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/alexdisdier/react-helium/compare/v1.2.12...v1.3.0) (2019-12-22)
+
+
+### Features
+
+* **icons:** add editor bullets, link and photo ([1f62af9](https://github.com/alexdisdier/react-helium/commit/1f62af94d2f1e57938171a5116264911128ed0fa))
+
 ## [1.2.12](https://github.com/alexdisdier/react-helium/compare/v1.2.11...v1.2.12) (2019-12-05)
 
 
