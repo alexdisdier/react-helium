@@ -2,6 +2,12 @@ import React from 'react';
 import injectSheet, { ClassNameMap } from 'react-jss';
 import { EditorState } from 'draft-js';
 
+import {
+  IconBullets,
+  IconInsertLink,
+  IconInsertPhoto
+} from '../../atoms/icons';
+
 import { hasBlockType, hasInlineStyle, hasLink } from '../../../utils/editor';
 
 import { HEADER_ONE, BOLD, LINK, UNORDERED_LIST_ITEM } from '../../../constant';
@@ -53,7 +59,7 @@ export const Toolbar: React.FC<Props> = ({
       />
 
       <EditorButton
-        icon={null}
+        icon={<IconInsertLink />}
         promptForLink={promptForLink}
         removeLink={removeLink}
         active={hasLink(editorState) || isLinkButtonActive}
@@ -62,11 +68,19 @@ export const Toolbar: React.FC<Props> = ({
       />
 
       <EditorButton
-        icon={null}
+        icon={<IconBullets />}
         onClick={onToggleBlockType}
         active={hasBlockType(editorState, UNORDERED_LIST_ITEM)}
         buttonType={UNORDERED_LIST_ITEM}
         disabled={disabled}
+      />
+
+      <EditorButton
+        icon={<IconInsertPhoto />}
+        onClick={onToggleBlockType}
+        active={hasBlockType(editorState, UNORDERED_LIST_ITEM)}
+        buttonType={UNORDERED_LIST_ITEM}
+        disabled
       />
     </div>
   );
