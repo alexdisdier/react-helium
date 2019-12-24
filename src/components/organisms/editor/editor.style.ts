@@ -35,6 +35,14 @@ export default theme => ({
         marginLeft: '-1em'
       }
     },
+    '& .ol': {
+      position: 'relative',
+      // listStyle: 'unset',
+      marginLeft: 17,
+      '&>div': {
+        marginLeft: 7
+      }
+    },
     '&[data-is-disabled="true"]': {
       opacity: 0.3
     },

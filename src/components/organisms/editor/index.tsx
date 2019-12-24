@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import injectSheet, { ClassNameMap } from 'react-jss';
 
 import {
+  AtomicBlockUtils,
   CompositeDecorator,
   Editor as Draft,
   EditorState,
@@ -15,9 +16,9 @@ import {
   isValidURL
 } from '../../../utils/editor';
 
-import { EditorLink, EditorUrlInput } from '../../atoms';
+import { Image, Link, UrlInput } from './toolbar/plugins';
 
-import { Toolbar } from '../../molecules';
+import Toolbar from './toolbar';
 
 import styles from './editor.style';
 
@@ -34,7 +35,7 @@ interface Props {
 const decorator = new CompositeDecorator([
   {
     strategy: findLinkEntities,
-    component: EditorLink
+    component: Link
   }
 ]);
 
@@ -55,6 +56,7 @@ export const Editor: React.FC<Props> = ({
   // Url State
   const [showURLInput, setShowURLInput] = useState<boolean>(false);
   const [urlValue, setUrlValue] = useState<string>('');
+  const [urlType, setUrlType] = useState<string>('');
   const [validUrl, setValidUrl] = useState<boolean>(true);
 
   const [isLinkButtonActive, setLinkButtonActive] = useState<boolean>(false);
@@ -69,6 +71,58 @@ export const Editor: React.FC<Props> = ({
   const onEditorStateChange = (editorState: EditorState) => {
     setEditorState(editorState);
     onChange(getHTMLString(editorState));
+  };
+
+  /**
+   * Handling Insert Media
+   */
+  const confirmMedia = e => {
+    e.preventDefault();
+
+    const contentState = editorState.getCurrentContent();
+    const contentStateWithEntity = contentState.createEntity(
+      urlType,
+      'IMMUTABLE',
+      { src: urlValue }
+    );
+    const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
+    const newEditorState = EditorState.set(editorState, {
+      currentContent: contentStateWithEntity
+    });
+    setEditorState(
+      AtomicBlockUtils.insertAtomicBlock(newEditorState, entityKey, ' ')
+    );
+    setUrlValue('');
+    setShowURLInput(false);
+  };
+
+  const promptForMedia = type => {
+    setShowURLInput(true);
+    setUrlValue('');
+    setUrlType(type);
+  };
+
+  const addImage = () => promptForMedia('image');
+
+  const mediaBlockRenderer = block => {
+    if (block.getType() === 'atomic') {
+      return {
+        component: Media,
+        editable: false
+      };
+    }
+    return null;
+  };
+
+  const Media = props => {
+    const entity = props.contentState.getEntity(props.block.getEntityAt(0));
+    const { src } = entity.getData();
+    const type = entity.getType();
+    let media;
+    if (type === 'image') {
+      media = <Image src={src} />;
+    }
+    return media;
   };
 
   /**
@@ -94,7 +148,7 @@ export const Editor: React.FC<Props> = ({
   };
 
   const confirmLink = e => {
-    if (validUrl) {
+    if (validUrl && urlType !== 'image') {
       e.preventDefault();
       const contentState = editorState.getCurrentContent();
       const contentStateWithEntity = contentState.createEntity(
@@ -109,6 +163,8 @@ export const Editor: React.FC<Props> = ({
       );
       setShowURLInput(false);
       setLinkButtonActive(false);
+    } else if (urlType === 'image') {
+      confirmMedia(e);
     } else {
       console.error('not a valid url');
     }
@@ -198,12 +254,14 @@ export const Editor: React.FC<Props> = ({
           onToggleInlineType={toggleInlineStyle}
           promptForLink={promptForLink}
           removeLink={removeLink}
+          addImage={addImage}
           disabled={disabled}
           isLinkButtonActive={isLinkButtonActive}
         />
 
         <div {...rootProps}>
           <Draft
+            blockRendererFn={mediaBlockRenderer}
             blockStyleFn={getBlockStyle}
             editorState={editorState}
             onChange={onEditorStateChange}
@@ -216,7 +274,7 @@ export const Editor: React.FC<Props> = ({
         </div>
       </div>
       {showURLInput && (
-        <EditorUrlInput
+        <UrlInput
           onLinkInputKeyDown={onLinkInputKeyDown}
           urlInputChange={onUrlInputChange}
           value={urlValue}

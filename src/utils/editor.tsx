@@ -120,7 +120,14 @@ export const styleCode = {
  * An array to map the style when applying onClick on a controlPanel button
  * The LINK button is handled separately
  */
-export const STYLE = ['header-one', 'unordered-list-item', 'BOLD'];
+export const STYLE = [
+  'header-one',
+  'ordered-list-item',
+  'unordered-list-item',
+  'ITALIC',
+  'BOLD',
+  'atomic'
+];
 
 export const isValidURL = str => {
   const pattern = new RegExp(
@@ -139,7 +146,8 @@ export const BLOCK_TYPES: STYLE[] = [
   { label: 'H1', style: 'header-one', icon: <span>H1</span> },
   { label: 'H2', style: 'header-two', icon: <span>H2</span> },
   { label: 'UL', style: 'unordered-list-item', icon: <span>UL</span> },
-  { label: 'OL', style: 'ordered-list-item', icon: <span>OL</span> }
+  { label: 'OL', style: 'ordered-list-item', icon: <span>OL</span> },
+  { label: 'MD', style: 'atomic', icon: <span>MD</span> }
 ];
 
 export const INLINE_STYLES: STYLE[] = [

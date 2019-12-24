@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { classesFromStyles } from '../../../utils/tests';
+import { classesFromStyles } from '../../../../../utils/tests';
 
 import { EditorButton } from '.';
 

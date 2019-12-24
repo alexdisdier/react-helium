@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { classesFromStyles } from '../../../utils/tests';
+import { classesFromStyles } from '../../../../../../utils/tests';
 
-import { EditorLink } from '.';
+import { Link } from '.';
 
-import styles from './editorLink.style';
+import styles from './link.style';
 
 const classes = classesFromStyles(styles);
 
@@ -28,7 +28,7 @@ describe('Link', () => {
   });
 
   it('renders full component', () => {
-    const wrapper = shallow(<EditorLink {...props} />);
+    const wrapper = shallow(<Link {...props} />);
     expect(wrapper).toMatchInlineSnapshot(`
       <a
         aria-label="www.alexdisdier.com"
