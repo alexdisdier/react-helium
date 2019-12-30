@@ -2,10 +2,8 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { classesFromStyles } from '../../../../../../utils/tests';
 
-// eslint-disable-next-line import/no-unresolved
 import { Image } from '.';
 
-// eslint-disable-next-line import/no-unresolved
 import styles from './image.style';
 
 const classes = classesFromStyles(styles);
