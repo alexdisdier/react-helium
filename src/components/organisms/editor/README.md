@@ -5,7 +5,7 @@
 <hr>
 
 A component to include rich text format editor.
-e.g: a comment text box on a blog.
+e.g: a comment text box on a blog. test
 
 ##### Import
 
