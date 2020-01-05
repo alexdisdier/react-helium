@@ -1,4 +1,4 @@
-import { FOCUS_OUTLINE_WIDTH } from '../../../constant';
+import { FOCUS_OUTLINE_WIDTH } from '../../../../../constant';
 
 export default theme => ({
   root: {

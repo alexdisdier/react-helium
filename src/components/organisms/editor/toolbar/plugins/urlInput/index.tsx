@@ -1,7 +1,7 @@
 import React from 'react';
 import injectSheet, { ClassNameMap } from 'react-jss';
 
-import styles from './editorUrlInput.style';
+import styles from './urlInput.style';
 
 interface Props {
   classes: ClassNameMap<string>;
@@ -12,7 +12,7 @@ interface Props {
   validUrl: boolean;
 }
 
-export const EditorUrlInput: React.FC<Props> = ({
+export const UrlInput: React.FC<Props> = ({
   classes,
   onLinkInputKeyDown,
   urlInputChange,
@@ -72,4 +72,4 @@ export const EditorUrlInput: React.FC<Props> = ({
   );
 };
 
-export default injectSheet(styles)(EditorUrlInput);
+export default injectSheet(styles)(UrlInput);

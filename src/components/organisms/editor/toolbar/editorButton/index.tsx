@@ -2,14 +2,14 @@
 import React, { useState } from 'react';
 import injectSheet, { ClassNameMap } from 'react-jss';
 
-import { STYLE } from '../../../utils/editor';
+import { STYLE } from '../../../../../utils/editor';
 
 import {
   HEADER_ONE,
   BOLD,
   LINK,
   UNORDERED_LIST_ITEM
-} from '../../../constant/editor';
+} from '../../../../../constant/editor';
 
 import styles from './editorButton.style';
 

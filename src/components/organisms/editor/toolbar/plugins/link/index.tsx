@@ -3,7 +3,7 @@ import injectSheet, { ClassNameMap } from 'react-jss';
 
 import { Entity } from 'draft-js';
 
-import styles from './editorLink.style';
+import styles from './link.style';
 
 interface Props {
   classes: ClassNameMap<string>;
@@ -11,11 +11,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-export const EditorLink: React.FC<Props> = ({
-  classes,
-  entityKey,
-  children
-}) => {
+export const Link: React.FC<Props> = ({ classes, entityKey, children }) => {
   const { url } = Entity.get(entityKey).getData();
   return (
     <a
@@ -30,4 +26,4 @@ export const EditorLink: React.FC<Props> = ({
   );
 };
 
-export default injectSheet(styles)(EditorLink);
+export default injectSheet(styles)(Link);

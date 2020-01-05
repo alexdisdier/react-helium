@@ -9,7 +9,7 @@ export default theme => ({
     appearance: 'none',
     boxSizing: 'border-box',
     outline: 'none',
-    backgroundColor: 'transparent',
+    backgroundColor: theme.white,
     height: 32,
     width: 300,
     padding: 3,

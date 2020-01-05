@@ -4,15 +4,29 @@ import { EditorState } from 'draft-js';
 
 import {
   IconBullets,
+  IconFormatBold,
+  IconFormatItalic,
+  IconFormatNumbers,
   IconInsertLink,
   IconInsertPhoto
-} from '../../atoms/icons';
+} from '../../../atoms/icons';
 
-import { hasBlockType, hasInlineStyle, hasLink } from '../../../utils/editor';
+import {
+  hasBlockType,
+  hasInlineStyle,
+  hasLink
+} from '../../../../utils/editor';
 
-import { HEADER_ONE, BOLD, LINK, UNORDERED_LIST_ITEM } from '../../../constant';
+import {
+  HEADER_ONE,
+  BOLD,
+  ITALIC,
+  LINK,
+  ORDERED_LIST_ITEM,
+  UNORDERED_LIST_ITEM
+} from '../../../../constant';
 
-import { EditorButton } from '../../atoms';
+import EditorButton from './editorButton';
 
 import styles from './toolbar.style';
 
@@ -23,6 +37,7 @@ interface Props {
   onToggleInlineType?: any;
   promptForLink?: (x) => void;
   removeLink?: () => void;
+  addImage?: () => void;
   disabled?: boolean;
   isLinkButtonActive?: boolean;
 }
@@ -34,6 +49,7 @@ export const Toolbar: React.FC<Props> = ({
   onToggleInlineType = () => {},
   promptForLink = () => {},
   removeLink = () => {},
+  addImage = () => {},
   disabled = false,
   isLinkButtonActive = false
 }) => {
@@ -52,9 +68,18 @@ export const Toolbar: React.FC<Props> = ({
       />
 
       <EditorButton
+        icon={<IconFormatBold />}
         onClick={onToggleInlineType}
         active={hasInlineStyle(editorState, BOLD)}
         buttonType={BOLD}
+        disabled={disabled}
+      />
+
+      <EditorButton
+        icon={<IconFormatItalic />}
+        onClick={onToggleInlineType}
+        active={hasInlineStyle(editorState, ITALIC)}
+        buttonType={ITALIC}
         disabled={disabled}
       />
 
@@ -68,6 +93,14 @@ export const Toolbar: React.FC<Props> = ({
       />
 
       <EditorButton
+        icon={<IconFormatNumbers />}
+        onClick={onToggleBlockType}
+        active={hasBlockType(editorState, ORDERED_LIST_ITEM)}
+        buttonType={ORDERED_LIST_ITEM}
+        disabled={disabled}
+      />
+
+      <EditorButton
         icon={<IconBullets />}
         onClick={onToggleBlockType}
         active={hasBlockType(editorState, UNORDERED_LIST_ITEM)}
@@ -77,10 +110,10 @@ export const Toolbar: React.FC<Props> = ({
 
       <EditorButton
         icon={<IconInsertPhoto />}
-        onClick={onToggleBlockType}
-        active={hasBlockType(editorState, UNORDERED_LIST_ITEM)}
-        buttonType={UNORDERED_LIST_ITEM}
-        disabled
+        onClick={addImage}
+        active={hasBlockType(editorState, 'atomic')}
+        buttonType="atomic"
+        disabled={disabled}
       />
     </div>
   );

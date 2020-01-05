@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { classesFromStyles } from '../../../utils/tests';
+import { classesFromStyles } from '../../../../utils/tests';
 
 import { Toolbar } from '.';
 
@@ -8,16 +8,19 @@ import styles from './toolbar.style';
 
 const classes = classesFromStyles(styles);
 
-jest.mock('../../../utils/editor', () => ({
+jest.mock('../../../../utils/editor', () => ({
   hasBlockType: jest.fn(),
   hasInlineStyle: jest.fn(),
   hasLink: jest.fn()
 }));
 
-jest.mock('../../atoms/editorButton', () => 'EditorButton');
+jest.mock('./editorButton', () => 'EditorButton');
 
-jest.mock('../../atoms/icons', () => ({
+jest.mock('../../../atoms/icons', () => ({
   IconBullets: 'IconBullets',
+  IconFormatBold: 'IconFormatBold',
+  IconFormatItalic: 'IconFormatItalic',
+  IconFormatNumbers: 'IconFormatNumbers',
   IconInsertLink: 'IconInsertLink',
   IconInsertPhoto: 'IconInsertPhoto'
 }));
@@ -52,6 +55,13 @@ describe('Toolbar', () => {
         <EditorButton
           buttonType="BOLD"
           disabled={true}
+          icon={<IconFormatBold />}
+          onClick={[MockFunction]}
+        />
+        <EditorButton
+          buttonType="ITALIC"
+          disabled={true}
+          icon={<IconFormatItalic />}
           onClick={[MockFunction]}
         />
         <EditorButton
@@ -63,16 +73,22 @@ describe('Toolbar', () => {
           removeLink={[Function]}
         />
         <EditorButton
+          buttonType="ordered-list-item"
+          disabled={true}
+          icon={<IconFormatNumbers />}
+          onClick={[MockFunction]}
+        />
+        <EditorButton
           buttonType="unordered-list-item"
           disabled={true}
           icon={<IconBullets />}
           onClick={[MockFunction]}
         />
         <EditorButton
-          buttonType="unordered-list-item"
+          buttonType="atomic"
           disabled={true}
           icon={<IconInsertPhoto />}
-          onClick={[MockFunction]}
+          onClick={[Function]}
         />
       </div>
     `);
@@ -93,6 +109,13 @@ describe('Toolbar', () => {
         <EditorButton
           buttonType="BOLD"
           disabled={false}
+          icon={<IconFormatBold />}
+          onClick={[MockFunction]}
+        />
+        <EditorButton
+          buttonType="ITALIC"
+          disabled={false}
+          icon={<IconFormatItalic />}
           onClick={[MockFunction]}
         />
         <EditorButton
@@ -104,16 +127,22 @@ describe('Toolbar', () => {
           removeLink={[Function]}
         />
         <EditorButton
+          buttonType="ordered-list-item"
+          disabled={false}
+          icon={<IconFormatNumbers />}
+          onClick={[MockFunction]}
+        />
+        <EditorButton
           buttonType="unordered-list-item"
           disabled={false}
           icon={<IconBullets />}
           onClick={[MockFunction]}
         />
         <EditorButton
-          buttonType="unordered-list-item"
-          disabled={true}
+          buttonType="atomic"
+          disabled={false}
           icon={<IconInsertPhoto />}
-          onClick={[MockFunction]}
+          onClick={[Function]}
         />
       </div>
     `);

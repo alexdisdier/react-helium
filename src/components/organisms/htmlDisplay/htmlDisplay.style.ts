@@ -22,6 +22,9 @@ export default theme => ({
         width: '1em',
         marginLeft: '-1em'
       }
+    },
+    '& img': {
+      maxWidth: '50%'
     }
   }
 });

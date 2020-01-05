@@ -30,7 +30,7 @@ jest.mock('draft-js', () => ({
 }));
 
 jest.mock('../../atoms/button', () => 'Button');
-jest.mock('../../molecules/toolbar', () => 'Toolbar');
+jest.mock('./toolbar', () => 'Toolbar');
 
 jest.mock('../../../utils/editor', () => ({
   findLinkEntities: jest.fn(),
@@ -81,6 +81,7 @@ describe('Editor', () => {
           onClick={[Function]}
         >
           <Toolbar
+            addImage={[Function]}
             disabled={false}
             editorState={
               Object {
@@ -156,6 +157,7 @@ describe('Editor', () => {
             data-is-placeholder-hidden={true}
           >
             <Draft
+              blockRendererFn={[Function]}
               blockStyleFn={[MockFunction]}
               editorState={
                 Object {
