@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/alexdisdier/react-helium/compare/v1.3.0...v1.4.0) (2020-01-05)
+
+
+### Features
+
+* **icons:** add several icons and refactor ([fba2b54](https://github.com/alexdisdier/react-helium/commit/fba2b5455599e53d93cc047976cf0e09f624edc4))
+
 # [1.3.0](https://github.com/alexdisdier/react-helium/compare/v1.2.12...v1.3.0) (2019-12-22)
 
 
