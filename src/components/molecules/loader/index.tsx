@@ -1,7 +1,12 @@
 import React from 'react';
 import injectSheet, { ClassNameMap } from 'react-jss';
 
-import IconLoader from '../../atoms/icons/iconLoader';
+import {
+  IconBarCenter,
+  IconBarTop,
+  IconSpinner,
+  IconSpinnerFill
+} from '../../atoms/icons';
 
 import styles from './loader.style';
 
@@ -14,6 +19,10 @@ type Props = {
   fast?: boolean;
   repeatCount?: string;
   overlay?: boolean;
+  spinnerFill?: boolean;
+  spinner?: boolean;
+  barCenter?: boolean;
+  barTop?: boolean;
 };
 
 export const Loader: React.FC<Props> = ({
@@ -24,29 +33,46 @@ export const Loader: React.FC<Props> = ({
   moderate = false,
   fast = false,
   repeatCount = 'indefinite',
-  overlay = false
+  overlay = false,
+  spinnerFill = true,
+  spinner = false,
+  barCenter = false,
+  barTop = false
 }) => {
+  /**
+   * Speed
+   */
   let tempo = '1.5';
 
   if (slow && !moderate && !fast) tempo = '3';
   if (moderate && !slow && !fast) tempo = '1.5';
   if (fast && !moderate && !slow) tempo = '0.5';
 
+  const iconProps = {
+    text,
+    size: size! < 300 ? size : 300,
+    speed: tempo,
+    repeatCount
+  };
+
+  /**
+   * type
+   */
+  let Loader;
+
+  if (spinnerFill) Loader = <IconSpinnerFill {...iconProps} />;
+  if (spinner) Loader = <IconSpinner {...iconProps} />;
+  if (barCenter) Loader = <IconBarCenter {...iconProps} />;
+  if (barTop) Loader = <IconBarTop {...iconProps} />;
+
   const rootProps = {
     className: classes.root,
     'data-is-overlay': overlay
   };
 
-  const iconProps = {
-    text,
-    size,
-    speed: tempo,
-    repeatCount
-  };
-
   return (
     <div {...rootProps}>
-      <IconLoader {...iconProps} />
+      {Loader && Loader}
       <span className={classes.text}>{text}</span>
     </div>
   );

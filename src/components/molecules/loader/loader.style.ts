@@ -4,7 +4,7 @@ export default () => ({
     fontFamily: 'inherit',
     flexDirection: 'column',
     alignItems: 'center',
-    // background: 'inherit',
+    background: 'inherit',
 
     // Centered loading
     '&[data-is-overlay=true]': {
@@ -16,7 +16,7 @@ export default () => ({
     }
   },
   text: {
-    fontSize: props => props.size / 2.2,
+    fontSize: props => (props.size < 300 ? props.size / 2.2 : 300 / 2.2),
     '&::first-letter': {
       textTransform: 'uppercase'
     }
