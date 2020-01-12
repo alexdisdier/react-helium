@@ -10,12 +10,7 @@ type Props = {
   repeatCount?: string;
 };
 
-export const IconDuo: React.FC<Props> = ({
-  classes,
-  size = null,
-  speed = '0.5',
-  repeatCount = 'indefinite'
-}) => (
+export const IconDuo: React.FC<Props> = ({ classes }) => (
   <div className={classes.root}>
     <div className={classes.duo} data-is-duo1>
       <div className={classes.dot} data-is-dota />
