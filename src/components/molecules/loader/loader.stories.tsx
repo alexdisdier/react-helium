@@ -27,8 +27,8 @@ const typeOptions = {
   spinnerFill: 'spinnerFill',
   spinner: 'spinner',
   barCenter: 'barCenter',
-  barTop: 'barTop',
-  dots: 'dots'
+  barTop: 'barTop'
+  // dots: 'dots'
 };
 
 stories.add('Default ', () => {
