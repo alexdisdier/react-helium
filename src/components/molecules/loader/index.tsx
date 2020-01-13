@@ -4,6 +4,7 @@ import injectSheet, { ClassNameMap } from 'react-jss';
 import {
   IconBarCenter,
   IconBarTop,
+  IconDuo,
   IconSpinner,
   IconSpinnerFill
 } from '../../atoms/icons';
@@ -23,12 +24,13 @@ type Props = {
   spinner?: boolean;
   barCenter?: boolean;
   barTop?: boolean;
+  dots?: boolean;
 };
 
 export const Loader: React.FC<Props> = ({
   classes,
   text = '',
-  size = null || undefined,
+  size = 32 || undefined,
   slow = false,
   moderate = false,
   fast = false,
@@ -37,7 +39,8 @@ export const Loader: React.FC<Props> = ({
   spinnerFill = true,
   spinner = false,
   barCenter = false,
-  barTop = false
+  barTop = false,
+  dots = false
 }) => {
   /**
    * Speed
@@ -64,6 +67,7 @@ export const Loader: React.FC<Props> = ({
   if (spinner) Loader = <IconSpinner {...iconProps} />;
   if (barCenter) Loader = <IconBarCenter {...iconProps} />;
   if (barTop) Loader = <IconBarTop {...iconProps} />;
+  if (dots) Loader = <IconDuo {...iconProps} />;
 
   const rootProps = {
     className: classes.root,

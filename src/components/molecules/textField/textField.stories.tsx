@@ -15,7 +15,7 @@ import {
   STATUS_VALID
 } from '../../../constant/status';
 
-import TextFieldReadme from './text.field.README.md';
+import TextFieldReadme from './README.md';
 
 interface Props {
   label: string;

@@ -1,26 +1,26 @@
-import React from "react";
-import { shallow } from "enzyme";
-import { classesFromStyles } from "../../../../../utils/tests";
+import React from 'react';
+import { shallow } from 'enzyme';
+import { classesFromStyles } from '../../../../../utils/tests';
 
-import { IconDuo } from ".";
+import { IconDuo } from '.';
 
-import styles from "./iconDuo.style";
+import styles from './iconDuo.style';
 
 const classes = classesFromStyles(styles);
 
-describe("IconDuo", () => {
+describe('IconDuo', () => {
   let props;
 
   beforeEach(() => {
     props = {
       classes,
       size: 32,
-      speed: "0.5",
-      repeatCount: "indefinite"
+      speed: '0.5',
+      repeatCount: 'indefinite'
     };
   });
 
-  it("renders a IconDuo", () => {
+  it('renders a IconDuo', () => {
     const wrapper = shallow(<IconDuo {...props} />);
     expect(wrapper).toMatchInlineSnapshot(`
       <div
