@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/alexdisdier/react-helium/compare/v1.4.0...v1.5.0) (2020-01-13)
+
+
+### Features
+
+* **loader:** add loader ([49771d1](https://github.com/alexdisdier/react-helium/commit/49771d1791d99297237ad5b4321b925e6ea2db69))
+
 # [1.4.0](https://github.com/alexdisdier/react-helium/compare/v1.3.0...v1.4.0) (2020-01-05)
 
 
