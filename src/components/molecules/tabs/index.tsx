@@ -22,6 +22,15 @@ export const Tabs: React.FC<Props> = ({ classes, tabs, centered = false }) => {
   // need to get position left and width of first element on render
   const [dimensions, setDimensions] = React.useState({ left: 0, width: 50 });
 
+  const tabRef: any | null = React.useRef(null);
+
+  // React.useEffect(() => {
+  //   setDimensions({
+  //     left: tabRef.current.offsetLeft,
+  //     width: tabRef.current.offsetWidth
+  //   });
+  // }, []);
+
   const handleClickItem = (event, tab) => {
     setActiveTab(tab);
 
@@ -39,7 +48,7 @@ export const Tabs: React.FC<Props> = ({ classes, tabs, centered = false }) => {
   return (
     <div>
       <ol className={classes.root}>
-        <div className={classes.tabsWrapper}>
+        <div ref={tabRef}>
           {tabs &&
             tabs.map(tab => {
               const { label } = tab;
