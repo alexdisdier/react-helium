@@ -4,7 +4,7 @@ import injectSheet, { ClassNameMap } from 'react-jss';
 import {
   IconBarCenter,
   IconBarTop,
-  IconDuo,
+  IconDots,
   IconSpinner,
   IconSpinnerFill
 } from '../../atoms/icons';
@@ -67,7 +67,7 @@ export const Loader: React.FC<Props> = ({
   if (spinner) Loader = <IconSpinner {...iconProps} />;
   if (barCenter) Loader = <IconBarCenter {...iconProps} />;
   if (barTop) Loader = <IconBarTop {...iconProps} />;
-  if (dots) Loader = <IconDuo {...iconProps} />;
+  if (dots) Loader = <IconDots {...iconProps} />;
 
   const rootProps = {
     className: classes.root,

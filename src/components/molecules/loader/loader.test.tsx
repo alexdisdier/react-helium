@@ -11,7 +11,7 @@ const classes = classesFromStyles(styles);
 jest.mock('../../atoms/icons', () => ({
   IconBarCenter: 'IconBarCenter',
   IconBarTop: 'IconBarTop',
-  IconDuo: 'IconDuo',
+  IconDots: 'IconDots',
   IconSpinner: 'IconSpinner',
   IconSpinnerFIll: 'IconSpinnerFIll'
 }));

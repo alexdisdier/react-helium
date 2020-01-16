@@ -1,7 +1,7 @@
 export { default as IconBarCenter } from './iconLoader/iconBarCenter';
 export { default as IconBarTop } from './iconLoader/iconBarTop';
 export { default as IconBullets } from './iconBullets';
-export { default as IconDuo } from './iconLoader/iconDuo';
+export { default as IconDots } from './iconLoader/iconDots';
 export { default as IconFormatBold } from './iconFormatBold';
 export { default as IconFormatItalic } from './iconFormatItalic';
 export { default as IconFormatNumbers } from './iconFormatNumbers';

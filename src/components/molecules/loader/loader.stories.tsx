@@ -27,8 +27,8 @@ const typeOptions = {
   spinnerFill: 'spinnerFill',
   spinner: 'spinner',
   barCenter: 'barCenter',
-  barTop: 'barTop'
-  // dots: 'dots'
+  barTop: 'barTop',
+  dots: 'dots'
 };
 
 stories.add('Default ', () => {
@@ -44,7 +44,7 @@ stories.add('Default ', () => {
           spinner={typeValues === typeOptions.spinner}
           barCenter={typeValues === typeOptions.barCenter}
           barTop={typeValues === typeOptions.barTop}
-          // dots={typeValues === typeOptions.dots}
+          dots={typeValues === typeOptions.dots}
           text={text('Text', 'slow')}
           size={number('Size', 100)}
           slow
