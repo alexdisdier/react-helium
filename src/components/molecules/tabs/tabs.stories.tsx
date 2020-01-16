@@ -19,7 +19,7 @@ const tabs = [
     )
   },
   {
-    label: 'Tabulation 2',
+    label: 'Tab 2',
     component: (
       <div>
         <p>To operate the tab key on a typewriter; to tab.</p>
@@ -27,7 +27,7 @@ const tabs = [
     )
   },
   {
-    label: 'Tabulation 3',
+    label: 'Tabulation 333333',
     component: (
       <div>
         <p>

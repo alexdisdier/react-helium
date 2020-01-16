@@ -8,7 +8,7 @@ interface Props {
   centered?: boolean;
   activeTab: string;
   label: string;
-  onClick: (label) => void;
+  onClick: (event, label) => void;
 }
 
 export const Tab: React.FC<Props> = ({
@@ -17,44 +17,19 @@ export const Tab: React.FC<Props> = ({
   label,
   onClick
 }) => {
-  const handleClick = () => onClick(label);
+  const handleClick = event => onClick(event, label);
 
-  const active = activeTab === label;
-
-  const inputProps = {
-    className: classes.input,
-    checked: active,
-    type: 'radio',
-    id: label,
-    name: 'tab-control'
-  };
-
-  const liProps = {
-    className: classes.li,
-    'data-is-active': active,
+  const rootProps = {
+    className: classes.root,
+    'data-is-active': activeTab === label,
     onClick: handleClick
-  };
-
-  const labelProps = {
-    className: classes.label,
-    role: 'button'
   };
 
   return (
     <>
-      <input {...inputProps} />
-      <li {...liProps}>
-        <label {...labelProps} htmlFor={label}>
-          {label}
-        </label>
-      </li>
-      <div className={classes.slider}>
-        <div className={classes.indicator} />
-      </div>
+      <li {...rootProps}>{label}</li>
     </>
   );
 };
 
 export default injectSheet(styles)(Tab);
-
-// https://codepen.io/woranov/pen/NRqLWK/

@@ -19,8 +19,17 @@ export const Tabs: React.FC<Props> = ({ classes, tabs, centered = false }) => {
   const [activeTab, setActiveTab] = React.useState(
     (tabs && tabs[0].label) || ''
   );
+  // need to get position left and width of first element on render
+  const [dimensions, setDimensions] = React.useState({ left: 0, width: 50 });
 
-  const handleClickItem = tab => setActiveTab(tab);
+  const handleClickItem = (event, tab) => {
+    setActiveTab(tab);
+
+    setDimensions({
+      left: event.currentTarget.getBoundingClientRect().left - 39,
+      width: event.currentTarget.getBoundingClientRect().width
+    });
+  };
 
   const contentWrapperProps = {
     className: classes.contentWrapper,
@@ -30,25 +39,32 @@ export const Tabs: React.FC<Props> = ({ classes, tabs, centered = false }) => {
   return (
     <div>
       <ol className={classes.root}>
-        {tabs &&
-          tabs.map(tab => {
-            const { label } = tab;
+        <div className={classes.tabsWrapper}>
+          {tabs &&
+            tabs.map(tab => {
+              const { label } = tab;
 
-            return (
-              <Tab
-                activeTab={activeTab}
-                key={label}
-                label={label}
-                onClick={handleClickItem}
-              />
-            );
-          })}
+              return (
+                <Tab
+                  activeTab={activeTab}
+                  key={label}
+                  label={label}
+                  onClick={handleClickItem}
+                />
+              );
+            })}
+        </div>
+        <div
+          style={{ left: dimensions.left, width: dimensions.width }}
+          className={classes.slider}
+        />
       </ol>
+
       <div {...contentWrapperProps}>
         {tabs &&
           tabs.map(tab => {
             if (tab.label !== activeTab) return undefined;
-            return tab.component;
+            return <div key={tab.label}>{tab.component}</div>;
           })}
       </div>
     </div>
