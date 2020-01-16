@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/alexdisdier/react-helium/compare/v1.5.0...v1.6.0) (2020-01-16)
+
+
+### Features
+
+* **tabs:** add new tabs component ([fe9f32b](https://github.com/alexdisdier/react-helium/commit/fe9f32be418fb7608e37c6de2964875d336f15c5))
+
 # [1.5.0](https://github.com/alexdisdier/react-helium/compare/v1.4.0...v1.5.0) (2020-01-13)
 
 
