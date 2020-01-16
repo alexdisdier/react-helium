@@ -5,9 +5,8 @@ import styles from './tab.style';
 
 interface Props {
   classes: ClassNameMap<string>;
-  centered?: boolean;
-  activeTab: string;
   label: string;
+  activeTab: string;
   onClick: (event, label) => void;
 }
 

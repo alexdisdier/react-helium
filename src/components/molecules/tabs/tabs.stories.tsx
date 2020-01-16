@@ -4,7 +4,15 @@ import { withKnobs, boolean } from '@storybook/addon-knobs';
 
 import Tabs from '.';
 
+import README from './README.md';
+
 const stories = storiesOf('Molecules/Tabs', module).addDecorator(withKnobs);
+
+stories.addParameters({
+  readme: {
+    content: README
+  }
+});
 
 const tabs = [
   {
@@ -19,7 +27,7 @@ const tabs = [
     )
   },
   {
-    label: 'Tab 2',
+    label: 'Tabulation 2',
     component: (
       <div>
         <p>To operate the tab key on a typewriter; to tab.</p>
@@ -27,7 +35,7 @@ const tabs = [
     )
   },
   {
-    label: 'Tabulation 333333',
+    label: 'Tabulation 3',
     component: (
       <div>
         <p>

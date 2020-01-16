@@ -25,6 +25,7 @@ describe('IconDots', () => {
     expect(wrapper).toMatchInlineSnapshot(`
       <svg
         aria-hidden="true"
+        className="class-from-style-root"
         fillRule="evenodd"
         style={
           Object {

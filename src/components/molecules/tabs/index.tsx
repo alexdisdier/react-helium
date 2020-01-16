@@ -1,6 +1,9 @@
 import * as React from 'react';
 import injectSheet, { ClassNameMap } from 'react-jss';
 
+// Used to set the first tab width and the tabs left position according to wrapper
+import { TAB_MARGIN_RIGHT, WRAPPER_PADDING_LEFT } from '../../../constant';
+
 import Tab from './tab';
 
 import styles from './tabs.style';
@@ -19,23 +22,38 @@ export const Tabs: React.FC<Props> = ({ classes, tabs, centered = false }) => {
   const [activeTab, setActiveTab] = React.useState(
     (tabs && tabs[0].label) || ''
   );
-  // need to get position left and width of first element on render
-  const [dimensions, setDimensions] = React.useState({ left: 0, width: 50 });
 
+  const [sliderDimensions, setSliderDimensions] = React.useState({
+    left: 0,
+    width: 0
+  });
+
+  // Individual ref to get first width
   const tabRef: any | null = React.useRef(null);
 
-  // React.useEffect(() => {
-  //   setDimensions({
-  //     left: tabRef.current.offsetLeft,
-  //     width: tabRef.current.offsetWidth
-  //   });
-  // }, []);
+  // Wrapper ref to get left position value
+  const wrapperRef: any | null = React.useRef(null);
 
-  const handleClickItem = (event, tab) => {
-    setActiveTab(tab);
+  React.useEffect(() => {
+    setSliderDimensions({
+      left: 0,
+      width: tabRef.current.offsetWidth - TAB_MARGIN_RIGHT
+    });
+  }, []);
 
-    setDimensions({
-      left: event.currentTarget.getBoundingClientRect().left - 39,
+  const handleClickItem = (event, label) => {
+    setActiveTab(label);
+
+    /**
+     * We log the left position value of the active tab and
+     * the tabs' wrapper's left position.
+     * We should set it when onclick is triggered; as the user can resize its window.
+     */
+    const tabLeftPosition = event.currentTarget.getBoundingClientRect().left;
+    const wrapperLeftPosition = wrapperRef.current.offsetLeft;
+
+    setSliderDimensions({
+      left: tabLeftPosition - wrapperLeftPosition - WRAPPER_PADDING_LEFT,
       width: event.currentTarget.getBoundingClientRect().width
     });
   };
@@ -46,37 +64,48 @@ export const Tabs: React.FC<Props> = ({ classes, tabs, centered = false }) => {
   };
 
   return (
-    <div>
-      <ol className={classes.root}>
-        <div ref={tabRef}>
-          {tabs &&
-            tabs.map(tab => {
-              const { label } = tab;
+    <>
+      <ol ref={wrapperRef} className={classes.root}>
+        <div className={classes.tabsWrapper}>
+          {tabs.map((tab, index) => {
+            const { label } = tab;
 
-              return (
+            // Need only the first ref to set the initial slider width
+            const firstTabRef =
+              index === 0
+                ? {
+                    ref: tabRef
+                  }
+                : null;
+
+            return (
+              <div key={label} {...firstTabRef}>
                 <Tab
                   activeTab={activeTab}
                   key={label}
                   label={label}
                   onClick={handleClickItem}
                 />
-              );
-            })}
+              </div>
+            );
+          })}
         </div>
         <div
-          style={{ left: dimensions.left, width: dimensions.width }}
+          style={{ left: sliderDimensions.left, width: sliderDimensions.width }}
           className={classes.slider}
         />
       </ol>
 
       <div {...contentWrapperProps}>
-        {tabs &&
+        {Array.isArray(tabs) &&
           tabs.map(tab => {
             if (tab.label !== activeTab) return undefined;
-            return <div key={tab.label}>{tab.component}</div>;
+            return (
+              <React.Fragment key={tab.label}>{tab.component}</React.Fragment>
+            );
           })}
       </div>
-    </div>
+    </>
   );
 };
 
