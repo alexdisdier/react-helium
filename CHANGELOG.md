@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/alexdisdier/react-helium/compare/v1.6.0...v1.6.1) (2020-01-17)
+
+
+### Performance Improvements
+
+* fix storybook build & add deploy gh-pages ([3ca5acb](https://github.com/alexdisdier/react-helium/commit/3ca5acb28f44f848a15a40186ad0193e504692aa))
+
 # [1.6.0](https://github.com/alexdisdier/react-helium/compare/v1.5.0...v1.6.0) (2020-01-16)
 
 
