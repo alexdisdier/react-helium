@@ -50,7 +50,7 @@ export const Tabs: React.FC<Props> = ({ classes, tabs, centered = false }) => {
      * We should set it when onclick is triggered; as the user can resize its window.
      */
     const tabLeftPosition = event.currentTarget.getBoundingClientRect().left;
-    const wrapperLeftPosition = wrapperRef.current.offsetLeft;
+    const wrapperLeftPosition = wrapperRef.current.getBoundingClientRect().left;
 
     setSliderDimensions({
       left: tabLeftPosition - wrapperLeftPosition - WRAPPER_PADDING_LEFT,

@@ -33,6 +33,8 @@
     "postbuild": "yarn run copy-files",
     "build:watch": "yarn build -w",
     "build-storybook": "build-storybook",
+    "clean-storybook": "rm -rf storybook-static",
+    "deploy-storybook": "yarn build-storybook && yarn storybook-to-ghpages -- --existing-output-dir=storybook-static",
     "semantic-release": "semantic-release"
   },
   "dependencies": {
@@ -58,6 +60,7 @@
     "@storybook/addon-links": "^5.2.4",
     "@storybook/addons": "^5.2.4",
     "@storybook/react": "^5.2.4",
+    "@storybook/storybook-deployer": "^2.8.1",
     "@types/draft-js": "^0.10.37",
     "@types/enzyme": "^3.10.3",
     "@types/enzyme-adapter-react-16": "^1.0.5",
