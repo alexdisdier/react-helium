@@ -50,12 +50,9 @@ addParameters({
 
 addDecorator(addReadme);
 
-const generateClassName = (rule, styleSheet) =>
-  `${styleSheet.options.classNamePrefix}-${rule.key}`;
-
 addDecorator(story => (
   <ThemeProvider theme={theme}>
-    <JssProvider generateClassName={generateClassName}>{story()}</JssProvider>
+    {story()}
   </ThemeProvider>
 ));
 
