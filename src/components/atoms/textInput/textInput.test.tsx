@@ -1,5 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
+
 import { classesFromStyles } from '../../../utils/tests';
 
 import { TextInput } from '.';
@@ -40,32 +42,27 @@ describe('TextInput', () => {
   });
 
   it('renders full component', () => {
-    const wrapper = shallow(<TextInput {...props} />);
-    expect(wrapper).toMatchInlineSnapshot(`
-      <Fragment>
-        <div
-          className="class-from-style-root"
-          data-has-focus={false}
-          data-has-value={true}
-          data-is-caution={false}
-          data-is-disabled={false}
-          data-is-invalid={false}
-          data-is-required={false}
-          data-is-valid={false}
-        >
-          <input
-            className="class-from-style-input"
-            disabled={false}
-            id="id"
-            onBlur={[Function]}
-            onChange={[MockFunction]}
-            onFocus={[Function]}
-            placeholder="placeholder"
-            type="text"
-            value="Hello world"
-          />
-        </div>
-      </Fragment>
+    const { container } = render(<TextInput {...props} />);
+    // const wrapper = shallow(<TextInput {...props} />);
+    expect(container.firstChild).toMatchInlineSnapshot(`
+      <div
+        class="class-from-style-root"
+        data-has-focus="false"
+        data-has-value="true"
+        data-is-caution="false"
+        data-is-disabled="false"
+        data-is-invalid="false"
+        data-is-required="false"
+        data-is-valid="false"
+      >
+        <input
+          class="class-from-style-input"
+          id="id"
+          placeholder="placeholder"
+          type="text"
+          value="Hello world"
+        />
+      </div>
     `);
   });
 

@@ -1,10 +1,10 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import { classesFromStyles } from '../../../utils/tests';
+import { render } from '@testing-library/react';
 
 import { ErrorMessage } from '.';
 
 import styles from './errorMessage.style';
+import { classesFromStyles } from '../../../utils/tests';
 
 const classes = classesFromStyles(styles);
 
@@ -19,10 +19,10 @@ describe('ErrorMessage', () => {
   });
 
   it('renders full component', () => {
-    const wrapper = shallow(<ErrorMessage {...props} />);
-    expect(wrapper).toMatchInlineSnapshot(`
+    const { container } = render(<ErrorMessage {...props} />);
+    expect(container.firstChild).toMatchInlineSnapshot(`
       <div
-        className="class-from-style-content"
+        class="class-from-style-content"
       >
         I'm an error
       </div>
