@@ -14,7 +14,7 @@ By default, the tabs' content is aligned to the left.
 ##### Import
 
 ```js
-import { Tabs } from "@stratumn/atomic";
+import { Tabs } from "react-helium";
 ```
 
 ##### Usage
