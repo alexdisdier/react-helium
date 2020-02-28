@@ -3,8 +3,7 @@ import withStyles, { WithStylesProps } from 'react-jss';
 
 import styles from './button.style';
 
-type Props = {
-  classes: ClassNameMap<string>;
+interface Props extends WithStylesProps<typeof styles> {
   children: React.ReactNode;
   onClick?: () => void;
   primary?: boolean;
@@ -16,9 +15,11 @@ type Props = {
   round?: boolean;
   inverted?: boolean;
   vector?: React.ReactNode;
-} & React.ButtonHTMLAttributes<HTMLButtonElement>;
+}
 
-export const Button: React.FC<Props> = ({
+export const Button: React.FC<
+  Props & React.ButtonHTMLAttributes<HTMLButtonElement>
+> = ({
   classes,
   children,
   onClick = () => {},
@@ -58,4 +59,4 @@ export const Button: React.FC<Props> = ({
   );
 };
 
-export default injectSheet(styles)(Button);
+export default withStyles(styles)(Button);
