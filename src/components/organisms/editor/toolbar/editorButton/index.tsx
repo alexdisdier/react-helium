@@ -21,9 +21,11 @@ interface Props extends WithStylesProps<typeof styles> {
   active?: boolean;
   buttonType: string;
   disabled?: boolean;
-} & React.ButtonHTMLAttributes<HTMLButtonElement>;
+}
 
-export const EditorButton: React.FC<Props> = ({
+export const EditorButton: React.FC<
+  Props & React.ButtonHTMLAttributes<HTMLButtonElement>
+> = ({
   classes,
   icon = null,
   onClick = () => {},

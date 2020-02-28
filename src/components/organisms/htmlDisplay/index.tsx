@@ -5,7 +5,7 @@ import displayHTML from '../../../utils/displayHTML';
 
 import styles from './htmlDisplay.style';
 
-interface Props {
+interface Props extends WithStylesProps<typeof styles> {
   htmlData: {};
 }
 

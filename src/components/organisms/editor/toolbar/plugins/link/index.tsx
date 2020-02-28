@@ -5,7 +5,7 @@ import { Entity } from 'draft-js';
 
 import styles from './link.style';
 
-interface Props {
+interface Props extends WithStylesProps<typeof styles> {
   entityKey: string;
   children: React.ReactNode;
 }

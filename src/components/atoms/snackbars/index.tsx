@@ -8,12 +8,12 @@ import {
 
 import styles from './snackbars.style';
 
-interface SnackbarsContextProps {
+interface SnackbarsContextProps extends WithStylesProps<typeof styles> {
   Consumer: any;
   Provider: any;
 }
 
-interface Props {
+interface Props extends WithStylesProps<typeof styles> {
   children: React.ReactNode;
   successSnackbar?: (x: string, y?: string, z?: Function) => void;
   errorSnackbar?: (x: string, y: string) => void;

@@ -8,7 +8,7 @@ import Tab from './tab';
 
 import styles from './tabs.style';
 
-interface Props {
+interface Props extends WithStylesProps<typeof styles> {
   tabs: Array<{
     label: string;
     component: React.ReactNode;

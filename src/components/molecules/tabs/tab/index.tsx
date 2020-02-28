@@ -3,7 +3,7 @@ import withStyles, { WithStylesProps } from 'react-jss';
 
 import styles from './tab.style';
 
-interface Props {
+interface Props extends WithStylesProps<typeof styles> {
   label: string;
   activeTab: string;
   onClick: (event, label) => void;

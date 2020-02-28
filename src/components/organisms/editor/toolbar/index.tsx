@@ -30,7 +30,7 @@ import EditorButton from './editorButton';
 
 import styles from './toolbar.style';
 
-interface Props {
+interface Props extends WithStylesProps<typeof styles> {
   editorState: EditorState;
   onToggleBlockType?: any;
   onToggleInlineType?: any;

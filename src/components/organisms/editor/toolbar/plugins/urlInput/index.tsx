@@ -3,7 +3,7 @@ import withStyles, { WithStylesProps } from 'react-jss';
 
 import styles from './urlInput.style';
 
-interface Props {
+interface Props extends WithStylesProps<typeof styles> {
   onLinkInputKeyDown: (e) => void;
   urlInputChange: (e) => void;
   handleCollapse: () => void;

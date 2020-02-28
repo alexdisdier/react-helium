@@ -3,8 +3,7 @@ import withStyles, { WithStylesProps } from 'react-jss';
 
 import styles from './image.style';
 
-interface Props {
-  classes?: ClassNameMap<string> | undefined;
+interface Props extends WithStylesProps<typeof styles> {
   src: string;
 }
 

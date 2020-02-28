@@ -11,7 +11,7 @@ import {
 
 import styles from './textInput.style';
 
-interface Props {
+interface Props extends WithStylesProps<typeof styles> {
   id?: string;
   value: string;
   type: 'text' | 'password' | 'search';

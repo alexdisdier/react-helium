@@ -3,7 +3,7 @@ import withStyles, { WithStylesProps } from 'react-jss';
 
 import styles from './label.style';
 
-interface Props {
+interface Props extends WithStylesProps<typeof styles> {
   text: string;
   forId: string;
   children: React.ReactNode;

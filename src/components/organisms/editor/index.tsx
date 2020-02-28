@@ -22,7 +22,7 @@ import Toolbar from './toolbar';
 
 import styles from './editor.style';
 
-interface Props {
+interface Props extends WithStylesProps<typeof styles> {
   placeholder?: string;
   disabled?: boolean;
   onChange: (e) => void;
