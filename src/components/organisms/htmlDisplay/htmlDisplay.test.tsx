@@ -1,19 +1,19 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { classesFromStyles } from '../../../utils/tests';
+// import { classesFromStyles } from '../../../utils/tests';
 
 import { HtmlDisplay } from '.';
 
-import styles from './htmlDisplay.style';
+// import useStyles from './htmlDisplay.style';
 
-const classes = classesFromStyles(styles);
+// const classes = classesFromStyles(styles);
 
 describe('Link', () => {
   let props;
 
   beforeEach(() => {
     props = {
-      classes,
+      // classes,
       htmlData: {
         test: ''
       }
@@ -24,7 +24,7 @@ describe('Link', () => {
     const wrapper = shallow(<HtmlDisplay {...props} />);
     expect(wrapper).toMatchInlineSnapshot(`
       <div
-        className="class-from-style-readOnly"
+        className="readOnly-0-2-1"
         dangerouslySetInnerHTML={
           Object {
             "__html": "[object Object]",

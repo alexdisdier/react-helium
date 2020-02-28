@@ -1,12 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { classesFromStyles } from '../../../utils/tests';
+// import { classesFromStyles } from '../../../utils/tests';
 
 import { Loader } from '.';
 
-import styles from './loader.style';
+// import useStyles from './loader.style';
 
-const classes = classesFromStyles(styles);
+// const classes = classesFromStyles(styles);
 
 jest.mock('../../atoms/icons', () => ({
   IconBarCenter: 'IconBarCenter',
@@ -21,7 +21,7 @@ describe('Loader', () => {
 
   beforeEach(() => {
     props = {
-      classes,
+      // classes,
       text: '',
       size: 32,
       slow: false,
@@ -43,7 +43,7 @@ describe('Loader', () => {
 
     expect(wrapper).toMatchInlineSnapshot(`
       <div
-        className="class-from-style-root"
+        className="root-0-2-1"
         data-is-overlay={false}
       >
         <Component
@@ -53,7 +53,7 @@ describe('Loader', () => {
           text="loading"
         />
         <span
-          className="class-from-style-text"
+          className="text-0-2-2 text-d0-0-2-3"
         >
           loading
         </span>
@@ -70,7 +70,7 @@ describe('Loader', () => {
 
     expect(wrapper).toMatchInlineSnapshot(`
       <div
-        className="class-from-style-root"
+        className="root-0-2-1"
         data-is-overlay={false}
       >
         <IconSpinner
@@ -80,7 +80,7 @@ describe('Loader', () => {
           text=""
         />
         <span
-          className="class-from-style-text"
+          className="text-0-2-2 text-d1-0-2-4"
         />
       </div>
     `);
@@ -95,7 +95,7 @@ describe('Loader', () => {
 
     expect(wrapper).toMatchInlineSnapshot(`
       <div
-        className="class-from-style-root"
+        className="root-0-2-1"
         data-is-overlay={false}
       >
         <IconBarCenter
@@ -105,7 +105,7 @@ describe('Loader', () => {
           text=""
         />
         <span
-          className="class-from-style-text"
+          className="text-0-2-2 text-d2-0-2-5"
         />
       </div>
     `);
@@ -118,7 +118,7 @@ describe('Loader', () => {
 
     expect(wrapper).toMatchInlineSnapshot(`
       <div
-        className="class-from-style-root"
+        className="root-0-2-1"
         data-is-overlay={false}
       >
         <IconBarTop
@@ -128,7 +128,7 @@ describe('Loader', () => {
           text=""
         />
         <span
-          className="class-from-style-text"
+          className="text-0-2-2 text-d3-0-2-6"
         />
       </div>
     `);

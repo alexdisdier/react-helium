@@ -1,4 +1,6 @@
-export default {
+import { createUseStyles } from 'react-jss';
+
+export default createUseStyles(() => ({
   root: {
     display: 'block',
     fill: 'currentColor',
@@ -6,4 +8,4 @@ export default {
     height: 'auto',
     transition: 'color 100ms linear 0ms'
   }
-};
+}));

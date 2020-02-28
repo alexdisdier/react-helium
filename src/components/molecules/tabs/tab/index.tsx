@@ -1,21 +1,17 @@
 import * as React from 'react';
-import injectSheet, { ClassNameMap } from 'react-jss';
+// import { WithStylesProps } from 'react-jss';
 
-import styles from './tab.style';
+import useStyles from './tab.style';
 
 interface Props {
-  classes: ClassNameMap<string>;
+  // classes: WithStylesProps<any>;
   label: string;
   activeTab: string;
   onClick: (event, label) => void;
 }
 
-export const Tab: React.FC<Props> = ({
-  classes,
-  activeTab,
-  label,
-  onClick
-}) => {
+export const Tab: React.FC<Props> = ({ activeTab, label, onClick }) => {
+  const classes = useStyles();
   const handleClick = event => onClick(event, label);
 
   const rootProps = {
@@ -31,4 +27,4 @@ export const Tab: React.FC<Props> = ({
   );
 };
 
-export default injectSheet(styles)(Tab);
+export default Tab;

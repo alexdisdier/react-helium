@@ -1,5 +1,5 @@
 import React from 'react';
-import injectSheet, { ClassNameMap } from 'react-jss';
+// import { WithStylesProps } from 'react-jss';
 import { EditorState } from 'draft-js';
 
 import {
@@ -28,10 +28,10 @@ import {
 
 import EditorButton from './editorButton';
 
-import styles from './toolbar.style';
+import useStyles from './toolbar.style';
 
 interface Props {
-  classes: ClassNameMap<string>;
+  // classes: WithStylesProps<any>;
   editorState: EditorState;
   onToggleBlockType?: any;
   onToggleInlineType?: any;
@@ -43,7 +43,6 @@ interface Props {
 }
 
 export const Toolbar: React.FC<Props> = ({
-  classes,
   editorState,
   onToggleBlockType = () => {},
   onToggleInlineType = () => {},
@@ -53,6 +52,8 @@ export const Toolbar: React.FC<Props> = ({
   disabled = false,
   isLinkButtonActive = false
 }) => {
+  const classes = useStyles();
+
   const rootProps = {
     className: classes.root,
     'data-is-disabled': disabled
@@ -119,4 +120,4 @@ export const Toolbar: React.FC<Props> = ({
   );
 };
 
-export default injectSheet(styles)(Toolbar);
+export default Toolbar;

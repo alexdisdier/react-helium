@@ -1,17 +1,19 @@
 import React from 'react';
-import injectSheet, { ClassNameMap } from 'react-jss';
+// import { WithStylesProps } from 'react-jss';
 
 import { Entity } from 'draft-js';
 
-import styles from './link.style';
+import useStyles from './link.style';
 
 interface Props {
-  classes: ClassNameMap<string>;
+  // classes: WithStylesProps<any>;
   entityKey: string;
   children: React.ReactNode;
 }
 
-export const Link: React.FC<Props> = ({ classes, entityKey, children }) => {
+export const Link: React.FC<Props> = ({ entityKey, children }) => {
+  const classes = useStyles();
+
   const { url } = Entity.get(entityKey).getData();
   return (
     <a
@@ -26,4 +28,4 @@ export const Link: React.FC<Props> = ({ classes, entityKey, children }) => {
   );
 };
 
-export default injectSheet(styles)(Link);
+export default Link;

@@ -1,22 +1,22 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import { classesFromStyles } from '../../../utils/tests';
+// import { classesFromStyles } from '../../../utils/tests';
 
 import { Snackbars, withSnackbarsContext } from '.';
 
-import styles from './snackbars.style';
+// import useStyles from './snackbars.style';
 
 jest.useFakeTimers();
 
-const classes = classesFromStyles(styles);
+// const classes = classesFromStyles(styles);
 
 describe('Snackbars', () => {
   let props;
 
   beforeEach(() => {
     props = {
-      classes,
+      // classes,
       config: {
         backgroundColor: 'red',
         color: 'white',
@@ -51,7 +51,7 @@ describe('Snackbars', () => {
           </div>
         </div>,
         <div
-          className="class-from-style-root"
+          className="root-0-2-1"
           data-has-error={false}
           data-is-bottomleft={false}
           data-is-ready={false}
@@ -99,7 +99,7 @@ describe('Snackbars', () => {
           </div>
         </div>,
         <div
-          className="class-from-style-root"
+          className="root-0-2-1"
           data-has-error={false}
           data-is-bottomleft={false}
           data-is-ready={false}
@@ -120,7 +120,7 @@ describe('Snackbars', () => {
             A successful message
           </div>
           <button
-            className="class-from-style-undoClickBtn"
+            className="undoClickBtn-0-2-3"
             onClick={[Function]}
           >
             undo
@@ -153,7 +153,7 @@ describe('Snackbars', () => {
           </div>
         </div>,
         <div
-          className="class-from-style-root"
+          className="root-0-2-1"
           data-has-error={true}
           data-is-bottomleft={false}
           data-is-ready={false}

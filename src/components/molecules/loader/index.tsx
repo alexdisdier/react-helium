@@ -1,5 +1,5 @@
 import React from 'react';
-import injectSheet, { ClassNameMap } from 'react-jss';
+// import { WithStylesProps } from 'react-jss';
 
 import {
   IconBarCenter,
@@ -9,10 +9,10 @@ import {
   IconSpinnerFill
 } from '../../atoms/icons';
 
-import styles from './loader.style';
+import useStyles from './loader.style';
 
 type Props = {
-  classes: ClassNameMap<string>;
+  // classes: WithStylesProps<any>;
   text?: string;
   size?: number;
   slow?: boolean;
@@ -28,7 +28,6 @@ type Props = {
 };
 
 export const Loader: React.FC<Props> = ({
-  classes,
   text = '',
   size = 32 || undefined,
   slow = false,
@@ -42,6 +41,7 @@ export const Loader: React.FC<Props> = ({
   barTop = false,
   dots = false
 }) => {
+  const classes = useStyles(size);
   /**
    * Speed
    */
@@ -82,4 +82,4 @@ export const Loader: React.FC<Props> = ({
   );
 };
 
-export default injectSheet(styles)(Loader);
+export default Loader;

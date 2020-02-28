@@ -1,10 +1,10 @@
 import React from 'react';
-import injectSheet, { ClassNameMap } from 'react-jss';
+// import { WithStylesProps } from 'react-jss';
 
-import styles from './label.style';
+import useStyles from './label.style';
 
 interface Props {
-  classes: ClassNameMap<string>;
+  // classes: WithStylesProps<any>;
   text: string;
   forId: string;
   children: React.ReactNode;
@@ -13,13 +13,14 @@ interface Props {
 }
 
 export const Label: React.SFC<Props> = ({
-  classes,
   text,
   forId,
   children,
   required = false,
   hideLabel
 }) => {
+  const classes = useStyles();
+
   const rootProps = {
     className: classes.root,
     'data-input-is-required': required
@@ -37,4 +38,4 @@ export const Label: React.SFC<Props> = ({
   );
 };
 
-export default injectSheet(styles)(Label);
+export default Label;

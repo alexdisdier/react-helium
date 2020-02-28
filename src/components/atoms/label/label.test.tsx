@@ -1,19 +1,19 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { classesFromStyles } from '../../../utils/tests';
+// import { classesFromStyles } from '../../../utils/tests';
 
 import { Label } from '.';
 
-import styles from './label.style';
+// import useStyles from './label.style';
 
-const classes = classesFromStyles(styles);
+// const classes = classesFromStyles(styles);
 
 describe('Label', () => {
   let props;
 
   beforeEach(() => {
     props = {
-      classes,
+      // classes,
       text: 'Label text',
       forId: 'input_id_001',
       children: <div>A child</div>,
@@ -26,12 +26,12 @@ describe('Label', () => {
     const wrapper = shallow(<Label {...props}>Hello world</Label>);
     expect(wrapper).toMatchInlineSnapshot(`
       <label
-        className="class-from-style-root"
+        className="root-0-2-1"
         data-input-is-required={false}
         htmlFor="input_id_001"
       >
         <div
-          className="class-from-style-label"
+          className="label-0-2-2"
         >
           <span>
             Label text
@@ -47,12 +47,12 @@ describe('Label', () => {
     const wrapper = shallow(<Label {...props}>Hello world</Label>);
     expect(wrapper).toMatchInlineSnapshot(`
       <label
-        className="class-from-style-root"
+        className="root-0-2-1"
         data-input-is-required={true}
         htmlFor="input_id_001"
       >
         <div
-          className="class-from-style-label"
+          className="label-0-2-2"
         >
           <span>
             Label text
@@ -68,7 +68,7 @@ describe('Label', () => {
     const wrapper = shallow(<Label {...props}>Hello world</Label>);
     expect(wrapper).toMatchInlineSnapshot(`
       <label
-        className="class-from-style-root"
+        className="root-0-2-1"
         data-input-is-required={false}
         htmlFor="input_id_001"
       >

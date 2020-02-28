@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import injectSheet, { ClassNameMap } from 'react-jss';
+// import { WithStylesProps } from 'react-jss';
 
 import ErrorMessage from '../errorMessage';
 
@@ -9,10 +9,10 @@ import {
   STATUS_VALID
 } from '../../../constant/status';
 
-import styles from './textInput.style';
+import useStyles from './textInput.style';
 
 interface Props {
-  classes: ClassNameMap<string>;
+  // classes: WithStylesProps<any>;
   id?: string;
   value: string;
   type: 'text' | 'password' | 'search';
@@ -28,7 +28,6 @@ interface Props {
 }
 
 export const TextInput: React.FC<Props> = ({
-  classes,
   id = null,
   placeholder = null,
   value,
@@ -42,6 +41,7 @@ export const TextInput: React.FC<Props> = ({
   required = false,
   errorMessage = ''
 }) => {
+  const classes = useStyles();
   const [hasFocus, setHasFocus] = useState(false);
   const [focusCounter, setFocusCounter] = useState(0);
   let timer;
@@ -106,4 +106,4 @@ export const TextInput: React.FC<Props> = ({
   );
 };
 
-export default injectSheet(styles)(TextInput);
+export default TextInput;

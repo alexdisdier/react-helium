@@ -1,4 +1,6 @@
-export default theme => ({
+import { createUseStyles } from 'react-jss';
+
+export default createUseStyles((theme: any) => ({
   root: {
     display: 'flex',
     flexGrow: 1,
@@ -47,4 +49,4 @@ export default theme => ({
       color: theme.grey4
     }
   }
-});
+}));

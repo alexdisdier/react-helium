@@ -1,19 +1,19 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { classesFromStyles } from '../../../../utils/tests';
+// import { classesFromStyles } from '../../../../utils/tests';
 
 import { IconFormatItalic } from '.';
 
-import styles from './iconFormatItalic.style';
+// import useStyles from './iconFormatItalic.style';
 
-const classes = classesFromStyles(styles);
+// const classes = classesFromStyles(styles);
 
 describe('IconFormatItalic', () => {
   let props;
 
   beforeEach(() => {
     props = {
-      classes,
+      // classes,
       size: 32
     };
   });
@@ -23,7 +23,7 @@ describe('IconFormatItalic', () => {
     expect(wrapper).toMatchInlineSnapshot(`
       <svg
         aria-hidden="true"
-        className="class-from-style-root"
+        className="root-0-2-1"
         fillRule="evenodd"
         style={
           Object {

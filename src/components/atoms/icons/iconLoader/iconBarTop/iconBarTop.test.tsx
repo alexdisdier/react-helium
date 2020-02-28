@@ -1,19 +1,19 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { classesFromStyles } from '../../../../../utils/tests';
+// import { classesFromStyles } from '../../../../../utils/tests';
 
 import { IconBarTop } from '.';
 
-import styles from './iconBarTop.style';
+// import useStyles from './iconBarTop.style';
 
-const classes = classesFromStyles(styles);
+// const classes = classesFromStyles(styles);
 
 describe('IconBarTop', () => {
   let props;
 
   beforeEach(() => {
     props = {
-      classes,
+      // classes,
       size: 32,
       speed: '0.5',
       repeatCount: 'indefinite'
@@ -25,7 +25,7 @@ describe('IconBarTop', () => {
     expect(wrapper).toMatchInlineSnapshot(`
       <svg
         aria-hidden="true"
-        className="class-from-style-root"
+        className="root-0-2-1"
         fillRule="evenodd"
         style={
           Object {

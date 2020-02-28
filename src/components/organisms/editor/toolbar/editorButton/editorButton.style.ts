@@ -1,6 +1,7 @@
+import { createUseStyles } from 'react-jss';
 import { FOCUS_OUTLINE_WIDTH } from '../../../../../constant';
 
-export default theme => ({
+export default createUseStyles((theme: any) => ({
   root: {
     width: 21,
     height: 21,
@@ -42,4 +43,4 @@ export default theme => ({
     textTransform: 'uppercase',
     whiteSpace: 'nowrap'
   }
-});
+}));

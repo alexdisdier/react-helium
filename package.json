@@ -44,7 +44,7 @@
     "lodash.uniqueid": "^4.0.1",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
-    "react-jss": "8.6.1",
+    "react-jss": "^10.0.4",
     "react-scripts": "3.2.0",
     "typescript": "^3.7.2"
   },

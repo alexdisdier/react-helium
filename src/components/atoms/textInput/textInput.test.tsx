@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { classesFromStyles } from '../../../utils/tests';
+// import { classesFromStyles } from '../../../utils/tests';
 
 import { TextInput } from '.';
 
@@ -10,20 +10,20 @@ import {
   STATUS_VALID
 } from '../../../constant';
 
-import styles from './textInput.style';
+// import useStyles from './textInput.style';
 
 jest.mock('../errorMessage', () => 'ErrorMessage');
 
 jest.useFakeTimers();
 
-const classes = classesFromStyles(styles);
+// const classes = classesFromStyles(styles);
 
 describe('TextInput', () => {
   let props;
 
   beforeEach(() => {
     props = {
-      classes,
+      // classes,
       id: 'id',
       placeholder: 'placeholder',
       value: 'Hello world',
@@ -44,7 +44,7 @@ describe('TextInput', () => {
     expect(wrapper).toMatchInlineSnapshot(`
       <Fragment>
         <div
-          className="class-from-style-root"
+          className="root-0-2-1"
           data-has-focus={false}
           data-has-value={true}
           data-is-caution={false}
@@ -54,7 +54,7 @@ describe('TextInput', () => {
           data-is-valid={false}
         >
           <input
-            className="class-from-style-input"
+            className="input-0-2-2"
             disabled={false}
             id="id"
             onBlur={[Function]}
@@ -77,7 +77,7 @@ describe('TextInput', () => {
     expect(wrapper).toMatchInlineSnapshot(`
       <Fragment>
         <div
-          className="class-from-style-root"
+          className="root-0-2-1"
           data-has-focus={false}
           data-has-value={true}
           data-is-caution={false}
@@ -87,7 +87,7 @@ describe('TextInput', () => {
           data-is-valid={false}
         >
           <input
-            className="class-from-style-input"
+            className="input-0-2-2"
             disabled={false}
             id="input_id_001"
             onBlur={[Function]}
@@ -108,7 +108,7 @@ describe('TextInput', () => {
     expect(wrapper).toMatchInlineSnapshot(`
       <Fragment>
         <div
-          className="class-from-style-root"
+          className="root-0-2-1"
           data-has-focus={false}
           data-has-value={true}
           data-is-caution={false}
@@ -118,7 +118,7 @@ describe('TextInput', () => {
           data-is-valid={false}
         >
           <input
-            className="class-from-style-input"
+            className="input-0-2-2"
             disabled={true}
             id="id"
             onBlur={[Function]}
@@ -139,7 +139,7 @@ describe('TextInput', () => {
     expect(wrapper).toMatchInlineSnapshot(`
       <Fragment>
         <div
-          className="class-from-style-root"
+          className="root-0-2-1"
           data-has-focus={false}
           data-has-value={true}
           data-is-caution={false}
@@ -149,7 +149,7 @@ describe('TextInput', () => {
           data-is-valid={false}
         >
           <input
-            className="class-from-style-input"
+            className="input-0-2-2"
             disabled={false}
             id="id"
             onBlur={[Function]}
@@ -170,7 +170,7 @@ describe('TextInput', () => {
     expect(wrapper).toMatchInlineSnapshot(`
       <Fragment>
         <div
-          className="class-from-style-root"
+          className="root-0-2-1"
           data-has-focus={false}
           data-has-value={true}
           data-is-caution={true}
@@ -180,7 +180,7 @@ describe('TextInput', () => {
           data-is-valid={false}
         >
           <input
-            className="class-from-style-input"
+            className="input-0-2-2"
             disabled={false}
             id="id"
             onBlur={[Function]}
@@ -201,7 +201,7 @@ describe('TextInput', () => {
     expect(wrapper).toMatchInlineSnapshot(`
       <Fragment>
         <div
-          className="class-from-style-root"
+          className="root-0-2-1"
           data-has-focus={false}
           data-has-value={true}
           data-is-caution={false}
@@ -211,7 +211,7 @@ describe('TextInput', () => {
           data-is-valid={true}
         >
           <input
-            className="class-from-style-input"
+            className="input-0-2-2"
             disabled={false}
             id="id"
             onBlur={[Function]}

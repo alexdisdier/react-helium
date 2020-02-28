@@ -1,19 +1,19 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { classesFromStyles } from '../../../../utils/tests';
+// import { classesFromStyles } from '../../../../utils/tests';
 
 import { Tab } from '.';
 
-import styles from './tab.style';
+// import useStyles from './tab.style';
 
-const classes = classesFromStyles(styles);
+// const classes = classesFromStyles(styles);
 
 describe('Tab', () => {
   let props;
 
   beforeEach(() => {
     props = {
-      classes,
+      // classes,
       activeTab: 'tab1',
       label: 'tab2',
       onClick: jest.fn()
@@ -39,7 +39,7 @@ describe('Tab', () => {
     expect(wrapper).toMatchInlineSnapshot(`
       <Fragment>
         <li
-          className="class-from-style-root"
+          className="root-0-2-1"
           data-is-active={false}
           onClick={[Function]}
         >
@@ -56,7 +56,7 @@ describe('Tab', () => {
     expect(wrapper).toMatchInlineSnapshot(`
       <Fragment>
         <li
-          className="class-from-style-root"
+          className="root-0-2-1"
           data-is-active={true}
           onClick={[Function]}
         >

@@ -1,4 +1,6 @@
-export default theme => ({
+import { createUseStyles } from 'react-jss';
+
+export default createUseStyles((theme: any) => ({
   content: {
     width: '100%',
     position: 'absolute',
@@ -12,4 +14,4 @@ export default theme => ({
     whiteSpace: 'nowrap',
     background: 'inherit'
   }
-});
+}));

@@ -1,19 +1,19 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { classesFromStyles } from '../../../../../utils/tests';
+// import { classesFromStyles } from '../../../../../utils/tests';
 
 import { EditorButton } from '.';
 
-import styles from './editorButton.style';
+// import useStyles from './editorButton.style';
 
-const classes = classesFromStyles(styles);
+// const classes = classesFromStyles(styles);
 
 describe('Editor Button', () => {
   let props;
 
   beforeEach(() => {
     props = {
-      classes,
+      // classes,
       icon: null,
       onClick: jest.fn(),
       promptForLink: jest.fn(),
@@ -59,14 +59,14 @@ describe('Editor Button', () => {
       const wrapper = shallow(<EditorButton {...props} />);
       expect(wrapper).toMatchInlineSnapshot(`
         <button
-          className="class-from-style-root"
+          className="root-0-2-1"
           data-is-active={false}
           disabled={false}
           onMouseDown={[Function]}
           type="button"
         >
           <span
-            className="class-from-style-text"
+            className="text-0-2-2"
           >
             H1
           </span>
@@ -78,14 +78,14 @@ describe('Editor Button', () => {
       const wrapper = shallow(<EditorButton {...props} />);
       expect(wrapper).toMatchInlineSnapshot(`
         <button
-          className="class-from-style-root"
+          className="root-0-2-1"
           data-is-active={false}
           disabled={false}
           onMouseDown={[Function]}
           type="button"
         >
           <span
-            className="class-from-style-text"
+            className="text-0-2-2"
           >
             B
           </span>
@@ -98,14 +98,14 @@ describe('Editor Button', () => {
       const wrapper = shallow(<EditorButton {...props} />);
       expect(wrapper).toMatchInlineSnapshot(`
         <button
-          className="class-from-style-root"
+          className="root-0-2-1"
           data-is-active={false}
           disabled={false}
           onMouseDown={[Function]}
           type="button"
         >
           <span
-            className="class-from-style-text"
+            className="text-0-2-2"
           >
             L
           </span>
@@ -118,14 +118,14 @@ describe('Editor Button', () => {
       const wrapper = shallow(<EditorButton {...props} />);
       expect(wrapper).toMatchInlineSnapshot(`
         <button
-          className="class-from-style-root"
+          className="root-0-2-1"
           data-is-active={false}
           disabled={false}
           onMouseDown={[Function]}
           type="button"
         >
           <span
-            className="class-from-style-text"
+            className="text-0-2-2"
           >
             U
           </span>
@@ -138,14 +138,14 @@ describe('Editor Button', () => {
       const wrapper = shallow(<EditorButton {...props} />);
       expect(wrapper).toMatchInlineSnapshot(`
         <button
-          className="class-from-style-root"
+          className="root-0-2-1"
           data-is-active={false}
           disabled={true}
           onMouseDown={[Function]}
           type="button"
         >
           <span
-            className="class-from-style-text"
+            className="text-0-2-2"
           >
             B
           </span>
@@ -158,14 +158,14 @@ describe('Editor Button', () => {
       const wrapper = shallow(<EditorButton {...props} />);
       expect(wrapper).toMatchInlineSnapshot(`
         <button
-          className="class-from-style-root"
+          className="root-0-2-1"
           data-is-active={true}
           disabled={false}
           onMouseDown={[Function]}
           type="button"
         >
           <span
-            className="class-from-style-text"
+            className="text-0-2-2"
           >
             B
           </span>

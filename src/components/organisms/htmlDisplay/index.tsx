@@ -1,16 +1,17 @@
 import React from 'react';
-import injectSheet, { ClassNameMap } from 'react-jss';
+// import { WithStylesProps } from 'react-jss';
 
 import displayHTML from '../../../utils/displayHTML';
 
-import styles from './htmlDisplay.style';
+import useStyles from './htmlDisplay.style';
 
 interface Props {
-  classes: ClassNameMap<string>;
+  // classes: WithStylesProps<any>;
   htmlData: {};
 }
 
-export const HtmlDisplay: React.FC<Props> = ({ classes, htmlData }) => {
+export const HtmlDisplay: React.FC<Props> = ({ htmlData }) => {
+  const classes = useStyles();
   return (
     <div
       className={classes.readOnly}
@@ -20,4 +21,4 @@ export const HtmlDisplay: React.FC<Props> = ({ classes, htmlData }) => {
   );
 };
 
-export default injectSheet(styles)(HtmlDisplay);
+export default HtmlDisplay;
