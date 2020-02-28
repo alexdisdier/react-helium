@@ -1,14 +1,13 @@
 import * as React from 'react';
-import injectSheet, { ClassNameMap } from 'react-jss';
+import withStyles, { WithStylesProps } from 'react-jss';
 
 import styles from './iconDots.style';
 
-type Props = {
-  classes: ClassNameMap<string>;
+interface Props extends WithStylesProps<typeof styles> {
   size?: number;
   speed?: string;
   repeatCount?: string;
-};
+}
 
 // svg source: https://icons8.com/preloaders/en/search/dots
 export const IconDots: React.FC<Props> = ({
@@ -61,4 +60,4 @@ export const IconDots: React.FC<Props> = ({
   </svg>
 );
 
-export default injectSheet(styles)(IconDots);
+export default withStyles(styles)(IconDots);

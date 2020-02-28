@@ -1,10 +1,9 @@
 import React from 'react';
-import injectSheet, { ClassNameMap } from 'react-jss';
+import withStyles, { WithStylesProps } from 'react-jss';
 
 import styles from './label.style';
 
 interface Props {
-  classes: ClassNameMap<string>;
   text: string;
   forId: string;
   children: React.ReactNode;
@@ -37,4 +36,4 @@ export const Label: React.SFC<Props> = ({
   );
 };
 
-export default injectSheet(styles)(Label);
+export default withStyles(styles)(Label);

@@ -1,10 +1,9 @@
 import * as React from 'react';
-import injectSheet, { ClassNameMap } from 'react-jss';
+import withStyles, { WithStylesProps } from 'react-jss';
 
 import styles from './tab.style';
 
 interface Props {
-  classes: ClassNameMap<string>;
   label: string;
   activeTab: string;
   onClick: (event, label) => void;
@@ -31,4 +30,4 @@ export const Tab: React.FC<Props> = ({
   );
 };
 
-export default injectSheet(styles)(Tab);
+export default withStyles(styles)(Tab);

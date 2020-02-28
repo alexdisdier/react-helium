@@ -1,12 +1,11 @@
 import React from 'react';
-import injectSheet, { ClassNameMap } from 'react-jss';
+import withStyles, { WithStylesProps } from 'react-jss';
 
 import { Entity } from 'draft-js';
 
 import styles from './link.style';
 
 interface Props {
-  classes: ClassNameMap<string>;
   entityKey: string;
   children: React.ReactNode;
 }
@@ -26,4 +25,4 @@ export const Link: React.FC<Props> = ({ classes, entityKey, children }) => {
   );
 };
 
-export default injectSheet(styles)(Link);
+export default withStyles(styles)(Link);

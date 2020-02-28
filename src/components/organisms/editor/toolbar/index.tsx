@@ -1,5 +1,5 @@
 import React from 'react';
-import injectSheet, { ClassNameMap } from 'react-jss';
+import withStyles, { WithStylesProps } from 'react-jss';
 import { EditorState } from 'draft-js';
 
 import {
@@ -31,7 +31,6 @@ import EditorButton from './editorButton';
 import styles from './toolbar.style';
 
 interface Props {
-  classes: ClassNameMap<string>;
   editorState: EditorState;
   onToggleBlockType?: any;
   onToggleInlineType?: any;
@@ -119,4 +118,4 @@ export const Toolbar: React.FC<Props> = ({
   );
 };
 
-export default injectSheet(styles)(Toolbar);
+export default withStyles(styles)(Toolbar);

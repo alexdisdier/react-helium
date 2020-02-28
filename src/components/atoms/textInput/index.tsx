@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import injectSheet, { ClassNameMap } from 'react-jss';
+import withStyles, { WithStylesProps } from 'react-jss';
 
 import ErrorMessage from '../errorMessage';
 
@@ -12,7 +12,6 @@ import {
 import styles from './textInput.style';
 
 interface Props {
-  classes: ClassNameMap<string>;
   id?: string;
   value: string;
   type: 'text' | 'password' | 'search';
@@ -106,4 +105,4 @@ export const TextInput: React.FC<Props> = ({
   );
 };
 
-export default injectSheet(styles)(TextInput);
+export default withStyles(styles)(TextInput);

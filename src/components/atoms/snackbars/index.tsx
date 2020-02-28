@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import injectSheet, { ClassNameMap } from 'react-jss';
+import withStyles, { WithStylesProps } from 'react-jss';
 import {
   ACTION_TIMEOUT,
   DEFAULT_TIMEOUT,
@@ -14,7 +14,6 @@ interface SnackbarsContextProps {
 }
 
 interface Props {
-  classes: ClassNameMap<string>;
   children: React.ReactNode;
   successSnackbar?: (x: string, y?: string, z?: Function) => void;
   errorSnackbar?: (x: string, y: string) => void;
@@ -154,4 +153,4 @@ export const Snackbars: React.FC<Props> = ({
   );
 };
 
-export default injectSheet(styles)(Snackbars);
+export default withStyles(styles)(Snackbars);

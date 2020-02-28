@@ -1,5 +1,5 @@
 import * as React from 'react';
-import injectSheet, { ClassNameMap } from 'react-jss';
+import withStyles, { WithStylesProps } from 'react-jss';
 
 // Used to set the first tab width and the tabs left position according to wrapper
 import { TAB_MARGIN_RIGHT, WRAPPER_PADDING_LEFT } from '../../../constant';
@@ -9,7 +9,6 @@ import Tab from './tab';
 import styles from './tabs.style';
 
 interface Props {
-  classes: ClassNameMap<string>;
   tabs: Array<{
     label: string;
     component: React.ReactNode;
@@ -109,4 +108,4 @@ export const Tabs: React.FC<Props> = ({ classes, tabs, centered = false }) => {
   );
 };
 
-export default injectSheet(styles)(Tabs);
+export default withStyles(styles)(Tabs);

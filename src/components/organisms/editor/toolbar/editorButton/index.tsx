@@ -1,6 +1,6 @@
 /* eslint-disable array-callback-return */
 import React, { useState } from 'react';
-import injectSheet, { ClassNameMap } from 'react-jss';
+import withStyles, { WithStylesProps } from 'react-jss';
 
 import { STYLE } from '../../../../../utils/editor';
 
@@ -13,8 +13,7 @@ import {
 
 import styles from './editorButton.style';
 
-type Props = {
-  classes: ClassNameMap<string>;
+interface Props extends WithStylesProps<typeof styles> {
   icon?: React.ReactNode;
   onClick?: (x) => void;
   promptForLink?: (x) => void;
@@ -94,4 +93,4 @@ export const EditorButton: React.FC<Props> = ({
   );
 };
 
-export default injectSheet(styles)(EditorButton);
+export default withStyles(styles)(EditorButton);

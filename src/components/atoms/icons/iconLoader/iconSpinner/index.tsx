@@ -1,14 +1,13 @@
 import * as React from 'react';
-import injectSheet, { ClassNameMap } from 'react-jss';
+import withStyles, { WithStylesProps } from 'react-jss';
 
 import styles from './iconSpinner.style';
 
-type Props = {
-  classes: ClassNameMap<string>;
+interface Props extends WithStylesProps<typeof styles> {
   size?: number;
   speed?: string;
   repeatCount?: string;
-};
+}
 
 export const IconSpinner: React.FC<Props> = ({
   classes,
@@ -26,10 +25,7 @@ export const IconSpinner: React.FC<Props> = ({
     x="0px"
     y="0px"
   >
-    <path
-      className={classes.fill}
-      d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z"
-    >
+    <path d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z">
       <animateTransform
         attributeType="xml"
         attributeName="transform"
@@ -43,4 +39,4 @@ export const IconSpinner: React.FC<Props> = ({
   </svg>
 );
 
-export default injectSheet(styles)(IconSpinner);
+export default withStyles(styles)(IconSpinner);

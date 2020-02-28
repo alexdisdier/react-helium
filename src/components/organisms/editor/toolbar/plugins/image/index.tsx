@@ -1,5 +1,5 @@
 import React from 'react';
-import injectSheet, { ClassNameMap } from 'react-jss';
+import withStyles, { WithStylesProps } from 'react-jss';
 
 import styles from './image.style';
 
@@ -12,4 +12,4 @@ export const Image: React.FC<Props> = ({ classes = null, src }) => {
   return <img className={classes!.root} src={src} alt={src} />;
 };
 
-export default injectSheet(styles)(Image);
+export default withStyles(styles)(Image);

@@ -1,5 +1,5 @@
 import React from 'react';
-import injectSheet, { ClassNameMap } from 'react-jss';
+import withStyles, { WithStylesProps } from 'react-jss';
 
 import {
   IconBarCenter,
@@ -11,8 +11,7 @@ import {
 
 import styles from './loader.style';
 
-type Props = {
-  classes: ClassNameMap<string>;
+interface Props extends WithStylesProps<typeof styles> {
   text?: string;
   size?: number;
   slow?: boolean;
@@ -25,7 +24,7 @@ type Props = {
   barCenter?: boolean;
   barTop?: boolean;
   dots?: boolean;
-};
+}
 
 export const Loader: React.FC<Props> = ({
   classes,
@@ -82,4 +81,4 @@ export const Loader: React.FC<Props> = ({
   );
 };
 
-export default injectSheet(styles)(Loader);
+export default withStyles(styles)(Loader);

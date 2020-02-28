@@ -1,12 +1,11 @@
 import React from 'react';
-import injectSheet, { ClassNameMap } from 'react-jss';
+import withStyles, { WithStylesProps } from 'react-jss';
 
 import displayHTML from '../../../utils/displayHTML';
 
 import styles from './htmlDisplay.style';
 
 interface Props {
-  classes: ClassNameMap<string>;
   htmlData: {};
 }
 
@@ -20,4 +19,4 @@ export const HtmlDisplay: React.FC<Props> = ({ classes, htmlData }) => {
   );
 };
 
-export default injectSheet(styles)(HtmlDisplay);
+export default withStyles(styles)(HtmlDisplay);

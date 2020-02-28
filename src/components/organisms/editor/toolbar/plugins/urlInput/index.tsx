@@ -1,10 +1,9 @@
 import React from 'react';
-import injectSheet, { ClassNameMap } from 'react-jss';
+import withStyles, { WithStylesProps } from 'react-jss';
 
 import styles from './urlInput.style';
 
 interface Props {
-  classes: ClassNameMap<string>;
   onLinkInputKeyDown: (e) => void;
   urlInputChange: (e) => void;
   handleCollapse: () => void;
@@ -72,4 +71,4 @@ export const UrlInput: React.FC<Props> = ({
   );
 };
 
-export default injectSheet(styles)(UrlInput);
+export default withStyles(styles)(UrlInput);

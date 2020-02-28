@@ -1,14 +1,13 @@
 import * as React from 'react';
-import injectSheet, { ClassNameMap } from 'react-jss';
+import withStyles, { WithStylesProps } from 'react-jss';
 
 import styles from './iconSpinnerFill.style';
 
-type Props = {
-  classes: ClassNameMap<string>;
+interface Props extends WithStylesProps<typeof styles> {
   size?: number;
   speed?: string;
   repeatCount?: string;
-};
+}
 
 export const IconSpinnerFill: React.FC<Props> = ({
   classes,
@@ -49,4 +48,4 @@ export const IconSpinnerFill: React.FC<Props> = ({
   </svg>
 );
 
-export default injectSheet(styles)(IconSpinnerFill);
+export default withStyles(styles)(IconSpinnerFill);

@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import injectSheet, { ClassNameMap } from 'react-jss';
+import withStyles, { WithStylesProps } from 'react-jss';
 
 import {
   AtomicBlockUtils,
@@ -23,7 +23,6 @@ import Toolbar from './toolbar';
 import styles from './editor.style';
 
 interface Props {
-  classes: ClassNameMap<string>;
   placeholder?: string;
   disabled?: boolean;
   onChange: (e) => void;
@@ -286,4 +285,4 @@ export const Editor: React.FC<Props> = ({
   );
 };
 
-export default injectSheet(styles)(Editor);
+export default withStyles(styles)(Editor);

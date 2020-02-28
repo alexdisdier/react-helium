@@ -1,14 +1,13 @@
 import * as React from 'react';
-import injectSheet, { ClassNameMap } from 'react-jss';
+import withStyles, { WithStylesProps } from 'react-jss';
 
 import styles from './iconBarTop.style';
 
-type Props = {
-  classes: ClassNameMap<string>;
+interface Props extends WithStylesProps<typeof styles> {
   size?: number;
   speed?: string;
   repeatCount?: string;
-};
+}
 
 export const IconBarTop: React.FC<Props> = ({
   classes,
@@ -63,4 +62,4 @@ export const IconBarTop: React.FC<Props> = ({
   </svg>
 );
 
-export default injectSheet(styles)(IconBarTop);
+export default withStyles(styles)(IconBarTop);

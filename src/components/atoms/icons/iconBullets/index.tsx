@@ -3,11 +3,11 @@ import withStyles, { WithStylesProps } from 'react-jss';
 
 import styles from './iconBullets.style';
 
-interface IProps extends WithStylesProps<typeof styles> {
+interface Props extends WithStylesProps<typeof styles> {
   size?: number;
 }
 
-export const IconBullets: React.FC<IProps> = ({ classes, size = null }) => {
+export const IconBullets: React.FC<Props> = ({ classes, size = null }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
