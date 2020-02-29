@@ -34,7 +34,7 @@
     "build:watch": "yarn build -w",
     "build-storybook": "build-storybook",
     "clean-storybook": "rm -rf storybook-static",
-    "deploy-storybook": "yarn build-storybook && yarn storybook-to-ghpages -- --existing-output-dir=storybook-static",
+    "deploy-storybook": "yarn clean-storybook && yarn build-storybook && yarn storybook-to-ghpages -- --existing-output-dir=storybook-static",
     "semantic-release": "semantic-release"
   },
   "dependencies": {
