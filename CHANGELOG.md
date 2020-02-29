@@ -1,3 +1,10 @@
+## [1.6.2](https://github.com/alexdisdier/react-helium/compare/v1.6.1...v1.6.2) (2020-02-29)
+
+
+### Performance Improvements
+
+* update react-jss ([0a95a1d](https://github.com/alexdisdier/react-helium/commit/0a95a1d1fbafb9d5fe1280b2e62ee70cefc90425))
+
 ## [1.6.1](https://github.com/alexdisdier/react-helium/compare/v1.6.0...v1.6.1) (2020-01-17)
 
 ### Performance Improvements
