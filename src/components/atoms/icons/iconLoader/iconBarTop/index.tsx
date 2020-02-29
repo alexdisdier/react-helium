@@ -1,10 +1,8 @@
 import * as React from 'react';
-// import { WithStylesProps } from 'react-jss';
 
 import useStyles from './iconBarTop.style';
 
 type Props = {
-  // classes: WithStylesProps<any>;
   size?: number;
   speed?: string;
   repeatCount?: string;

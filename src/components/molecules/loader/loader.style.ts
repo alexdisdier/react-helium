@@ -1,6 +1,6 @@
 import { createUseStyles } from 'react-jss';
 
-export default createUseStyles(() => ({
+export default createUseStyles({
   root: {
     display: 'flex',
     fontFamily: 'inherit',
@@ -23,4 +23,4 @@ export default createUseStyles(() => ({
       textTransform: 'uppercase'
     }
   }
-}));
+});

@@ -1,12 +1,10 @@
-import React from 'react';
-// import { WithStylesProps } from 'react-jss';
+import * as React from 'react';
 
 import displayHTML from '../../../utils/displayHTML';
 
 import useStyles from './htmlDisplay.style';
 
 interface Props {
-  // classes: WithStylesProps<any>;
   htmlData: {};
 }
 

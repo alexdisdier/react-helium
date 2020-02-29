@@ -1,12 +1,10 @@
 import React from 'react';
-// import { WithStylesProps } from 'react-jss';
 
 import { Entity } from 'draft-js';
 
 import useStyles from './link.style';
 
 interface Props {
-  // classes: WithStylesProps<any>;
   entityKey: string;
   children: React.ReactNode;
 }

@@ -1,10 +1,8 @@
 import * as React from 'react';
-// // import { WithStylesProps } from 'react-jss';
 
 import useStyles from './button.style';
 
 type Props = {
-  // // classes: WithStylesProps<any>;
   children: React.ReactNode;
   onClick?: () => void;
   primary?: boolean;
@@ -31,7 +29,7 @@ export const Button: React.FC<Props> = ({
   inverted = false,
   vector = null
 }) => {
-  const classes = useStyles(color);
+  const classes = useStyles({ color });
 
   const handleClick = () => {
     if (!disabled && onClick) onClick();

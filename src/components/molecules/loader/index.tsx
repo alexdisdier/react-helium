@@ -1,5 +1,4 @@
 import React from 'react';
-// import { WithStylesProps } from 'react-jss';
 
 import {
   IconBarCenter,
@@ -12,7 +11,6 @@ import {
 import useStyles from './loader.style';
 
 type Props = {
-  // classes: WithStylesProps<any>;
   text?: string;
   size?: number;
   slow?: boolean;
@@ -41,7 +39,7 @@ export const Loader: React.FC<Props> = ({
   barTop = false,
   dots = false
 }) => {
-  const classes = useStyles(size);
+  const classes = useStyles({ size });
   /**
    * Speed
    */

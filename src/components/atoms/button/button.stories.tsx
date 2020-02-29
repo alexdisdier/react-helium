@@ -1,5 +1,5 @@
 import React from 'react';
-// // import { WithStylesProps } from 'react-jss';
+//
 import { storiesOf } from '@storybook/react';
 import {
   withKnobs,

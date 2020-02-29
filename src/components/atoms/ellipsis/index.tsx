@@ -1,10 +1,8 @@
 import * as React from 'react';
-// // import { WithStylesProps } from 'react-jss';
 
 import useStyles from './ellipsis.style';
 
 interface Props {
-  // // classes: WithStylesProps<any>;
   children: any;
   maxWidth?: string;
   color?: string;

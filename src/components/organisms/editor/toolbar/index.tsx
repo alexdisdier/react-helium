@@ -1,5 +1,5 @@
 import React from 'react';
-// import { WithStylesProps } from 'react-jss';
+
 import { EditorState } from 'draft-js';
 
 import {
@@ -31,7 +31,6 @@ import EditorButton from './editorButton';
 import useStyles from './toolbar.style';
 
 interface Props {
-  // classes: WithStylesProps<any>;
   editorState: EditorState;
   onToggleBlockType?: any;
   onToggleInlineType?: any;

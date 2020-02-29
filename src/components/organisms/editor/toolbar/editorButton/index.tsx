@@ -1,6 +1,5 @@
 /* eslint-disable array-callback-return */
 import React, { useState } from 'react';
-// import { WithStylesProps } from 'react-jss';
 
 import { STYLE } from '../../../../../utils/editor';
 
@@ -14,7 +13,6 @@ import {
 import useStyles from './editorButton.style';
 
 type Props = {
-  // classes: WithStylesProps<any>;
   icon?: React.ReactNode;
   onClick?: (x) => void;
   promptForLink?: (x) => void;

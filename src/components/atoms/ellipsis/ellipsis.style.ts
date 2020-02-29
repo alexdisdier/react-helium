@@ -1,6 +1,6 @@
 import { createUseStyles } from 'react-jss';
 
-export default createUseStyles(() => ({
+export default createUseStyles({
   root: {
     'white-space': 'nowrap',
     maxWidth: props => (props.maxWidth ? props.maxWidth : 'inherit'),
@@ -8,4 +8,4 @@ export default createUseStyles(() => ({
     textOverflow: 'ellipsis',
     color: props => (props.color ? props.color : 'inherit')
   }
-}));
+});

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import { WithStylesProps } from 'react-jss';
 
 import ErrorMessage from '../errorMessage';
 
@@ -12,7 +11,6 @@ import {
 import useStyles from './textInput.style';
 
 interface Props {
-  // classes: WithStylesProps<any>;
   id?: string;
   value: string;
   type: 'text' | 'password' | 'search';

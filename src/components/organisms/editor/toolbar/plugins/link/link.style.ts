@@ -1,8 +1,8 @@
 import { createUseStyles } from 'react-jss';
 
-export default createUseStyles(() => ({
+export default createUseStyles({
   root: {
     color: 'blue',
     textDecoration: 'underline'
   }
-}));
+});

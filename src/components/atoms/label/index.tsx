@@ -1,10 +1,8 @@
 import React from 'react';
-// import { WithStylesProps } from 'react-jss';
 
 import useStyles from './label.style';
 
 interface Props {
-  // classes: WithStylesProps<any>;
   text: string;
   forId: string;
   children: React.ReactNode;

@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-// import { WithStylesProps } from 'react-jss';
 
 import {
   AtomicBlockUtils,
@@ -23,7 +22,6 @@ import Toolbar from './toolbar';
 import useStyles from './editor.style';
 
 interface Props {
-  // classes: WithStylesProps<any>;
   placeholder?: string;
   disabled?: boolean;
   onChange: (e) => void;

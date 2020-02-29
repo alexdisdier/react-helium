@@ -43,13 +43,7 @@ describe('Toolbar', () => {
     const wrapper = shallow(<Toolbar {...props} />);
     expect(wrapper).toMatchInlineSnapshot(`
       <div
-        className={
-          Object {
-            "display": "flex",
-            "justifyContent": "flex-start",
-            "marginBottom": 10,
-          }
-        }
+        className="root-0-2-1"
         data-is-disabled={true}
       >
         <EditorButton
@@ -103,13 +97,7 @@ describe('Toolbar', () => {
     const wrapper = shallow(<Toolbar {...props} />);
     expect(wrapper).toMatchInlineSnapshot(`
       <div
-        className={
-          Object {
-            "display": "flex",
-            "justifyContent": "flex-start",
-            "marginBottom": 10,
-          }
-        }
+        className="root-0-2-1"
         data-is-disabled={false}
       >
         <EditorButton

@@ -1,10 +1,8 @@
 import * as React from 'react';
-// import { WithStylesProps } from 'react-jss';
 
 import useStyles from './tab.style';
 
 interface Props {
-  // classes: WithStylesProps<any>;
   label: string;
   activeTab: string;
   onClick: (event, label) => void;

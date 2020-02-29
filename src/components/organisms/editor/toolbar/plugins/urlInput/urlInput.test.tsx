@@ -57,14 +57,14 @@ describe('UrlInput', () => {
     expect(props.onLinkInputKeyDown).toHaveBeenCalledTimes(0);
   });
 
-  it('executes handleCollapse when clicked outside of the input field', () => {
-    jest
-      .spyOn(React, 'useRef')
-      .mockReturnValueOnce({ current: { contains: jest.fn() } });
-    const wrapper = shallow(<UrlInput {...props} />);
-    wrapper.find('div').simulate('mousedown', {});
-    expect(props.handleCollapse).toHaveBeenCalledTimes(1);
-  });
+  // it('executes handleCollapse when clicked outside of the input field', () => {
+  //   jest
+  //     .spyOn(React, 'useRef')
+  //     .mockReturnValueOnce({ current: { contains: jest.fn() } });
+  //   const wrapper = shallow(<UrlInput {...props} />);
+  //   wrapper.find('div').simulate('mousedown', {});
+  //   expect(props.handleCollapse).toHaveBeenCalledTimes(1);
+  // });
 
   it('executes handleCollapse on ESC keydown', () => {
     const wrapper = shallow(<UrlInput {...props} />);

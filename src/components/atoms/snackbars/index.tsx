@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// import { WithStylesProps } from 'react-jss';
+
 import {
   ACTION_TIMEOUT,
   DEFAULT_TIMEOUT,
@@ -14,7 +14,6 @@ interface SnackbarsContextProps {
 }
 
 interface Props {
-  // classes: WithStylesProps<any>;
   children: React.ReactNode;
   successSnackbar?: (x: string, y?: string, z?: Function) => void;
   errorSnackbar?: (x: string, y: string) => void;

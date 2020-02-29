@@ -1,5 +1,4 @@
 import * as React from 'react';
-// import { WithStylesProps } from 'react-jss';
 
 // Used to set the first tab width and the tabs left position according to wrapper
 import { TAB_MARGIN_RIGHT, WRAPPER_PADDING_LEFT } from '../../../constant';
@@ -9,7 +8,6 @@ import Tab from './tab';
 import useStyles from './tabs.style';
 
 interface Props {
-  // classes: WithStylesProps<any>;
   tabs: Array<{
     label: string;
     component: React.ReactNode;

@@ -1,12 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-// import { classesFromStyles } from '../../../utils/tests';
 
 import { Button } from '.';
-
-// import useStyles from './button.style';
-
-// const classes = useStyles();
 
 describe('Button', () => {
   let props;

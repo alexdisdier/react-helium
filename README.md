@@ -49,7 +49,7 @@ import "react-helium/lib/style/base.css"; // Can be replaced with your custom re
 
 ### Using react-helium
 
-For now, I recommend cloning the github repository and start storybook to see full documentation.
+You can check out the [documentation using storybook](https://alexdisdier.github.io/react-helium/).
 
 ## Install
 

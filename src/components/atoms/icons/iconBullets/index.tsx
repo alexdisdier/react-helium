@@ -1,10 +1,8 @@
 import * as React from 'react';
-// import { WithStylesProps } from 'react-jss';
 
 import useStyles from './iconBullets.style';
 
 type Props = {
-  // classes: WithStylesProps<any>;
   size?: number;
 };
 

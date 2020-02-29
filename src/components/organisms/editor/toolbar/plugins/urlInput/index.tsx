@@ -1,10 +1,8 @@
-import React from 'react';
-// import { WithStylesProps } from 'react-jss';
+import * as React from 'react';
 
 import useStyles from './urlInput.style';
 
 interface Props {
-  // classes: WithStylesProps<any>;
   onLinkInputKeyDown: (e) => void;
   urlInputChange: (e) => void;
   handleCollapse: () => void;

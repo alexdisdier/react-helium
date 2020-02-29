@@ -1,10 +1,8 @@
-import React from 'react';
-// import { WithStylesProps } from 'react-jss';
+import * as React from 'react';
 
 import useStyles from './image.style';
 
 interface Props {
-  // classes?: ClassNameMap<string> | undefined;
   src: string;
 }
 
