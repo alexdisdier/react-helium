@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/main.css",
+    "main.js": "/main.98777a0a18632f0cf965.bundle.js",
+    "main.css.map": "/main.css.map",
+    "main.js.map": "/main.98777a0a18632f0cf965.bundle.js.map",
+    "runtime~main.js": "/runtime~main.98777a0a18632f0cf965.bundle.js",
+    "runtime~main.js.map": "/runtime~main.98777a0a18632f0cf965.bundle.js.map",
+    "vendors~main.js": "/vendors~main.98777a0a18632f0cf965.bundle.js",
+    "vendors~main.js.map": "/vendors~main.98777a0a18632f0cf965.bundle.js.map",
+    "iframe.html": "/iframe.html",
+    "precache-manifest.fad654c7fde341d7a984ac0042bc8fa6.js": "/precache-manifest.fad654c7fde341d7a984ac0042bc8fa6.js",
+    "service-worker.js": "/service-worker.js",
+    "static/media/base.css": "/static/media/Wavehaus-95SemiBold.0d9cd0f6.otf"
+  },
+  "entrypoints": [
+    "runtime~main.98777a0a18632f0cf965.bundle.js",
+    "vendors~main.98777a0a18632f0cf965.bundle.js",
+    "main.css",
+    "main.98777a0a18632f0cf965.bundle.js"
+  ]
+}
