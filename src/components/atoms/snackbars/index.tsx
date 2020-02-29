@@ -8,7 +8,7 @@ import {
 
 import styles from './snackbars.style';
 
-interface SnackbarsContextProps extends WithStylesProps<typeof styles> {
+interface SnackbarsContextProps {
   Consumer: any;
   Provider: any;
 }

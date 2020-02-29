@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { EditorState } from 'draft-js';
-import { WithStylesProps } from 'react-jss';
 
 import { storiesOf } from '@storybook/react';
 import { withKnobs, boolean, text } from '@storybook/addon-knobs';
@@ -13,7 +12,7 @@ import HtmlDisplay from '../htmlDisplay';
 
 import README from './README.md';
 
-interface Props extends WithStylesProps<typeof styles> {
+interface Props {
   editorState?: EditorState;
   placeholder?: string;
   disabled?: boolean;
