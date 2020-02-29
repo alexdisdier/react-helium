@@ -1,12 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { classesFromStyles } from '../../../../utils/tests';
+// import { classesFromStyles } from '../../../../utils/tests';
 
 import { Toolbar } from '.';
 
-import styles from './toolbar.style';
+// import useStyles from './toolbar.style';
 
-const classes = classesFromStyles(styles);
+// const classes = classesFromStyles(styles);
 
 jest.mock('../../../../utils/editor', () => ({
   hasBlockType: jest.fn(),
@@ -30,7 +30,6 @@ describe('Toolbar', () => {
 
   beforeEach(() => {
     props = {
-      classes,
       editorState: {},
       onToggleBlockType: jest.fn(),
       onToggleInlineType: jest.fn(),
@@ -44,7 +43,7 @@ describe('Toolbar', () => {
     const wrapper = shallow(<Toolbar {...props} />);
     expect(wrapper).toMatchInlineSnapshot(`
       <div
-        className="class-from-style-root"
+        className="root-0-2-1"
         data-is-disabled={true}
       >
         <EditorButton
@@ -98,7 +97,7 @@ describe('Toolbar', () => {
     const wrapper = shallow(<Toolbar {...props} />);
     expect(wrapper).toMatchInlineSnapshot(`
       <div
-        className="class-from-style-root"
+        className="root-0-2-1"
         data-is-disabled={false}
       >
         <EditorButton

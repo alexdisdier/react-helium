@@ -1,4 +1,6 @@
-export default theme => ({
+import { createUseStyles } from 'react-jss';
+
+export default createUseStyles((theme: any) => ({
   root: {
     display: 'flex',
     alignItems: 'baseline',
@@ -52,4 +54,4 @@ export default theme => ({
     marginLeft: 21,
     textTransform: 'uppercase'
   }
-});
+}));

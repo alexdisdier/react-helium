@@ -14,7 +14,7 @@ import { theme } from '../../../style';
 
 import LoaderReadme from './README.md';
 
-const stories = storiesOf('Atoms/loader', module);
+const stories = storiesOf('Molecules/loader', module);
 stories.addParameters({
   readme: {
     content: LoaderReadme

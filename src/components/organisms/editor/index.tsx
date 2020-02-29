@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import injectSheet, { ClassNameMap } from 'react-jss';
 
 import {
   AtomicBlockUtils,
@@ -20,10 +19,9 @@ import { Image, Link, UrlInput } from './toolbar/plugins';
 
 import Toolbar from './toolbar';
 
-import styles from './editor.style';
+import useStyles from './editor.style';
 
 interface Props {
-  classes: ClassNameMap<string>;
   placeholder?: string;
   disabled?: boolean;
   onChange: (e) => void;
@@ -40,11 +38,11 @@ const decorator = new CompositeDecorator([
 ]);
 
 export const Editor: React.FC<Props> = ({
-  classes,
   placeholder = '',
   onChange,
   disabled = false
 }) => {
+  const classes = useStyles();
   // Initiating the EditorState with link decorator
   const [editorState, setEditorState] = useState<EditorState>(
     EditorState.createEmpty(decorator)
@@ -286,4 +284,4 @@ export const Editor: React.FC<Props> = ({
   );
 };
 
-export default injectSheet(styles)(Editor);
+export default Editor;

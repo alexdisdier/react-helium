@@ -1,15 +1,14 @@
-import React from 'react';
-import injectSheet, { ClassNameMap } from 'react-jss';
+import * as React from 'react';
 
-import styles from './image.style';
+import useStyles from './image.style';
 
 interface Props {
-  classes?: ClassNameMap<string> | undefined;
   src: string;
 }
 
-export const Image: React.FC<Props> = ({ classes = null, src }) => {
-  return <img className={classes!.root} src={src} alt={src} />;
+export const Image: React.FC<Props> = ({ src }) => {
+  const classes = useStyles();
+  return <img className={classes.root} src={src} alt={src} />;
 };
 
-export default injectSheet(styles)(Image);
+export default Image;

@@ -1,12 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { classesFromStyles } from '../../../utils/tests';
+// import { classesFromStyles } from '../../../utils/tests';
 
 import { Tabs } from '.';
 
-import styles from './tabs.style';
+// import useStyles from './tabs.style';
 
-const classes = classesFromStyles(styles);
+// const classes = classesFromStyles(styles);
 
 jest.mock('./tab', () => 'Tab');
 
@@ -20,7 +20,7 @@ describe('Tabs', () => {
 
   beforeEach(() => {
     props = {
-      classes,
+      // classes,
       tabs: [
         {
           label: 'tab1',
@@ -64,10 +64,10 @@ describe('Tabs', () => {
       expect(wrapper).toMatchInlineSnapshot(`
         <Fragment>
           <ol
-            className="class-from-style-root"
+            className="root-0-2-1"
           >
             <div
-              className="class-from-style-tabsWrapper"
+              className="tabsWrapper-0-2-2"
             >
               <div
                 key="tab1"
@@ -91,7 +91,7 @@ describe('Tabs', () => {
               </div>
             </div>
             <div
-              className="class-from-style-slider"
+              className="slider-0-2-3"
               style={
                 Object {
                   "left": 0,
@@ -101,7 +101,7 @@ describe('Tabs', () => {
             />
           </ol>
           <div
-            className="class-from-style-contentWrapper"
+            className="contentWrapper-0-2-4"
             data-is-centered={true}
           >
             <div>
@@ -121,10 +121,10 @@ describe('Tabs', () => {
     expect(wrapper).toMatchInlineSnapshot(`
       <Fragment>
         <ol
-          className="class-from-style-root"
+          className="root-0-2-1"
         >
           <div
-            className="class-from-style-tabsWrapper"
+            className="tabsWrapper-0-2-2"
           >
             <div
               key="tab1"
@@ -148,7 +148,7 @@ describe('Tabs', () => {
             </div>
           </div>
           <div
-            className="class-from-style-slider"
+            className="slider-0-2-3"
             style={
               Object {
                 "left": 0,
@@ -158,7 +158,7 @@ describe('Tabs', () => {
           />
         </ol>
         <div
-          className="class-from-style-contentWrapper"
+          className="contentWrapper-0-2-4"
           data-is-centered={false}
         >
           <div>

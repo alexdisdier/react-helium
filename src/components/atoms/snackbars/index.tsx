@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import injectSheet, { ClassNameMap } from 'react-jss';
+
 import {
   ACTION_TIMEOUT,
   DEFAULT_TIMEOUT,
   TYPE_ERROR
 } from '../../../constant/types';
 
-import styles from './snackbars.style';
+import useStyles from './snackbars.style';
 
 interface SnackbarsContextProps {
   Consumer: any;
@@ -14,7 +14,6 @@ interface SnackbarsContextProps {
 }
 
 interface Props {
-  classes: ClassNameMap<string>;
   children: React.ReactNode;
   successSnackbar?: (x: string, y?: string, z?: Function) => void;
   errorSnackbar?: (x: string, y: string) => void;
@@ -45,11 +44,8 @@ export const withSnackbarsContext = Component => props => {
   );
 };
 
-export const Snackbars: React.FC<Props> = ({
-  classes,
-  children,
-  config = {}
-}) => {
+export const Snackbars: React.FC<Props> = ({ children, config = {} }) => {
+  const classes = useStyles();
   const [messages, setMessages] = useState<Array<string>>([]);
   const [lastMessage, setLastMessage] = useState({
     message: '',
@@ -154,4 +150,4 @@ export const Snackbars: React.FC<Props> = ({
   );
 };
 
-export default injectSheet(styles)(Snackbars);
+export default Snackbars;

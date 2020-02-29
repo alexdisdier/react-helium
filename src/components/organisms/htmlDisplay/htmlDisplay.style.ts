@@ -1,4 +1,6 @@
-export default theme => ({
+import { createUseStyles } from 'react-jss';
+
+export default createUseStyles((theme: any) => ({
   readOnly: {
     '& h1': {
       fontSize: 32,
@@ -27,4 +29,4 @@ export default theme => ({
       maxWidth: '50%'
     }
   }
-});
+}));

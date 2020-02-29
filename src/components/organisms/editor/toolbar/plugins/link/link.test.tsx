@@ -1,12 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { classesFromStyles } from '../../../../../../utils/tests';
+// import { classesFromStyles } from '../../../../../../utils/tests';
 
 import { Link } from '.';
 
-import styles from './link.style';
+// import useStyles from './link.style';
 
-const classes = classesFromStyles(styles);
+// const classes = classesFromStyles(styles);
 
 jest.mock('draft-js', () => ({
   Entity: {
@@ -21,7 +21,7 @@ describe('Link', () => {
 
   beforeEach(() => {
     props = {
-      classes,
+      // classes,
       entityKey: '1',
       children: <span>Alex Disdier</span>
     };
@@ -32,7 +32,7 @@ describe('Link', () => {
     expect(wrapper).toMatchInlineSnapshot(`
       <a
         aria-label="www.alexdisdier.com"
-        className="class-from-style-root"
+        className="root-0-2-1"
         href="www.alexdisdier.com"
         rel="noopener noreferrer"
         target="_blank"

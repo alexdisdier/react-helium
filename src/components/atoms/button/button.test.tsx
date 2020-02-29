@@ -1,19 +1,14 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { classesFromStyles } from '../../../utils/tests';
 
 import { Button } from '.';
-
-import styles from './button.style';
-
-const classes = classesFromStyles(styles);
 
 describe('Button', () => {
   let props;
 
   beforeEach(() => {
     props = {
-      classes,
+      // classes,
       children: <div>I am The button</div>,
       onClick: jest.fn(),
       primary: false,
@@ -29,7 +24,7 @@ describe('Button', () => {
     const wrapper = shallow(<Button {...props} />);
     expect(wrapper).toMatchInlineSnapshot(`
       <button
-        className="class-from-style-root"
+        className="root-0-2-1 root-d0-0-2-4"
         data-is-inverted={false}
         data-is-primary={false}
         data-is-round={false}
@@ -40,7 +35,7 @@ describe('Button', () => {
         type="button"
       >
         <span
-          className="class-from-style-text"
+          className="text-0-2-3"
         >
           <div>
             I am The button
@@ -57,7 +52,7 @@ describe('Button', () => {
     const wrapper = shallow(<Button {...props} />);
     expect(wrapper).toMatchInlineSnapshot(`
       <button
-        className="class-from-style-root"
+        className="root-0-2-1 root-d1-0-2-5"
         data-is-inverted={false}
         data-is-primary={true}
         data-is-round={false}
@@ -68,7 +63,7 @@ describe('Button', () => {
         type="button"
       >
         <span
-          className="class-from-style-text"
+          className="text-0-2-3"
         >
           <div>
             I am The button
@@ -84,7 +79,7 @@ describe('Button', () => {
     const wrapper = shallow(<Button {...props} />);
     expect(wrapper).toMatchInlineSnapshot(`
       <button
-        className="class-from-style-root"
+        className="root-0-2-1 root-d2-0-2-6"
         data-is-inverted={true}
         data-is-primary={false}
         data-is-round={true}
@@ -95,7 +90,7 @@ describe('Button', () => {
         type="button"
       >
         <span
-          className="class-from-style-text"
+          className="text-0-2-3"
         >
           <div>
             I am The button

@@ -1,7 +1,9 @@
+import { createUseStyles } from 'react-jss';
+
 // Used to set the first tab width
 import { TAB_MARGIN_RIGHT } from '../../../../constant';
 
-export default theme => ({
+export default createUseStyles((theme: any) => ({
   root: {
     display: 'inline-block',
     marginRight: TAB_MARGIN_RIGHT,
@@ -15,4 +17,4 @@ export default theme => ({
       textTransform: 'uppercase'
     }
   }
-});
+}));

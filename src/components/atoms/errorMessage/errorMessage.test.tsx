@@ -1,19 +1,19 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { classesFromStyles } from '../../../utils/tests';
+// import { classesFromStyles } from '../../../utils/tests';
 
 import { ErrorMessage } from '.';
 
-import styles from './errorMessage.style';
+// import useStyles from './errorMessage.style';
 
-const classes = classesFromStyles(styles);
+// const classes = classesFromStyles(styles);
 
 describe('ErrorMessage', () => {
   let props;
 
   beforeEach(() => {
     props = {
-      classes,
+      // classes,
       text: "I'm an error"
     };
   });
@@ -22,7 +22,7 @@ describe('ErrorMessage', () => {
     const wrapper = shallow(<ErrorMessage {...props} />);
     expect(wrapper).toMatchInlineSnapshot(`
       <div
-        className="class-from-style-content"
+        className="content-0-2-1"
       >
         I'm an error
       </div>

@@ -1,7 +1,9 @@
+import { createUseStyles } from 'react-jss';
+
 import { MIN_TARGET_SIZE, FOCUS_OUTLINE_WIDTH } from '../../../constant';
 import colorLuminance from '../../../utils/colorLuminance';
 
-export default theme => ({
+export default createUseStyles((theme: any) => ({
   root: {
     height: MIN_TARGET_SIZE,
     borderRadius: 2,
@@ -95,4 +97,4 @@ export default theme => ({
     textTransform: 'uppercase',
     whiteSpace: 'nowrap'
   }
-});
+}));

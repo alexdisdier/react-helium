@@ -1,6 +1,5 @@
 /* eslint-disable array-callback-return */
 import React, { useState } from 'react';
-import injectSheet, { ClassNameMap } from 'react-jss';
 
 import { STYLE } from '../../../../../utils/editor';
 
@@ -11,10 +10,9 @@ import {
   UNORDERED_LIST_ITEM
 } from '../../../../../constant/editor';
 
-import styles from './editorButton.style';
+import useStyles from './editorButton.style';
 
 type Props = {
-  classes: ClassNameMap<string>;
   icon?: React.ReactNode;
   onClick?: (x) => void;
   promptForLink?: (x) => void;
@@ -25,7 +23,6 @@ type Props = {
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const EditorButton: React.FC<Props> = ({
-  classes,
   icon = null,
   onClick = () => {},
   promptForLink = () => {},
@@ -34,6 +31,7 @@ export const EditorButton: React.FC<Props> = ({
   buttonType,
   disabled = false
 }) => {
+  const classes = useStyles();
   /**
    * the local isActive variable monitors block and inline styles active state
    * For link button, the active state is monitored within the richEditor component.
@@ -94,4 +92,4 @@ export const EditorButton: React.FC<Props> = ({
   );
 };
 
-export default injectSheet(styles)(EditorButton);
+export default EditorButton;

@@ -1,4 +1,6 @@
-export default theme => ({
+import { createUseStyles } from 'react-jss';
+
+export default createUseStyles((theme: any) => ({
   root: {
     minHeight: 84,
     maxHeight: 152,
@@ -55,4 +57,4 @@ export default theme => ({
       }
     }
   }
-});
+}));

@@ -1,12 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { classesFromStyles } from '../../../utils/tests';
+// import { classesFromStyles } from '../../../utils/tests';
 
 import { Editor } from '.';
 
-import styles from './editor.style';
+// import useStyles from './editor.style';
 
-const classes = classesFromStyles(styles);
+// const classes = classesFromStyles(styles);
 
 const mockContentState = {
   editorState: 'editorState'
@@ -51,7 +51,6 @@ describe('Editor', () => {
 
   beforeEach(() => {
     props = {
-      classes,
       placeholder: 'I am a placeholder',
       onChange: jest.fn(),
       disabled: false
@@ -151,7 +150,7 @@ describe('Editor', () => {
             removeLink={[Function]}
           />
           <div
-            className="class-from-style-root"
+            className="root-0-2-1"
             data-has-focus={false}
             data-is-disabled={false}
             data-is-placeholder-hidden={true}

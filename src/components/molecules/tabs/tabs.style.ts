@@ -1,7 +1,8 @@
+import { createUseStyles } from 'react-jss';
 // Used to set the tabs left position according to wrapper
 import { WRAPPER_PADDING_LEFT } from '../../../constant';
 
-export default theme => ({
+export default createUseStyles((theme: any) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -27,4 +28,4 @@ export default theme => ({
       justifyContent: 'center'
     }
   }
-});
+}));

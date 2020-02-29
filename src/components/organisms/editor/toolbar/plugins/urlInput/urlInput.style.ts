@@ -1,4 +1,6 @@
-export default theme => ({
+import { createUseStyles } from 'react-jss';
+
+export default createUseStyles((theme: any) => ({
   root: {
     position: 'absolute',
     marginLeft: 11
@@ -27,4 +29,4 @@ export default theme => ({
       borderColor: theme.warningRed
     }
   }
-});
+}));

@@ -1,10 +1,8 @@
 import * as React from 'react';
-import injectSheet, { ClassNameMap } from 'react-jss';
 
-import styles from './button.style';
+import useStyles from './button.style';
 
 type Props = {
-  classes: ClassNameMap<string>;
   children: React.ReactNode;
   onClick?: () => void;
   primary?: boolean;
@@ -19,7 +17,6 @@ type Props = {
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const Button: React.FC<Props> = ({
-  classes,
   children,
   onClick = () => {},
   primary = false,
@@ -32,11 +29,11 @@ export const Button: React.FC<Props> = ({
   inverted = false,
   vector = null
 }) => {
+  const classes = useStyles({ color });
+
   const handleClick = () => {
     if (!disabled && onClick) onClick();
   };
-
-  console.warn(color);
 
   const rootProps = {
     className: classes.root,
@@ -58,4 +55,4 @@ export const Button: React.FC<Props> = ({
   );
 };
 
-export default injectSheet(styles)(Button);
+export default Button;

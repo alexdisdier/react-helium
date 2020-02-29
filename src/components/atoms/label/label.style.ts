@@ -1,4 +1,6 @@
-export default theme => ({
+import { createUseStyles } from 'react-jss';
+
+export default createUseStyles((theme: any) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -17,4 +19,4 @@ export default theme => ({
       color: theme.warningRed
     }
   }
-});
+}));
