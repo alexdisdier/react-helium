@@ -1,3 +1,10 @@
+## [1.6.3](https://github.com/alexdisdier/react-helium/compare/v1.6.2...v1.6.3) (2020-02-29)
+
+
+### Bug Fixes
+
+* **editor:** remove old react-jss typefrom editor story ([85fbb91](https://github.com/alexdisdier/react-helium/commit/85fbb916129fe24e5e55c1610994a349387ca1cf))
+
 ## [1.6.2](https://github.com/alexdisdier/react-helium/compare/v1.6.1...v1.6.2) (2020-02-29)
 
 
