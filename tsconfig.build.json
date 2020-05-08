@@ -30,7 +30,8 @@
     "node_modules",
     "**/*.test.ts",
     "**/*.test.tsx",
-    "**/*.stories.tsx"
+    "**/*.stories.tsx",
+    "./src/setupTests.ts"
   ],
   "include": ["src"],
   "files": ["./src/index.ts"]

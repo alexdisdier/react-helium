@@ -1,7 +1,7 @@
 export default {
   // Colors
-  colorBrand: '#3e9f92', // teal
-  colorSecondaryBrand: '#8892b0', // light purple
+  primaryColor: '#3e9f92', // teal
+  secondaryColor: '#8892b0', // light purple
 
   teal1: '#2b6f66',
   teal2: '#3e9f92',

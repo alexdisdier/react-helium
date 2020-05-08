@@ -14,7 +14,7 @@ export default createUseStyles((theme: any) => ({
       opacity: 0.3
     },
     '&[data-has-focus="true"]': {
-      borderColor: theme.colorBrand
+      borderColor: theme.primaryColor
     },
     '&[data-has-value="true"]:not([data-has-focus="true"]):not([data-is-invalid="true"]):not([data-is-caution="true"]):not([data-is-valid="true"])': {
       borderColor: theme.grey2

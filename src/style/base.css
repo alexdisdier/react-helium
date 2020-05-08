@@ -1,48 +1,48 @@
 @font-face {
-  font-family: "Wavehaus";
-  src: url("./assets/fonts/Wavehaus-28Thin.otf") format("otf"),
-    url("./assets/fonts/Wavehaus-28Thin.otf") format("otf"),
-    url("./assets/fonts/Wavehaus-28Thin.otf") format("truetype");
+  font-family: 'Wavehaus';
+  src: url('./assets/fonts/Wavehaus-28Thin.otf') format('otf'),
+    url('./assets/fonts/Wavehaus-28Thin.otf') format('otf'),
+    url('./assets/fonts/Wavehaus-28Thin.otf') format('truetype');
   font-weight: 200;
 }
 
 @font-face {
-  font-family: "Wavehaus";
-  src: url("./assets/fonts/Wavehaus-42Light.otf") format("otf"),
-    url("./assets/fonts/Wavehaus-42Light.otf") format("otf"),
-    url("./assets/fonts/Wavehaus-42Light.otf") format("truetype");
+  font-family: 'Wavehaus';
+  src: url('./assets/fonts/Wavehaus-42Light.otf') format('otf'),
+    url('./assets/fonts/Wavehaus-42Light.otf') format('otf'),
+    url('./assets/fonts/Wavehaus-42Light.otf') format('truetype');
   font-weight: 300;
 }
 
 @font-face {
-  font-family: "Wavehaus";
-  src: url("./assets/fonts/Wavehaus-66Book.otf") format("otf"),
-    url("./assets/fonts/Wavehaus-66Book.otf") format("otf"),
-    url("./assets/fonts/Wavehaus-66Book.otf") format("truetype");
+  font-family: 'Wavehaus';
+  src: url('./assets/fonts/Wavehaus-66Book.otf') format('otf'),
+    url('./assets/fonts/Wavehaus-66Book.otf') format('otf'),
+    url('./assets/fonts/Wavehaus-66Book.otf') format('truetype');
   font-weight: 400;
 }
 
 @font-face {
-  font-family: "Wavehaus";
-  src: url("./assets/fonts/Wavehaus-95SemiBold.otf") format("otf"),
-    url("./assets/fonts/Wavehaus-95SemiBold.otf") format("otf"),
-    url("./assets/fonts/Wavehaus-95SemiBold.otf") format("truetype");
+  font-family: 'Wavehaus';
+  src: url('./assets/fonts/Wavehaus-95SemiBold.otf') format('otf'),
+    url('./assets/fonts/Wavehaus-95SemiBold.otf') format('otf'),
+    url('./assets/fonts/Wavehaus-95SemiBold.otf') format('truetype');
   font-weight: 600;
 }
 
 @font-face {
-  font-family: "Wavehaus";
-  src: url("./assets/fonts/Wavehaus-128Bold.otf") format("otf"),
-    url("./assets/fonts/Wavehaus-128Bold.otf") format("otf"),
-    url("./assets/fonts/Wavehaus-128Bold.otf") format("truetype");
+  font-family: 'Wavehaus';
+  src: url('./assets/fonts/Wavehaus-128Bold.otf') format('otf'),
+    url('./assets/fonts/Wavehaus-128Bold.otf') format('otf'),
+    url('./assets/fonts/Wavehaus-128Bold.otf') format('truetype');
   font-weight: 700;
 }
 
 @font-face {
-  font-family: "Wavehaus";
-  src: url("./assets/fonts/Wavehaus-158ExtraBold.otf") format("otf"),
-    url("./assets/fonts/Wavehaus-158ExtraBold.otf") format("otf"),
-    url("./assets/fonts/Wavehaus-158ExtraBold.otf") format("truetype");
+  font-family: 'Wavehaus';
+  src: url('./assets/fonts/Wavehaus-158ExtraBold.otf') format('otf'),
+    url('./assets/fonts/Wavehaus-158ExtraBold.otf') format('otf'),
+    url('./assets/fonts/Wavehaus-158ExtraBold.otf') format('truetype');
   font-weight: 800;
 }
 
@@ -157,17 +157,17 @@ textarea {
   line-height: inherit;
 }
 
-[type="date"],
-[type="email"],
-[type="number"],
-[type="password"],
-[type="search"],
-[type="tel"],
-[type="url"],
-[type="text"],
-[type="button"],
-[type="submit"],
-[type="reset"],
+[type='date'],
+[type='email'],
+[type='number'],
+[type='password'],
+[type='search'],
+[type='tel'],
+[type='url'],
+[type='text'],
+[type='button'],
+[type='submit'],
+[type='reset'],
 button,
 textarea {
   background-color: transparent;
@@ -179,9 +179,9 @@ textarea {
   padding: 0;
 }
 
-[type="button"],
-[type="submit"],
-[type="reset"],
+[type='button'],
+[type='submit'],
+[type='reset'],
 button {
   cursor: pointer;
   text-align: inherit;

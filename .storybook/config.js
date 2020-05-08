@@ -2,7 +2,7 @@ import React from "react";
 import { addReadme } from 'storybook-readme';
 import { create } from '@storybook/theming';
 import { addDecorator, addParameters, configure } from "@storybook/react";
-import { ThemeProvider, JssProvider } from "react-jss";
+import { ThemeProvider } from "react-jss";
 
 import theme from "../src/style/globalStyle";
 import '../src/style/base.css';
