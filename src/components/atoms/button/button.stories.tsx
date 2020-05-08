@@ -1,5 +1,4 @@
 import React from 'react';
-//
 import { storiesOf } from '@storybook/react';
 import {
   withKnobs,
@@ -12,10 +11,6 @@ import { action } from '@storybook/addon-actions';
 import Button from '.';
 
 import README from './README.md';
-
-// interface Props {
-//   classes?: WithStylesProps<any>;
-// }
 
 const appearanceOptions = {
   Default: 'default',

@@ -38,7 +38,7 @@ stories.add('Default ', () => {
 
   return (
     <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-      <span style={{ color: color('Colour', theme.colorBrand) }}>
+      <span style={{ color: color('Colour', theme.primaryColor) }}>
         <Loader
           spinnerFill={typeValues === typeOptions.spinnerFill}
           spinner={typeValues === typeOptions.spinner}
@@ -50,10 +50,10 @@ stories.add('Default ', () => {
           slow
         />
       </span>
-      <span style={{ color: color('Colour', theme.colorBrand) }}>
+      <span style={{ color: color('Colour', theme.primaryColor) }}>
         <Loader text="moderate" size={number('Size', 100)} moderate />
       </span>
-      <span style={{ color: color('Colour', theme.colorBrand) }}>
+      <span style={{ color: color('Colour', theme.primaryColor) }}>
         <Loader text="fast" size={number('Size', 100)} fast />
       </span>
     </div>

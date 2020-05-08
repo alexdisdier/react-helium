@@ -1,12 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-// import { classesFromStyles } from '../../../../utils/tests';
 
 import { IconInsertPhoto } from '.';
-
-// import useStyles from './iconInsertPhoto.style';
-
-// const classes = classesFromStyles(styles);
 
 describe('IconInsertPhoto', () => {
   let props;
