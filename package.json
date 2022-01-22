@@ -37,6 +37,10 @@
     "deploy-storybook": "yarn clean-storybook && yarn build-storybook && yarn storybook-to-ghpages -- --existing-output-dir=storybook-static",
     "semantic-release": "semantic-release"
   },
+  "peerDependencies": {
+    "eslint": "^5.16.0 || ^6.8.0 || ^7.2.0",
+    "eslint-plugin-import": "^2.22.1"
+  },
   "dependencies": {
     "dompurify": "^2.0.7",
     "draft-js": "^0.11.1",
