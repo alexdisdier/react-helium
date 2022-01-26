@@ -10,8 +10,8 @@ const stories = storiesOf('Molecules/Tabs', module).addDecorator(withKnobs);
 
 stories.addParameters({
   readme: {
-    content: README
-  }
+    content: README,
+  },
 });
 
 const tabs = [
@@ -24,7 +24,7 @@ const tabs = [
           formulate tabularly.
         </p>
       </div>
-    )
+    ),
   },
   {
     label: 'Tabulation 2',
@@ -32,7 +32,7 @@ const tabs = [
       <div>
         <p>To operate the tab key on a typewriter; to tab.</p>
       </div>
-    )
+    ),
   },
   {
     label: 'Tabulation 3',
@@ -43,15 +43,15 @@ const tabs = [
           Having transverse septae, as certain corals.
         </p>
       </div>
-    )
-  }
+    ),
+  },
 ];
 
 stories.add('default', () => (
   <div
     style={{
       maxWidth: 600,
-      border: `1px solid grey`
+      border: `1px solid grey`,
     }}
   >
     <Tabs tabs={tabs} centered={boolean('Centered', false)} />

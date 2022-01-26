@@ -12,6 +12,6 @@ export default createUseStyles((theme: any) => ({
     textOverflow: 'ellipsis',
     overflow: 'hidden',
     whiteSpace: 'nowrap',
-    background: 'inherit'
-  }
+    background: 'inherit',
+  },
 }));

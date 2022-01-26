@@ -20,10 +20,10 @@ export default createUseStyles((theme: any) => ({
     zIndex: 6,
     '&[data-is-ready=true]': {
       opacity: 0,
-      transform: 'translateX(-50%) translateY(100%)'
+      transform: 'translateX(-50%) translateY(100%)',
     },
     '&[data-has-error=true]': {
-      backgroundColor: theme.warningRed
+      backgroundColor: theme.warningRed,
     },
     '&[data-is-top=true]': {
       top: 0,
@@ -31,8 +31,8 @@ export default createUseStyles((theme: any) => ({
       transform: 'translateX(-50%) translateY(0)',
       '&[data-is-ready=true]': {
         opacity: 0,
-        transform: 'translateX(-50%) translateY(-50%)'
-      }
+        transform: 'translateX(-50%) translateY(-50%)',
+      },
     },
     '&[data-is-bottomleft=true]': {
       left: '0',
@@ -40,18 +40,18 @@ export default createUseStyles((theme: any) => ({
       transform: 'translateX(0) translateY(0)',
       '&[data-is-ready=true]': {
         opacity: 0,
-        transform: 'translateX(-50%) translateY(0)'
-      }
-    }
+        transform: 'translateX(-50%) translateY(0)',
+      },
+    },
   },
   noSnackbar: {
-    opacity: 0
+    opacity: 0,
   },
   undoClickBtn: {
     color: theme.white,
     fontSize: 11,
     fontWeight: 700,
     marginLeft: 21,
-    textTransform: 'uppercase'
-  }
+    textTransform: 'uppercase',
+  },
 }));

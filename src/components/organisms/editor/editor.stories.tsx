@@ -23,14 +23,14 @@ const buttonWrapper = {
   display: 'flex',
   justifyContent: 'flex-end',
   marginTop: 10,
-  marginBottom: 10
+  marginBottom: 10,
 };
 
 const ControlledEditor: React.FC<Props> = ({ ...otherProps }) => {
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const [show, setShow] = useState(false);
 
-  const onChange = state => {
+  const onChange = (state) => {
     setEditorState(state);
   };
 
@@ -39,7 +39,7 @@ const ControlledEditor: React.FC<Props> = ({ ...otherProps }) => {
   };
 
   const hidden = {
-    display: show ? 'block' : 'none'
+    display: show ? 'block' : 'none',
   };
 
   return (
@@ -62,16 +62,14 @@ const ControlledEditor: React.FC<Props> = ({ ...otherProps }) => {
 const stories = storiesOf('Organisms/Rich Text Editor', module);
 stories.addParameters({
   readme: {
-    content: README
-  }
+    content: README,
+  },
 });
 
 stories.addDecorator(withKnobs);
-stories.add('default', () => {
-  return (
-    <ControlledEditor
-      placeholder={text('Placeholder', 'Let your imagination run wild')}
-      disabled={boolean('Disabled', false)}
-    />
-  );
-});
+stories.add('default', () => (
+  <ControlledEditor
+    placeholder={text('Placeholder', 'Let your imagination run wild')}
+    disabled={boolean('Disabled', false)}
+  />
+));

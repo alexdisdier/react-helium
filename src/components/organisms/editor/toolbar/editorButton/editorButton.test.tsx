@@ -20,7 +20,7 @@ describe('Editor Button', () => {
       removeLink: jest.fn(),
       active: false,
       buttonType: 'BOLD',
-      disabled: false
+      disabled: false,
     };
   });
 
@@ -28,7 +28,7 @@ describe('Editor Button', () => {
     it('triggers onClick for a block or inline style Editor button', () => {
       const wrapper = shallow(<EditorButton {...props} />);
       wrapper.simulate('mouseDown', {
-        preventDefault: () => {}
+        preventDefault: () => {},
       });
       expect(props.onClick).toHaveBeenCalledTimes(1);
     });
@@ -37,7 +37,7 @@ describe('Editor Button', () => {
       props.buttonType = 'LINK';
       const wrapper = shallow(<EditorButton {...props} />);
       wrapper.simulate('mouseDown', {
-        preventDefault: () => {}
+        preventDefault: () => {},
       });
       expect(props.promptForLink).toHaveBeenCalledTimes(1);
     });
@@ -47,7 +47,7 @@ describe('Editor Button', () => {
       props.active = true;
       const wrapper = shallow(<EditorButton {...props} />);
       wrapper.simulate('mouseDown', {
-        preventDefault: () => {}
+        preventDefault: () => {},
       });
       expect(props.removeLink).toHaveBeenCalledTimes(1);
     });

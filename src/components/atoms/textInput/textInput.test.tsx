@@ -1,29 +1,22 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-// import { classesFromStyles } from '../../../utils/tests';
+import { render, fireEvent, act } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { TextInput } from '.';
 
 import {
   STATUS_INVALID,
   STATUS_CAUTION,
-  STATUS_VALID
+  STATUS_VALID,
 } from '../../../constant';
 
-// import useStyles from './textInput.style';
-
-jest.mock('../errorMessage', () => 'ErrorMessage');
-
 jest.useFakeTimers();
-
-// const classes = classesFromStyles(styles);
 
 describe('TextInput', () => {
   let props;
 
   beforeEach(() => {
     props = {
-      // classes,
       id: 'id',
       placeholder: 'placeholder',
       value: 'Hello world',
@@ -35,37 +28,32 @@ describe('TextInput', () => {
       errorMessage: 'This is a required field',
       status: null,
       disabled: false,
-      required: false
+      required: false,
     };
   });
 
   it('renders full component', () => {
-    const wrapper = shallow(<TextInput {...props} />);
-    expect(wrapper).toMatchInlineSnapshot(`
-      <Fragment>
-        <div
-          className="root-0-2-1"
-          data-has-focus={false}
-          data-has-value={true}
-          data-is-caution={false}
-          data-is-disabled={false}
-          data-is-invalid={false}
-          data-is-required={false}
-          data-is-valid={false}
-        >
-          <input
-            className="input-0-2-2"
-            disabled={false}
-            id="id"
-            onBlur={[Function]}
-            onChange={[MockFunction]}
-            onFocus={[Function]}
-            placeholder="placeholder"
-            type="text"
-            value="Hello world"
-          />
-        </div>
-      </Fragment>
+    const { container } = render(<TextInput {...props} />);
+
+    expect(container.firstChild).toMatchInlineSnapshot(`
+      <div
+        class="root-0-2-1"
+        data-has-focus="false"
+        data-has-value="true"
+        data-is-caution="false"
+        data-is-disabled="false"
+        data-is-invalid="false"
+        data-is-required="false"
+        data-is-valid="false"
+      >
+        <input
+          class="input-0-2-2"
+          id="id"
+          placeholder="placeholder"
+          type="text"
+          value="Hello world"
+        />
+      </div>
     `);
   });
 
@@ -73,156 +61,137 @@ describe('TextInput', () => {
     props.id = 'input_id_001';
     props.placeholder = 'Placeholder text';
     props.className = 'additional-class-name';
-    const wrapper = shallow(<TextInput {...props} />);
-    expect(wrapper).toMatchInlineSnapshot(`
-      <Fragment>
-        <div
-          className="root-0-2-1"
-          data-has-focus={false}
-          data-has-value={true}
-          data-is-caution={false}
-          data-is-disabled={false}
-          data-is-invalid={false}
-          data-is-required={false}
-          data-is-valid={false}
-        >
-          <input
-            className="input-0-2-2"
-            disabled={false}
-            id="input_id_001"
-            onBlur={[Function]}
-            onChange={[MockFunction]}
-            onFocus={[Function]}
-            placeholder="Placeholder text"
-            type="text"
-            value="Hello world"
-          />
-        </div>
-      </Fragment>
+
+    const { container } = render(<TextInput {...props} />);
+
+    expect(container.firstChild).toMatchInlineSnapshot(`
+      <div
+        class="root-0-2-1"
+        data-has-focus="false"
+        data-has-value="true"
+        data-is-caution="false"
+        data-is-disabled="false"
+        data-is-invalid="false"
+        data-is-required="false"
+        data-is-valid="false"
+      >
+        <input
+          class="input-0-2-2"
+          id="input_id_001"
+          placeholder="Placeholder text"
+          type="text"
+          value="Hello world"
+        />
+      </div>
     `);
   });
 
   it('renders disabled component', () => {
     props.disabled = true;
-    const wrapper = shallow(<TextInput {...props} />);
-    expect(wrapper).toMatchInlineSnapshot(`
-      <Fragment>
-        <div
-          className="root-0-2-1"
-          data-has-focus={false}
-          data-has-value={true}
-          data-is-caution={false}
-          data-is-disabled={true}
-          data-is-invalid={false}
-          data-is-required={false}
-          data-is-valid={false}
-        >
-          <input
-            className="input-0-2-2"
-            disabled={true}
-            id="id"
-            onBlur={[Function]}
-            onChange={[MockFunction]}
-            onFocus={[Function]}
-            placeholder="placeholder"
-            type="text"
-            value="Hello world"
-          />
-        </div>
-      </Fragment>
+
+    const { container } = render(<TextInput {...props} />);
+
+    expect(container.firstChild).toMatchInlineSnapshot(`
+      <div
+        class="root-0-2-1"
+        data-has-focus="false"
+        data-has-value="true"
+        data-is-caution="false"
+        data-is-disabled="true"
+        data-is-invalid="false"
+        data-is-required="false"
+        data-is-valid="false"
+      >
+        <input
+          class="input-0-2-2"
+          disabled=""
+          id="id"
+          placeholder="placeholder"
+          type="text"
+          value="Hello world"
+        />
+      </div>
     `);
   });
 
   it('renders full component with invalid status', () => {
     props.status = STATUS_INVALID;
-    const wrapper = shallow(<TextInput {...props} />);
-    expect(wrapper).toMatchInlineSnapshot(`
-      <Fragment>
-        <div
-          className="root-0-2-1"
-          data-has-focus={false}
-          data-has-value={true}
-          data-is-caution={false}
-          data-is-disabled={false}
-          data-is-invalid={true}
-          data-is-required={false}
-          data-is-valid={false}
-        >
-          <input
-            className="input-0-2-2"
-            disabled={false}
-            id="id"
-            onBlur={[Function]}
-            onChange={[MockFunction]}
-            onFocus={[Function]}
-            placeholder="placeholder"
-            type="text"
-            value="Hello world"
-          />
-        </div>
-      </Fragment>
+
+    const { container } = render(<TextInput {...props} />);
+
+    expect(container.firstChild).toMatchInlineSnapshot(`
+      <div
+        class="root-0-2-1"
+        data-has-focus="false"
+        data-has-value="true"
+        data-is-caution="false"
+        data-is-disabled="false"
+        data-is-invalid="true"
+        data-is-required="false"
+        data-is-valid="false"
+      >
+        <input
+          class="input-0-2-2"
+          id="id"
+          placeholder="placeholder"
+          type="text"
+          value="Hello world"
+        />
+      </div>
     `);
   });
 
   it('renders full component with caution status', () => {
     props.status = STATUS_CAUTION;
-    const wrapper = shallow(<TextInput {...props} />);
-    expect(wrapper).toMatchInlineSnapshot(`
-      <Fragment>
-        <div
-          className="root-0-2-1"
-          data-has-focus={false}
-          data-has-value={true}
-          data-is-caution={true}
-          data-is-disabled={false}
-          data-is-invalid={false}
-          data-is-required={false}
-          data-is-valid={false}
-        >
-          <input
-            className="input-0-2-2"
-            disabled={false}
-            id="id"
-            onBlur={[Function]}
-            onChange={[MockFunction]}
-            onFocus={[Function]}
-            placeholder="placeholder"
-            type="text"
-            value="Hello world"
-          />
-        </div>
-      </Fragment>
+
+    const { container } = render(<TextInput {...props} />);
+
+    expect(container.firstChild).toMatchInlineSnapshot(`
+      <div
+        class="root-0-2-1"
+        data-has-focus="false"
+        data-has-value="true"
+        data-is-caution="true"
+        data-is-disabled="false"
+        data-is-invalid="false"
+        data-is-required="false"
+        data-is-valid="false"
+      >
+        <input
+          class="input-0-2-2"
+          id="id"
+          placeholder="placeholder"
+          type="text"
+          value="Hello world"
+        />
+      </div>
     `);
   });
 
   it('renders full component with valid status', () => {
     props.status = STATUS_VALID;
-    const wrapper = shallow(<TextInput {...props} />);
-    expect(wrapper).toMatchInlineSnapshot(`
-      <Fragment>
-        <div
-          className="root-0-2-1"
-          data-has-focus={false}
-          data-has-value={true}
-          data-is-caution={false}
-          data-is-disabled={false}
-          data-is-invalid={false}
-          data-is-required={false}
-          data-is-valid={true}
-        >
-          <input
-            className="input-0-2-2"
-            disabled={false}
-            id="id"
-            onBlur={[Function]}
-            onChange={[MockFunction]}
-            onFocus={[Function]}
-            placeholder="placeholder"
-            type="text"
-            value="Hello world"
-          />
-        </div>
-      </Fragment>
+
+    const { container } = render(<TextInput {...props} />);
+
+    expect(container.firstChild).toMatchInlineSnapshot(`
+      <div
+        class="root-0-2-1"
+        data-has-focus="false"
+        data-has-value="true"
+        data-is-caution="false"
+        data-is-disabled="false"
+        data-is-invalid="false"
+        data-is-required="false"
+        data-is-valid="true"
+      >
+        <input
+          class="input-0-2-2"
+          id="id"
+          placeholder="placeholder"
+          type="text"
+          value="Hello world"
+        />
+      </div>
     `);
   });
 
@@ -230,35 +199,44 @@ describe('TextInput', () => {
     props.value = '';
     props.required = true;
 
-    const wrapper = shallow(<TextInput {...props} />);
-    const input = wrapper.find('input');
+    const { container, getByText } = render(<TextInput {...props} />);
+    const input = container.querySelector('input');
 
-    input.simulate('blur');
-    jest.advanceTimersByTime(50);
-    input.simulate('focus');
+    fireEvent.blur(input);
 
-    expect(wrapper.find('ErrorMessage')).toHaveLength(1);
+    act(() => {
+      jest.advanceTimersByTime(50);
+    });
+
+    expect(getByText('This is a required field')).toBeInTheDocument();
   });
 
   it('should call handleChange', () => {
-    const wrapper = shallow(<TextInput {...props} />);
-    const input = wrapper.find('input');
-    input.simulate('change');
+    const { container } = render(<TextInput {...props} />);
+    const input = container.querySelector('input');
+
+    fireEvent.change(input, { target: { value: '23' } });
+
     expect(props.handleChange).toHaveBeenCalledTimes(1);
   });
 
   it('should call handleFocus', () => {
-    const wrapper = shallow(<TextInput {...props} />);
-    const input = wrapper.find('input');
-    input.simulate('focus');
+    const { container } = render(<TextInput {...props} />);
+    const input = container.querySelector('input');
+
+    input.focus();
+
     expect(props.handleFocus).toHaveBeenCalledTimes(1);
   });
 
   it('should call handleBlur', () => {
-    const wrapper = shallow(<TextInput {...props} />);
-    const input = wrapper.find('input');
-    input.simulate('blur');
+    const { container } = render(<TextInput {...props} />);
+    const input = container.querySelector('input');
+
+    fireEvent.blur(input);
+
     jest.advanceTimersByTime(50);
+
     expect(props.handleBlur).toHaveBeenCalledTimes(1);
   });
 });

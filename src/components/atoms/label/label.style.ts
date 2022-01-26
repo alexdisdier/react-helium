@@ -6,7 +6,7 @@ export default createUseStyles((theme: any) => ({
     flexDirection: 'column',
     width: '100%',
     position: 'relative',
-    backgroundColor: 'inherent'
+    backgroundColor: 'inherent',
   },
   label: {
     color: theme.grey1,
@@ -16,7 +16,7 @@ export default createUseStyles((theme: any) => ({
     paddingBottom: 8,
     '[data-input-is-required="true"] > &::before': {
       content: '"* "',
-      color: theme.warningRed
-    }
-  }
+      color: theme.warningRed,
+    },
+  },
 }));

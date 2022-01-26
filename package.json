@@ -38,15 +38,18 @@
     "semantic-release": "semantic-release"
   },
   "dependencies": {
-    "dompurify": "^2.0.7",
-    "draft-js": "^0.11.1",
+    "@testing-library/jest-dom": "^5.16.1",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.5.0",
+    "dompurify": "^2.3.4",
+    "draft-js": "^0.11.7",
     "draft-js-export-html": "^1.4.1",
     "lodash.uniqueid": "^4.0.1",
-    "react": "^16.10.2",
-    "react-dom": "^16.10.2",
-    "react-jss": "^10.0.4",
-    "react-scripts": "3.2.0",
-    "typescript": "^3.7.2"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-jss": "^10.9.0",
+    "react-scripts": "^5.0.0",
+    "typescript": "^4.5.4"
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",
@@ -54,40 +57,34 @@
     "@commitlint/config-conventional": "^8.2.0",
     "@semantic-release/changelog": "^3.0.5",
     "@semantic-release/git": "^7.0.18",
-    "@storybook/addon-actions": "^5.2.4",
-    "@storybook/addon-info": "^5.2.4",
+    "@storybook/addon-actions": "^6.4.14",
+    "@storybook/addon-info": "^5.3.21",
     "@storybook/addon-knobs": "^5.2.4",
-    "@storybook/addon-links": "^5.2.4",
-    "@storybook/addons": "^5.2.4",
-    "@storybook/react": "^5.2.4",
-    "@storybook/storybook-deployer": "^2.8.1",
-    "@types/draft-js": "^0.10.37",
-    "@types/enzyme": "^3.10.3",
-    "@types/enzyme-adapter-react-16": "^1.0.5",
-    "@types/enzyme-to-json": "^1.5.3",
-    "@types/jest": "^24.0.19",
+    "@storybook/addon-links": "^6.4.14",
+    "@storybook/addons": "^6.4.14",
+    "@storybook/react": "^6.4.14",
+    "@storybook/storybook-deployer": "^2.8.10",
+    "@types/draft-js": "^0.11.8",
+    "@types/jest": "^27.0.3",
     "@types/lodash.uniqueid": "^4.0.6",
-    "@types/node": "12.11.2",
-    "@types/react": "16.9.9",
-    "@types/react-dom": "16.9.2",
+    "@types/node": "^16.11.17",
+    "@types/react": "^17.0.38",
+    "@types/react-dom": "^17.0.11",
     "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.0.6",
     "copyfiles": "^2.1.1",
-    "enzyme": "^3.10.0",
-    "enzyme-adapter-react-16": "^1.15.1",
-    "enzyme-to-json": "^3.4.3",
-    "eslint-config-airbnb": "^18.0.1",
-    "eslint-config-prettier": "^6.4.0",
-    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "husky": "^3.0.5",
-    "jest": "^24.9.0",
-    "jest-localstorage-mock": "^2.4.0",
+    "jest": "^27.4.7",
+    "jest-localstorage-mock": "^2.4.18",
     "lint-staged": "^9.4.1",
-    "prettier": "^1.18.2",
-    "react-docgen-typescript-loader": "^3.3.0",
+    "prettier": "^2.5.1",
+    "react-test-renderer": "^17.0.2",
     "semantic-release": "^15.13.30",
-    "storybook-readme": "^5.0.8",
-    "ts-jest": "^24.1.0"
+    "storybook-readme": "^5.0.9",
+    "ts-jest": "^27.1.3"
   },
   "browserslist": {
     "production": [
@@ -99,11 +96,6 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
-    ]
-  },
-  "jest": {
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
     ]
   },
   "release": {

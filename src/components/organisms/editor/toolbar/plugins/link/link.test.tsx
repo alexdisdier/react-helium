@@ -11,9 +11,9 @@ import { Link } from '.';
 jest.mock('draft-js', () => ({
   Entity: {
     get: jest.fn(() => ({
-      getData: jest.fn(() => ({ url: 'www.alexdisdier.com' }))
-    }))
-  }
+      getData: jest.fn(() => ({ url: 'www.alexdisdier.com' })),
+    })),
+  },
 }));
 
 describe('Link', () => {
@@ -23,7 +23,7 @@ describe('Link', () => {
     props = {
       // classes,
       entityKey: '1',
-      children: <span>Alex Disdier</span>
+      children: <span>Alex Disdier</span>,
     };
   });
 

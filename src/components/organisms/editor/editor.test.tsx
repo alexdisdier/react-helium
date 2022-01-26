@@ -9,7 +9,7 @@ import { Editor } from '.';
 // const classes = classesFromStyles(styles);
 
 const mockContentState = {
-  editorState: 'editorState'
+  editorState: 'editorState',
 };
 
 // Adding mock Editor functions to the mockContentState
@@ -19,14 +19,15 @@ mockContentState.first = jest.fn(() => mockContentState);
 mockContentState.getType = jest.fn(() => mockContentState);
 
 jest.mock('draft-js', () => ({
+  AtomicBlockUtils: jest.fn(),
   CompositeDecorator: jest.fn(),
   Editor: 'Draft',
   EditorState: {
     createEmpty: jest.fn(() => ({
-      getCurrentContent: jest.fn(() => mockContentState)
-    }))
+      getCurrentContent: jest.fn(() => mockContentState),
+    })),
   },
-  RichUtils: jest.fn()
+  RichUtils: jest.fn(),
 }));
 
 jest.mock('../../atoms/button', () => 'Button');
@@ -35,7 +36,7 @@ jest.mock('./toolbar', () => 'Toolbar');
 jest.mock('../../../utils/editor', () => ({
   findLinkEntities: jest.fn(),
   getBlockStyle: jest.fn(),
-  getHMLString: jest.fn()
+  getHMLString: jest.fn(),
 }));
 
 describe('Editor', () => {
@@ -44,16 +45,16 @@ describe('Editor', () => {
   // Spy and mock useState hook
   const setShowUrlInput = jest.fn();
   const useStateSpy = jest.spyOn(React, 'useState');
-  useStateSpy.mockImplementation(showUrlInput => [
+  useStateSpy.mockImplementation((showUrlInput) => [
     showUrlInput,
-    setShowUrlInput
+    setShowUrlInput,
   ]);
 
   beforeEach(() => {
     props = {
       placeholder: 'I am a placeholder',
       onChange: jest.fn(),
-      disabled: false
+      disabled: false,
     };
   });
 

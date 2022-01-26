@@ -14,8 +14,7 @@ describe('Image', () => {
   beforeEach(() => {
     props = {
       // classes,
-      src:
-        'https://www.tesla.com/sites/tesla/files/curatedmedia/model-s%402x.jpg'
+      src: 'https://www.tesla.com/sites/tesla/files/curatedmedia/model-s%402x.jpg',
     };
   });
 

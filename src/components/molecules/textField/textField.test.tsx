@@ -11,7 +11,7 @@ describe('TextField', () => {
   beforeEach(() => {
     props = {
       label: 'I am a label',
-      onValueChange: jest.fn()
+      onValueChange: jest.fn(),
     };
   });
 

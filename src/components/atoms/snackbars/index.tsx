@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import {
   ACTION_TIMEOUT,
   DEFAULT_TIMEOUT,
-  TYPE_ERROR
+  TYPE_ERROR,
 } from '../../../constant/types';
 
 import useStyles from './snackbars.style';
@@ -27,22 +27,23 @@ interface Props {
 
 const SnackbarsContext: SnackbarsContextProps = React.createContext(() => {});
 
-export const withSnackbarsContext = Component => props => {
-  return (
-    <SnackbarsContext.Consumer>
-      {({
-        successSnackbar,
-        errorSnackbar
-      }: Pick<Props, 'successSnackbar' | 'errorSnackbar'>) => (
-        <Component
-          successSnackbar={successSnackbar}
-          errorSnackbar={errorSnackbar}
-          {...props}
-        />
-      )}
-    </SnackbarsContext.Consumer>
-  );
-};
+export const withSnackbarsContext = (Component) =>
+  function (props) {
+    return (
+      <SnackbarsContext.Consumer>
+        {({
+          successSnackbar,
+          errorSnackbar,
+        }: Pick<Props, 'successSnackbar' | 'errorSnackbar'>) => (
+          <Component
+            successSnackbar={successSnackbar}
+            errorSnackbar={errorSnackbar}
+            {...props}
+          />
+        )}
+      </SnackbarsContext.Consumer>
+    );
+  };
 
 export const Snackbars: React.FC<Props> = ({ children, config = {} }) => {
   const classes = useStyles();
@@ -56,20 +57,21 @@ export const Snackbars: React.FC<Props> = ({ children, config = {} }) => {
       backgroundColor: config.backgroundColor,
       color: config.color,
       top: config.top,
-      bottomLeft: config.bottomLeft
-    }
+      bottomLeft: config.bottomLeft,
+    },
   });
   const [isReady, setIsReady] = useState<boolean>(true);
 
   let timer;
 
-  useEffect(() => {
-    return () => {
+  useEffect(
+    () => () => {
       clearTimeout(timer);
-    };
-  }, [timer]);
+    },
+    [timer]
+  );
 
-  const onAddAlert = msg => {
+  const onAddAlert = (msg) => {
     if (isReady && !messages.length) {
       setLastMessage(msg);
       setIsReady(false);
@@ -105,11 +107,11 @@ export const Snackbars: React.FC<Props> = ({ children, config = {} }) => {
   };
 
   const rootDynamicStyle = {
-    backgroundColor: lastMessage.config.backgroundColor
+    backgroundColor: lastMessage.config.backgroundColor,
   };
 
   const contentDynamicStyle = {
-    color: lastMessage.config.color
+    color: lastMessage.config.color,
   };
 
   const renderMessage = () => {
@@ -120,7 +122,7 @@ export const Snackbars: React.FC<Props> = ({ children, config = {} }) => {
       'data-has-error': lastMessage.type === TYPE_ERROR,
       'data-is-top': !lastMessage.config.bottomLeft && lastMessage.config.top,
       'data-is-bottomleft':
-        !lastMessage.config.top && lastMessage.config.bottomLeft
+        !lastMessage.config.top && lastMessage.config.bottomLeft,
     };
 
     return (
@@ -141,7 +143,7 @@ export const Snackbars: React.FC<Props> = ({ children, config = {} }) => {
     <SnackbarsContext.Provider
       value={{
         successSnackbar: onAddSuccessAlert,
-        errorSnackbar: onAddErrorAlert
+        errorSnackbar: onAddErrorAlert,
       }}
     >
       {children}

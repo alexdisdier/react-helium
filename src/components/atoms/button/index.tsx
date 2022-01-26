@@ -27,8 +27,9 @@ export const Button: React.FC<Props> = ({
   color = '',
   round = false,
   inverted = false,
-  vector = null
+  vector = null,
 }) => {
+  // @ts-ignore
   const classes = useStyles({ color });
 
   const handleClick = () => {
@@ -44,7 +45,7 @@ export const Button: React.FC<Props> = ({
     'data-is-secondary': secondary,
     'data-is-warning': warning,
     'data-is-round': round,
-    'data-is-inverted': !primary && !secondary && !warning && inverted
+    'data-is-inverted': !primary && !secondary && !warning && inverted,
   };
 
   return (

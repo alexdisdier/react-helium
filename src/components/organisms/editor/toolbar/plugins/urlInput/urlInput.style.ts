@@ -1,9 +1,9 @@
-import { createUseStyles } from 'react-jss';
+import { createUseStyles, Styles } from 'react-jss';
 
-export default createUseStyles((theme: any) => ({
+export default createUseStyles((theme: Styles) => ({
   root: {
     position: 'absolute',
-    marginLeft: 11
+    marginLeft: 11,
   },
   input: {
     display: 'block',
@@ -22,11 +22,11 @@ export default createUseStyles((theme: any) => ({
     color: theme.teal3,
     boxShadow: `0px 4px 8px #34323A4D`,
     '&::placeholder': {
-      color: theme.grey4
+      color: theme.grey4,
     },
     '&[data-is-notvalid="true"]': {
       borderWidth: 2,
-      borderColor: theme.warningRed
-    }
-  }
+      borderColor: theme.warningRed,
+    },
+  },
 }));

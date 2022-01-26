@@ -1,38 +1,28 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-// import { classesFromStyles } from '../../../../../utils/tests';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { IconDots } from '.';
-
-// import useStyles from './iconDots.style';
-
-// const classes = classesFromStyles(styles);
 
 describe('IconDots', () => {
   let props;
 
   beforeEach(() => {
     props = {
-      // classes,
       size: 32,
       speed: '0.5',
-      repeatCount: 'indefinite'
+      repeatCount: 'indefinite',
     };
   });
 
   it('renders an IconDots svg', () => {
-    const wrapper = shallow(<IconDots {...props} />);
-    expect(wrapper).toMatchInlineSnapshot(`
+    const { container } = render(<IconDots {...props} />);
+    expect(container.firstChild).toMatchInlineSnapshot(`
       <svg
         aria-hidden="true"
-        className="root-0-2-1"
-        fillRule="evenodd"
-        style={
-          Object {
-            "height": "32px",
-            "width": "32px",
-          }
-        }
+        class="root-0-2-1"
+        fill-rule="evenodd"
+        style="width: 32px; height: 32px;"
         viewBox="0 0 128 35"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -40,7 +30,7 @@ describe('IconDots', () => {
           <circle
             cx="17.5"
             cy="17.5"
-            fillOpacity="1"
+            fill-opacity="1"
             r="17.5"
           />
           <animate
@@ -56,7 +46,7 @@ describe('IconDots', () => {
           <circle
             cx="110.5"
             cy="17.5"
-            fillOpacity="1"
+            fill-opacity="1"
             r="17.5"
           />
           <animate
@@ -72,7 +62,7 @@ describe('IconDots', () => {
           <circle
             cx="64"
             cy="17.5"
-            fillOpacity="1"
+            fill-opacity="1"
             r="17.5"
           />
           <animate

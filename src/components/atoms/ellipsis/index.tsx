@@ -11,8 +11,9 @@ interface Props {
 export const Ellipsis: React.FC<Props> = ({
   children,
   maxWidth = 'inherit',
-  color = ''
+  color = '',
 }) => {
+  // @ts-ignore
   const classes = useStyles({ maxWidth, color });
 
   return <div className={classes.root}>{children}</div>;

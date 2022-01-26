@@ -5,14 +5,14 @@ import {
   withKnobs,
   text,
   boolean,
-  optionsKnob as options
+  optionsKnob as options,
 } from '@storybook/addon-knobs';
 
 import { TextField } from '.';
 import {
   STATUS_INVALID,
   STATUS_CAUTION,
-  STATUS_VALID
+  STATUS_VALID,
 } from '../../../constant/status';
 
 import TextFieldReadme from './README.md';
@@ -39,7 +39,7 @@ export const ControlledFieldText: React.FC<Props> = ({
   const [value, setValue] = useState('');
   return (
     <TextField
-      onValueChange={e => setValue(e.target.value)}
+      onValueChange={(e) => setValue(e.target.value)}
       value={value}
       label={label}
       {...otherProps}
@@ -50,8 +50,8 @@ export const ControlledFieldText: React.FC<Props> = ({
 const stories = storiesOf('Molecules/Text Field', module);
 stories.addParameters({
   readme: {
-    content: TextFieldReadme
-  }
+    content: TextFieldReadme,
+  },
 });
 
 stories.addDecorator(withKnobs);
@@ -62,7 +62,7 @@ stories.add('default', () => {
       Default: '',
       Invalid: STATUS_INVALID,
       Caution: STATUS_CAUTION,
-      Valid: STATUS_VALID
+      Valid: STATUS_VALID,
     },
     '',
     { display: 'inline-radio' }

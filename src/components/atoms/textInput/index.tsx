@@ -5,7 +5,7 @@ import ErrorMessage from '../errorMessage';
 import {
   STATUS_INVALID,
   STATUS_CAUTION,
-  STATUS_VALID
+  STATUS_VALID,
 } from '../../../constant/status';
 
 import useStyles from './textInput.style';
@@ -26,8 +26,8 @@ interface Props {
 }
 
 export const TextInput: React.FC<Props> = ({
-  id = null,
-  placeholder = null,
+  id = '',
+  placeholder = '',
   value,
   type,
   handleFocus = () => {},
@@ -37,7 +37,7 @@ export const TextInput: React.FC<Props> = ({
   status = null,
   disabled = false,
   required = false,
-  errorMessage = ''
+  errorMessage = '',
 }) => {
   const classes = useStyles();
   const [hasFocus, setHasFocus] = useState(false);
@@ -52,13 +52,13 @@ export const TextInput: React.FC<Props> = ({
     focusCounter > 0 &&
     required;
 
-  const focusHandler = e => {
+  const focusHandler = (e: any) => {
     window.clearTimeout(timer);
     setHasFocus(true);
     handleFocus!(e);
   };
 
-  const blurHandler = e => {
+  const blurHandler = (e) => {
     window.clearTimeout(timer);
     timer = window.setTimeout(() => {
       setHasFocus(false);
@@ -76,7 +76,7 @@ export const TextInput: React.FC<Props> = ({
     'data-is-caution': status === STATUS_CAUTION,
     'data-is-valid': status === STATUS_VALID,
     'data-is-disabled': disabled,
-    'data-is-required': required
+    'data-is-required': required,
   };
 
   const inputProps = {
@@ -84,23 +84,23 @@ export const TextInput: React.FC<Props> = ({
     onBlur: blurHandler,
     onChange: handleChange,
     ref: inputRef,
-    disabled
+    disabled,
   };
 
   return (
-    <>
-      <div {...rootProps}>
-        <input
-          id={id!}
-          className={classes.input}
-          type={type}
-          placeholder={placeholder!}
-          value={value}
-          {...inputProps}
-        />
-        {invalid && <ErrorMessage text={errorMessage} />}
-      </div>
-    </>
+    <div {...rootProps}>
+      <input
+        id={id}
+        className={classes.input}
+        type={type}
+        placeholder={placeholder}
+        value={value}
+        {...inputProps}
+      />
+      {invalid && (
+        <ErrorMessage data-testid="error-message" text={errorMessage} />
+      )}
+    </div>
   );
 };
 

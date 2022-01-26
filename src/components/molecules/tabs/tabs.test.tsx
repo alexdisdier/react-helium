@@ -1,14 +1,8 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-// import { classesFromStyles } from '../../../utils/tests';
+import { render, fireEvent, act } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { Tabs } from '.';
-
-// import useStyles from './tabs.style';
-
-// const classes = classesFromStyles(styles);
-
-jest.mock('./tab', () => 'Tab');
 
 describe('Tabs', () => {
   let props;
@@ -16,7 +10,7 @@ describe('Tabs', () => {
   // Spy and mock useState hook
   const setActiveTab = jest.fn();
   const useStateSpy = jest.spyOn(React, 'useState');
-  useStateSpy.mockImplementation(activeTab => [activeTab, setActiveTab]);
+  useStateSpy.mockImplementation((activeTab) => [activeTab, setActiveTab]);
 
   beforeEach(() => {
     props = {
@@ -31,7 +25,7 @@ describe('Tabs', () => {
                 formulate tabularly.
               </p>
             </div>
-          )
+          ),
         },
         {
           label: 'tab2',
@@ -39,10 +33,10 @@ describe('Tabs', () => {
             <div>
               <p>To operate the tab key on a typewriter; to tab.</p>
             </div>
-          )
-        }
+          ),
+        },
       ],
-      centered: false
+      centered: false,
     };
   });
 

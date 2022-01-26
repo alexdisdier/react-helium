@@ -1,4 +1,4 @@
-import { createUseStyles } from 'react-jss';
+import { createUseStyles, Styles } from 'react-jss';
 
 export default createUseStyles({
   root: {
@@ -14,13 +14,14 @@ export default createUseStyles({
       position: 'absolute',
       top: '50%',
       left: '50%',
-      transform: 'translate(-50%, -50%)'
-    }
+      transform: 'translate(-50%, -50%)',
+    },
   },
   text: {
-    fontSize: props => (props.size < 300 ? props.size / 2.2 : 300 / 2.2),
+    fontSize: (props: { size: number }) =>
+      props.size < 300 ? props.size / 2.2 : 300 / 2.2,
     '&::first-letter': {
-      textTransform: 'uppercase'
-    }
-  }
-});
+      textTransform: 'uppercase',
+    },
+  },
+} as Styles);

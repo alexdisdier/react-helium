@@ -1,6 +1,6 @@
-import { createUseStyles } from 'react-jss';
+import { createUseStyles, Styles } from 'react-jss';
 
-export default createUseStyles((theme: any) => ({
+export default createUseStyles((theme: Styles) => ({
   root: {
     display: 'flex',
     flexGrow: 1,
@@ -11,26 +11,27 @@ export default createUseStyles((theme: any) => ({
     borderRadius: 2,
     transition: 'border-color 150ms linear 0ms',
     '&[data-is-disabled="true"]': {
-      opacity: 0.3
+      opacity: 0.3,
     },
     '&[data-has-focus="true"]': {
-      borderColor: theme.primaryColor
+      borderColor: theme.primaryColor,
     },
-    '&[data-has-value="true"]:not([data-has-focus="true"]):not([data-is-invalid="true"]):not([data-is-caution="true"]):not([data-is-valid="true"])': {
-      borderColor: theme.grey2
-    },
+    '&[data-has-value="true"]:not([data-has-focus="true"]):not([data-is-invalid="true"]):not([data-is-caution="true"]):not([data-is-valid="true"])':
+      {
+        borderColor: theme.grey2,
+      },
     '&[data-is-invalid="true"]': {
-      borderColor: theme.warningRed
+      borderColor: theme.warningRed,
     },
     '&[data-is-caution="true"]': {
-      borderColor: theme.cautionOrange
+      borderColor: theme.cautionOrange,
     },
     '&[data-is-valid="true"]': {
-      borderColor: theme.validGreen
+      borderColor: theme.validGreen,
     },
     '&[data-is-required="true"]': {
-      marginBottom: 22
-    }
+      marginBottom: 22,
+    },
   },
   input: {
     display: 'block',
@@ -46,7 +47,7 @@ export default createUseStyles((theme: any) => ({
     fontWeight: 400,
     color: theme.grey1,
     '&::placeholder': {
-      color: theme.grey4
-    }
-  }
+      color: theme.grey4,
+    },
+  },
 }));

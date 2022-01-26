@@ -1,28 +1,23 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-// import { classesFromStyles } from '../../../utils/tests';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { ErrorMessage } from '.';
-
-// import useStyles from './errorMessage.style';
-
-// const classes = classesFromStyles(styles);
 
 describe('ErrorMessage', () => {
   let props;
 
   beforeEach(() => {
     props = {
-      // classes,
-      text: "I'm an error"
+      text: "I'm an error",
     };
   });
 
   it('renders full component', () => {
-    const wrapper = shallow(<ErrorMessage {...props} />);
-    expect(wrapper).toMatchInlineSnapshot(`
+    const { container } = render(<ErrorMessage {...props} />);
+    expect(container.firstChild).toMatchInlineSnapshot(`
       <div
-        className="content-0-2-1"
+        class="content-0-2-1"
       >
         I'm an error
       </div>

@@ -8,13 +8,13 @@ import {
   IconFormatItalic,
   IconFormatNumbers,
   IconInsertLink,
-  IconInsertPhoto
+  IconInsertPhoto,
 } from '../../../atoms/icons';
 
 import {
   hasBlockType,
   hasInlineStyle,
-  hasLink
+  hasLink,
 } from '../../../../utils/editor';
 
 import {
@@ -23,7 +23,7 @@ import {
   ITALIC,
   LINK,
   ORDERED_LIST_ITEM,
-  UNORDERED_LIST_ITEM
+  UNORDERED_LIST_ITEM,
 } from '../../../../constant';
 
 import EditorButton from './editorButton';
@@ -49,13 +49,13 @@ export const Toolbar: React.FC<Props> = ({
   removeLink = () => {},
   addImage = () => {},
   disabled = false,
-  isLinkButtonActive = false
+  isLinkButtonActive = false,
 }) => {
   const classes = useStyles();
 
   const rootProps = {
     className: classes.root,
-    'data-is-disabled': disabled
+    'data-is-disabled': disabled,
   };
 
   return (

@@ -1,37 +1,32 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-// import { classesFromStyles } from '../../../utils/tests';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { Label } from '.';
-
-// import useStyles from './label.style';
-
-// const classes = classesFromStyles(styles);
 
 describe('Label', () => {
   let props;
 
   beforeEach(() => {
     props = {
-      // classes,
       text: 'Label text',
       forId: 'input_id_001',
       children: <div>A child</div>,
       required: false,
-      hideLabel: false
+      hideLabel: false,
     };
   });
 
   it('renders component', () => {
-    const wrapper = shallow(<Label {...props}>Hello world</Label>);
-    expect(wrapper).toMatchInlineSnapshot(`
+    const { container } = render(<Label {...props}>Hello world</Label>);
+    expect(container.firstChild).toMatchInlineSnapshot(`
       <label
-        className="root-0-2-1"
-        data-input-is-required={false}
-        htmlFor="input_id_001"
+        class="root-0-2-1"
+        data-input-is-required="false"
+        for="input_id_001"
       >
         <div
-          className="label-0-2-2"
+          class="label-0-2-2"
         >
           <span>
             Label text
@@ -44,15 +39,15 @@ describe('Label', () => {
 
   it('renders component with required data attribute', () => {
     props.required = true;
-    const wrapper = shallow(<Label {...props}>Hello world</Label>);
-    expect(wrapper).toMatchInlineSnapshot(`
+    const { container } = render(<Label {...props}>Hello world</Label>);
+    expect(container.firstChild).toMatchInlineSnapshot(`
       <label
-        className="root-0-2-1"
-        data-input-is-required={true}
-        htmlFor="input_id_001"
+        class="root-0-2-1"
+        data-input-is-required="true"
+        for="input_id_001"
       >
         <div
-          className="label-0-2-2"
+          class="label-0-2-2"
         >
           <span>
             Label text
@@ -65,12 +60,12 @@ describe('Label', () => {
 
   it('hides the label', () => {
     props.hideLabel = true;
-    const wrapper = shallow(<Label {...props}>Hello world</Label>);
-    expect(wrapper).toMatchInlineSnapshot(`
+    const { container } = render(<Label {...props}>Hello world</Label>);
+    expect(container.firstChild).toMatchInlineSnapshot(`
       <label
-        className="root-0-2-1"
-        data-input-is-required={false}
-        htmlFor="input_id_001"
+        class="root-0-2-1"
+        data-input-is-required="false"
+        for="input_id_001"
       >
         Hello world
       </label>

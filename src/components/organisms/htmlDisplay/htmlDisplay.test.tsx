@@ -15,8 +15,8 @@ describe('Link', () => {
     props = {
       // classes,
       htmlData: {
-        test: ''
-      }
+        test: '',
+      },
     };
   });
 

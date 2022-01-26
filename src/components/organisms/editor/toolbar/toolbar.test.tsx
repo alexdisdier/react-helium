@@ -11,7 +11,7 @@ import { Toolbar } from '.';
 jest.mock('../../../../utils/editor', () => ({
   hasBlockType: jest.fn(),
   hasInlineStyle: jest.fn(),
-  hasLink: jest.fn()
+  hasLink: jest.fn(),
 }));
 
 jest.mock('./editorButton', () => 'EditorButton');
@@ -22,7 +22,7 @@ jest.mock('../../../atoms/icons', () => ({
   IconFormatItalic: 'IconFormatItalic',
   IconFormatNumbers: 'IconFormatNumbers',
   IconInsertLink: 'IconInsertLink',
-  IconInsertPhoto: 'IconInsertPhoto'
+  IconInsertPhoto: 'IconInsertPhoto',
 }));
 
 describe('Toolbar', () => {
@@ -34,7 +34,7 @@ describe('Toolbar', () => {
       onToggleBlockType: jest.fn(),
       onToggleInlineType: jest.fn(),
       disabled: false,
-      isLinkEditorButtonActive: false
+      isLinkEditorButtonActive: false,
     };
   });
 

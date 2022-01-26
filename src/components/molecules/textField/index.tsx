@@ -6,7 +6,7 @@ import { Label, TextInput } from '../../atoms';
 import {
   STATUS_INVALID,
   STATUS_CAUTION,
-  STATUS_VALID
+  STATUS_VALID,
 } from '../../../constant/status';
 
 interface Props {
@@ -38,7 +38,7 @@ export const TextField: React.FC<Props> = ({
   disabled = false,
   required = false,
   inputRef = () => {},
-  errorMessage = ''
+  errorMessage = '',
 }) => {
   const [hasFocus, setHasFocus] = useState(false);
 
@@ -46,7 +46,7 @@ export const TextField: React.FC<Props> = ({
 
   const handleBlur = () => setHasFocus(false);
 
-  const handleChange = e => onValueChange(e);
+  const handleChange = (e) => onValueChange(e);
 
   let status;
 
@@ -67,7 +67,7 @@ export const TextField: React.FC<Props> = ({
     inputHasValue: !!value,
     hasFocus,
     status,
-    hideLabel
+    hideLabel,
   };
 
   const inputProps = {
@@ -81,7 +81,7 @@ export const TextField: React.FC<Props> = ({
     status,
     disabled,
     required,
-    errorMessage
+    errorMessage,
   };
 
   return (

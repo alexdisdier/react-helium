@@ -1,7 +1,7 @@
-import { createUseStyles } from 'react-jss';
+import { createUseStyles, Styles } from 'react-jss';
 import { FOCUS_OUTLINE_WIDTH } from '../../../../../constant';
 
-export default createUseStyles((theme: any) => ({
+export default createUseStyles((theme: Styles) => ({
   root: {
     width: 21,
     height: 21,
@@ -22,25 +22,25 @@ export default createUseStyles((theme: any) => ({
       color: theme.white,
       backgroundColor: theme.teal2,
       borderColor: theme.teal2,
-      cursor: 'pointer'
+      cursor: 'pointer',
     },
     '&[disabled]': {
-      opacity: 0.3
+      opacity: 0.3,
     },
     '&:focus': {
-      boxShadow: `0 0 0 ${FOCUS_OUTLINE_WIDTH}px ${theme.teal2light}`
+      boxShadow: `0 0 0 ${FOCUS_OUTLINE_WIDTH}px ${theme.teal2light}`,
     },
     '&[data-is-active="true"]': {
       color: theme.white,
       backgroundColor: theme.teal2,
-      borderColor: theme.teal2
-    }
+      borderColor: theme.teal2,
+    },
   },
   text: {
     color: 'currentColor',
     fontSize: 12,
     fontWeight: 800,
     textTransform: 'uppercase',
-    whiteSpace: 'nowrap'
-  }
+    whiteSpace: 'nowrap',
+  },
 }));

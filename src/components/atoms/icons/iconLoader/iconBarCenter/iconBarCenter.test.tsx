@@ -1,38 +1,28 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-// import { classesFromStyles } from '../../../../../utils/tests';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { IconBarCenter } from '.';
-
-// import useStyles from './iconBarCenter.style';
-
-// const classes = classesFromStyles(styles);
 
 describe('IconBarCenter', () => {
   let props;
 
   beforeEach(() => {
     props = {
-      // classes,
       size: 32,
       speed: '0.5',
-      repeatCount: 'indefinite'
+      repeatCount: 'indefinite',
     };
   });
 
   it('renders a IconBarCenter', () => {
-    const wrapper = shallow(<IconBarCenter {...props} />);
-    expect(wrapper).toMatchInlineSnapshot(`
+    const { container } = render(<IconBarCenter {...props} />);
+    expect(container.firstChild).toMatchInlineSnapshot(`
       <svg
         aria-hidden="true"
-        className="root-0-2-1"
-        fillRule="evenodd"
-        style={
-          Object {
-            "height": "32px",
-            "width": "32px",
-          }
-        }
+        class="root-0-2-1"
+        fill-rule="evenodd"
+        style="width: 32px; height: 32px;"
         viewBox="0 0 24 30"
         x="0px"
         xmlns="http://www.w3.org/2000/svg"

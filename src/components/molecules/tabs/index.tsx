@@ -24,7 +24,7 @@ export const Tabs: React.FC<Props> = ({ tabs, centered = false }) => {
 
   const [sliderDimensions, setSliderDimensions] = React.useState({
     left: 0,
-    width: 0
+    width: 0,
   });
 
   // Individual ref to get first width
@@ -36,7 +36,7 @@ export const Tabs: React.FC<Props> = ({ tabs, centered = false }) => {
   React.useEffect(() => {
     setSliderDimensions({
       left: 0,
-      width: tabRef.current.offsetWidth - TAB_MARGIN_RIGHT
+      width: tabRef.current.offsetWidth - TAB_MARGIN_RIGHT,
     });
   }, []);
 
@@ -53,13 +53,13 @@ export const Tabs: React.FC<Props> = ({ tabs, centered = false }) => {
 
     setSliderDimensions({
       left: tabLeftPosition - wrapperLeftPosition - WRAPPER_PADDING_LEFT,
-      width: event.currentTarget.getBoundingClientRect().width
+      width: event.currentTarget.getBoundingClientRect().width,
     });
   };
 
   const contentWrapperProps = {
     className: classes.contentWrapper,
-    'data-is-centered': centered
+    'data-is-centered': centered,
   };
 
   return (
@@ -73,7 +73,7 @@ export const Tabs: React.FC<Props> = ({ tabs, centered = false }) => {
             const firstTabRef =
               index === 0
                 ? {
-                    ref: tabRef
+                    ref: tabRef,
                   }
                 : null;
 
@@ -97,7 +97,7 @@ export const Tabs: React.FC<Props> = ({ tabs, centered = false }) => {
 
       <div {...contentWrapperProps}>
         {Array.isArray(tabs) &&
-          tabs.map(tab => {
+          tabs.map((tab) => {
             if (tab.label !== activeTab) return undefined;
             return (
               <React.Fragment key={tab.label}>{tab.component}</React.Fragment>

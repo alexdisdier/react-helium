@@ -11,7 +11,7 @@ type Props = {
 export const IconBarCenter: React.FC<Props> = ({
   size = null,
   speed = '0.5',
-  repeatCount = 'indefinite'
+  repeatCount = 'indefinite',
 }) => {
   const classes = useStyles();
 

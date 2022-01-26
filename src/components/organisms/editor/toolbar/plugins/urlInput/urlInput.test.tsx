@@ -18,7 +18,7 @@ describe('UrlInput', () => {
       urlInputChange: jest.fn(),
       handleCollapse: jest.fn(),
       value: 'www.alexdisdier.com',
-      validUrl: true
+      validUrl: true,
     };
   });
 

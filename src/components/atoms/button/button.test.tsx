@@ -1,5 +1,6 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { Button } from '.';
 
@@ -8,7 +9,6 @@ describe('Button', () => {
 
   beforeEach(() => {
     props = {
-      // classes,
       children: <div>I am The button</div>,
       onClick: jest.fn(),
       primary: false,
@@ -16,26 +16,24 @@ describe('Button', () => {
       warning: false,
       round: false,
       inverted: false,
-      disabled: false
+      disabled: false,
     };
   });
 
   it('renders a button', () => {
-    const wrapper = shallow(<Button {...props} />);
-    expect(wrapper).toMatchInlineSnapshot(`
+    const { container } = render(<Button {...props} />);
+    expect(container.firstChild).toMatchInlineSnapshot(`
       <button
-        className="root-0-2-1 root-d0-0-2-4"
-        data-is-inverted={false}
-        data-is-primary={false}
-        data-is-round={false}
-        data-is-secondary={false}
-        data-is-warning={false}
-        disabled={false}
-        onClick={[Function]}
+        class="root-0-2-1 root-d0-0-2-4"
+        data-is-inverted="false"
+        data-is-primary="false"
+        data-is-round="false"
+        data-is-secondary="false"
+        data-is-warning="false"
         type="button"
       >
         <span
-          className="text-0-2-3"
+          class="text-0-2-3"
         >
           <div>
             I am The button
@@ -49,21 +47,21 @@ describe('Button', () => {
     props.primary = true;
     props.secondary = true;
     props.warning = true;
-    const wrapper = shallow(<Button {...props} />);
-    expect(wrapper).toMatchInlineSnapshot(`
+
+    const { container } = render(<Button {...props} />);
+
+    expect(container.firstChild).toMatchInlineSnapshot(`
       <button
-        className="root-0-2-1 root-d1-0-2-5"
-        data-is-inverted={false}
-        data-is-primary={true}
-        data-is-round={false}
-        data-is-secondary={true}
-        data-is-warning={true}
-        disabled={false}
-        onClick={[Function]}
+        class="root-0-2-1 root-d1-0-2-5"
+        data-is-inverted="false"
+        data-is-primary="true"
+        data-is-round="false"
+        data-is-secondary="true"
+        data-is-warning="true"
         type="button"
       >
         <span
-          className="text-0-2-3"
+          class="text-0-2-3"
         >
           <div>
             I am The button
@@ -76,21 +74,21 @@ describe('Button', () => {
   it('renders an inverted round button', () => {
     props.inverted = true;
     props.round = true;
-    const wrapper = shallow(<Button {...props} />);
-    expect(wrapper).toMatchInlineSnapshot(`
+
+    const { container } = render(<Button {...props} />);
+
+    expect(container.firstChild).toMatchInlineSnapshot(`
       <button
-        className="root-0-2-1 root-d2-0-2-6"
-        data-is-inverted={true}
-        data-is-primary={false}
-        data-is-round={true}
-        data-is-secondary={false}
-        data-is-warning={false}
-        disabled={false}
-        onClick={[Function]}
+        class="root-0-2-1 root-d2-0-2-6"
+        data-is-inverted="true"
+        data-is-primary="false"
+        data-is-round="true"
+        data-is-secondary="false"
+        data-is-warning="false"
         type="button"
       >
         <span
-          className="text-0-2-3"
+          class="text-0-2-3"
         >
           <div>
             I am The button
@@ -101,15 +99,20 @@ describe('Button', () => {
   });
 
   it('should call onClick', () => {
-    const wrapper = shallow(<Button {...props} />);
-    wrapper.simulate('click');
+    const { getByText } = render(<Button {...props} />);
+
+    fireEvent.click(getByText('I am The button'));
+
     expect(props.onClick).toHaveBeenCalledTimes(1);
   });
 
   it('should not call onClick when disabled', () => {
     props.disabled = true;
-    const wrapper = shallow(<Button {...props} />);
-    wrapper.simulate('click');
+
+    const { getByText } = render(<Button {...props} />);
+
+    fireEvent.click(getByText('I am The button'));
+
     expect(props.onClick).toHaveBeenCalledTimes(0);
   });
 });

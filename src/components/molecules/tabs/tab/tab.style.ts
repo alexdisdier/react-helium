@@ -1,9 +1,9 @@
-import { createUseStyles } from 'react-jss';
+import { createUseStyles, Styles } from 'react-jss';
 
 // Used to set the first tab width
 import { TAB_MARGIN_RIGHT } from '../../../../constant';
 
-export default createUseStyles((theme: any) => ({
+export default createUseStyles((theme: Styles) => ({
   root: {
     display: 'inline-block',
     marginRight: TAB_MARGIN_RIGHT,
@@ -11,10 +11,10 @@ export default createUseStyles((theme: any) => ({
     fontSize: 12,
     color: theme.grey1,
     '&:hover': {
-      cursor: 'pointer'
+      cursor: 'pointer',
     },
     '&:first-letter': {
-      textTransform: 'uppercase'
-    }
-  }
+      textTransform: 'uppercase',
+    },
+  },
 }));

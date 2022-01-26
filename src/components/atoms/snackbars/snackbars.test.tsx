@@ -1,28 +1,21 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-// import { classesFromStyles } from '../../../utils/tests';
-
 import { Snackbars, withSnackbarsContext } from '.';
 
-// import useStyles from './snackbars.style';
-
 jest.useFakeTimers();
-
-// const classes = classesFromStyles(styles);
 
 describe('Snackbars', () => {
   let props;
 
   beforeEach(() => {
     props = {
-      // classes,
       config: {
         backgroundColor: 'red',
         color: 'white',
         top: false,
-        bottomLeft: false
-      }
+        bottomLeft: false,
+      },
     };
   });
 

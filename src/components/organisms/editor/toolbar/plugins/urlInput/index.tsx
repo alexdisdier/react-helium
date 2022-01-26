@@ -15,13 +15,13 @@ export const UrlInput: React.FC<Props> = ({
   urlInputChange,
   handleCollapse,
   value,
-  validUrl
+  validUrl,
 }) => {
   const classes = useStyles();
   const inputWrapperRef: any | null = React.useRef(null);
 
   const handleClick = React.useCallback(
-    e => !inputWrapperRef.current.contains(e.target) && handleCollapse(),
+    (e) => !inputWrapperRef.current.contains(e.target) && handleCollapse(),
     [handleCollapse]
   );
 
@@ -32,12 +32,12 @@ export const UrlInput: React.FC<Props> = ({
     };
   }, [handleClick]);
 
-  const handleKeyPress = event => {
+  const handleKeyPress = (event) => {
     const hotKeys = {
       27: () => {
         // esc
         handleCollapse();
-      }
+      },
     };
     if (hotKeys[event.keyCode]) {
       event.preventDefault();
@@ -50,7 +50,7 @@ export const UrlInput: React.FC<Props> = ({
     // onMouseDown is prefered to onClick for mobile compatibility
     onMouseDown: handleClick,
     onKeyDown: handleKeyPress,
-    ref: inputWrapperRef
+    ref: inputWrapperRef,
   };
 
   const inputProps = {
@@ -60,7 +60,7 @@ export const UrlInput: React.FC<Props> = ({
     type: 'text',
     value: value,
     onKeyDown: onLinkInputKeyDown,
-    'data-is-notvalid': !validUrl
+    'data-is-notvalid': !validUrl,
   };
 
   return (

@@ -1,6 +1,6 @@
-import { createUseStyles } from 'react-jss';
+import { createUseStyles, Styles } from 'react-jss';
 
-export default createUseStyles((theme: any) => ({
+export default createUseStyles((theme: Styles) => ({
   root: {
     minHeight: 84,
     maxHeight: 152,
@@ -15,15 +15,15 @@ export default createUseStyles((theme: any) => ({
     '& .public-DraftEditorPlaceholder-root': {
       position: 'absolute',
       opacity: 0.5,
-      zIndex: 1
+      zIndex: 1,
     },
     '& .h1': {
       fontSize: 32,
-      fontWeight: 'bold'
+      fontWeight: 'bold',
     },
     '& .h2': {
       fontSize: 24,
-      fontWeight: 'bold'
+      fontWeight: 'bold',
     },
     '& .ul': {
       position: 'relative',
@@ -34,27 +34,27 @@ export default createUseStyles((theme: any) => ({
         color: theme.teal3,
         fontWeight: 'bold',
         width: '1em',
-        marginLeft: '-1em'
-      }
+        marginLeft: '-1em',
+      },
     },
     '& .ol': {
       position: 'relative',
       // listStyle: 'unset',
       marginLeft: 17,
       '&>div': {
-        marginLeft: 7
-      }
+        marginLeft: 7,
+      },
     },
     '&[data-is-disabled="true"]': {
-      opacity: 0.3
+      opacity: 0.3,
     },
     '&[data-has-focus="true"]': {
-      borderColor: theme.teal3
+      borderColor: theme.teal3,
     },
     '&[data-is-placeholder-hidden="true"]': {
       '& .public-DraftEditorPlaceholder-root': {
-        display: 'none'
-      }
-    }
-  }
+        display: 'none',
+      },
+    },
+  },
 }));

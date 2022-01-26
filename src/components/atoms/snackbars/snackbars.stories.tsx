@@ -26,7 +26,7 @@ const SuccessBtn = withSnackbarsContext(({ successSnackbar }) => (
         backgroundColor: snackbarBackgroundColor,
         color: snackbarColor,
         top: snackbarTop,
-        bottomLeft: snackbarBottomLeft
+        bottomLeft: snackbarBottomLeft,
       })
     }
   >
@@ -42,7 +42,7 @@ const SuccessWithActionBtn = withSnackbarsContext(({ successSnackbar }) => (
         backgroundColor: snackbarBackgroundColor,
         color: snackbarColor,
         top: snackbarTop,
-        bottomLeft: snackbarBottomLeft
+        bottomLeft: snackbarBottomLeft,
       })
     }
   >
@@ -58,7 +58,7 @@ const ErrorBtn = withSnackbarsContext(({ errorSnackbar }) => (
         backgroundColor: snackbarBackgroundColor,
         color: snackbarColor,
         top: snackbarTop,
-        bottomLeft: snackbarBottomLeft
+        bottomLeft: snackbarBottomLeft,
       })
     }
   >
@@ -69,8 +69,8 @@ const ErrorBtn = withSnackbarsContext(({ errorSnackbar }) => (
 const stories = storiesOf('Atoms/Snackbars', module);
 stories.addParameters({
   readme: {
-    content: README
-  }
+    content: README,
+  },
 });
 
 stories.addDecorator(withKnobs);

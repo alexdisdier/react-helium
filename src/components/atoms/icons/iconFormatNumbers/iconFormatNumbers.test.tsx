@@ -1,36 +1,26 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-// import { classesFromStyles } from '../../../../utils/tests';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { IconFormatNumbers } from '.';
-
-// import useStyles from './iconFormatNumbers.style';
-
-// const classes = classesFromStyles(styles);
 
 describe('IconFormatNumbers', () => {
   let props;
 
   beforeEach(() => {
     props = {
-      // classes,
-      size: 32
+      size: 32,
     };
   });
 
   it('renders a IconFormatNumbers', () => {
-    const wrapper = shallow(<IconFormatNumbers {...props} />);
-    expect(wrapper).toMatchInlineSnapshot(`
+    const { container } = render(<IconFormatNumbers {...props} />);
+    expect(container.firstChild).toMatchInlineSnapshot(`
       <svg
         aria-hidden="true"
-        className="root-0-2-1"
-        fillRule="evenodd"
-        style={
-          Object {
-            "height": "32px",
-            "width": "32px",
-          }
-        }
+        class="root-0-2-1"
+        fill-rule="evenodd"
+        style="width: 32px; height: 32px;"
         viewBox="0 0 32 32"
         xmlns="http://www.w3.org/2000/svg"
       >

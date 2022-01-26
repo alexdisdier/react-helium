@@ -5,14 +5,14 @@ import {
   CompositeDecorator,
   Editor as Draft,
   EditorState,
-  RichUtils
+  RichUtils,
 } from 'draft-js';
 
 import {
   findLinkEntities,
   getBlockStyle,
   getHTMLString,
-  isValidURL
+  isValidURL,
 } from '../../../utils/editor';
 
 import { Image, Link, UrlInput } from './toolbar/plugins';
@@ -33,20 +33,20 @@ interface Props {
 const decorator = new CompositeDecorator([
   {
     strategy: findLinkEntities,
-    component: Link
-  }
+    component: Link,
+  },
 ]);
 
 export const Editor: React.FC<Props> = ({
   placeholder = '',
   onChange,
-  disabled = false
+  disabled = false,
 }) => {
-  const classes = useStyles();
   // Initiating the EditorState with link decorator
   const [editorState, setEditorState] = useState<EditorState>(
     EditorState.createEmpty(decorator)
   );
+  const classes = useStyles();
 
   // Focus applied to the editor and control panel buttons.
   const [isFocused, setFocused] = useState<boolean>(false);
@@ -74,7 +74,7 @@ export const Editor: React.FC<Props> = ({
   /**
    * Handling Insert Media
    */
-  const confirmMedia = e => {
+  const confirmMedia = (e) => {
     e.preventDefault();
 
     const contentState = editorState.getCurrentContent();
@@ -85,7 +85,7 @@ export const Editor: React.FC<Props> = ({
     );
     const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
     const newEditorState = EditorState.set(editorState, {
-      currentContent: contentStateWithEntity
+      currentContent: contentStateWithEntity,
     });
     setEditorState(
       AtomicBlockUtils.insertAtomicBlock(newEditorState, entityKey, ' ')
@@ -94,7 +94,7 @@ export const Editor: React.FC<Props> = ({
     setShowURLInput(false);
   };
 
-  const promptForMedia = type => {
+  const promptForMedia = (type) => {
     setShowURLInput(true);
     setUrlValue('');
     setUrlType(type);
@@ -102,17 +102,17 @@ export const Editor: React.FC<Props> = ({
 
   const addImage = () => promptForMedia('image');
 
-  const mediaBlockRenderer = block => {
+  const mediaBlockRenderer = (block) => {
     if (block.getType() === 'atomic') {
       return {
         component: Media,
-        editable: false
+        editable: false,
       };
     }
     return null;
   };
 
-  const Media = props => {
+  const Media = (props) => {
     const entity = props.contentState.getEntity(props.block.getEntityAt(0));
     const { src } = entity.getData();
     const type = entity.getType();
@@ -126,7 +126,7 @@ export const Editor: React.FC<Props> = ({
   /**
    * Handling urlInput and link button components
    */
-  const onUrlInputChange = e => {
+  const onUrlInputChange = (e) => {
     setUrlValue(e.target.value);
     if (isValidURL(e.target.value)) {
       setValidUrl(true);
@@ -135,7 +135,7 @@ export const Editor: React.FC<Props> = ({
     }
   };
 
-  const promptForLink = e => {
+  const promptForLink = (e) => {
     e.preventDefault();
     const selection = editorState.getSelection();
     if (!selection.isCollapsed()) {
@@ -145,7 +145,7 @@ export const Editor: React.FC<Props> = ({
     setLinkButtonActive(true);
   };
 
-  const confirmLink = e => {
+  const confirmLink = (e) => {
     if (validUrl && urlType !== 'image') {
       e.preventDefault();
       const contentState = editorState.getCurrentContent();
@@ -169,7 +169,7 @@ export const Editor: React.FC<Props> = ({
   };
 
   // On return key action
-  const onLinkInputKeyDown = e => {
+  const onLinkInputKeyDown = (e) => {
     if (e.which === 13) {
       confirmLink(e);
     }
@@ -205,7 +205,7 @@ export const Editor: React.FC<Props> = ({
   /**
    * Handles any inline styles **key commands** such as italics, bold, ...
    */
-  const handleKeyCommand = cmd => {
+  const handleKeyCommand = (cmd) => {
     const newState = RichUtils.handleKeyCommand(editorState, cmd);
 
     if (newState) {
@@ -222,12 +222,7 @@ export const Editor: React.FC<Props> = ({
   let hidePlaceholder = false;
   const contentState = editorState.getCurrentContent();
   if (!contentState.hasText()) {
-    if (
-      contentState
-        .getBlockMap()
-        .first()
-        .getType() !== 'unstyled'
-    )
+    if (contentState.getBlockMap().first().getType() !== 'unstyled')
       hidePlaceholder = true;
   }
 
@@ -235,7 +230,7 @@ export const Editor: React.FC<Props> = ({
     className: classes.root,
     'data-has-focus': isFocused || showURLInput,
     'data-is-disabled': disabled,
-    'data-is-placeholder-hidden': hidePlaceholder
+    'data-is-placeholder-hidden': hidePlaceholder,
   };
 
   return (

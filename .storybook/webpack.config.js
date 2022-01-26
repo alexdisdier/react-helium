@@ -7,9 +7,6 @@ module.exports = ({ config }) => {
         options: {
           presets: [["react-app", { flow: false, typescript: true }]]
         }
-      },
-      {
-        loader: require.resolve("react-docgen-typescript-loader")
       }
     ]
   });
