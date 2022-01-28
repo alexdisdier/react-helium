@@ -20,7 +20,7 @@ interface Props {
   hideLabel?: boolean;
   disabled?: boolean;
   required?: boolean;
-  inputRef?: Function;
+  inputRef?: any;
   errorMessage?: string;
 }
 

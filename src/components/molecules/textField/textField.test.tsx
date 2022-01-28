@@ -1,9 +1,10 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
+
 import { TextField } from '.';
 
-jest.mock('../../atoms/label', () => 'Label');
-jest.mock('../../atoms/textInput', () => 'TextInput');
+jest.mock('../../atoms/label', () => 'mock-label');
+jest.mock('../../atoms/textInput', () => 'mock-text-input');
 
 describe('TextField', () => {
   let props;
@@ -16,151 +17,121 @@ describe('TextField', () => {
   });
 
   it('renders full component', () => {
-    const wrapper = shallow(<TextField {...props} />);
-    expect(wrapper).toMatchInlineSnapshot(`
-      <Label
-        forId="ftc_1"
-        hasFocus={false}
-        hideLabel={false}
-        inputHasValue={false}
-        required={false}
-        status={null}
+    const { container } = render(<TextField {...props} />);
+    expect(container.firstChild).toMatchInlineSnapshot(`
+      <mock-label
+        forid="ftc_1"
+        hasfocus="false"
+        hidelabel="false"
+        inputhasvalue="false"
+        required="false"
         text="I am a label"
       >
-        <TextInput
-          disabled={false}
-          errorMessage=""
-          handleBlur={[Function]}
-          handleChange={[Function]}
-          handleFocus={[Function]}
+        <mock-text-input
+          disabled="false"
+          errormessage=""
           id="ftc_1"
-          inputRef={[Function]}
-          required={false}
-          status={null}
+          required="false"
           type="text"
           value=""
         />
-      </Label>
+      </mock-label>
     `);
   });
 
   it('renders component with value', () => {
     props.value = 'Hello world';
-    const wrapper = shallow(<TextField {...props} />);
-    expect(wrapper).toMatchInlineSnapshot(`
-      <Label
-        forId="ftc_1"
-        hasFocus={false}
-        hideLabel={false}
-        inputHasValue={true}
-        required={false}
-        status={null}
+    const { container } = render(<TextField {...props} />);
+    expect(container.firstChild).toMatchInlineSnapshot(`
+      <mock-label
+        forid="ftc_1"
+        hasfocus="false"
+        hidelabel="false"
+        inputhasvalue="true"
+        required="false"
         text="I am a label"
       >
-        <TextInput
-          disabled={false}
-          errorMessage=""
-          handleBlur={[Function]}
-          handleChange={[Function]}
-          handleFocus={[Function]}
+        <mock-text-input
+          disabled="false"
+          errormessage=""
           id="ftc_1"
-          inputRef={[Function]}
-          required={false}
-          status={null}
+          required="false"
           type="text"
           value="Hello world"
         />
-      </Label>
+      </mock-label>
     `);
   });
 
   it('renders component with hidden label', () => {
     props.hideLabel = true;
-    const wrapper = shallow(<TextField {...props} />);
-    expect(wrapper).toMatchInlineSnapshot(`
-      <Label
-        forId="ftc_1"
-        hasFocus={false}
-        hideLabel={true}
-        inputHasValue={false}
-        required={false}
-        status={null}
+    const { container } = render(<TextField {...props} />);
+    expect(container.firstChild).toMatchInlineSnapshot(`
+      <mock-label
+        forid="ftc_1"
+        hasfocus="false"
+        hidelabel="true"
+        inputhasvalue="false"
+        required="false"
         text="I am a label"
       >
-        <TextInput
-          disabled={false}
-          errorMessage=""
-          handleBlur={[Function]}
-          handleChange={[Function]}
-          handleFocus={[Function]}
+        <mock-text-input
+          disabled="false"
+          errormessage=""
           id="ftc_1"
-          inputRef={[Function]}
-          required={false}
-          status={null}
+          required="false"
           type="text"
           value=""
         />
-      </Label>
+      </mock-label>
     `);
   });
 
   it('renders component with a required field text', () => {
     props.required = true;
-    const wrapper = shallow(<TextField {...props} />);
-    expect(wrapper).toMatchInlineSnapshot(`
-      <Label
-        forId="ftc_1"
-        hasFocus={false}
-        hideLabel={false}
-        inputHasValue={false}
-        required={true}
-        status={null}
+    const { container } = render(<TextField {...props} />);
+    expect(container.firstChild).toMatchInlineSnapshot(`
+      <mock-label
+        forid="ftc_1"
+        hasfocus="false"
+        hidelabel="false"
+        inputhasvalue="false"
+        required="true"
         text="I am a label"
       >
-        <TextInput
-          disabled={false}
-          errorMessage=""
-          handleBlur={[Function]}
-          handleChange={[Function]}
-          handleFocus={[Function]}
+        <mock-text-input
+          disabled="false"
+          errormessage=""
           id="ftc_1"
-          inputRef={[Function]}
-          required={true}
-          status={null}
+          required="true"
           type="text"
           value=""
         />
-      </Label>
+      </mock-label>
     `);
   });
 
   it('renders component disabled', () => {
     props.disabled = true;
-    const wrapper = shallow(<TextField {...props} />);
-    expect(wrapper).toMatchInlineSnapshot(`
-      <Label
-        forId="ftc_1"
-        hasFocus={false}
-        hideLabel={false}
-        inputHasValue={false}
-        required={false}
-        status={null}
+    const { container } = render(<TextField {...props} />);
+    expect(container.firstChild).toMatchInlineSnapshot(`
+      <mock-label
+        forid="ftc_1"
+        hasfocus="false"
+        hidelabel="false"
+        inputhasvalue="false"
+        required="false"
         text="I am a label"
       >
-        <TextInput
-          disabled={true}
-          errorMessage=""
-          handleBlur={[Function]}
-          handleChange={[Function]}
-          handleFocus={[Function]}
+        <mock-text-input
+          disabled="true"
+          errormessage=""
           id="ftc_1"
-          inputRef={[Function]}
-          required={false}
-          status={null}
+          required="false"
           type="text"
           value=""
         />
-      </Label>
+      </mock-label>
     `);
   });
 
@@ -168,92 +139,80 @@ describe('TextField', () => {
     props.invalid = true;
     props.caution = true;
     props.valid = true;
-    const wrapper = shallow(<TextField {...props} />);
-    expect(wrapper).toMatchInlineSnapshot(`
-      <Label
-        forId="ftc_1"
-        hasFocus={false}
-        hideLabel={false}
-        inputHasValue={false}
-        required={false}
+    const { container } = render(<TextField {...props} />);
+    expect(container.firstChild).toMatchInlineSnapshot(`
+      <mock-label
+        forid="ftc_1"
+        hasfocus="false"
+        hidelabel="false"
+        inputhasvalue="false"
+        required="false"
         status="invalid"
         text="I am a label"
       >
-        <TextInput
-          disabled={false}
-          errorMessage=""
-          handleBlur={[Function]}
-          handleChange={[Function]}
-          handleFocus={[Function]}
+        <mock-text-input
+          disabled="false"
+          errormessage=""
           id="ftc_1"
-          inputRef={[Function]}
-          required={false}
+          required="false"
           status="invalid"
           type="text"
           value=""
         />
-      </Label>
+      </mock-label>
     `);
   });
 
   it('renders component with caution status despite also having valid status', () => {
     props.caution = true;
     props.valid = true;
-    const wrapper = shallow(<TextField {...props} />);
-    expect(wrapper).toMatchInlineSnapshot(`
-      <Label
-        forId="ftc_1"
-        hasFocus={false}
-        hideLabel={false}
-        inputHasValue={false}
-        required={false}
+    const { container } = render(<TextField {...props} />);
+    expect(container.firstChild).toMatchInlineSnapshot(`
+      <mock-label
+        forid="ftc_1"
+        hasfocus="false"
+        hidelabel="false"
+        inputhasvalue="false"
+        required="false"
         status="caution"
         text="I am a label"
       >
-        <TextInput
-          disabled={false}
-          errorMessage=""
-          handleBlur={[Function]}
-          handleChange={[Function]}
-          handleFocus={[Function]}
+        <mock-text-input
+          disabled="false"
+          errormessage=""
           id="ftc_1"
-          inputRef={[Function]}
-          required={false}
+          required="false"
           status="caution"
           type="text"
           value=""
         />
-      </Label>
+      </mock-label>
     `);
   });
 
   it('renders component with valid status', () => {
     props.valid = true;
-    const wrapper = shallow(<TextField {...props} />);
-    expect(wrapper).toMatchInlineSnapshot(`
-      <Label
-        forId="ftc_1"
-        hasFocus={false}
-        hideLabel={false}
-        inputHasValue={false}
-        required={false}
+    const { container } = render(<TextField {...props} />);
+    expect(container.firstChild).toMatchInlineSnapshot(`
+      <mock-label
+        forid="ftc_1"
+        hasfocus="false"
+        hidelabel="false"
+        inputhasvalue="false"
+        required="false"
         status="valid"
         text="I am a label"
       >
-        <TextInput
-          disabled={false}
-          errorMessage=""
-          handleBlur={[Function]}
-          handleChange={[Function]}
-          handleFocus={[Function]}
+        <mock-text-input
+          disabled="false"
+          errormessage=""
           id="ftc_1"
-          inputRef={[Function]}
-          required={false}
+          required="false"
           status="valid"
           type="text"
           value=""
         />
-      </Label>
+      </mock-label>
     `);
   });
 });
