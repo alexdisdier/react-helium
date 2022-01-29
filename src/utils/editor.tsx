@@ -16,6 +16,7 @@ type STYLE = {
  */
 export const getHTMLString = (editorState: EditorState) => {
   const contentState = editorState.getCurrentContent();
+
   const options = {
     entityStyleFn: (entity) => {
       const data = entity.getData();

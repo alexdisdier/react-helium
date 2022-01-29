@@ -44,6 +44,10 @@ export default (hex: string, lum: number | null) => {
   if (newHex.length < 6 && newHex.length > 2) {
     newHex =
       newHex[0] + newHex[0] + newHex[1] + newHex[1] + newHex[2] + newHex[2];
+  } else {
+    newHex = String(nameToHex(hex)).replace(/[^0-9a-f]/gi, '');
+    newHex =
+      newHex[0] + newHex[0] + newHex[1] + newHex[1] + newHex[2] + newHex[2];
   }
   const newLum = lum || 0;
 
