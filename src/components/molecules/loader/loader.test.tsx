@@ -30,12 +30,12 @@ describe('Loader', () => {
 
     expect(container.firstChild).toMatchInlineSnapshot(`
       <div
-        class="root-0-2-1"
+        class="root"
         data-is-overlay="false"
       >
         <svg
           aria-hidden="true"
-          class="root-0-2-4"
+          class="root"
           fill-rule="evenodd"
           style="width: 32px; height: 32px;"
           viewBox="0 0 40 40"
@@ -62,7 +62,7 @@ describe('Loader', () => {
           </path>
         </svg>
         <span
-          class="text-0-2-2 text-d0-0-2-3"
+          class="text"
         >
           loading
         </span>
@@ -79,12 +79,12 @@ describe('Loader', () => {
 
     expect(container.firstChild).toMatchInlineSnapshot(`
       <div
-        class="root-0-2-1"
+        class="root"
         data-is-overlay="false"
       >
         <svg
           aria-hidden="true"
-          class="root-0-2-6"
+          class="root"
           fill-rule="evenodd"
           style="width: 32px; height: 32px;"
           viewBox="0 0 50 50"
@@ -107,7 +107,7 @@ describe('Loader', () => {
           </path>
         </svg>
         <span
-          class="text-0-2-2 text-d1-0-2-5"
+          class="text"
         />
       </div>
     `);
@@ -122,12 +122,12 @@ describe('Loader', () => {
 
     expect(container.firstChild).toMatchInlineSnapshot(`
       <div
-        class="root-0-2-1"
+        class="root"
         data-is-overlay="false"
       >
         <svg
           aria-hidden="true"
-          class="root-0-2-8"
+          class="root"
           fill-rule="evenodd"
           style="width: 32px; height: 32px;"
           viewBox="0 0 24 30"
@@ -233,7 +233,7 @@ describe('Loader', () => {
           </rect>
         </svg>
         <span
-          class="text-0-2-2 text-d2-0-2-7"
+          class="text"
         />
       </div>
     `);
@@ -246,12 +246,12 @@ describe('Loader', () => {
 
     expect(container.firstChild).toMatchInlineSnapshot(`
       <div
-        class="root-0-2-1"
+        class="root"
         data-is-overlay="false"
       >
         <svg
           aria-hidden="true"
-          class="root-0-2-10"
+          class="root"
           fill-rule="evenodd"
           style="width: 32px; height: 32px;"
           viewBox="0 0 24 24"
@@ -309,7 +309,7 @@ describe('Loader', () => {
           </rect>
         </svg>
         <span
-          class="text-0-2-2 text-d3-0-2-9"
+          class="text"
         />
       </div>
     `);

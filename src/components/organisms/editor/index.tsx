@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { FC, useState, useRef } from 'react';
 
 import {
   AtomicBlockUtils,
@@ -37,7 +37,7 @@ const decorator = new CompositeDecorator([
   },
 ]);
 
-export const Editor: React.FC<Props> = ({
+export const Editor: FC<Props> = ({
   placeholder = '',
   onChange,
   disabled = false,
@@ -59,10 +59,10 @@ export const Editor: React.FC<Props> = ({
 
   const [isLinkButtonActive, setLinkButtonActive] = useState<boolean>(false);
 
-  const editorRef: any | null = useRef(null);
+  const editorRef = useRef<HTMLDivElement>(null);
 
   const handleFocus = () => {
-    editorRef.current.focus();
+    editorRef?.current?.focus();
     setFocused(true);
   };
 

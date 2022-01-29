@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FC, LegacyRef, useState } from 'react';
 import uniqueId from 'lodash.uniqueid';
 
 import { Label, TextInput } from '../../atoms';
@@ -9,7 +9,7 @@ import {
   STATUS_VALID,
 } from '../../../constant/status';
 
-interface Props {
+export interface Props {
   label: string;
   onValueChange: (e) => void;
   value?: string;
@@ -20,13 +20,13 @@ interface Props {
   hideLabel?: boolean;
   disabled?: boolean;
   required?: boolean;
-  inputRef?: any;
+  inputRef?: LegacyRef<HTMLInputElement> | undefined;
   errorMessage?: string;
 }
 
 const id: string = uniqueId('ftc_');
 
-export const TextField: React.FC<Props> = ({
+export const TextField: FC<Props> = ({
   label,
   onValueChange,
   value = '',

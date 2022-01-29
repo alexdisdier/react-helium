@@ -20,7 +20,7 @@ describe('IconDots', () => {
     expect(container.firstChild).toMatchInlineSnapshot(`
       <svg
         aria-hidden="true"
-        class="root-0-2-1"
+        class="root"
         fill-rule="evenodd"
         style="width: 32px; height: 32px;"
         viewBox="0 0 128 35"

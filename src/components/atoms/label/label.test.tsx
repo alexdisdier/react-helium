@@ -21,12 +21,12 @@ describe('Label', () => {
     const { container } = render(<Label {...props}>Hello world</Label>);
     expect(container.firstChild).toMatchInlineSnapshot(`
       <label
-        class="root-0-2-1"
+        class="root"
         data-input-is-required="false"
         for="input_id_001"
       >
         <div
-          class="label-0-2-2"
+          class="label"
         >
           <span>
             Label text
@@ -42,12 +42,12 @@ describe('Label', () => {
     const { container } = render(<Label {...props}>Hello world</Label>);
     expect(container.firstChild).toMatchInlineSnapshot(`
       <label
-        class="root-0-2-1"
+        class="root"
         data-input-is-required="true"
         for="input_id_001"
       >
         <div
-          class="label-0-2-2"
+          class="label"
         >
           <span>
             Label text
@@ -63,7 +63,7 @@ describe('Label', () => {
     const { container } = render(<Label {...props}>Hello world</Label>);
     expect(container.firstChild).toMatchInlineSnapshot(`
       <label
-        class="root-0-2-1"
+        class="root"
         data-input-is-required="false"
         for="input_id_001"
       >

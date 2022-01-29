@@ -32,8 +32,8 @@ import useStyles from './toolbar.style';
 
 interface Props {
   editorState: EditorState;
-  onToggleBlockType?: any;
-  onToggleInlineType?: any;
+  onToggleBlockType?: <T>(t: T) => void;
+  onToggleInlineType?: <T>(t: T) => void;
   promptForLink?: (x) => void;
   removeLink?: () => void;
   addImage?: () => void;

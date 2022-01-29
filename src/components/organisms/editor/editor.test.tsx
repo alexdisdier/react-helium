@@ -58,7 +58,7 @@ describe('Editor', () => {
   });
 
   it.skip('renders a url input field', () => {
-    const { container } = render(<Editor {...props} />);
+    render(<Editor {...props} />);
     setShowUrlInput(true);
 
     // container.firstChild.find('UrlInput');

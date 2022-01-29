@@ -8,9 +8,6 @@ import Snackbars, { withSnackbarsContext } from '.';
 
 import README from './README.md';
 
-/**
- * Props variables
- */
 let snackbarSuccessLabel;
 let snackbarErrorLabel;
 let snackbarBackgroundColor;

@@ -31,7 +31,7 @@ describe('Tab', () => {
     expect(container).toMatchInlineSnapshot(`
       <div>
         <li
-          class="root-0-2-1"
+          class="root"
           data-is-active="false"
         >
           tab2
@@ -47,7 +47,7 @@ describe('Tab', () => {
     expect(container).toMatchInlineSnapshot(`
       <div>
         <li
-          class="root-0-2-1"
+          class="root"
           data-is-active="true"
         >
           tab2

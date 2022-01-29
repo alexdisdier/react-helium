@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { FC, useRef } from 'react';
 
 import useStyles from './urlInput.style';
 
@@ -10,7 +10,7 @@ interface Props {
   validUrl: boolean;
 }
 
-export const UrlInput: React.FC<Props> = ({
+export const UrlInput: FC<Props> = ({
   onLinkInputKeyDown,
   urlInputChange,
   handleCollapse,
@@ -18,13 +18,10 @@ export const UrlInput: React.FC<Props> = ({
   validUrl,
 }) => {
   const classes = useStyles();
-  const inputWrapperRef: any | null = React.useRef(null);
+  const inputWrapperRef = useRef<HTMLInputElement>(null);
 
   const handleClick = React.useCallback(
-    (e) => {
-      console.log(!inputWrapperRef.current.contains(e.target));
-      return !inputWrapperRef.current.contains(e.target) && handleCollapse();
-    },
+    (e) => !inputWrapperRef?.current?.contains(e.target) && handleCollapse(),
     [handleCollapse]
   );
 

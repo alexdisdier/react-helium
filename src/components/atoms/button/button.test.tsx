@@ -24,7 +24,7 @@ describe('Button', () => {
     const { container } = render(<Button {...props} />);
     expect(container.firstChild).toMatchInlineSnapshot(`
       <button
-        class="root-0-2-1 root-d0-0-2-4"
+        class="root"
         data-is-inverted="false"
         data-is-primary="false"
         data-is-round="false"
@@ -33,7 +33,7 @@ describe('Button', () => {
         type="button"
       >
         <span
-          class="text-0-2-3"
+          class="text"
         >
           <div>
             I am The button
@@ -52,7 +52,7 @@ describe('Button', () => {
 
     expect(container.firstChild).toMatchInlineSnapshot(`
       <button
-        class="root-0-2-1 root-d1-0-2-5"
+        class="root"
         data-is-inverted="false"
         data-is-primary="true"
         data-is-round="false"
@@ -61,7 +61,7 @@ describe('Button', () => {
         type="button"
       >
         <span
-          class="text-0-2-3"
+          class="text"
         >
           <div>
             I am The button
@@ -79,7 +79,7 @@ describe('Button', () => {
 
     expect(container.firstChild).toMatchInlineSnapshot(`
       <button
-        class="root-0-2-1 root-d2-0-2-6"
+        class="root"
         data-is-inverted="true"
         data-is-primary="false"
         data-is-round="true"
@@ -88,7 +88,7 @@ describe('Button', () => {
         type="button"
       >
         <span
-          class="text-0-2-3"
+          class="text"
         >
           <div>
             I am The button

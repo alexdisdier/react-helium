@@ -1,11 +1,13 @@
-import { createUseStyles } from 'react-jss';
+import { createUseStyles, Styles } from 'react-jss';
 
 export default createUseStyles({
   root: {
     'white-space': 'nowrap',
-    maxWidth: (props) => (props.maxWidth ? props.maxWidth : 'inherit'),
+    maxWidth: (props: { maxWidth: number }) =>
+      props.maxWidth ? props.maxWidth : 'inherit',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
-    color: (props) => (props.color ? props.color : 'inherit'),
+    color: (props: { color: string }) =>
+      props.color ? props.color : 'inherit',
   },
-});
+} as Styles);

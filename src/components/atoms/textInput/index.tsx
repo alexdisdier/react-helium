@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FC, LegacyRef, useState, ChangeEvent } from 'react';
 
 import ErrorMessage from '../errorMessage';
 
@@ -18,14 +18,14 @@ interface Props {
   handleFocus?: (e) => void;
   handleBlur?: (e) => void;
   handleChange?: (e) => void;
-  inputRef?: any;
+  inputRef?: LegacyRef<HTMLInputElement> | undefined;
   status?: 'invalid' | 'caution' | 'valid';
   disabled?: boolean;
   required?: boolean;
   errorMessage?: string;
 }
 
-export const TextInput: React.FC<Props> = ({
+export const TextInput: FC<Props> = ({
   id = '',
   placeholder = '',
   value,
@@ -52,16 +52,18 @@ export const TextInput: React.FC<Props> = ({
     focusCounter > 0 &&
     required;
 
-  const focusHandler = (e: any) => {
+  const focusHandler = (e: ChangeEvent<HTMLInputElement>) => {
     window.clearTimeout(timer);
     setHasFocus(true);
-    handleFocus!(e);
+    handleFocus?.(e);
   };
 
-  const blurHandler = (e) => {
+  const blurHandler = (e: ChangeEvent<HTMLInputElement>) => {
     window.clearTimeout(timer);
+
     timer = window.setTimeout(() => {
       setHasFocus(false);
+
       if (required) setFocusCounter(focusCounter + 1);
       handleBlur(e);
     }, 50);

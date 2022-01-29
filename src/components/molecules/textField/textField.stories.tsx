@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 
 import { storiesOf } from '@storybook/react';
 import {
@@ -8,7 +8,7 @@ import {
   optionsKnob as options,
 } from '@storybook/addon-knobs';
 
-import { TextField } from '.';
+import { TextField, Props } from '.';
 import {
   STATUS_INVALID,
   STATUS_CAUTION,
@@ -17,25 +17,7 @@ import {
 
 import TextFieldReadme from './README.md';
 
-interface Props {
-  label: string;
-  onValueChange?: (e) => void;
-  value?: string;
-  placeholder?: string;
-  invalid?: boolean;
-  caution?: boolean;
-  valid?: boolean;
-  hideLabel?: boolean;
-  disabled?: boolean;
-  required?: boolean;
-  inputRef?: any;
-  errorMessage?: string;
-}
-
-export const ControlledFieldText: React.FC<Props> = ({
-  label,
-  ...otherProps
-}) => {
+export const ControlledFieldText: FC<Props> = ({ label, ...otherProps }) => {
   const [value, setValue] = useState('');
   return (
     <TextField

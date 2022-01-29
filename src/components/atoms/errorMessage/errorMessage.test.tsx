@@ -17,7 +17,7 @@ describe('ErrorMessage', () => {
     const { container } = render(<ErrorMessage {...props} />);
     expect(container.firstChild).toMatchInlineSnapshot(`
       <div
-        class="content-0-2-1"
+        class="content"
       >
         I'm an error
       </div>
