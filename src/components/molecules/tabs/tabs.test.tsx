@@ -1,21 +1,21 @@
-import React from "react";
-import { render } from "@testing-library/react";
+import React from 'react';
+import { render } from '@testing-library/react';
 
-import { Tabs } from ".";
+import { Tabs } from '.';
 
-describe("Tabs", () => {
+describe('Tabs', () => {
   let props;
 
   // Spy and mock useState hook
   const setActiveTab = jest.fn();
-  const useStateSpy = jest.spyOn(React, "useState");
+  const useStateSpy = jest.spyOn(React, 'useState');
   useStateSpy.mockImplementation((activeTab) => [activeTab, setActiveTab]);
 
   beforeEach(() => {
     props = {
       tabs: [
         {
-          label: "tab1",
+          label: 'tab1',
           component: (
             <div>
               <p>
@@ -26,7 +26,7 @@ describe("Tabs", () => {
           ),
         },
         {
-          label: "tab2",
+          label: 'tab2',
           component: (
             <div>
               <p>To operate the tab key on a typewriter; to tab.</p>
@@ -42,15 +42,15 @@ describe("Tabs", () => {
     jest.clearAllMocks();
   });
 
-  describe("Actions", () => {
-    it("switches tab", () => {
-      setActiveTab("tab2");
+  describe('Actions', () => {
+    it('switches tab', () => {
+      setActiveTab('tab2');
 
       expect(setActiveTab).toHaveBeenCalled();
-      expect(setActiveTab).toHaveBeenCalledWith("tab2");
+      expect(setActiveTab).toHaveBeenCalledWith('tab2');
     });
 
-    it("centers the tabulation content", () => {
+    it('centers the tabulation content', () => {
       props.centered = true;
       const { container } = render(<Tabs {...props} />);
       expect(container.firstChild).toMatchInlineSnapshot(`
@@ -86,7 +86,7 @@ describe("Tabs", () => {
     });
   });
 
-  it("render the full component", () => {
+  it('render the full component', () => {
     const { container } = render(<Tabs {...props} />);
 
     expect(container.firstChild).toMatchInlineSnapshot(`
