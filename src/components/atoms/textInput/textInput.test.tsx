@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, fireEvent, act } from '@testing-library/react';
-import '@testing-library/jest-dom';
 
 import { TextInput } from '.';
 
@@ -37,7 +36,7 @@ describe('TextInput', () => {
 
     expect(container.firstChild).toMatchInlineSnapshot(`
       <div
-        class="root-0-2-1"
+        class="root"
         data-has-focus="false"
         data-has-value="true"
         data-is-caution="false"
@@ -47,7 +46,7 @@ describe('TextInput', () => {
         data-is-valid="false"
       >
         <input
-          class="input-0-2-2"
+          class="input"
           id="id"
           placeholder="placeholder"
           type="text"
@@ -66,7 +65,7 @@ describe('TextInput', () => {
 
     expect(container.firstChild).toMatchInlineSnapshot(`
       <div
-        class="root-0-2-1"
+        class="root"
         data-has-focus="false"
         data-has-value="true"
         data-is-caution="false"
@@ -76,7 +75,7 @@ describe('TextInput', () => {
         data-is-valid="false"
       >
         <input
-          class="input-0-2-2"
+          class="input"
           id="input_id_001"
           placeholder="Placeholder text"
           type="text"
@@ -93,7 +92,7 @@ describe('TextInput', () => {
 
     expect(container.firstChild).toMatchInlineSnapshot(`
       <div
-        class="root-0-2-1"
+        class="root"
         data-has-focus="false"
         data-has-value="true"
         data-is-caution="false"
@@ -103,7 +102,7 @@ describe('TextInput', () => {
         data-is-valid="false"
       >
         <input
-          class="input-0-2-2"
+          class="input"
           disabled=""
           id="id"
           placeholder="placeholder"
@@ -121,7 +120,7 @@ describe('TextInput', () => {
 
     expect(container.firstChild).toMatchInlineSnapshot(`
       <div
-        class="root-0-2-1"
+        class="root"
         data-has-focus="false"
         data-has-value="true"
         data-is-caution="false"
@@ -131,7 +130,7 @@ describe('TextInput', () => {
         data-is-valid="false"
       >
         <input
-          class="input-0-2-2"
+          class="input"
           id="id"
           placeholder="placeholder"
           type="text"
@@ -148,7 +147,7 @@ describe('TextInput', () => {
 
     expect(container.firstChild).toMatchInlineSnapshot(`
       <div
-        class="root-0-2-1"
+        class="root"
         data-has-focus="false"
         data-has-value="true"
         data-is-caution="true"
@@ -158,7 +157,7 @@ describe('TextInput', () => {
         data-is-valid="false"
       >
         <input
-          class="input-0-2-2"
+          class="input"
           id="id"
           placeholder="placeholder"
           type="text"
@@ -175,7 +174,7 @@ describe('TextInput', () => {
 
     expect(container.firstChild).toMatchInlineSnapshot(`
       <div
-        class="root-0-2-1"
+        class="root"
         data-has-focus="false"
         data-has-value="true"
         data-is-caution="false"
@@ -185,7 +184,7 @@ describe('TextInput', () => {
         data-is-valid="true"
       >
         <input
-          class="input-0-2-2"
+          class="input"
           id="id"
           placeholder="placeholder"
           type="text"

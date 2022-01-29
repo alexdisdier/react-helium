@@ -29,7 +29,6 @@ export const Button: React.FC<Props> = ({
   inverted = false,
   vector = null,
 }) => {
-  // @ts-ignore
   const classes = useStyles({ color });
 
   const handleClick = () => {

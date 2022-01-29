@@ -15,7 +15,7 @@ interface SnackbarsContextProps {
 
 interface Props {
   children: React.ReactNode;
-  successSnackbar?: (x: string, y?: string, z?: Function) => void;
+  successSnackbar?: (x: string, y?: string, z?: unknown) => void;
   errorSnackbar?: (x: string, y: string) => void;
   config?: {
     backgroundColor: string;

@@ -21,7 +21,10 @@ export const UrlInput: React.FC<Props> = ({
   const inputWrapperRef: any | null = React.useRef(null);
 
   const handleClick = React.useCallback(
-    (e) => !inputWrapperRef.current.contains(e.target) && handleCollapse(),
+    (e) => {
+      console.log(!inputWrapperRef.current.contains(e.target));
+      return !inputWrapperRef.current.contains(e.target) && handleCollapse();
+    },
     [handleCollapse]
   );
 

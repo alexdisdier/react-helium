@@ -233,9 +233,12 @@ export const Editor: React.FC<Props> = ({
     'data-is-placeholder-hidden': hidePlaceholder,
   };
 
+  debugger;
+
   return (
     <>
       <div
+        data-testid="draft"
         onClick={handleFocus}
         onBlur={() => {
           setFocused(false);
