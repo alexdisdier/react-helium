@@ -191,15 +191,19 @@ export const Editor: FC<Props> = ({
   /**
    * e.g: Handles block style such as header, bullet points
    */
-  const toggleBlockType = (blockType: string) => {
-    onEditorStateChange(RichUtils.toggleBlockType(editorState, blockType));
+  const toggleBlockType = (blockType: unknown) => {
+    onEditorStateChange(
+      RichUtils.toggleBlockType(editorState, blockType as string)
+    );
   };
 
   /**
    * e.g: Handles inline styles such as bold
    */
-  const toggleInlineStyle = (inlineStyle: string) => {
-    onEditorStateChange(RichUtils.toggleInlineStyle(editorState, inlineStyle));
+  const toggleInlineStyle = (inlineStyle: unknown) => {
+    onEditorStateChange(
+      RichUtils.toggleInlineStyle(editorState, inlineStyle as string)
+    );
   };
 
   /**
@@ -233,8 +237,6 @@ export const Editor: FC<Props> = ({
     'data-is-placeholder-hidden': hidePlaceholder,
   };
 
-  debugger;
-
   return (
     <>
       <div
@@ -265,6 +267,8 @@ export const Editor: FC<Props> = ({
             spellCheck
             readOnly={disabled}
             handleKeyCommand={handleKeyCommand}
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
             ref={editorRef}
           />
         </div>

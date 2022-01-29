@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC, MouseEventHandler } from 'react';
 
 import { EditorState } from 'draft-js';
 
@@ -32,8 +32,11 @@ import useStyles from './toolbar.style';
 
 interface Props {
   editorState: EditorState;
-  onToggleBlockType?: <T>(t: T) => void;
-  onToggleInlineType?: <T>(t: T) => void;
+  onToggleBlockType?:
+    | (((x: unknown) => void) & MouseEventHandler<HTMLButtonElement>)
+    | undefined;
+  onToggleInlineType?: ((x: unknown) => void) &
+    MouseEventHandler<HTMLButtonElement>;
   promptForLink?: (x) => void;
   removeLink?: () => void;
   addImage?: () => void;
@@ -41,7 +44,7 @@ interface Props {
   isLinkButtonActive?: boolean;
 }
 
-export const Toolbar: React.FC<Props> = ({
+export const Toolbar: FC<Props> = ({
   editorState,
   onToggleBlockType = () => {},
   onToggleInlineType = () => {},

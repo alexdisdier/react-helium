@@ -34,7 +34,9 @@ export const Tabs: FC<Props> = ({ tabs, centered = false }) => {
   React.useEffect(() => {
     setSliderDimensions({
       left: 0,
-      width: tabRef?.current?.offsetWidth - TAB_MARGIN_RIGHT ?? 0,
+      width: tabRef?.current?.offsetWidth
+        ? tabRef.current.offsetWidth - TAB_MARGIN_RIGHT
+        : 0,
     });
   }, []);
 
