@@ -1,11 +1,5 @@
 import colorLuminance from './colorLuminance';
-// import { getHTMLString } from './editor';
-
-// jest.mock('draft-js', () => ({
-//   editorState: {
-//     getCurrentContent: jest.fn(),
-//   },
-// }));
+import { getHTMLString, getBlockStyle, findLinkEntities } from './editor';
 
 describe('colorLuminance', () => {
   it('receives hex less than 2', () => {
@@ -21,8 +15,80 @@ describe('colorLuminance', () => {
   });
 });
 
-// describe('getHTMLString', () => {
-//   it('returns html without any <a> elements', () => {
-//     expect(getHTMLString('')).toMatchInlineSnapshot();
-//   });
-// });
+describe('getHTMLString', () => {
+  it('returns html without any <a> elements', () => {
+    expect(
+      getHTMLString({
+        getCurrentContent: () => ({ getBlocksAsArray: () => [] }),
+      })
+    ).toMatchInlineSnapshot(`""`);
+  });
+});
+
+describe('getBlockStyle', () => {
+  it('header-one should return h1', () => {
+    expect(
+      getBlockStyle({
+        getType: () => 'header-one',
+      })
+    ).toEqual('h1');
+  });
+
+  it('header-two should return h2', () => {
+    expect(
+      getBlockStyle({
+        getType: () => 'header-two',
+      })
+    ).toEqual('h2');
+  });
+
+  it('unordered-list-item should return ul', () => {
+    expect(
+      getBlockStyle({
+        getType: () => 'unordered-list-item',
+      })
+    ).toEqual('ul');
+  });
+
+  it('ordered-list-item should return ol', () => {
+    expect(
+      getBlockStyle({
+        getType: () => 'ordered-list-item',
+      })
+    ).toEqual('ol');
+  });
+
+  describe('it should return an empty string when the block is', () => {
+    it('undefined', () => {
+      expect(
+        getBlockStyle({
+          getType: () => undefined,
+        })
+      ).toEqual('');
+    });
+
+    it('null', () => {
+      expect(
+        getBlockStyle({
+          getType: () => null,
+        })
+      ).toEqual('');
+    });
+
+    it('empty', () => {
+      expect(
+        getBlockStyle({
+          getType: () => '',
+        })
+      ).toEqual('');
+    });
+  });
+});
+
+describe('findLinkEntities', () => {
+  it('returns our own link', () => {
+    expect(
+      findLinkEntities({ findEntityRanges: () => true }, '')
+    ).toMatchInlineSnapshot(`undefined`);
+  });
+});
