@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FC, LegacyRef, useState } from 'react';
 import uniqueId from 'lodash.uniqueid';
 
 import { Label, TextInput } from '../../atoms';
@@ -6,10 +6,10 @@ import { Label, TextInput } from '../../atoms';
 import {
   STATUS_INVALID,
   STATUS_CAUTION,
-  STATUS_VALID
+  STATUS_VALID,
 } from '../../../constant/status';
 
-interface Props {
+export interface Props {
   label: string;
   onValueChange: (e) => void;
   value?: string;
@@ -20,13 +20,13 @@ interface Props {
   hideLabel?: boolean;
   disabled?: boolean;
   required?: boolean;
-  inputRef?: Function;
+  inputRef?: LegacyRef<HTMLInputElement> | undefined;
   errorMessage?: string;
 }
 
 const id: string = uniqueId('ftc_');
 
-export const TextField: React.FC<Props> = ({
+export const TextField: FC<Props> = ({
   label,
   onValueChange,
   value = '',
@@ -38,7 +38,7 @@ export const TextField: React.FC<Props> = ({
   disabled = false,
   required = false,
   inputRef = () => {},
-  errorMessage = ''
+  errorMessage = '',
 }) => {
   const [hasFocus, setHasFocus] = useState(false);
 
@@ -46,7 +46,7 @@ export const TextField: React.FC<Props> = ({
 
   const handleBlur = () => setHasFocus(false);
 
-  const handleChange = e => onValueChange(e);
+  const handleChange = (e) => onValueChange(e);
 
   let status;
 
@@ -67,7 +67,7 @@ export const TextField: React.FC<Props> = ({
     inputHasValue: !!value,
     hasFocus,
     status,
-    hideLabel
+    hideLabel,
   };
 
   const inputProps = {
@@ -81,7 +81,7 @@ export const TextField: React.FC<Props> = ({
     status,
     disabled,
     required,
-    errorMessage
+    errorMessage,
   };
 
   return (

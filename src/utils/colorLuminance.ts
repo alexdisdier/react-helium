@@ -15,10 +15,7 @@ const nameToHex = (name: string) => {
   document.body.removeChild(fakeDiv);
 
   // Code ripped from RGBToHex() (except pv is substringed)
-  const rgb = pv
-    .substr(4)
-    .split(')')[0]
-    .split(',');
+  const rgb = pv.substr(4).split(')')[0].split(',');
   let r = (+rgb[0]).toString(16);
   let g = (+rgb[1]).toString(16);
   let b = (+rgb[2]).toString(16);
@@ -37,7 +34,7 @@ const nameToHex = (name: string) => {
  * @param lum — the luminosity factor, i.e. -0.1 is 10% darker, 0.2 is 20% lighter, etc.
  */
 
-export default (hex: string, lum: any) => {
+export default (hex: string, lum: number | null) => {
   let nameFromHex;
   if (hex.charAt(0) !== '#') {
     nameFromHex = nameToHex(hex);
@@ -45,6 +42,10 @@ export default (hex: string, lum: any) => {
   // validate hex string
   let newHex = String(nameFromHex || hex).replace(/[^0-9a-f]/gi, '');
   if (newHex.length < 6 && newHex.length > 2) {
+    newHex =
+      newHex[0] + newHex[0] + newHex[1] + newHex[1] + newHex[2] + newHex[2];
+  } else {
+    newHex = String(nameToHex(hex)).replace(/[^0-9a-f]/gi, '');
     newHex =
       newHex[0] + newHex[0] + newHex[1] + newHex[1] + newHex[2] + newHex[2];
   }

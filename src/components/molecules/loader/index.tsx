@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { FC } from 'react';
+import { Styles } from 'react-jss';
 
 import {
   IconBarCenter,
   IconBarTop,
   IconDots,
   IconSpinner,
-  IconSpinnerFill
+  IconSpinnerFill,
 } from '../../atoms/icons';
 
 import useStyles from './loader.style';
@@ -25,7 +26,7 @@ type Props = {
   dots?: boolean;
 };
 
-export const Loader: React.FC<Props> = ({
+export const Loader: FC<Props> = ({
   text = '',
   size = 32 || undefined,
   slow = false,
@@ -37,9 +38,9 @@ export const Loader: React.FC<Props> = ({
   spinner = false,
   barCenter = false,
   barTop = false,
-  dots = false
+  dots = false,
 }) => {
-  const classes = useStyles({ size });
+  const classes = useStyles({ size } as Styles);
   /**
    * Speed
    */
@@ -51,9 +52,9 @@ export const Loader: React.FC<Props> = ({
 
   const iconProps = {
     text,
-    size: size! < 300 ? size : 300,
+    size: size < 300 ? size : 300,
     speed: tempo,
-    repeatCount
+    repeatCount,
   };
 
   /**
@@ -69,7 +70,7 @@ export const Loader: React.FC<Props> = ({
 
   const rootProps = {
     className: classes.root,
-    'data-is-overlay': overlay
+    'data-is-overlay': overlay,
   };
 
   return (

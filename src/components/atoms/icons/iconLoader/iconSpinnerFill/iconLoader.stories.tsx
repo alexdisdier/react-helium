@@ -25,9 +25,7 @@ stories.add('moderate', () => (
 ));
 
 stories.add('fast', () => (
-  <>
-    <span style={{ color: color('Colour', theme.primaryColor) }}>
-      <IconSpinnerFill size={number('Size', 100)} speed="0.5" />
-    </span>
-  </>
+  <span style={{ color: color('Colour', theme.primaryColor) }}>
+    <IconSpinnerFill size={number('Size', 100)} speed="0.5" />
+  </span>
 ));

@@ -24,5 +24,5 @@ export default {
 
   cautionOrange: '#FF9800',
   validGreen: '#4CAF50',
-  warningRed: '#F44336'
+  warningRed: '#F44336',
 };

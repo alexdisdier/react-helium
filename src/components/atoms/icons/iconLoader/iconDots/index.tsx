@@ -12,7 +12,7 @@ type Props = {
 export const IconDots: React.FC<Props> = ({
   size = null,
   speed = '0.5',
-  repeatCount = 'indefinite'
+  repeatCount = 'indefinite',
 }) => {
   const classes = useStyles();
 

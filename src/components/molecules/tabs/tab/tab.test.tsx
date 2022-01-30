@@ -1,68 +1,58 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-// import { classesFromStyles } from '../../../../utils/tests';
+import { render, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { Tab } from '.';
-
-// import useStyles from './tab.style';
-
-// const classes = classesFromStyles(styles);
 
 describe('Tab', () => {
   let props;
 
   beforeEach(() => {
     props = {
-      // classes,
       activeTab: 'tab1',
       label: 'tab2',
-      onClick: jest.fn()
+      onClick: jest.fn(),
     };
   });
 
   describe('Actions', () => {
     it('triggers handleClick', () => {
-      const wrapper = shallow(<Tab {...props} />);
+      const { container } = render(<Tab {...props} />);
 
-      const mockedEvent = { target: {} };
-
-      wrapper.find('li').simulate('click', mockedEvent);
+      fireEvent.click(container.querySelector('li'));
 
       expect(props.onClick).toHaveBeenCalledTimes(1);
-      expect(props.onClick).toHaveBeenCalledWith(mockedEvent, 'tab2');
     });
   });
 
   it('render the full component', () => {
-    const wrapper = shallow(<Tab {...props} />);
+    const { container } = render(<Tab {...props} />);
 
-    expect(wrapper).toMatchInlineSnapshot(`
-      <Fragment>
+    expect(container).toMatchInlineSnapshot(`
+      <div>
         <li
-          className="root-0-2-1"
-          data-is-active={false}
-          onClick={[Function]}
+          class="root"
+          data-is-active="false"
         >
           tab2
         </li>
-      </Fragment>
+      </div>
     `);
   });
 
   it('renders an active tab', () => {
     props.activeTab = 'tab2';
-    const wrapper = shallow(<Tab {...props} />);
+    const { container } = render(<Tab {...props} />);
 
-    expect(wrapper).toMatchInlineSnapshot(`
-      <Fragment>
+    expect(container).toMatchInlineSnapshot(`
+      <div>
         <li
-          className="root-0-2-1"
-          data-is-active={true}
-          onClick={[Function]}
+          class="root"
+          data-is-active="true"
         >
           tab2
         </li>
-      </Fragment>
+      </div>
     `);
   });
 });

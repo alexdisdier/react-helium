@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { FC } from 'react';
+import { Styles } from 'react-jss';
 
 import useStyles from './button.style';
 
@@ -16,7 +17,7 @@ type Props = {
   vector?: React.ReactNode;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-export const Button: React.FC<Props> = ({
+export const Button: FC<Props> = ({
   children,
   onClick = () => {},
   primary = false,
@@ -27,9 +28,9 @@ export const Button: React.FC<Props> = ({
   color = '',
   round = false,
   inverted = false,
-  vector = null
+  vector = null,
 }) => {
-  const classes = useStyles({ color });
+  const classes = useStyles({ color } as Styles);
 
   const handleClick = () => {
     if (!disabled && onClick) onClick();
@@ -44,7 +45,7 @@ export const Button: React.FC<Props> = ({
     'data-is-secondary': secondary,
     'data-is-warning': warning,
     'data-is-round': round,
-    'data-is-inverted': !primary && !secondary && !warning && inverted
+    'data-is-inverted': !primary && !secondary && !warning && inverted,
   };
 
   return (

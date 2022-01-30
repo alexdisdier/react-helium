@@ -1,25 +1,28 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import '@testing-library/jest-dom';
 
-import { ErrorMessage } from '.';
+import { Ellipsis } from '.';
 
-describe('ErrorMessage', () => {
+describe('Ellipsis', () => {
   let props;
 
   beforeEach(() => {
     props = {
-      text: "I'm an error",
+      children: <div>child</div>,
+      maxWidth: '120px',
+      color: 'red',
     };
   });
 
   it('renders full component', () => {
-    const { container } = render(<ErrorMessage {...props} />);
+    const { container } = render(<Ellipsis {...props} />);
     expect(container.firstChild).toMatchInlineSnapshot(`
       <div
-        class="content"
+        class="root"
       >
-        I'm an error
+        <div>
+          child
+        </div>
       </div>
     `);
   });

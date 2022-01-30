@@ -1,23 +1,23 @@
-import { createUseStyles } from 'react-jss';
+import { createUseStyles, Styles } from 'react-jss';
 // Used to set the tabs left position according to wrapper
 import { WRAPPER_PADDING_LEFT } from '../../../constant';
 
-export default createUseStyles((theme: any) => ({
+export default createUseStyles((theme: Styles) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
     backgroundColor: 'inherit',
     paddingTop: 10,
-    paddingLeft: WRAPPER_PADDING_LEFT
+    paddingLeft: WRAPPER_PADDING_LEFT,
   },
   tabsWrapper: {
-    display: 'flex'
+    display: 'flex',
   },
   slider: {
     top: 2,
     position: 'relative',
     borderBottom: `4px solid ${theme.grey1}`,
-    transition: 'left 0.3s ease-out, width 0.3s ease-out'
+    transition: 'left 0.3s ease-out, width 0.3s ease-out',
   },
   contentWrapper: {
     padding: 14,
@@ -25,7 +25,7 @@ export default createUseStyles((theme: any) => ({
     '&[data-is-centered=true]': {
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'center'
-    }
-  }
+      justifyContent: 'center',
+    },
+  },
 }));

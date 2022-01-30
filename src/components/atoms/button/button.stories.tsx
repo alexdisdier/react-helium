@@ -4,7 +4,7 @@ import {
   withKnobs,
   text,
   boolean,
-  optionsKnob as options
+  optionsKnob as options,
 } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
@@ -16,7 +16,7 @@ const appearanceOptions = {
   Default: 'default',
   Primary: 'primary',
   Secondary: 'secondary',
-  Warning: 'warning'
+  Warning: 'warning',
 };
 
 const stories = storiesOf('Atoms/Button', module);
@@ -25,15 +25,15 @@ stories.addDecorator(withKnobs);
 
 stories.addParameters({
   readme: {
-    content: README
-  }
+    content: README,
+  },
 });
 
 stories.add('default', () => {
   const hasVector = boolean('Vector icon', false);
   const hasOnClick = boolean('Has onClick', true);
   const appearanceValue = options('Appearance', appearanceOptions, 'default', {
-    display: 'inline-radio'
+    display: 'inline-radio',
   });
 
   return (

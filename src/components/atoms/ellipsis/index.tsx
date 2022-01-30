@@ -1,19 +1,20 @@
-import * as React from 'react';
+import React, { FC, ReactChildren } from 'react';
+import { Styles } from 'react-jss';
 
 import useStyles from './ellipsis.style';
 
 interface Props {
-  children: any;
+  children: ReactChildren;
   maxWidth?: string;
   color?: string;
 }
 
-export const Ellipsis: React.FC<Props> = ({
+export const Ellipsis: FC<Props> = ({
   children,
   maxWidth = 'inherit',
-  color = ''
+  color = '',
 }) => {
-  const classes = useStyles({ maxWidth, color });
+  const classes = useStyles({ maxWidth, color } as Styles);
 
   return <div className={classes.root}>{children}</div>;
 };

@@ -1,21 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, {
+  FC,
+  ReactNode,
+  createContext,
+  useState,
+  useEffect,
+} from 'react';
 
 import {
   ACTION_TIMEOUT,
   DEFAULT_TIMEOUT,
-  TYPE_ERROR
+  TYPE_ERROR,
 } from '../../../constant/types';
 
 import useStyles from './snackbars.style';
 
-interface SnackbarsContextProps {
-  Consumer: any;
-  Provider: any;
-}
-
 interface Props {
-  children: React.ReactNode;
-  successSnackbar?: (x: string, y?: string, z?: Function) => void;
+  children: ReactNode;
+  successSnackbar?: (x: string, y?: string, z?: void) => void;
   errorSnackbar?: (x: string, y: string) => void;
   config?: {
     backgroundColor: string;
@@ -25,29 +26,39 @@ interface Props {
   };
 }
 
-const SnackbarsContext: SnackbarsContextProps = React.createContext(() => {});
+const SnackbarsContext = createContext<Partial<unknown>>({});
 
-export const withSnackbarsContext = Component => props => {
-  return (
-    <SnackbarsContext.Consumer>
-      {({
-        successSnackbar,
-        errorSnackbar
-      }: Pick<Props, 'successSnackbar' | 'errorSnackbar'>) => (
-        <Component
-          successSnackbar={successSnackbar}
-          errorSnackbar={errorSnackbar}
-          {...props}
-        />
-      )}
-    </SnackbarsContext.Consumer>
-  );
-};
+export const withSnackbarsContext = (Component) =>
+  // eslint-disable-next-line func-names
+  function (props) {
+    return (
+      <SnackbarsContext.Consumer>
+        {({
+          successSnackbar,
+          errorSnackbar,
+        }: Pick<Props, 'successSnackbar' | 'errorSnackbar'>) => (
+          <Component
+            successSnackbar={successSnackbar}
+            errorSnackbar={errorSnackbar}
+            {...props}
+          />
+        )}
+      </SnackbarsContext.Consumer>
+    );
+  };
 
-export const Snackbars: React.FC<Props> = ({ children, config = {} }) => {
+interface LastMessage {
+  message: string;
+  type: string;
+  onClick(): void;
+  label: string;
+  config: Record<string, unknown>;
+}
+
+export const Snackbars: FC<Props> = ({ children, config = {} }) => {
   const classes = useStyles();
   const [messages, setMessages] = useState<Array<string>>([]);
-  const [lastMessage, setLastMessage] = useState({
+  const [lastMessage, setLastMessage] = useState<LastMessage>({
     message: '',
     type: '',
     onClick: () => {},
@@ -56,20 +67,21 @@ export const Snackbars: React.FC<Props> = ({ children, config = {} }) => {
       backgroundColor: config.backgroundColor,
       color: config.color,
       top: config.top,
-      bottomLeft: config.bottomLeft
-    }
+      bottomLeft: config.bottomLeft,
+    },
   });
   const [isReady, setIsReady] = useState<boolean>(true);
 
   let timer;
 
-  useEffect(() => {
-    return () => {
+  useEffect(
+    () => () => {
       clearTimeout(timer);
-    };
-  }, [timer]);
+    },
+    [timer]
+  );
 
-  const onAddAlert = msg => {
+  const onAddAlert = (msg) => {
     if (isReady && !messages.length) {
       setLastMessage(msg);
       setIsReady(false);
@@ -83,12 +95,20 @@ export const Snackbars: React.FC<Props> = ({ children, config = {} }) => {
     }
   };
 
-  const onAddSuccessAlert = (message, label, onClick, config) => {
+  const onAddSuccessAlert = (
+    message: string,
+    label: string,
+    onClick: void,
+    config: Record<string, unknown>
+  ) => {
     if (config) return onAddAlert({ message, label, onClick, config });
     return onAddAlert({ message, label, onClick });
   };
 
-  const onAddErrorAlert = (message, config: {}) => {
+  const onAddErrorAlert = (
+    message: string,
+    config: Record<string, unknown>
+  ) => {
     if (config) return onAddAlert({ message, type: TYPE_ERROR, config });
     return onAddAlert({ message, type: TYPE_ERROR });
   };
@@ -96,7 +116,7 @@ export const Snackbars: React.FC<Props> = ({ children, config = {} }) => {
   const onReady = () => setIsReady(true);
 
   const handleClick = () => {
-    const { onClick } = lastMessage;
+    const { onClick } = lastMessage as LastMessage;
 
     onClick();
 
@@ -105,11 +125,11 @@ export const Snackbars: React.FC<Props> = ({ children, config = {} }) => {
   };
 
   const rootDynamicStyle = {
-    backgroundColor: lastMessage.config.backgroundColor
+    backgroundColor: lastMessage.config.backgroundColor as string,
   };
 
   const contentDynamicStyle = {
-    color: lastMessage.config.color
+    color: lastMessage.config.color as string,
   };
 
   const renderMessage = () => {
@@ -120,7 +140,7 @@ export const Snackbars: React.FC<Props> = ({ children, config = {} }) => {
       'data-has-error': lastMessage.type === TYPE_ERROR,
       'data-is-top': !lastMessage.config.bottomLeft && lastMessage.config.top,
       'data-is-bottomleft':
-        !lastMessage.config.top && lastMessage.config.bottomLeft
+        !lastMessage.config.top && lastMessage.config.bottomLeft,
     };
 
     return (
@@ -128,7 +148,7 @@ export const Snackbars: React.FC<Props> = ({ children, config = {} }) => {
         <div style={lastMessage.config && contentDynamicStyle}>
           {lastMessage.message}
         </div>
-        {lastMessage.onClick && lastMessage.label && (
+        {lastMessage.label && (
           <button className={classes.undoClickBtn} onClick={handleClick}>
             {lastMessage.label}
           </button>
@@ -141,7 +161,7 @@ export const Snackbars: React.FC<Props> = ({ children, config = {} }) => {
     <SnackbarsContext.Provider
       value={{
         successSnackbar: onAddSuccessAlert,
-        errorSnackbar: onAddErrorAlert
+        errorSnackbar: onAddErrorAlert,
       }}
     >
       {children}

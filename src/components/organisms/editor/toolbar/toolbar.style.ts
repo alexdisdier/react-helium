@@ -4,6 +4,6 @@ export default createUseStyles({
   root: {
     display: 'flex',
     justifyContent: 'flex-start',
-    marginBottom: 10
-  }
+    marginBottom: 10,
+  },
 });

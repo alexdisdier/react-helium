@@ -1,36 +1,31 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-// import { classesFromStyles } from '../../../utils/tests';
+import { render } from '@testing-library/react';
 
 import { HtmlDisplay } from '.';
-
-// import useStyles from './htmlDisplay.style';
-
-// const classes = classesFromStyles(styles);
 
 describe('Link', () => {
   let props;
 
   beforeEach(() => {
     props = {
-      // classes,
-      htmlData: {
-        test: ''
-      }
+      htmlData:
+        '<button type="submit" onclick="iAmStealingYourData()">I am a malicious button</button>',
     };
   });
 
-  it('renders full component', () => {
-    const wrapper = shallow(<HtmlDisplay {...props} />);
-    expect(wrapper).toMatchInlineSnapshot(`
+  it('renders full component without the onclick event', () => {
+    const { container } = render(<HtmlDisplay {...props} />);
+
+    expect(container.firstChild).toMatchInlineSnapshot(`
       <div
-        className="readOnly-0-2-1"
-        dangerouslySetInnerHTML={
-          Object {
-            "__html": "[object Object]",
-          }
-        }
-      />
+        class="readOnly"
+      >
+        <button
+          type="submit"
+        >
+          I am a malicious button
+        </button>
+      </div>
     `);
   });
 });

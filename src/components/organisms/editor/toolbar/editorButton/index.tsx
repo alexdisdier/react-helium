@@ -7,7 +7,7 @@ import {
   HEADER_ONE,
   BOLD,
   LINK,
-  UNORDERED_LIST_ITEM
+  UNORDERED_LIST_ITEM,
 } from '../../../../../constant/editor';
 
 import useStyles from './editorButton.style';
@@ -29,7 +29,7 @@ export const EditorButton: React.FC<Props> = ({
   removeLink = () => {},
   active = false,
   buttonType,
-  disabled = false
+  disabled = false,
 }) => {
   const classes = useStyles();
   /**
@@ -38,7 +38,7 @@ export const EditorButton: React.FC<Props> = ({
    */
   const [isActive, setActive] = useState(active);
 
-  const handleClick = e => {
+  const handleClick = (e) => {
     e.preventDefault(); // Allows to lock the key command
 
     if (!disabled && onClick) {
@@ -46,10 +46,10 @@ export const EditorButton: React.FC<Props> = ({
       onClick(buttonType);
     }
 
-    STYLE.map(type => type === buttonType && setActive(false));
+    STYLE.map((type) => type === buttonType && setActive(false));
   };
 
-  const toggleLink = e => {
+  const toggleLink = (e) => {
     e.preventDefault(); // Allows to lock the key command
 
     if (!disabled && !active) return promptForLink(e);
@@ -60,7 +60,7 @@ export const EditorButton: React.FC<Props> = ({
     // onMouseDown has to be used instead of onClick to be able to lock the key command
     className: classes.root,
     disabled,
-    'data-is-active': isActive || active
+    'data-is-active': isActive || active,
   };
 
   let label;
