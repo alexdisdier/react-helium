@@ -1,38 +1,28 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-// import { classesFromStyles } from '../../../../../utils/tests';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { IconSpinnerFill } from '.';
-
-// import useStyles from './iconSpinnerFill.style';
-
-// const classes = classesFromStyles(styles);
 
 describe('IconSpinnerFill', () => {
   let props;
 
   beforeEach(() => {
     props = {
-      // classes,
       size: 32,
       speed: '0.5',
-      repeatCount: 'indefinite'
+      repeatCount: 'indefinite',
     };
   });
 
   it('renders a IconSpinnerFill', () => {
-    const wrapper = shallow(<IconSpinnerFill {...props} />);
-    expect(wrapper).toMatchInlineSnapshot(`
+    const { container } = render(<IconSpinnerFill {...props} />);
+    expect(container.firstChild).toMatchInlineSnapshot(`
       <svg
         aria-hidden="true"
-        className="root-0-2-1"
-        fillRule="evenodd"
-        style={
-          Object {
-            "height": "32px",
-            "width": "32px",
-          }
-        }
+        class="root"
+        fill-rule="evenodd"
+        style="width: 32px; height: 32px;"
         viewBox="0 0 40 40"
         x="0px"
         xmlns="http://www.w3.org/2000/svg"
@@ -45,7 +35,7 @@ describe('IconSpinnerFill', () => {
         <path
           d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0 C22.32,8.481,24.301,9.057,26.013,10.047z"
         >
-          <animateTransform
+          <animatetransform
             attributeName="transform"
             attributeType="xml"
             dur="0.5s"

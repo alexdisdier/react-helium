@@ -5,7 +5,7 @@ import {
   text,
   number,
   color,
-  optionsKnob as options
+  optionsKnob as options,
 } from '@storybook/addon-knobs';
 
 import Loader from '.';
@@ -17,8 +17,8 @@ import LoaderReadme from './README.md';
 const stories = storiesOf('Molecules/loader', module);
 stories.addParameters({
   readme: {
-    content: LoaderReadme
-  }
+    content: LoaderReadme,
+  },
 });
 
 stories.addDecorator(withKnobs);
@@ -28,12 +28,12 @@ const typeOptions = {
   spinner: 'spinner',
   barCenter: 'barCenter',
   barTop: 'barTop',
-  dots: 'dots'
+  dots: 'dots',
 };
 
 stories.add('Default ', () => {
   const typeValues = options('Type', typeOptions, 'spinnerFill', {
-    display: 'inline-radio'
+    display: 'inline-radio',
   });
 
   return (

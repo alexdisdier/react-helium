@@ -16,8 +16,9 @@ type STYLE = {
  */
 export const getHTMLString = (editorState: EditorState) => {
   const contentState = editorState.getCurrentContent();
+
   const options = {
-    entityStyleFn: entity => {
+    entityStyleFn: (entity) => {
       const data = entity.getData();
       let config;
 
@@ -26,12 +27,12 @@ export const getHTMLString = (editorState: EditorState) => {
           element: 'a',
           attributes: {
             href: data.url,
-            target: data.target
-          }
+            target: data.target,
+          },
         };
 
       return config;
-    }
+    },
   };
   return stateToHTML(contentState, options);
 };
@@ -41,7 +42,7 @@ export const getHTMLString = (editorState: EditorState) => {
  * This is passed inside the prop blockStyleFn
  * source: https://draftjs.org/docs/advanced-topics-block-styling
  */
-export const getBlockStyle = block => {
+export const getBlockStyle = (block) => {
   switch (block.getType()) {
     case 'header-one': // looking for an element with the type of
       return `h1`; // name a style class for this element
@@ -62,7 +63,7 @@ export const getBlockStyle = block => {
  * This enables us to use our own Link component (./controlPanel/link)
  */
 export const findLinkEntities = (contentBlock, callback) => {
-  contentBlock.findEntityRanges(character => {
+  contentBlock.findEntityRanges((character) => {
     const entityKey = character.getEntity();
     return entityKey !== null && Entity.get(entityKey).getType() === 'LINK';
   }, callback);
@@ -96,7 +97,7 @@ export const hasBlockType = (editorState, type) => {
 /**
  * This allows us to know if the block selection has a link
  */
-export const hasLink = editorState =>
+export const hasLink = (editorState) =>
   RichUtils.currentBlockContainsLink(editorState);
 
 export const isActive = (editorState, style) => {
@@ -112,8 +113,8 @@ export const styleCode = {
     backgroundColor: 'rgba(0, 0, 0, 0.05)',
     fontFamily: '"Inconsolata", "Menlo", "Consolas", monospace',
     fontSize: 16,
-    padding: 2
-  }
+    padding: 2,
+  },
 };
 
 /**
@@ -126,10 +127,10 @@ export const STYLE = [
   'unordered-list-item',
   'ITALIC',
   'BOLD',
-  'atomic'
+  'atomic',
 ];
 
-export const isValidURL = str => {
+export const isValidURL = (str) => {
   const pattern = new RegExp(
     '^(https?:\\/\\/)?' +
       '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' +
@@ -147,11 +148,11 @@ export const BLOCK_TYPES: STYLE[] = [
   { label: 'H2', style: 'header-two', icon: <span>H2</span> },
   { label: 'UL', style: 'unordered-list-item', icon: <span>UL</span> },
   { label: 'OL', style: 'ordered-list-item', icon: <span>OL</span> },
-  { label: 'MD', style: 'atomic', icon: <span>MD</span> }
+  { label: 'MD', style: 'atomic', icon: <span>MD</span> },
 ];
 
 export const INLINE_STYLES: STYLE[] = [
   { label: 'B', style: 'BOLD', icon: <span>B</span> },
   { label: 'I', style: 'ITALIC', icon: <span>I</span> },
-  { label: 'U', style: 'UNDERLINE', icon: <span>U</span> }
+  { label: 'U', style: 'UNDERLINE', icon: <span>U</span> },
 ];

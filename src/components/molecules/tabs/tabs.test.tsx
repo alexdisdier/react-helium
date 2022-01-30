@@ -1,14 +1,7 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-// import { classesFromStyles } from '../../../utils/tests';
+import { render } from '@testing-library/react';
 
 import { Tabs } from '.';
-
-// import useStyles from './tabs.style';
-
-// const classes = classesFromStyles(styles);
-
-jest.mock('./tab', () => 'Tab');
 
 describe('Tabs', () => {
   let props;
@@ -16,11 +9,10 @@ describe('Tabs', () => {
   // Spy and mock useState hook
   const setActiveTab = jest.fn();
   const useStateSpy = jest.spyOn(React, 'useState');
-  useStateSpy.mockImplementation(activeTab => [activeTab, setActiveTab]);
+  useStateSpy.mockImplementation((activeTab) => [activeTab, setActiveTab]);
 
   beforeEach(() => {
     props = {
-      // classes,
       tabs: [
         {
           label: 'tab1',
@@ -31,7 +23,7 @@ describe('Tabs', () => {
                 formulate tabularly.
               </p>
             </div>
-          )
+          ),
         },
         {
           label: 'tab2',
@@ -39,10 +31,10 @@ describe('Tabs', () => {
             <div>
               <p>To operate the tab key on a typewriter; to tab.</p>
             </div>
-          )
-        }
+          ),
+        },
       ],
-      centered: false
+      centered: false,
     };
   });
 
@@ -60,114 +52,72 @@ describe('Tabs', () => {
 
     it('centers the tabulation content', () => {
       props.centered = true;
-      const wrapper = shallow(<Tabs {...props} />);
-      expect(wrapper).toMatchInlineSnapshot(`
-        <Fragment>
-          <ol
-            className="root-0-2-1"
-          >
-            <div
-              className="tabsWrapper-0-2-2"
-            >
-              <div
-                key="tab1"
-              >
-                <Tab
-                  activeTab="tab1"
-                  key="tab1"
-                  label="tab1"
-                  onClick={[Function]}
-                />
-              </div>
-              <div
-                key="tab2"
-              >
-                <Tab
-                  activeTab="tab1"
-                  key="tab2"
-                  label="tab2"
-                  onClick={[Function]}
-                />
-              </div>
-            </div>
-            <div
-              className="slider-0-2-3"
-              style={
-                Object {
-                  "left": 0,
-                  "width": 0,
-                }
-              }
-            />
-          </ol>
+      const { container } = render(<Tabs {...props} />);
+      expect(container.firstChild).toMatchInlineSnapshot(`
+        <ol
+          class="root"
+        >
           <div
-            className="contentWrapper-0-2-4"
-            data-is-centered={true}
+            class="tabsWrapper"
           >
             <div>
-              <p>
-                To put or arrange in a tabular, systematic, or condensed form; formulate tabularly.
-              </p>
+              <li
+                class="root"
+                data-is-active="true"
+              >
+                tab1
+              </li>
+            </div>
+            <div>
+              <li
+                class="root"
+                data-is-active="false"
+              >
+                tab2
+              </li>
             </div>
           </div>
-        </Fragment>
+          <div
+            class="slider"
+            style="left: 0px; width: 0px;"
+          />
+        </ol>
       `);
     });
   });
 
   it('render the full component', () => {
-    const wrapper = shallow(<Tabs {...props} />);
+    const { container } = render(<Tabs {...props} />);
 
-    expect(wrapper).toMatchInlineSnapshot(`
-      <Fragment>
-        <ol
-          className="root-0-2-1"
-        >
-          <div
-            className="tabsWrapper-0-2-2"
-          >
-            <div
-              key="tab1"
-            >
-              <Tab
-                activeTab="tab1"
-                key="tab1"
-                label="tab1"
-                onClick={[Function]}
-              />
-            </div>
-            <div
-              key="tab2"
-            >
-              <Tab
-                activeTab="tab1"
-                key="tab2"
-                label="tab2"
-                onClick={[Function]}
-              />
-            </div>
-          </div>
-          <div
-            className="slider-0-2-3"
-            style={
-              Object {
-                "left": 0,
-                "width": 0,
-              }
-            }
-          />
-        </ol>
+    expect(container.firstChild).toMatchInlineSnapshot(`
+      <ol
+        class="root"
+      >
         <div
-          className="contentWrapper-0-2-4"
-          data-is-centered={false}
+          class="tabsWrapper"
         >
           <div>
-            <p>
-              To put or arrange in a tabular, systematic, or condensed form; formulate tabularly.
-            </p>
+            <li
+              class="root"
+              data-is-active="true"
+            >
+              tab1
+            </li>
+          </div>
+          <div>
+            <li
+              class="root"
+              data-is-active="false"
+            >
+              tab2
+            </li>
           </div>
         </div>
-      </Fragment>
+        <div
+          class="slider"
+          style="left: 0px; width: 0px;"
+        />
+      </ol>
     `);
   });
 });

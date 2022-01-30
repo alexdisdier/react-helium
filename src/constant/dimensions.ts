@@ -1,5 +1,5 @@
-export const MIN_TARGET_SIZE: number = 34;
-export const FOCUS_OUTLINE_WIDTH: number = 3;
+export const MIN_TARGET_SIZE = 34;
+export const FOCUS_OUTLINE_WIDTH = 3;
 
 // TABS COMPONENT
 export const TAB_MARGIN_RIGHT = 20;

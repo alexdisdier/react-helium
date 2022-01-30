@@ -10,19 +10,15 @@ interface Props {
 
 export const Tab: React.FC<Props> = ({ activeTab, label, onClick }) => {
   const classes = useStyles();
-  const handleClick = event => onClick(event, label);
+  const handleClick = (event) => onClick(event, label);
 
   const rootProps = {
     className: classes.root,
     'data-is-active': activeTab === label,
-    onClick: handleClick
+    onClick: handleClick,
   };
 
-  return (
-    <>
-      <li {...rootProps}>{label}</li>
-    </>
-  );
+  return <li {...rootProps}>{label}</li>;
 };
 
 export default Tab;

@@ -1,5 +1,6 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { IconInsertPhoto } from '.';
 
@@ -8,24 +9,18 @@ describe('IconInsertPhoto', () => {
 
   beforeEach(() => {
     props = {
-      // classes,
-      size: 32
+      size: 32,
     };
   });
 
   it('renders a IconInsertPhoto', () => {
-    const wrapper = shallow(<IconInsertPhoto {...props} />);
-    expect(wrapper).toMatchInlineSnapshot(`
+    const { container } = render(<IconInsertPhoto {...props} />);
+    expect(container.firstChild).toMatchInlineSnapshot(`
       <svg
         aria-hidden="true"
-        className="root-0-2-1"
-        fillRule="evenodd"
-        style={
-          Object {
-            "height": "32px",
-            "width": "32px",
-          }
-        }
+        class="root"
+        fill-rule="evenodd"
+        style="width: 32px; height: 32px;"
         viewBox="0 0 32 32"
         xmlns="http://www.w3.org/2000/svg"
       >

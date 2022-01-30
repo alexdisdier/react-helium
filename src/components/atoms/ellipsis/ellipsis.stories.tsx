@@ -18,15 +18,10 @@ const Title = (
   </span>
 );
 
-stories.add('default', () => {
-  return (
-    <div style={{ display: 'flex' }}>
-      <Ellipsis
-        maxWidth={text('max-width', '100px')}
-        color={color('Color', '')}
-      >
-        {Title}
-      </Ellipsis>
-    </div>
-  );
-});
+stories.add('default', () => (
+  <div style={{ display: 'flex' }}>
+    <Ellipsis maxWidth={text('max-width', '100px')} color={color('Color', '')}>
+      {Title}
+    </Ellipsis>
+  </div>
+));

@@ -5,7 +5,7 @@ import displayHTML from '../../../utils/displayHTML';
 import useStyles from './htmlDisplay.style';
 
 interface Props {
-  htmlData: {};
+  htmlData: Record<string, unknown>;
 }
 
 export const HtmlDisplay: React.FC<Props> = ({ htmlData }) => {

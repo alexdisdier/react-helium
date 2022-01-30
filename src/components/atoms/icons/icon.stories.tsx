@@ -8,7 +8,7 @@ import {
   IconFormatItalic,
   IconFormatNumbers,
   IconInsertPhoto,
-  IconInsertLink
+  IconInsertLink,
 } from '.';
 
 import { theme } from '../../../style';

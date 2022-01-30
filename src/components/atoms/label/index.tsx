@@ -15,13 +15,13 @@ export const Label: React.SFC<Props> = ({
   forId,
   children,
   required = false,
-  hideLabel
+  hideLabel,
 }) => {
   const classes = useStyles();
 
   const rootProps = {
     className: classes.root,
-    'data-input-is-required': required
+    'data-input-is-required': required,
   };
 
   return (

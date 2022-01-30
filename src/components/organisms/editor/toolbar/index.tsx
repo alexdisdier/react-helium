@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC, MouseEventHandler } from 'react';
 
 import { EditorState } from 'draft-js';
 
@@ -8,13 +8,13 @@ import {
   IconFormatItalic,
   IconFormatNumbers,
   IconInsertLink,
-  IconInsertPhoto
+  IconInsertPhoto,
 } from '../../../atoms/icons';
 
 import {
   hasBlockType,
   hasInlineStyle,
-  hasLink
+  hasLink,
 } from '../../../../utils/editor';
 
 import {
@@ -23,7 +23,7 @@ import {
   ITALIC,
   LINK,
   ORDERED_LIST_ITEM,
-  UNORDERED_LIST_ITEM
+  UNORDERED_LIST_ITEM,
 } from '../../../../constant';
 
 import EditorButton from './editorButton';
@@ -32,8 +32,11 @@ import useStyles from './toolbar.style';
 
 interface Props {
   editorState: EditorState;
-  onToggleBlockType?: any;
-  onToggleInlineType?: any;
+  onToggleBlockType?:
+    | (((x: unknown) => void) & MouseEventHandler<HTMLButtonElement>)
+    | undefined;
+  onToggleInlineType?: ((x: unknown) => void) &
+    MouseEventHandler<HTMLButtonElement>;
   promptForLink?: (x) => void;
   removeLink?: () => void;
   addImage?: () => void;
@@ -41,7 +44,7 @@ interface Props {
   isLinkButtonActive?: boolean;
 }
 
-export const Toolbar: React.FC<Props> = ({
+export const Toolbar: FC<Props> = ({
   editorState,
   onToggleBlockType = () => {},
   onToggleInlineType = () => {},
@@ -49,13 +52,13 @@ export const Toolbar: React.FC<Props> = ({
   removeLink = () => {},
   addImage = () => {},
   disabled = false,
-  isLinkButtonActive = false
+  isLinkButtonActive = false,
 }) => {
   const classes = useStyles();
 
   const rootProps = {
     className: classes.root,
-    'data-is-disabled': disabled
+    'data-is-disabled': disabled,
   };
 
   return (

@@ -1,40 +1,30 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-// import { classesFromStyles } from '../../../../../../utils/tests';
+import { render, fireEvent } from '@testing-library/react';
 
 import { UrlInput } from '.';
-
-// import useStyles from './urlInput.style';
-
-// const classes = classesFromStyles(styles);
 
 describe('UrlInput', () => {
   let props;
 
   beforeEach(() => {
     props = {
-      // classes,
       onLinkInputKeyDown: jest.fn(),
       urlInputChange: jest.fn(),
       handleCollapse: jest.fn(),
       value: 'www.alexdisdier.com',
-      validUrl: true
+      validUrl: true,
     };
   });
 
   it('renders full component', () => {
-    const wrapper = shallow(<UrlInput {...props} />);
-    expect(wrapper).toMatchInlineSnapshot(`
+    const { container } = render(<UrlInput {...props} />);
+    expect(container.firstChild).toMatchInlineSnapshot(`
       <div
-        className="root-0-2-1"
-        onKeyDown={[Function]}
-        onMouseDown={[Function]}
+        class="root"
       >
         <input
-          className="input-0-2-2"
-          data-is-notvalid={false}
-          onChange={[MockFunction]}
-          onKeyDown={[MockFunction]}
+          class="input"
+          data-is-notvalid="false"
           placeholder="Enter link URL"
           type="text"
           value="www.alexdisdier.com"
@@ -44,33 +34,44 @@ describe('UrlInput', () => {
   });
 
   it('tiggers onChange', () => {
-    const wrapper = shallow(<UrlInput {...props} />);
-    wrapper.find('input').simulate('change', 'www.alexdisdier.fr');
+    const { container } = render(<UrlInput {...props} />);
+
+    fireEvent.change(container.querySelector('input'), {
+      target: { value: 'www.alexdisdier.fr' },
+    });
+
     expect(props.urlInputChange).toHaveBeenCalledTimes(1);
-    expect(props.urlInputChange).toHaveBeenCalledWith('www.alexdisdier.fr');
   });
 
   it('cannot add a non a valid url', () => {
     props.validUrl = false;
-    const wrapper = shallow(<UrlInput {...props} />);
-    wrapper.simulate('keydown', { keyCode: 13 });
-    expect(props.onLinkInputKeyDown).toHaveBeenCalledTimes(0);
+    const { container } = render(<UrlInput {...props} />);
+
+    fireEvent.keyDown(container.firstChild, { keyCode: 13 });
+
+    expect(props.onLinkInputKeyDown).not.toHaveBeenCalled();
   });
 
   // it('executes handleCollapse when clicked outside of the input field', () => {
   //   jest
   //     .spyOn(React, 'useRef')
   //     .mockReturnValueOnce({ current: { contains: jest.fn() } });
-  //   const wrapper = shallow(<UrlInput {...props} />);
-  //   wrapper.find('div').simulate('mousedown', {});
+
+  //   const { container } = render(<UrlInput {...props} />);
+
+  //   fireEvent.mouseDown(container.firstChild, {});
+
   //   expect(props.handleCollapse).toHaveBeenCalledTimes(1);
   // });
 
   it('executes handleCollapse on ESC keydown', () => {
-    const wrapper = shallow(<UrlInput {...props} />);
-    wrapper
-      .find('div')
-      .simulate('keydown', { keyCode: 27, preventDefault: () => {} });
+    const { container } = render(<UrlInput {...props} />);
+
+    fireEvent.keyDown(container.firstChild, {
+      keyCode: 27,
+      preventDefault: () => {},
+    });
+
     expect(props.handleCollapse).toHaveBeenCalledTimes(1);
   });
 });

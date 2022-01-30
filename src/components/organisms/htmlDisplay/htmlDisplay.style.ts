@@ -1,17 +1,17 @@
-import { createUseStyles } from 'react-jss';
+import { createUseStyles, Styles } from 'react-jss';
 
-export default createUseStyles((theme: any) => ({
+export default createUseStyles((theme: Styles) => ({
   readOnly: {
     '& h1': {
       fontSize: 32,
-      fontWeight: 'bold'
+      fontWeight: 'bold',
     },
     '& h2': {
       fontSize: 24,
-      fontWeight: 'bold'
+      fontWeight: 'bold',
     },
     '& strong': {
-      fontWeight: 'bold'
+      fontWeight: 'bold',
     },
     '& ul': {
       position: 'relative',
@@ -22,11 +22,11 @@ export default createUseStyles((theme: any) => ({
         color: theme.teal3,
         fontWeight: 'bold',
         width: '1em',
-        marginLeft: '-1em'
-      }
+        marginLeft: '-1em',
+      },
     },
     '& img': {
-      maxWidth: '50%'
-    }
-  }
+      maxWidth: '50%',
+    },
+  },
 }));

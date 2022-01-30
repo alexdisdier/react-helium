@@ -1,54 +1,48 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-// import { classesFromStyles } from '../../../../../utils/tests';
+import { render, fireEvent } from '@testing-library/react';
 
 import { EditorButton } from '.';
-
-// import useStyles from './editorButton.style';
-
-// const classes = classesFromStyles(styles);
 
 describe('Editor Button', () => {
   let props;
 
   beforeEach(() => {
     props = {
-      // classes,
       icon: null,
       onClick: jest.fn(),
       promptForLink: jest.fn(),
       removeLink: jest.fn(),
       active: false,
       buttonType: 'BOLD',
-      disabled: false
+      disabled: false,
     };
   });
 
   describe('Actions', () => {
     it('triggers onClick for a block or inline style Editor button', () => {
-      const wrapper = shallow(<EditorButton {...props} />);
-      wrapper.simulate('mouseDown', {
-        preventDefault: () => {}
-      });
+      const { container } = render(<EditorButton {...props} />);
+
+      fireEvent.mouseDown(container.firstChild);
+
       expect(props.onClick).toHaveBeenCalledTimes(1);
     });
 
     it('triggers promptForLink when the link button is clicked', () => {
       props.buttonType = 'LINK';
-      const wrapper = shallow(<EditorButton {...props} />);
-      wrapper.simulate('mouseDown', {
-        preventDefault: () => {}
-      });
+      const { container } = render(<EditorButton {...props} />);
+
+      fireEvent.mouseDown(container.firstChild);
+
       expect(props.promptForLink).toHaveBeenCalledTimes(1);
     });
 
     it('triggers removeLink when the link active button is clicked', () => {
       props.buttonType = 'LINK';
       props.active = true;
-      const wrapper = shallow(<EditorButton {...props} />);
-      wrapper.simulate('mouseDown', {
-        preventDefault: () => {}
-      });
+      const { container } = render(<EditorButton {...props} />);
+
+      fireEvent.mouseDown(container.firstChild);
+
       expect(props.removeLink).toHaveBeenCalledTimes(1);
     });
   });
@@ -56,17 +50,15 @@ describe('Editor Button', () => {
   describe('render()', () => {
     it('renders a H1 block style button', () => {
       props.buttonType = 'header-one';
-      const wrapper = shallow(<EditorButton {...props} />);
-      expect(wrapper).toMatchInlineSnapshot(`
+      const { container } = render(<EditorButton {...props} />);
+      expect(container.firstChild).toMatchInlineSnapshot(`
         <button
-          className="root-0-2-1"
-          data-is-active={false}
-          disabled={false}
-          onMouseDown={[Function]}
+          class="root"
+          data-is-active="false"
           type="button"
         >
           <span
-            className="text-0-2-2"
+            class="text"
           >
             H1
           </span>
@@ -75,17 +67,15 @@ describe('Editor Button', () => {
     });
 
     it('renders a bold inline style button', () => {
-      const wrapper = shallow(<EditorButton {...props} />);
-      expect(wrapper).toMatchInlineSnapshot(`
+      const { container } = render(<EditorButton {...props} />);
+      expect(container.firstChild).toMatchInlineSnapshot(`
         <button
-          className="root-0-2-1"
-          data-is-active={false}
-          disabled={false}
-          onMouseDown={[Function]}
+          class="root"
+          data-is-active="false"
           type="button"
         >
           <span
-            className="text-0-2-2"
+            class="text"
           >
             B
           </span>
@@ -95,17 +85,15 @@ describe('Editor Button', () => {
 
     it('renders a link button', () => {
       props.buttonType = 'LINK';
-      const wrapper = shallow(<EditorButton {...props} />);
-      expect(wrapper).toMatchInlineSnapshot(`
+      const { container } = render(<EditorButton {...props} />);
+      expect(container.firstChild).toMatchInlineSnapshot(`
         <button
-          className="root-0-2-1"
-          data-is-active={false}
-          disabled={false}
-          onMouseDown={[Function]}
+          class="root"
+          data-is-active="false"
           type="button"
         >
           <span
-            className="text-0-2-2"
+            class="text"
           >
             L
           </span>
@@ -115,17 +103,15 @@ describe('Editor Button', () => {
 
     it('renders a H1 block style button', () => {
       props.buttonType = 'unordered-list';
-      const wrapper = shallow(<EditorButton {...props} />);
-      expect(wrapper).toMatchInlineSnapshot(`
+      const { container } = render(<EditorButton {...props} />);
+      expect(container.firstChild).toMatchInlineSnapshot(`
         <button
-          className="root-0-2-1"
-          data-is-active={false}
-          disabled={false}
-          onMouseDown={[Function]}
+          class="root"
+          data-is-active="false"
           type="button"
         >
           <span
-            className="text-0-2-2"
+            class="text"
           >
             U
           </span>
@@ -135,17 +121,16 @@ describe('Editor Button', () => {
 
     it('renders a disabled button', () => {
       props.disabled = true;
-      const wrapper = shallow(<EditorButton {...props} />);
-      expect(wrapper).toMatchInlineSnapshot(`
+      const { container } = render(<EditorButton {...props} />);
+      expect(container.firstChild).toMatchInlineSnapshot(`
         <button
-          className="root-0-2-1"
-          data-is-active={false}
-          disabled={true}
-          onMouseDown={[Function]}
+          class="root"
+          data-is-active="false"
+          disabled=""
           type="button"
         >
           <span
-            className="text-0-2-2"
+            class="text"
           >
             B
           </span>
@@ -155,17 +140,15 @@ describe('Editor Button', () => {
 
     it('renders an active button', () => {
       props.active = true;
-      const wrapper = shallow(<EditorButton {...props} />);
-      expect(wrapper).toMatchInlineSnapshot(`
+      const { container } = render(<EditorButton {...props} />);
+      expect(container.firstChild).toMatchInlineSnapshot(`
         <button
-          className="root-0-2-1"
-          data-is-active={true}
-          disabled={false}
-          onMouseDown={[Function]}
+          class="root"
+          data-is-active="true"
           type="button"
         >
           <span
-            className="text-0-2-2"
+            class="text"
           >
             B
           </span>

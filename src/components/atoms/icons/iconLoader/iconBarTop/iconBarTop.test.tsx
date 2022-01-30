@@ -1,38 +1,28 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-// import { classesFromStyles } from '../../../../../utils/tests';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { IconBarTop } from '.';
-
-// import useStyles from './iconBarTop.style';
-
-// const classes = classesFromStyles(styles);
 
 describe('IconBarTop', () => {
   let props;
 
   beforeEach(() => {
     props = {
-      // classes,
       size: 32,
       speed: '0.5',
-      repeatCount: 'indefinite'
+      repeatCount: 'indefinite',
     };
   });
 
   it('renders a IconBarTop', () => {
-    const wrapper = shallow(<IconBarTop {...props} />);
-    expect(wrapper).toMatchInlineSnapshot(`
+    const { container } = render(<IconBarTop {...props} />);
+    expect(container.firstChild).toMatchInlineSnapshot(`
       <svg
         aria-hidden="true"
-        className="root-0-2-1"
-        fillRule="evenodd"
-        style={
-          Object {
-            "height": "32px",
-            "width": "32px",
-          }
-        }
+        class="root"
+        fill-rule="evenodd"
+        style="width: 32px; height: 32px;"
         viewBox="0 0 24 24"
         x="0px"
         xmlns="http://www.w3.org/2000/svg"
@@ -44,7 +34,7 @@ describe('IconBarTop', () => {
           x="0"
           y="0"
         >
-          <animateTransform
+          <animatetransform
             attributeName="transform"
             attributeType="xml"
             begin="0s"
@@ -60,7 +50,7 @@ describe('IconBarTop', () => {
           x="10"
           y="0"
         >
-          <animateTransform
+          <animatetransform
             attributeName="transform"
             attributeType="xml"
             begin="0.2s"
@@ -76,7 +66,7 @@ describe('IconBarTop', () => {
           x="20"
           y="0"
         >
-          <animateTransform
+          <animatetransform
             attributeName="transform"
             attributeType="xml"
             begin="0.4s"
