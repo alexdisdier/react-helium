@@ -3,7 +3,7 @@ import React, { FC, ReactElement, JSXElementConstructor } from 'react';
 import useStyles from './invisible.style';
 
 interface Props {
-  children: ReactElement<any, string | JSXElementConstructor<any>>;
+  children: ReactElement<unknown, string | JSXElementConstructor<unknown>>;
   visible?: boolean;
 }
 

@@ -1,5 +1,13 @@
 import colorLuminance from './colorLuminance';
-import { getHTMLString, getBlockStyle, findLinkEntities } from './editor';
+import {
+  getHTMLString,
+  getBlockStyle,
+  findLinkEntities,
+  hasInlineStyle,
+  hasBlockType,
+  isActive,
+  isValidURL,
+} from './editor';
 
 describe('colorLuminance', () => {
   it('receives hex less than 2', () => {
@@ -90,5 +98,80 @@ describe('findLinkEntities', () => {
     expect(
       findLinkEntities({ findEntityRanges: () => true }, '')
     ).toMatchInlineSnapshot(`undefined`);
+  });
+});
+
+describe('hasInlineStyle', () => {
+  const styleMap = ['bold', 'italic'];
+
+  const has = (style) => styleMap.includes(style);
+
+  it('current style is not among the style map', () => {
+    const editorState = {
+      getCurrentInlineStyle: () => ({ has }),
+    };
+
+    expect(hasInlineStyle(editorState, null)).toBe(false);
+  });
+
+  it('current style is among the style map', () => {
+    const editorState = {
+      getCurrentInlineStyle: () => ({ has }),
+    };
+
+    expect(hasInlineStyle(editorState, 'bold')).toBe(true);
+  });
+});
+
+describe('hasBlockType', () => {
+  const editorState = {
+    getSelection: () => ({
+      getStartKey: jest.fn(),
+    }),
+    getCurrentContent: () => ({
+      getBlockForKey: () => ({
+        getType: () => 'h1', // active type
+      }),
+    }),
+  };
+
+  it('h2 is not an active blocktype', () => {
+    expect(hasBlockType(editorState, 'h2')).toBe(false);
+  });
+
+  it('h1 is not an active blocktype', () => {
+    expect(hasBlockType(editorState, 'h1')).toBe(true);
+  });
+});
+
+describe('isActive', () => {
+  const styleMap = ['bold', 'italic'];
+
+  const has = (style) => styleMap.includes(style);
+
+  it('current style is not among the selected text style map', () => {
+    const editorState = {
+      getCurrentInlineStyle: () => ({ has }),
+    };
+
+    expect(isActive(editorState, null)).toBe(false);
+  });
+
+  it('current style is among the selected text style map', () => {
+    const editorState = {
+      getCurrentInlineStyle: () => ({ has }),
+    };
+
+    expect(isActive(editorState, 'bold')).toBe(true);
+  });
+});
+
+describe('isValidURL', () => {
+  it('is not a valid url', () => {
+    expect(isValidURL('not valid')).toBe(false);
+  });
+
+  it('is a valid url', () => {
+    expect(isValidURL('https://google.com')).toBe(true);
   });
 });

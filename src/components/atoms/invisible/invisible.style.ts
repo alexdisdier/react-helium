@@ -9,6 +9,6 @@ export default createUseStyles({
     margin: -1,
     padding: 0,
     overflow: 'hidden',
-    position: 'absolute'
-  }
+    position: 'absolute',
+  },
 } as Styles);

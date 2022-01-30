@@ -12,8 +12,8 @@ stories.addDecorator(withKnobs);
 
 stories.addParameters({
   readme: {
-    content: README
-  }
+    content: README,
+  },
 });
 
 stories.add('default', () => (
