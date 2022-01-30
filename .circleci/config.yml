@@ -69,16 +69,16 @@ jobs:
             - build
             - package.json
 
-  release:
-    docker:
-      - image: circleci/node:16
-    steps:
-      - checkout
-      - run: yarn
-      # Run optional required steps before releasing
-      # - run: npm run build-script
-      - run: yarn build
-      - run: yarn run semantic-release
+  # release:
+  #   docker:
+  #     - image: circleci/node:16
+  #   steps:
+  #     - checkout
+  #     - run: yarn
+  #     # Run optional required steps before releasing
+  #     # - run: npm run build-script
+  #     - run: yarn build
+  #     - run: yarn run semantic-release
 
   codecov:
     <<: *defaults
@@ -132,19 +132,19 @@ workflows:
       - install_dependencies:
           requires:
             - checkout_code
-      - test:
-          requires:
-            - install_dependencies
+      # - test:
+      #     requires:
+      #       - install_dependencies
       - build:
           requires:
             - install_dependencies
-      - release:
-          requires:
-            - build
-            - test
-          filters:
-            tags:
-              only: /^v.*/
-            branches:
-              only:
-                - master
+      # - release:
+      #     requires:
+      #       - build
+      #       - test
+      #     filters:
+      #       tags:
+      #         only: /^v.*/
+      #       branches:
+      #         only:
+      #           - master
