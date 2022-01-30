@@ -1,6 +1,6 @@
 defaults: &defaults
   docker:
-    - image: circleci/node:^14.15.0
+    - image: circleci/node:14.0.0
   working_directory: ~/repo
 version: 2.1
 orbs:
@@ -71,7 +71,7 @@ jobs:
 
   release:
     docker:
-      - image: circleci/node:^14.15.0
+      - image: circleci/node:14.0.0
     steps:
       - checkout
       - run: yarn
