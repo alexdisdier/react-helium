@@ -83,7 +83,7 @@
     "lint-staged": "^9.4.1",
     "prettier": "^2.5.1",
     "react-test-renderer": "^17.0.2",
-    "semantic-release": "^15.13.30",
+    "semantic-release": "^17.2.3",
     "storybook-readme": "^5.0.9",
     "ts-jest": "^27.1.3"
   },
