@@ -28,7 +28,7 @@ A checkbox component
 ##### Import
 
 ```js
-import { Check } from "@stratumn/atomic";
+import { Check } from '@stratumn/atomic';
 ```
 
 ##### Usage
