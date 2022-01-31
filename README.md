@@ -33,14 +33,14 @@ This is usually done in the root level of your application.
 e.g: (using react-jss for styling)
 
 ```js
-import React from "react";
-import { ThemeProvider } from "react-jss";
-import { theme, Button } from "react-helium";
-import "react-helium/lib/style/base.css"; // Can be replaced with your custom reset.
+import React from 'react';
+import { ThemeProvider } from 'react-jss';
+import { theme, Button } from 'react-helium';
+import 'react-helium/lib/style/base.css'; // Can be replaced with your custom reset.
 
 <ThemeProvider theme={theme}>
   <div classname="root">
-    <Button onClick={() => alert("hello world")} round color="green">
+    <Button onClick={() => alert('hello world')} round color="green">
       I am THE button
     </Button>
   </div>
@@ -147,6 +147,10 @@ A few examples of commit messages:
 ## Contribution
 
 I welcome any pull requests. I will soon draft a contributing document
+
+release - npx release-it
+
+git reset
 
 ## License
 

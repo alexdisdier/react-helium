@@ -36,7 +36,7 @@
     "clean-storybook": "rm -rf storybook-static",
     "deploy-storybook": "yarn clean-storybook && yarn build-storybook && yarn storybook-to-ghpages -- --existing-output-dir=storybook-static",
     "semantic-release": "semantic-release",
-    "release": "release-it"
+    "prepare-release": "yarn prebuild && yarn build && yarn postbuild"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
