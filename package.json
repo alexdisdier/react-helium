@@ -35,7 +35,8 @@
     "build-storybook": "build-storybook",
     "clean-storybook": "rm -rf storybook-static",
     "deploy-storybook": "yarn clean-storybook && yarn build-storybook && yarn storybook-to-ghpages -- --existing-output-dir=storybook-static",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "release": "release-it"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
@@ -82,6 +83,7 @@
     "lint-staged": "^9.4.1",
     "prettier": "^2.5.1",
     "react-test-renderer": "^17.0.2",
+    "release-it": "^14.12.4",
     "semantic-release": "^15.13.30",
     "storybook-readme": "^5.0.9",
     "ts-jest": "^27.1.3"
