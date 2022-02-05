@@ -148,10 +148,6 @@ A few examples of commit messages:
 
 I welcome any pull requests. I will soon draft a contributing document
 
-release - npx release-it
-
-git reset
-
 ## License
 
 react-helium is MIT licensed.
