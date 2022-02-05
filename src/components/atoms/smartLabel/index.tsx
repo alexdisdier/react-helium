@@ -17,14 +17,14 @@ interface Props {
   text: string;
   inputHasFocus: boolean;
   inputHasValue: boolean;
-  status:
+  status?:
     | typeof STATUS_INVALID
     | typeof STATUS_CAUTION
     | typeof STATUS_VALID
     | typeof STATUS_MODIFIED;
-  maxWidth: boolean;
-  required: boolean;
-  hideLabel: boolean;
+  maxWidth?: boolean;
+  required?: boolean;
+  hideLabel?: boolean;
 }
 
 export const SmartLabel: FC<Props> = ({

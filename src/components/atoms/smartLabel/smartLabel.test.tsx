@@ -1,53 +1,65 @@
 import React from 'react';
-import { compareToSnapshot, classesFromStyles } from '../../utils/tests';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
-import { Smartlabel } from './smartlabel';
+import { SmartLabel } from '.';
 
-import {
-  STATUS_INVALID,
-  STATUS_CAUTION,
-  STATUS_VALID,
-  STATUS_MODIFIED
-} from '../constants/status';
+import { STATUS_VALID } from '../../../constant/status';
 
-import styles from './smartlabel.style';
-
-describe('Smartlabel', () => {
-  const classes = classesFromStyles(styles);
+describe('SmartLabel', () => {
   let props;
 
   beforeEach(() => {
     props = {
-      classes,
       text: 'Label text',
       forId: 'input_id_001',
       inputHasFocus: false,
       inputHasValue: false,
       required: false,
-      status: null,
-      maxWidth: false
+      status: STATUS_VALID,
+      maxWidth: false,
+      hideLabel: false,
     };
   });
 
-  it('renders full component', () => {
-    compareToSnapshot(<Smartlabel {...props}>Hello world</Smartlabel>);
+  it('renders the full component', () => {
+    const { container, queryByTestId } = render(
+      <SmartLabel {...props}>Hello world</SmartLabel>
+    );
+
+    expect(queryByTestId('invisible-wrapper')).not.toBeInTheDocument();
+
+    expect(container.firstChild).toMatchInlineSnapshot(`
+      <label
+        class="root"
+        data-input-has-focus="false"
+        data-input-has-value="false"
+        data-input-is-caution="false"
+        data-input-is-invalid="false"
+        data-input-is-modified="false"
+        data-input-is-required="false"
+        data-input-is-valid="true"
+        data-is-max-width="false"
+        for="input_id_001"
+      >
+        <div
+          class="label"
+        >
+          <span>
+            Label text
+          </span>
+        </div>
+        Hello world
+      </label>
+    `);
   });
 
-  it('renders full component with true data attributes', () => {
-    props.inputHasFocus = true;
-    props.inputHasValue = true;
-    props.required = true;
-    props.maxWidth = true;
-    compareToSnapshot(<Smartlabel {...props}>Hello world</Smartlabel>);
-  });
+  it('does not render the label text', () => {
+    props.hideLabel = true;
+    const { queryByTestId } = render(
+      <SmartLabel {...props}>Hello world</SmartLabel>
+    );
 
-  it.each([
-    ['valid', STATUS_VALID],
-    ['cautious', STATUS_CAUTION],
-    ['invalid', STATUS_INVALID],
-    ['modified', STATUS_MODIFIED]
-  ])('renders full component with input %s', (name, STATUS) => {
-    props.status = STATUS;
-    compareToSnapshot(<Smartlabel {...props}>{name}</Smartlabel>);
+    expect(queryByTestId('invisible-wrapper')).toBeInTheDocument();
   });
 });

@@ -1,31 +1,40 @@
-# Invisible
+# SmartLabel
 
 <!-- STORY -->
 
 <hr>
 
-Easily hide children components wrapped with <Invisible>.
+A label that only displays when the input has a value.
 
 ##### Import
 
 ```js
-import { Invisible } from 'react-helium';
+import { SmartLabel } from 'react-helium';
 ```
 
 ##### Usage
 
 ```jsx
-<Invisible visible={false}><p>I am hidden</p></Button>
+<SmartLabel forId="1" text="Hello" inputHasFocus={false} inputHasValue>
+  <input type="text" id="1" value="world" />
+</SmartLabel>
 ```
 
 ##### Required props
 
-| Name       | Type           | Description        |
-| ---------- | -------------- | ------------------ |
-| `children` | `ReactElement` | e.g: any html tags |
+| Name            | Type           | Description                                         |
+| --------------- | -------------- | --------------------------------------------------- |
+| `children`      | `ReactElement` | e.g: any html tags                                  |
+| `forId`         | `string`       | to specify which form element the label is bound to |
+| `text`          | `string`       | the smart label text                                |
+| `inputHasFocus` | `boolean`      |                                                     |
+| `inputHasValue` | `boolean`      |                                                     |
 
 ##### Optional props
 
-| Name      | Type      | Default | Description |
-| --------- | --------- | ------- | ----------- |
-| `visible` | `boolean` | `false` |             |
+| Name        | Type      | Default | Description                                              |
+| ----------- | --------- | ------- | -------------------------------------------------------- |
+| `status`    | `string`  | `null`  | can be of type "invalid", "valid", "modified", "caution" |
+| `maxWidth`  | `boolean` | `false` |                                                          |
+| `required`  | `boolean` | `false` |                                                          |
+| `hideLabel` | `boolean` | `false` |                                                          |

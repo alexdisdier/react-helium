@@ -42,15 +42,15 @@ stories.add('default', () => {
   return (
     <SmartLabel
       forId="1"
-      text={text('Custom color', '')}
-      inputHasFocus={boolean('Round Borders', false)}
-      inputHasValue={boolean('Round Borders', false)}
+      text={text('label text', '')}
+      inputHasFocus={boolean('inputHasFocus', false)}
+      inputHasValue={boolean('inputHasValue', false)}
       status={statusValue as any}
-      maxWidth={boolean('Round Borders', false)}
-      required={boolean('Round Borders', false)}
-      hideLabel={boolean('Round Borders', false)}
+      maxWidth={boolean('maxWidth', false)}
+      required={boolean('required', false)}
+      hideLabel={boolean('hideLabel', false)}
     >
-      <p> {text('Child', 'I am invisible, or not')}</p>
+      <p>{text('Child', 'I am child')}</p>
     </SmartLabel>
   );
 });

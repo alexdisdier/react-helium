@@ -12,7 +12,7 @@ export default createUseStyles(
         boxSizing: 'border-box',
         position: 'relative',
         width: '100%',
-        backgroundColor: theme.white1,
+        backgroundColor: theme.white,
         borderRadius: 2,
         '&[data-is-max-width="true"]': {
           maxWidth: 300,
@@ -64,7 +64,7 @@ export default createUseStyles(
         },
         '[data-input-has-focus="true"]:not([data-input-is-invalid="true"]):not([data-input-is-caution="true"]):not([data-input-is-valid="true"]):not([data-input-is-modified="true"]) > &':
           {
-            color: theme.indigo3,
+            color: theme.teal1,
           },
         '[data-input-is-required="true"] > &::before': {
           content: '"* "',
