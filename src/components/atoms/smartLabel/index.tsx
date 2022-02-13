@@ -50,6 +50,7 @@ export const SmartLabel: FC<Props> = ({
     'data-input-is-valid': status === STATUS_VALID,
     'data-input-is-modified': status === STATUS_MODIFIED,
     'data-is-max-width': maxWidth,
+    'data-testid': 'smartlabel',
   };
 
   return (
