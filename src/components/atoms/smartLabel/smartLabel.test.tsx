@@ -21,20 +21,41 @@ describe('SmartLabel', () => {
       inputHasFocus: false,
       inputHasValue: false,
       required: false,
-      status: STATUS_VALID,
+      status: null,
       maxWidth: false,
       hideLabel: false,
     };
   });
 
   it('renders the component', () => {
-    const { getByTestId, queryByTestId } = render(
+    const { getByTestId } = render(
       <SmartLabel {...props}>Hello world</SmartLabel>
     );
 
-    expect(queryByTestId('invisible-wrapper')).not.toBeInTheDocument();
-
-    expect(getByTestId('smartlabel')).toBeInTheDocument();
+    expect(getByTestId('smartlabel')).toMatchInlineSnapshot(`
+      <label
+        class="root"
+        data-input-has-focus="false"
+        data-input-has-value="false"
+        data-input-is-caution="false"
+        data-input-is-invalid="false"
+        data-input-is-modified="false"
+        data-input-is-required="false"
+        data-input-is-valid="false"
+        data-is-max-width="false"
+        data-testid="smartlabel"
+        for="input_id_001"
+      >
+        <div
+          class="label"
+        >
+          <span>
+            Label text
+          </span>
+        </div>
+        Hello world
+      </label>
+    `);
   });
 
   it('renders a label in focus', () => {
@@ -68,6 +89,17 @@ describe('SmartLabel', () => {
     expect(
       getByTestId('smartlabel').getAttribute('data-input-is-required')
     ).toBe('true');
+  });
+
+  it('renders an valid status', () => {
+    props.status = STATUS_VALID;
+    const { getByTestId } = render(
+      <SmartLabel {...props}>Hello world</SmartLabel>
+    );
+
+    expect(getByTestId('smartlabel').getAttribute('data-input-is-valid')).toBe(
+      'true'
+    );
   });
 
   it('renders an invalid status', () => {
