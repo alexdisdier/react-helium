@@ -5,9 +5,9 @@ import '@testing-library/jest-dom';
 import { SmartLabel } from '.';
 
 import {
+  STATUS_VALID,
   STATUS_INVALID,
   STATUS_CAUTION,
-  STATUS_VALID,
   STATUS_MODIFIED,
 } from '../../../constant/status';
 
@@ -21,41 +21,17 @@ describe('SmartLabel', () => {
       inputHasFocus: false,
       inputHasValue: false,
       required: false,
-      status: null,
-      maxWidth: false,
-      hideLabel: false,
     };
   });
 
   it('renders the component', () => {
-    const { getByTestId } = render(
+    const { getByTestId, queryByTestId } = render(
       <SmartLabel {...props}>Hello world</SmartLabel>
     );
 
-    expect(getByTestId('smartlabel')).toMatchInlineSnapshot(`
-      <label
-        class="root"
-        data-input-has-focus="false"
-        data-input-has-value="false"
-        data-input-is-caution="false"
-        data-input-is-invalid="false"
-        data-input-is-modified="false"
-        data-input-is-required="false"
-        data-input-is-valid="false"
-        data-is-max-width="false"
-        data-testid="smartlabel"
-        for="input_id_001"
-      >
-        <div
-          class="label"
-        >
-          <span>
-            Label text
-          </span>
-        </div>
-        Hello world
-      </label>
-    `);
+    expect(queryByTestId('invisible-wrapper')).not.toBeInTheDocument();
+
+    expect(getByTestId('smartlabel')).toBeInTheDocument();
   });
 
   it('renders a label in focus', () => {
@@ -91,7 +67,7 @@ describe('SmartLabel', () => {
     ).toBe('true');
   });
 
-  it('renders an valid status', () => {
+  it('renders a valid status', () => {
     props.status = STATUS_VALID;
     const { getByTestId } = render(
       <SmartLabel {...props}>Hello world</SmartLabel>
